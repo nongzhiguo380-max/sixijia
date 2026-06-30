@@ -35,31 +35,31 @@
 </script>
 <style>
 :root {
-  --bg: #FAF8F5; --text: #2C2C2C; --text-muted: #8A8580;
-  --gold: #B8860B; --gold-light: #C4A265; --sage: #9CAF88;
-  --white: #FFFFFF; --border: #E8E3DC;
+  --bg: #FCFAF7; --text: #1A1A1A; --text-muted: #99948D;
+  --gold: #AB8B5A; --gold-light: #C4A87A;
+  --white: #FFFFFF; --border: #E8E4DB;
   --font-heading: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-body: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.9; -webkit-font-smoothing: antialiased; font-size: 15px; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 2.0; -webkit-font-smoothing: antialiased; font-size: 16px; }
 .container { max-width: 800px; margin: 0 auto; padding: 0 40px; }
 
 header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0;
-  background: rgba(250,248,245,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 0;
+  background: rgba(252,250,247,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent; transition: border-color 0.3s;
 }
 header.scrolled { border-bottom-color: var(--border); }
-.header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1040px; margin: 0 auto; padding: 0 40px; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 0 40px; }
 .logo { text-decoration: none; display: flex; align-items: center; }
 .logo img { height: 36px; display: block; }
-nav { display: flex; gap: 36px; }
-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.05em; transition: color 0.25s; font-family: var(--font-heading); }
+nav { display: flex; gap: 48px; }
+nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; letter-spacing: 0.08em; transition: color 0.4s; font-family: var(--font-heading); }
 nav a:hover, nav a.active { color: var(--gold); }
 
-.page-header { padding: 160px 0 64px; text-align: center; }
-.page-header h1 { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 300; color: var(--text); letter-spacing: 0.05em; margin-bottom: 12px; }
+.page-header { padding: 160px 0 80px; text-align: center; }
+.page-header h1 { font-family: var(--font-heading); font-size: 2.8rem; font-weight: 400; color: var(--text); letter-spacing: 0.05em; margin-bottom: 12px; }
 .page-header p { font-size: 1rem; color: var(--text-muted); }
 
 .faq-list { margin-bottom: 96px; }
@@ -67,7 +67,7 @@ nav a:hover, nav a.active { color: var(--gold); }
 .faq-q {
   padding: 22px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
   font-family: var(--font-heading); font-size: 1.02rem; font-weight: 400; color: var(--text);
-  letter-spacing: 0.03em; transition: color 0.25s; user-select: none;
+  letter-spacing: 0.03em; transition: color 0.4s; user-select: none;
 }
 .faq-q:hover { color: var(--gold); }
 .faq-q .arrow { color: var(--text-muted); font-size: 0.75rem; transition: transform 0.3s; }
@@ -78,16 +78,16 @@ nav a:hover, nav a.active { color: var(--gold); }
 }
 .faq-item.open .faq-a { max-height: 300px; padding: 0 0 28px 0; }
 
-footer { padding: 48px 40px 32px; text-align: center; border-top: 1px solid var(--border); }
-.footer-inner { max-width: 1040px; margin: 0 auto; }
-.footer-nav { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; }
-.footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.04em; transition: color 0.25s; }
+footer { padding: 64px 40px 48px; text-align: center; border-top: 1px solid var(--border); }
+.footer-inner { max-width: 1120px; margin: 0 auto; }
+.footer-nav { display: flex; justify-content: center; gap: 40px; margin-bottom: 28px; }
+.footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.04em; transition: color 0.4s; }
 .footer-nav a:hover { color: var(--gold); }
 footer p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.8; }
 footer .brand { color: var(--gold); }
 
-@media (max-width: 768px) { nav { gap: 20px; } .page-header h1 { font-size: 1.7rem; } .faq-q { font-size: 0.95rem; } }
-@media (max-width: 560px) { .container, .header-inner { padding: 0 24px; } .faq-q { padding: 18px 0; font-size: 0.9rem; } .header-inner { flex-direction: column; gap: 10px; } nav { gap: 14px; } nav a { font-size: 0.75rem; } }
+@media (max-width: 860px) { nav { gap: 20px; } .page-header h1 { font-size: 1.7rem; } .faq-q { font-size: 0.95rem; } }
+@media (max-width: 640px) { .container, .header-inner { padding: 0 24px; } .faq-q { padding: 18px 0; font-size: 0.9rem; } .header-inner { flex-direction: column; gap: 10px; } nav { gap: 14px; } nav a { font-size: 0.75rem; } }
 </style>
 </head>
 <body>
@@ -97,7 +97,7 @@ footer .brand { color: var(--gold); }
     <a href="index.html" class="logo"><img src="../四喜家LOGO.png" alt="四喜家"></a>
     <nav>
       <a href="index.html">首页</a><a href="services.html">服务</a>
-      <a href="cases.html">案例</a><a href="faq.html" class="active">问答</a><a href="blog.html">指南</a><a href="contact.html">联系</a>
+      <a href="cases.html">案例</a><a href="faq.html" class="active">问答</a><a href="contact.html">联系</a>
     </nav>
   </div>
 </header>
@@ -181,7 +181,7 @@ footer .brand { color: var(--gold); }
 <footer>
   <div class="footer-inner">
     <div class="footer-nav">
-      <a href="index.html">首页</a><a href="services.html">服务</a><a href="cases.html">案例</a><a href="faq.html">问答</a><a href="blog.html">指南</a><a href="contact.html">联系</a>
+      <a href="index.html">首页</a><a href="services.html">服务</a><a href="cases.html">案例</a><a href="faq.html">问答</a><a href="contact.html">联系</a>
     </div>
     <p><span class="brand">四喜家</span> &copy; 2026</p>
     <p>南宁市江南区万泰隆建材市场9栋3楼20-22号 &nbsp;|&nbsp; 18007717818</p>
