@@ -10,3 +10,5 @@ website/
 
 # 临时文件
 *.zip
+
+# force rebuild
