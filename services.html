@@ -3,86 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="四喜家南宁软装设计服务介绍：全屋软装设计、精装房改造、单品搭配、线上轻咨询。价格透明，流程清晰，覆盖南宁全域。">
-<meta name="keywords" content="南宁软装服务,南宁软装设计报价,南宁精装房改造,南宁软装设计费,全屋软装">
-<title>服务介绍 | 四喜家 · 南宁软装设计</title>
+<meta name="description" content="四喜家南宁室内设计服务介绍：全案设计与落地、软装设计、精装房改造、软装单品采买。价格透明，流程清晰，覆盖南宁全域。">
+<meta name="keywords" content="南宁室内设计,南宁软装设计报价,南宁精装房改造,南宁全案设计,南宁软装">
+<title>服务介绍 | 四喜家 · 南宁室内设计</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #FCFAF7; --text: #1A1A1A; --text-muted: #99948D;
-  --gold: #AB8B5A; --gold-light: #C4A87A;
+  --bg: #FBFAF8; --text: #1a1a1a; --text-muted: #8c8c8c;
+  --gold: #b8956e; --gold-hover: #9e7d5a;
   --white: #FFFFFF; --border: #E8E4DB;
   --font-heading: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-body: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 2.0; -webkit-font-smoothing: antialiased; font-size: 16px; }
-.container { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
 
 header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 0;
-  background: rgba(252,250,247,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent; transition: border-color 0.4s;
+  background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.4s;
 }
 header.scrolled { border-bottom-color: var(--border); }
-.header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 48px; }
 .logo { text-decoration: none; display: flex; align-items: center; }
-.logo img { height: 36px; display: block; }
+.logo img { height: 44px; width: auto; display: block; }
+@media (max-width: 640px) { .logo img { height: 36px; } }
 nav { display: flex; gap: 48px; }
 nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; letter-spacing: 0.08em; transition: color 0.4s; font-family: var(--font-heading); }
 nav a:hover, nav a.active { color: var(--gold); }
 
-.page-header { padding: 160px 0 80px; text-align: center; }
-.page-header h1 { font-family: var(--font-heading); font-size: 2.8rem; font-weight: 400; color: var(--text); letter-spacing: 0.05em; margin-bottom: 12px; }
+.page-header { padding: 180px 0 100px; text-align: center; }
+.page-header h1 { font-family: var(--font-heading); font-size: 2.8rem; font-weight: 400; color: var(--text); letter-spacing: 0.06em; margin-bottom: 16px; }
 .page-header p { font-size: 1rem; color: var(--text-muted); }
-.section-title { text-align: center; margin-bottom: 56px; }
-.section-title h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 400; color: var(--text); letter-spacing: 0.04em; }
-.section-title .divider { width: 40px; height: 1px; background: var(--gold); margin: 14px auto 0; }
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-header h2 { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 400; color: var(--text); letter-spacing: 0.05em; }
+.section-header .divider { width: 40px; height: 1px; background: var(--gold); margin: 18px auto 0; }
 
-.service-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 72px; }
-.svc-card { padding: 56px 48px; border: 1px solid var(--border); transition: all 0.4s; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-.svc-card:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-.svc-card h3 { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 400; color: var(--text); margin-bottom: 8px; letter-spacing: 0.03em; }
-.svc-card .price { font-size: 1.3rem; font-weight: 300; color: var(--gold); margin-bottom: 16px; font-family: var(--font-heading); }
-.svc-card .detail { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 10px; }
-.svc-card .audience { font-size: 0.82rem; color: var(--text-muted); }
+.service-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 120px; }
+.svc-card { padding: 56px 48px; border: 1px solid var(--border); background: var(--white); transition: all 0.4s; }
+.svc-card:hover { border-color: var(--gold); box-shadow: 0 2px 12px rgba(0,0,0,0.04); transform: translateY(-2px); }
+.svc-card h3 { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 400; color: var(--text); margin-bottom: 12px; letter-spacing: 0.04em; }
+.svc-card .price { font-size: 1.15rem; font-weight: 400; color: var(--gold); margin-bottom: 20px; font-family: var(--font-heading); letter-spacing: 0.02em; }
+.svc-card .detail { font-size: 0.92rem; color: var(--text-muted); line-height: 2.0; margin-bottom: 16px; }
+.svc-card .audience { font-size: 0.84rem; color: var(--text-muted); padding-top: 16px; border-top: 1px solid var(--border); line-height: 1.8; }
 
-.timeline { display: flex; justify-content: space-between; margin-bottom: 72px; position: relative; }
-.timeline::before { content: ''; position: absolute; top: 18px; left: 8%; right: 8%; height: 1px; background: var(--border); z-index: 0; }
+.flow-section { padding-bottom: 120px; }
+.timeline { display: flex; justify-content: space-between; position: relative; }
+.timeline::before { content: ''; position: absolute; top: 16px; left: 10%; right: 10%; height: 1px; background: var(--border); z-index: 0; }
 .timeline-step { text-align: center; position: relative; z-index: 1; flex: 1; }
-.timeline-step .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--gold-light); margin: 0 auto 18px; }
-.timeline-step strong { display: block; font-family: var(--font-heading); font-size: 0.9rem; font-weight: 400; color: var(--text); margin-bottom: 4px; }
-.timeline-step span { font-size: 0.78rem; color: var(--text-muted); }
+.timeline-step .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); margin: 0 auto 20px; }
+.timeline-step strong { display: block; font-family: var(--font-heading); font-size: 0.92rem; font-weight: 400; color: var(--text); margin-bottom: 6px; letter-spacing: 0.04em; }
+.timeline-step span { font-size: 0.8rem; color: var(--text-muted); }
 
-.info-section { margin-bottom: 80px; }
-.info-block { margin-bottom: 32px; }
-.info-section h4 { font-family: var(--font-heading); font-size: 1rem; font-weight: 400; color: var(--text); margin-bottom: 8px; letter-spacing: 0.03em; }
-.info-section p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.9; }
+.info-section { margin-bottom: 120px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.info-section h4 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 400; color: var(--text); margin-bottom: 14px; letter-spacing: 0.04em; }
+.info-section p { font-size: 0.92rem; color: var(--text-muted); line-height: 2.0; }
 
-footer { padding: 64px 40px 48px; text-align: center; border-top: 1px solid var(--border); }
-.footer-inner { max-width: 1120px; margin: 0 auto; }
-.footer-nav { display: flex; justify-content: center; gap: 40px; margin-bottom: 28px; }
-.footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.04em; transition: color 0.4s; }
+footer { padding: 80px 48px 64px; text-align: center; border-top: 1px solid var(--border); }
+
+.fee-table { width: 100%; border-collapse: collapse; margin: 0 auto 40px; font-size: 0.9rem; }
+.fee-table thead th { padding: 14px 20px; border-bottom: 1px solid var(--gold); color: var(--gold); font-family: var(--font-heading); font-weight: 400; text-align: left; font-size: 0.82rem; letter-spacing: 0.06em; }
+.fee-table tbody td { padding: 16px 20px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.fee-table tbody tr:last-child td { border-bottom: none; }
+.fee-table tbody tr:hover td { color: var(--text); background: rgba(184,149,110,0.03); }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-nav { display: flex; justify-content: center; gap: 48px; margin-bottom: 32px; }
+.footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.06em; transition: color 0.4s; }
 .footer-nav a:hover { color: var(--gold); }
 footer p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.8; }
 footer .brand { color: var(--gold); }
 
-.price-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
-.price-table th { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); font-family: var(--font-heading); font-weight: 400; color: var(--text-muted); letter-spacing: 0.04em; }
-.price-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); }
-.price-table tr:last-child td { border-bottom: none; }
-
-@media (max-width: 860px) { .service-cards { grid-template-columns: 1fr; } .timeline { flex-wrap: wrap; gap: 24px; } .timeline::before { display: none; } .timeline-step { flex: 1 1 30%; } nav { gap: 20px; } .page-header h1 { font-size: 1.7rem; } }
-@media (max-width: 640px) { .container, .header-inner { padding: 0 24px; } .timeline-step { flex: 1 1 45%; } .header-inner { flex-direction: column; gap: 10px; } nav { gap: 14px; } nav a { font-size: 0.75rem; } }
+@media (max-width: 860px) { .service-cards { grid-template-columns: 1fr; gap: 32px; } .info-section { grid-template-columns: 1fr; gap: 40px; } .timeline { flex-wrap: wrap; gap: 28px; } .timeline::before { display: none; } .timeline-step { flex: 1 1 28%; } nav { gap: 20px; } .page-header h1 { font-size: 1.8rem; } }
+@media (max-width: 640px) { .container, .header-inner { padding: 0 24px; } .svc-card { padding: 40px 32px; } .timeline-step { flex: 1 1 40%; } .page-header { padding: 140px 0 64px; } .header-inner { flex-direction: column; gap: 12px; } nav { gap: 16px; } nav a { font-size: 0.78rem; } }
 </style>
 </head>
 <body>
 
 <header id="site-header">
   <div class="header-inner">
-    <a href="index.html" class="logo"><img src="../四喜家LOGO.png" alt="四喜家"></a>
+    <a href="index.html" class="logo"><img src="logo.png" alt="四喜家"></a>
     <nav>
       <a href="index.html">首页</a><a href="services.html" class="active">服务</a>
       <a href="cases.html">案例</a><a href="faq.html">问答</a><a href="contact.html">联系</a>
@@ -92,48 +93,63 @@ footer .brand { color: var(--gold); }
 
 <main>
   <section class="page-header container">
-    <h1>服务介绍与定价</h1>
+    <h1>服务与定价</h1>
     <p>透明报价，流程清晰</p>
   </section>
 
   <section class="container">
-    <div class="section-title"><h2>服务类型与价格</h2><div class="divider"></div></div>
+    <div class="section-header"><h2>服务类型</h2><div class="divider"></div></div>
     <div class="service-cards">
       <div class="svc-card">
-        <h3>全案设计</h3>
-        <div class="price">100 &mdash; 200 元/㎡</div>
-        <div class="detail">从毛坯到入住的整体解决方案。硬装设计+软装设计+施工图纸+主材清单+软装清单+施工交底+全程跟进。</div>
+        <h3>全案设计与落地</h3>
+        <div class="price">按面积计费</div>
+        <div class="detail">从毛坯到入住，硬装+软装一体化设计。含空间规划、施工图纸、主材清单、软装方案、效果图、采购清单、施工交底与全程跟进，精致交付。</div>
         <div class="audience">适合：毛坯新房 / 旧房全翻新 / 追求品质精致交付</div>
       </div>
       <div class="svc-card">
-        <h3>全屋软装设计</h3>
+        <h3>软装设计</h3>
         <div class="price">8,000 &mdash; 25,000 元/套</div>
-        <div class="detail">空间规划、家具选型、灯具方案、窗帘方案、饰品搭配、效果图、采购清单、现场摆场指导</div>
-        <div class="audience">适合：毛坯交付 / 想彻底换风格的客户</div>
+        <div class="detail">空间规划、家具灯具窗帘饰品整体搭配。含意向效果图、采购清单、现场摆场指导，一站式交付，拎包入住。</div>
+        <div class="audience">适合：已有硬装 / 想彻底换风格的客户</div>
       </div>
       <div class="svc-card">
-        <h3>精装房软装改造</h3>
+        <h3>精装房改造</h3>
         <div class="price">5,000 &mdash; 18,000 元/套</div>
-        <div class="detail">墙面色彩方案、灯光改造建议、家具搭配、窗帘更换、软装饰品整体方案</div>
-        <div class="audience">适合：精装房交付，不想敲墙的客户</div>
+        <div class="detail">不大敲大改，灯光改造、窗帘替换、家具软饰搭配焕新。用软装扭转精装房的千篇一律，保留原格局的同时注入个性。</div>
+        <div class="audience">适合：精装房交付，不想大改的客户</div>
       </div>
       <div class="svc-card">
-        <h3>单品软装搭配</h3>
+        <h3>软装单品采买</h3>
         <div class="price">2,000 &mdash; 5,000 元/次</div>
-        <div class="detail">针对指定空间做窗帘 / 地毯 / 挂画 / 摆件搭配方案，含选购清单</div>
+        <div class="detail">窗帘、地毯、挂画、摆件等单品搭配选购。针对指定空间做搭配方案，含选购清单，空间氛围瞬间升级。</div>
         <div class="audience">适合：已有大件家具的局部升级</div>
       </div>
-      <div class="svc-card">
-        <h3>线上轻咨询</h3>
-        <div class="price">300 &mdash; 800 元/次</div>
-        <div class="detail">远程看图诊断，30&ndash;60 分钟视频 / 语音沟通，给出可执行建议</div>
-        <div class="audience">适合：预算有限或外地客户</div>
-      </div>
     </div>
+
+    <div class="section-header" style="margin-top:40px;"><h2>全案设计与落地 · 计费标准</h2><div class="divider"></div></div>
+    <table class="fee-table">
+      <thead><tr><th>类型</th><th>套内面积</th><th>单价</th><th>适用说明</th></tr></thead>
+      <tbody>
+        <tr><td>刚需型</td><td>≤ 90㎡</td><td>120 元/㎡</td><td>毛坯新房，追求性价比</td></tr>
+        <tr><td>改善型</td><td>91-140㎡</td><td>150 元/㎡</td><td>对品质有明确要求</td></tr>
+        <tr><td>大宅型</td><td>141-200㎡</td><td>180 元/㎡</td><td>大平层 / 复式 / 别墅</td></tr>
+        <tr><td>小户型</td><td>≤ 60㎡</td><td>8,000 元起/套</td><td>小户型一口价</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-header" style="margin-top:40px;"><h2>软装设计 · 计费标准</h2><div class="divider"></div></div>
+    <table class="fee-table">
+      <thead><tr><th>类型</th><th>面积</th><th>总价</th><th>适用说明</th></tr></thead>
+      <tbody>
+        <tr><td>基础型</td><td>≤ 100㎡</td><td>8,000 元/套</td><td>已有硬装，需全套软装搭配</td></tr>
+        <tr><td>改善型</td><td>101-140㎡</td><td>12,000 元/套</td><td>对材质与品牌有明确偏好</td></tr>
+        <tr><td>大宅型</td><td>141㎡ 以上</td><td>18,000-25,000 元/套</td><td>大平层 / 复式 / 别墅软装</td></tr>
+      </tbody>
+    </table>
   </section>
 
-  <section class="container">
-    <div class="section-title"><h2>服务流程</h2><div class="divider"></div></div>
+  <section class="container flow-section">
+    <div class="section-header"><h2>服务流程</h2><div class="divider"></div></div>
     <div class="timeline">
       <div class="timeline-step"><div class="dot"></div><strong>需求沟通</strong><span>微信/到店聊设想</span></div>
       <div class="timeline-step"><div class="dot"></div><strong>上门量房</strong><span>南宁市区免费</span></div>
@@ -145,19 +161,13 @@ footer .brand { color: var(--gold); }
   </section>
 
   <section class="container info-section">
-    <div class="info-block"><h4>广西区内差旅政策</h4><p>南宁市区内免费上门量房。南宁以外广西区内城市（如柳州、桂林、北海等），上门量房及现场服务需收取差旅费，实报实销，出发前预估告知。广西区外客户仅提供线上轻咨询服务。</p></div>
-    <div class="info-block"><h4>设计费说明</h4><p>设计费含：方案设计 + 效果图 + 采购清单 + 现场摆场指导（1-2次）。不含家具、灯具、窗帘等实物采购费用。付款方式：签约付 50%，方案确认付 40%，摆场交付付 10%。</p></div>
-    <div class="info-block">
-      <h4>全案设计收费标准</h4>
-      <p>硬装+软装一体设计，按建筑面积计费：</p>
-      <table class="price-table"><thead><tr><th>类型</th><th>单价</th><th>适用</th></tr></thead><tbody><tr><td>刚需型</td><td>100 元/㎡</td><td>刚需平层、旧房简改</td></tr><tr><td>改善型</td><td>150 元/㎡</td><td>自住改善、精装房改造</td></tr><tr><td>大宅型</td><td>200 元/㎡</td><td>大平层、复式、品质自住</td></tr><tr><td>小户型一口价</td><td>6,600 元/套</td><td>≤70㎡</td></tr></tbody></table>
-      <p style="margin-top:10px; font-size:0.82rem; color:var(--text-muted);">付款分 4 期：签约 30% → 平面确认 40% → 开工 20% → 竣工验收 10%</p>
+    <div>
+      <h4>广西区内差旅政策</h4>
+      <p>南宁市区内免费上门量房。南宁以外广西区内城市（如柳州、桂林、北海等），上门量房及现场服务需收取差旅费，实报实销，出发前预估告知。广西区外客户仅提供线上咨询服务。</p>
     </div>
-    <div class="info-block">
-      <h4>纯软装设计收费标准</h4>
-      <p>单独软装设计，按套内面积计费：</p>
-      <table class="price-table"><thead><tr><th>类型</th><th>单价</th><th>适用</th></tr></thead><tbody><tr><td>刚需简配</td><td>50 元/㎡</td><td>出租/刚需/简单搭配</td></tr><tr><td>标准全屋</td><td>100 元/㎡</td><td>主流推荐，精装房完工后</td></tr><tr><td>高端私宅</td><td>150 元/㎡</td><td>大平层/复式/别墅</td></tr><tr><td>小户型一口价</td><td>2,000 元/套</td><td>≤60㎡</td></tr></tbody></table>
-      <p style="margin-top:10px; font-size:0.82rem; color:var(--text-muted);">付款分 3 期：签约定金 40% → 方案确认 40% → 上门摆场 20%</p>
+    <div>
+      <h4>设计费说明</h4>
+      <p>设计费含：方案设计 + 效果图 + 采购清单 + 现场摆场指导（1-2次）。不含家具、灯具、窗帘等实物采购费用。付款方式：签约付 50%，方案确认付 40%，摆场交付付 10%。</p>
     </div>
   </section>
 </main>
