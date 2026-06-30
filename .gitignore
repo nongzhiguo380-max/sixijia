@@ -1,0 +1,12 @@
+# 部署截图
+aliyun-*.png
+netlify-*.png
+oss-*.png
+oss-buy.png
+login-wall.png
+
+# 镜像目录
+website/
+
+# 临时文件
+*.zip
