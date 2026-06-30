@@ -69,6 +69,11 @@ footer { padding: 48px 40px 32px; text-align: center; border-top: 1px solid var(
 footer p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.8; }
 footer .brand { color: var(--gold); }
 
+.price-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
+.price-table th { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); font-family: var(--font-heading); font-weight: 400; color: var(--text-muted); letter-spacing: 0.04em; }
+.price-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); }
+.price-table tr:last-child td { border-bottom: none; }
+
 @media (max-width: 768px) { .service-cards { grid-template-columns: 1fr; } .timeline { flex-wrap: wrap; gap: 24px; } .timeline::before { display: none; } .timeline-step { flex: 1 1 30%; } nav { gap: 20px; } .page-header h1 { font-size: 1.7rem; } }
 @media (max-width: 560px) { .container, .header-inner { padding: 0 24px; } .timeline-step { flex: 1 1 45%; } .header-inner { flex-direction: column; gap: 10px; } nav { gap: 14px; } nav a { font-size: 0.75rem; } }
 </style>
@@ -94,6 +99,12 @@ footer .brand { color: var(--gold); }
   <section class="container">
     <div class="section-title"><h2>服务类型与价格</h2><div class="divider"></div></div>
     <div class="service-cards">
+      <div class="svc-card">
+        <h3>全案设计</h3>
+        <div class="price">100 &mdash; 200 元/㎡</div>
+        <div class="detail">从毛坯到入住的整体解决方案。硬装设计+软装设计+施工图纸+主材清单+软装清单+施工交底+全程跟进。</div>
+        <div class="audience">适合：毛坯新房 / 旧房全翻新 / 追求品质精致交付</div>
+      </div>
       <div class="svc-card">
         <h3>全屋软装设计</h3>
         <div class="price">8,000 &mdash; 25,000 元/套</div>
@@ -136,6 +147,18 @@ footer .brand { color: var(--gold); }
   <section class="container info-section">
     <div class="info-block"><h4>广西区内差旅政策</h4><p>南宁市区内免费上门量房。南宁以外广西区内城市（如柳州、桂林、北海等），上门量房及现场服务需收取差旅费，实报实销，出发前预估告知。广西区外客户仅提供线上轻咨询服务。</p></div>
     <div class="info-block"><h4>设计费说明</h4><p>设计费含：方案设计 + 效果图 + 采购清单 + 现场摆场指导（1-2次）。不含家具、灯具、窗帘等实物采购费用。付款方式：签约付 50%，方案确认付 40%，摆场交付付 10%。</p></div>
+    <div class="info-block">
+      <h4>全案设计收费标准</h4>
+      <p>硬装+软装一体设计，按建筑面积计费：</p>
+      <table class="price-table"><thead><tr><th>类型</th><th>单价</th><th>适用</th></tr></thead><tbody><tr><td>刚需型</td><td>100 元/㎡</td><td>刚需平层、旧房简改</td></tr><tr><td>改善型</td><td>150 元/㎡</td><td>自住改善、精装房改造</td></tr><tr><td>大宅型</td><td>200 元/㎡</td><td>大平层、复式、品质自住</td></tr><tr><td>小户型一口价</td><td>6,600 元/套</td><td>≤70㎡</td></tr></tbody></table>
+      <p style="margin-top:10px; font-size:0.82rem; color:var(--text-muted);">付款分 4 期：签约 30% → 平面确认 40% → 开工 20% → 竣工验收 10%</p>
+    </div>
+    <div class="info-block">
+      <h4>纯软装设计收费标准</h4>
+      <p>单独软装设计，按套内面积计费：</p>
+      <table class="price-table"><thead><tr><th>类型</th><th>单价</th><th>适用</th></tr></thead><tbody><tr><td>刚需简配</td><td>50 元/㎡</td><td>出租/刚需/简单搭配</td></tr><tr><td>标准全屋</td><td>100 元/㎡</td><td>主流推荐，精装房完工后</td></tr><tr><td>高端私宅</td><td>150 元/㎡</td><td>大平层/复式/别墅</td></tr><tr><td>小户型一口价</td><td>2,000 元/套</td><td>≤60㎡</td></tr></tbody></table>
+      <p style="margin-top:10px; font-size:0.82rem; color:var(--text-muted);">付款分 3 期：签约定金 40% → 方案确认 40% → 上门摆场 20%</p>
+    </div>
   </section>
 </main>
 
