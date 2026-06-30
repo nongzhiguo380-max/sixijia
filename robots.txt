@@ -1,4 +1,13 @@
+User-agent: *
+Allow: /
+
 User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: PerplexityBot
@@ -13,7 +22,16 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: Baiduspider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
 User-agent: CCBot
-Disallow: /
+Allow: /
 
 Sitemap: https://sixijia.com.cn/sitemap.xml
