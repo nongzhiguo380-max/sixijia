@@ -65,6 +65,13 @@ nav a:hover, nav a.active { color: var(--gold); }
 .stat-num { font-family: var(--font-heading); font-size: 3.2rem; font-weight: 300; color: var(--gold); letter-spacing: 0.02em; line-height: 1.1; }
 .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
 
+.team-photos { display: flex; justify-content: center; gap: 56px; margin-top: 44px; flex-wrap: wrap; }
+.team-member { text-align: center; }
+.team-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); transition: border-color 0.35s, transform 0.35s; }
+.team-photo:hover { border-color: var(--gold); transform: scale(1.04); }
+.team-name { font-family: var(--font-heading); font-size: 1rem; color: var(--text); margin-top: 14px; letter-spacing: 0.04em; }
+.team-role { font-size: 0.82rem; color: var(--text-muted); margin-top: 6px; }
+
 .section-title { text-align: center; margin-bottom: 56px; }
 .section-title h2 { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 300; color: var(--text); letter-spacing: 0.05em; }
 .section-title .divider { width: 40px; height: 1px; background: var(--gold); margin: 16px auto 0; }
@@ -115,6 +122,18 @@ footer .brand { color: var(--gold); }
     <div class="subtitle">
       夫妻档设计师组合 &mdash; 丈夫主理空间规划，妻子主理软装搭配。<br>
       十年深耕，只为给你一个住进去就不想走的家。
+    </div>
+    <div class="team-photos">
+      <div class="team-member">
+        <img src="portrait.jpg" alt="Gordon" class="team-photo">
+        <div class="team-name">Gordon</div>
+        <div class="team-role">空间规划 · 丈夫</div>
+      </div>
+      <div class="team-member">
+        <img src="portrait-2.jpg" alt="佳佳" class="team-photo">
+        <div class="team-name">佳佳</div>
+        <div class="team-role">软装搭配 · 妻子</div>
+      </div>
     </div>
     <div class="stats">
       <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">服务家庭</div></div>
