@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目记账本</title>
+<script src="https://static.cloudbase.net/cloudbase-js-sdk/latest/cloudbase.full.js"></script>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="记账本">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4A90D9">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f5;color:#333;max-width:480px;margin:0 auto;min-height:100vh}
+.tab-bar{display:flex;background:#fff;border-bottom:1px solid #e0e0e0;position:sticky;top:0;z-index:10}
+.tab-bar button{flex:1;padding:12px 0;border:none;background:none;font-size:13px;color:#999;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.tab-bar button.active{color:#4A90D9;border-bottom-color:#4A90D9;font-weight:600}
+.page{display:none;padding:16px}
+.page.active{display:block}
+h2{font-size:18px;margin-bottom:12px;color:#1a1a1a}
+h3{font-size:16px;margin-bottom:12px;color:#1a1a1a}
+.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.btn{display:inline-block;padding:10px 20px;border:none;border-radius:8px;font-size:14px;cursor:pointer;transition:all .2s;font-weight:500}
+.btn-primary{background:#4A90D9;color:#fff}
+.btn-danger{background:#e74c3c;color:#fff}
+.btn-outline{background:#fff;color:#4A90D9;border:1px solid #4A90D9}
+.btn-sm{padding:6px 12px;font-size:12px}
+.btn-back{background:none;border:none;font-size:15px;color:#4A90D9;cursor:pointer;padding:4px 0;margin-bottom:12px;display:inline-flex;align-items:center;gap:4px;font-weight:500}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;margin-bottom:10px;font-family:inherit}
+textarea{resize:vertical;min-height:60px}
+label{font-size:13px;color:#666;display:block;margin-bottom:4px}
+.flex-row{display:flex;gap:10px;align-items:center}
+.flex-row>*{flex:1}
+.flex-row .btn{flex:none}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.stat-card{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.stat-card .label{font-size:12px;color:#999;margin-bottom:6px}
+.stat-card .value{font-size:22px;font-weight:700}
+.stat-card .income{color:#27ae60}
+.stat-card .expense{color:#e74c3c}
+.stat-card .profit{color:#4A90D9}
+.transaction-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.transaction-item:last-child{border-bottom:none}
+.transaction-item .left{flex:1;min-width:0}
+.transaction-item .title{font-size:15px;font-weight:500}
+.transaction-item .meta{font-size:12px;color:#999;margin-top:2px;display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.transaction-item .amount{font-size:17px;font-weight:600;white-space:nowrap}
+.amount-income{color:#27ae60}
+.amount-expense{color:#e74c3c}
+.project-item{padding:12px 0;border-bottom:1px solid #f0f0f0;cursor:pointer}
+.project-item:last-child{border-bottom:none}
+.project-item .name{font-size:15px;font-weight:500}
+.project-item .info{font-size:12px;color:#999;margin-top:2px}
+.empty-state{text-align:center;padding:40px 16px;color:#999}
+.empty-state .icon{font-size:48px;margin-bottom:12px}
+.chart-container{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.toolbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:100;display:flex;align-items:flex-end;justify-content:center}
+.modal{background:#fff;border-radius:16px 16px 0 0;width:100%;max-width:480px;max-height:85vh;overflow:visible;padding:20px;animation:slideUp .3s}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal h3{font-size:17px;margin-bottom:16px}
+.modal .close{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:#999}
+.type-toggle{display:flex;gap:0;margin-bottom:16px;background:#f0f0f0;border-radius:8px;overflow:hidden}
+.type-toggle button{flex:1;padding:10px;border:none;background:none;font-size:14px;cursor:pointer;transition:all .2s}
+.type-toggle button.income-btn.active{background:#27ae60;color:#fff}
+.type-toggle button.expense-btn.active{background:#e74c3c;color:#fff}
+.filter-bar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:500;white-space:nowrap}
+.badge-income{background:#e8f5e9;color:#27ae60}
+.badge-expense{background:#fdecea;color:#e74c3c}
+.badge-category{background:#e3f2fd;color:#1565c0}
+.action-btns{display:flex;gap:8px;margin-top:8px}
+.category-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.category-item:last-child{border-bottom:none}
+.category-item .info{flex:1;min-width:0}
+.category-item .info .name{font-size:14px;font-weight:500}
+.category-item .info .group{font-size:12px;color:#999;margin-top:2px}
+.category-item .actions{display:flex;gap:6px;flex-shrink:0}
+.inline-flex{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+/* 项目详情页 */
+.time-filter{display:flex;gap:6px;margin-bottom:12px;background:#f0f0f0;border-radius:8px;padding:3px}
+.time-filter button{flex:1;padding:8px 0;border:none;background:none;font-size:13px;cursor:pointer;border-radius:6px;transition:all .2s;color:#666}
+.time-filter button.active{background:#fff;color:#333;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.time-picker{margin-bottom:12px;display:flex;gap:8px}
+.time-picker select{flex:1;margin-bottom:0}
+.pie-container{display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px 0}
+.pie-chart{width:160px;height:160px;border-radius:50%;position:relative}
+.pie-legend{width:100%}
+.pie-legend-item{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px}
+.pie-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.pie-legend-name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pie-legend-amount{font-weight:600;white-space:nowrap}
+.pie-legend-pct{color:#999;font-size:11px;margin-left:4px}
+.profit-list-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
+.profit-list-item:last-child{border-bottom:none}
+.profit-list-item .cat-name{font-weight:500}
+.profit-list-item .cat-nums{display:flex;gap:16px;font-size:12px}
+.profit-neg{color:#e74c3c}
+.profit-pos{color:#27ae60}
+.project-info-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13px;border-bottom:1px dashed #f0f0f0}
+.project-info-row:last-child{border-bottom:none}
+.project-info-row .key{color:#999;flex-shrink:0}
+.project-info-row .val{font-weight:500;text-align:right}
+.no-data{color:#999;text-align:center;padding:16px 0;font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="tab-bar">
+  <button class="active" onclick="switchTab('records')">流水</button>
+  <button onclick="switchTab('projects')">项目</button>
+  <button onclick="switchTab('settings')">设置</button>
+</div>
+
+<!-- 项目页 -->
+<div id="projects" class="page">
+  <div class="toolbar">
+    <button class="btn btn-primary" onclick="openProjectModal()">+ 新建项目</button>
+  </div>
+  <div id="project-list"></div>
+</div>
+
+<!-- 项目详情页 -->
+<div id="project-detail" class="page">
+  <button class="btn-back" onclick="backToProjects()">← 返回项目列表</button>
+
+  <!-- 时间筛选栏 -->
+  <div class="time-filter">
+    <button class="active" onclick="setTimeFilter('all',this)">全部</button>
+    <button onclick="setTimeFilter('year',this)">按年</button>
+    <button onclick="setTimeFilter('month',this)">按月</button>
+  </div>
+  <div class="time-picker" id="time-picker" style="display:none"></div>
+
+  <!-- 项目基本信息卡片 -->
+  <div class="card" id="detail-info-card"></div>
+
+  <!-- 财务总览卡片 -->
+  <div class="card" style="text-align:center" id="detail-finance-card"></div>
+
+  <!-- 收入饼图 -->
+  <div class="card">
+    <h3 style="margin-bottom:12px">收入构成</h3>
+    <div id="detail-income-pie"></div>
+  </div>
+
+  <!-- 支出饼图 -->
+  <div class="card">
+    <h3 style="margin-bottom:12px">支出构成</h3>
+    <div id="detail-expense-pie"></div>
+  </div>
+
+  <!-- 各分类利润率列表 -->
+  <div class="card">
+    <h3 style="margin-bottom:12px">各分类利润</h3>
+    <div id="detail-profit-list"></div>
+  </div>
+
+  <!-- 该项目流水列表 -->
+  <div class="card">
+    <h3 style="margin-bottom:12px">流水明细</h3>
+    <div id="detail-transactions"></div>
+  </div>
+</div>
+
+<!-- 流水页 -->
+<div id="records" class="page active">
+  <div class="toolbar">
+    <button class="btn btn-primary" onclick="openTransactionModal()">+ 记一笔</button>
+  </div>
+  <div class="time-filter" id="records-time-filter">
+    <button class="active" onclick="setRecordsTimeFilter('all',this)">全部</button>
+    <button onclick="setRecordsTimeFilter('year',this)">按年</button>
+    <button onclick="setRecordsTimeFilter('month',this)">按月</button>
+  </div>
+  <div id="records-time-picker" style="margin-bottom:12px"></div>
+  <div class="stat-grid" id="records-summary" style="margin-bottom:12px">
+    <div class="stat-card"><div class="label">总收入</div><div class="value income" id="rec-income">¥0</div></div>
+    <div class="stat-card"><div class="label">总支出</div><div class="value expense" id="rec-expense">¥0</div></div>
+    <div class="stat-card" style="grid-column:1/-1"><div class="label">净利润</div><div class="value profit" id="rec-profit" style="font-size:22px">¥0</div></div>
+  </div>
+  <div class="filter-bar">
+    <select id="filter-project" onchange="renderTransactions()">
+      <option value="">全部项目</option>
+    </select>
+  </div>
+  <div id="transaction-list"></div>
+</div>
+
+<!-- 设置页 -->
+<div id="settings" class="page">
+  <div class="card">
+    <h3 style="margin-bottom:12px">分类管理</h3>
+    <div id="all-categories"></div>
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button class="btn btn-outline btn-sm" onclick="openCategoryModal()">新增分类</button>
+      <button class="btn btn-outline btn-sm" onclick="(async function(){await resetCategories()})()">恢复预设</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="margin-bottom:12px">数据管理</h3>
+    <div class="action-btns">
+      <button class="btn btn-primary btn-sm" onclick="(async function(){await syncData()})()">同步数据</button>
+      <button class="btn btn-outline btn-sm" onclick="(async function(){await exportData()})()">导出备份</button>
+      <button class="btn btn-outline btn-sm" onclick="importData()">导入恢复</button>
+      <button class="btn btn-danger btn-sm" onclick="clearAll()">清空数据</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="margin-bottom:8px">关于</h3>
+    <p style="font-size:13px;color:#666">项目记账本 v3.2<br>统一收支分类 · 项目详情统计 · 支持云端同步</p>
+  </div>
+</div>
+
+<script>
+
+// ==================== 腾讯云初始化（容错模式） ====================
+const TCB_ENV = 'jizhang-d1gzkty4fa360a02c';
+let tcbApp = null, db = null, auth = null;
+let cloudReady = false;
+
+try {
+  if (typeof cloudbase !== 'undefined') {
+    tcbApp = cloudbase.init({env: TCB_ENV, region: 'ap-shanghai'});
+    db = tcbApp.database();
+    auth = tcbApp.auth();
+    // 匿名登录
+    auth.anonymousAuthProvider().signIn().then(function(){
+      cloudReady = true;
+      console.log('云数据库已连接');
+    }).catch(function(e){
+      console.error('云数据库连接失败:', e);
+    });
+  } else {
+    console.warn('cloudbase SDK 未加载，仅使用本地存储');
+  }
+} catch(e){
+  console.error('云数据库初始化失败:', e);
+}
+
+function ensureCloudReady(maxWait){
+  return new Promise(function(resolve){
+    if(cloudReady || !db){ resolve(); return; }
+    var max=maxWait||15;
+    var count=0, limit=max*5; // 每200ms检查一次
+    var timer=setInterval(function(){
+      if(cloudReady){ clearInterval(timer); resolve(); }
+      else if(++count>limit){ clearInterval(timer); resolve(); }
+    }, 200);
+  });
+}
+
+// 云数据库操作封装 - 保留 localStorage 作为离线缓存兜底
+const STORAGE_KEY_PROJECTS = 'acc_projects';
+const STORAGE_KEY_TRANSACTIONS = 'acc_transactions';
+const STORAGE_KEY_CATEGORIES = 'acc_categories';
+const SYNC_PREFIX = 'acc_sync_';
+
+function localSave(key, data){ try{localStorage.setItem(key, JSON.stringify(data))}catch(e){} }
+function localLoad(key){ try{return JSON.parse(localStorage.getItem(key))||[]}catch(e){return[]} }
+
+// ==================== 数据层（localStorage 优先，云端尽力而为） ====================
+async function loadProjects(){ localSave(STORAGE_KEY_PROJECTS, localLoad(STORAGE_KEY_PROJECTS)); return localLoad(STORAGE_KEY_PROJECTS); }
+async function saveProjects(data){ localSave(STORAGE_KEY_PROJECTS, data); if(db){ await ensureCloudReady(); if(cloudReady){ for(var i=0;i<data.length;i++){ var d=data[i]; d._id=d.id; await db.collection('projects').doc(d.id).set(d).catch(function(){})} } } }
+async function loadTransactions(){ return localLoad(STORAGE_KEY_TRANSACTIONS); }
+async function saveTransactions(data){ localSave(STORAGE_KEY_TRANSACTIONS, data); if(db){ await ensureCloudReady(); if(cloudReady){ for(var i=0;i<data.length;i++){ var d=data[i]; d._id=d.id; await db.collection('transactions').doc(d.id).set(d).catch(function(){})} } } }
+async function loadCategories(){ return localLoad(STORAGE_KEY_CATEGORIES); }
+async function saveCategories(data){ localSave(STORAGE_KEY_CATEGORIES, data); if(db){ await ensureCloudReady(); if(cloudReady){ for(var i=0;i<data.length;i++){ var d=data[i]; d._id=d.id; await db.collection('categories').doc(d.id).set(d).catch(function(){})} } } }
+
+// 从云端全量同步到本地（带重试）
+async function syncFromCloud(retries){
+  if(!db) return false;
+  var maxRetries=retries||3;
+  for(var attempt=1; attempt<=maxRetries; attempt++){
+    try{
+      if(attempt===1) await ensureCloudReady(15);
+      else await ensureCloudReady(5);
+      if(!cloudReady){ console.warn('syncFromCloud attempt '+attempt+': cloud not ready'); continue; }
+      var r1=await db.collection('projects').get(); localSave(STORAGE_KEY_PROJECTS, r1.data||[]);
+      var r2=await db.collection('transactions').get(); localSave(STORAGE_KEY_TRANSACTIONS, r2.data||[]);
+      var r3=await db.collection('categories').get(); localSave(STORAGE_KEY_CATEGORIES, r3.data||[]);
+      localSave('lastSyncTime', Date.now());
+      console.log('syncFromCloud success at attempt '+attempt);
+      return true;
+    }catch(e){ console.error('syncFromCloud attempt '+attempt+' error:',e) }
+    if(attempt<maxRetries) await new Promise(function(r){setTimeout(r, 2000)});
+  }
+  return false;
+}
+
+// 手动同步：先推本地到云端，再从云端拉回覆盖本地
+async function syncData(){
+  var btn=document.getElementById('syncBtn');
+  if(btn){ btn.disabled=true; btn.textContent='同步中...'; }
+  try{
+    if(!db){ alert('云端SDK未加载，请检查网络后刷新页面。'); return; }
+    await ensureCloudReady(10);
+    if(!cloudReady){ alert('云端未连接，请检查网络后重试。'); return; }
+    // 推本地数据到云端
+    await saveProjects(localLoad(STORAGE_KEY_PROJECTS));
+    await saveTransactions(localLoad(STORAGE_KEY_TRANSACTIONS));
+    await saveCategories(localLoad(STORAGE_KEY_CATEGORIES));
+    // 从云端拉取最新数据覆盖本地
+    var ok=await syncFromCloud(3);
+    if(!ok){ alert('同步未完成，请稍后重试。'); return; }
+    // 刷新当前页面
+    if(currentTab==='records') await renderTransactions();
+    if(currentTab==='projects') await renderProjects();
+    if(currentTab==='settings') await renderCategories();
+    alert('同步完成！');
+  }catch(e){
+    console.error('syncData error:',e);
+    alert('同步失败：'+e.message);
+  }finally{
+    if(btn){ btn.disabled=false; btn.textContent='同步数据'; }
+  }
+}
+
+// 轻量读取 - 优先本地缓存，云端后台同步
+async function getCategories(){
+  var cats = localLoad(STORAGE_KEY_CATEGORIES);
+  if(cats.length===0){ await syncFromCloud(); cats=localLoad(STORAGE_KEY_CATEGORIES); }
+  if(cats.length===0){ cats=DEFAULT_CATEGORIES.map(function(c){return Object.assign({},c)}); }
+  cats.forEach(function(c){delete c.type});
+  return cats;
+}
+async function getTransactions(){
+  var txns = localLoad(STORAGE_KEY_TRANSACTIONS);
+  if(txns.length===0){ await syncFromCloud(); txns=localLoad(STORAGE_KEY_TRANSACTIONS); }
+  txns.forEach(function(t){ if(!t.categoryId){t.categoryId=''} });
+  return txns;
+}
+async function loadProjectsLocal(){
+  var projs = localLoad(STORAGE_KEY_PROJECTS);
+  if(projs.length===0){ await syncFromCloud(); projs=localLoad(STORAGE_KEY_PROJECTS); }
+  return projs;
+}
+
+
+// ==================== 预设分类（统一，无 type 字段） ====================
+const DEFAULT_CATEGORIES = [
+  {id:'cat_u_1',name:'合同总价',group:'项目收入',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_2',name:'预收款',group:'项目收入',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_3',name:'尾款',group:'项目收入',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_4',name:'增项收入',group:'项目收入',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_5',name:'封窗&防盗网',group:'硬装改造',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_6',name:'改电位',group:'硬装改造',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_7',name:'硬装工程',group:'硬装改造',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_8',name:'空调',group:'家电设备',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_9',name:'其他家电',group:'家电设备',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_10',name:'定制柜',group:'定制柜体',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_11',name:'阳台铝柜',group:'定制柜体',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_12',name:'成品家具',group:'成品家具',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_13',name:'窗帘',group:'软装配饰',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_14',name:'灯具',group:'软装配饰',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_15',name:'墙面',group:'软装配饰',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_16',name:'软硬包',group:'软装配饰',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_17',name:'挂画',group:'软装配饰',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_18',name:'摆件饰品',group:'软装配饰',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_19',name:'管理成本',group:'其他支出',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_20',name:'杂项',group:'其他支出',createdAt:'2026-01-01T00:00:00.000Z'},
+  {id:'cat_u_21',name:'运输费',group:'其他支出',createdAt:'2026-01-01T00:00:00.000Z'},
+];
+
+const PIE_COLORS = [
+  '#27ae60','#2ecc71','#1abc9c','#16a085','#3498db','#2980b9','#9b59b6',
+  '#8e44ad','#e74c3c','#c0392b','#e67e22','#d35400','#f39c12','#f1c40f',
+  '#2c3e50','#34495e','#7f8c8d','#95a5a6','#1abc9c','#27ae60','#e74c3c'
+];
+
+// ==================== 数据模型（已迁移到云数据库，见文件顶部） ====================
+
+function genId(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+
+// ==================== 当前状态 ====================
+var currentTab='records';
+var currentDetailProjectId=null;
+var currentTimeFilter='all'; // 'all' | 'year' | 'month'
+var currentFilterYear=null;
+var currentFilterMonth=null;
+
+// 流水页全局统计
+var recordsTimeFilter='all';
+var recordsFilterYear=null;
+var recordsFilterMonth=null;
+var editingProjectId=null;
+var editingTransactionId=null;
+var editingCategoryId=null;
+
+// ==================== 页面切换 ====================
+
+function switchTab(tab){
+  switchTabAsync(tab).catch(function(e){console.error('switchTab error:',e)});
+}
+
+async function switchTabAsync(tab){
+  currentTab=tab;
+  currentDetailProjectId=null;
+  document.querySelectorAll('.tab-bar button').forEach(function(b){b.classList.remove('active')});
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  document.getElementById(tab).classList.add('active');
+  var tabIds=['records','projects','settings'];
+  var idx=tabIds.indexOf(tab);
+  if(idx>=0) document.querySelectorAll('.tab-bar button')[idx].classList.add('active');
+  if(tab==='projects') await renderProjects();
+  if(tab==='records') await renderTransactions();
+  if(tab==='settings') await renderCategories();
+}
+
+async function showProjectDetail(projectId){
+  currentDetailProjectId=projectId;
+  currentTimeFilter='all';
+  currentFilterYear=null;
+  currentFilterMonth=null;
+  // 隐藏其他页面
+  document.querySelectorAll('.tab-bar button').forEach(function(b){b.classList.remove('active')});
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  document.getElementById('project-detail').classList.add('active');
+  await renderProjectDetail();
+}
+
+async function backToProjects(){
+  currentDetailProjectId=null;
+  switchTab('projects');
+}
+
+// ==================== 时间筛选 ====================
+async function setTimeFilter(filter,btn){
+  currentTimeFilter=filter;
+  currentFilterYear=null;
+  currentFilterMonth=null;
+  btn.parentElement.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  var picker=document.getElementById('time-picker');
+  if(filter==='all'){
+    picker.style.display='none';
+  }else if(filter==='year'){
+    var years=[];
+    var txns=(await getTransactions()).filter(function(t){return t.projectId===currentDetailProjectId});
+    txns.forEach(function(t){if(t.date){var y=t.date.slice(0,4);if(years.indexOf(y)<0)years.push(y)}});
+    years.sort().reverse();
+    if(years.length===0) years.push(new Date().getFullYear().toString());
+    picker.innerHTML='<select id="filter-year" onchange="onYearChange()"><option value="">选择年份</option>'+years.map(function(y){return '<option value="'+y+'">'+y+'年</option>'}).join('')+'</select>';
+    picker.style.display='flex';
+  }else if(filter==='month'){
+    var months=[];
+    var txns2=(await getTransactions()).filter(function(t){return t.projectId===currentDetailProjectId});
+    txns2.forEach(function(t){if(t.date){var m=t.date.slice(0,7);if(months.indexOf(m)<0)months.push(m)}});
+    months.sort().reverse();
+    if(months.length===0) months.push(new Date().toISOString().slice(0,7));
+    picker.innerHTML='<select id="filter-yearmonth" onchange="onMonthChange()"><option value="">选择年月</option>'+months.map(function(m){return '<option value="'+m+'">'+m+'</option>'}).join('')+'</select>';
+    picker.style.display='flex';
+  }
+  await renderProjectDetail();
+}
+
+// 流水页全局时间筛选
+async function setRecordsTimeFilter(filter,btn){
+  recordsTimeFilter=filter;
+  recordsFilterYear=null;
+  recordsFilterMonth=null;
+  btn.parentElement.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  var picker=document.getElementById('records-time-picker');
+  if(filter==='all'){
+    picker.style.display='none';
+  }else if(filter==='year'){
+    var years=[];
+    (await getTransactions()).forEach(function(t){if(t.date){var y=t.date.slice(0,4);if(years.indexOf(y)<0)years.push(y)}});
+    years.sort().reverse();
+    if(years.length===0) years.push(new Date().getFullYear().toString());
+    picker.innerHTML='<select id="rec-year-select" onchange="onRecordsYearChange(this.value)"><option value="">选择年份</option>'+years.map(function(y){return '<option value="'+y+'">'+y+'年</option>'}).join('')+'</select>';
+    picker.style.display='flex';
+  }else if(filter==='month'){
+    var months=[];
+    (await getTransactions()).forEach(function(t){if(t.date){var m=t.date.slice(0,7);if(months.indexOf(m)<0)months.push(m)}});
+    months.sort().reverse();
+    if(months.length===0) months.push(new Date().toISOString().slice(0,7));
+    picker.innerHTML='<select id="rec-month-select" onchange="onRecordsMonthChange(this.value)"><option value="">选择年月</option>'+months.map(function(m){return '<option value="'+m+'">'+m+'</option>'}).join('')+'</select>';
+    picker.style.display='flex';
+  }
+  await renderTransactions();
+}
+async function onRecordsYearChange(val){
+  recordsFilterYear=val||null;
+  await renderTransactions();
+}
+async function onRecordsMonthChange(val){
+  if(val){recordsFilterYear=val.slice(0,4);recordsFilterMonth=val.slice(5,7)}else{recordsFilterYear=null;recordsFilterMonth=null}
+  await renderTransactions();
+}
+
+async function onYearChange(){
+  currentFilterYear=document.getElementById('filter-year').value;
+  await renderProjectDetail();
+}
+
+async function onMonthChange(){
+  currentFilterMonth=document.getElementById('filter-yearmonth').value;
+  await renderProjectDetail();
+}
+
+async function getFilteredTransactions(){
+  var txns=(await getTransactions()).filter(function(t){return t.projectId===currentDetailProjectId});
+  if(currentTimeFilter==='year' && currentFilterYear){
+    txns=txns.filter(function(t){return t.date&&t.date.startsWith(currentFilterYear)});
+  }else if(currentTimeFilter==='month' && currentFilterMonth){
+    txns=txns.filter(function(t){return t.date&&t.date.startsWith(currentFilterMonth)});
+  }
+  return txns;
+}
+
+// ==================== 分类管理 ====================
+async function renderCategories(){
+  var cats=await getCategories();
+  var container=document.getElementById('all-categories');
+  if(cats.length===0){
+    container.innerHTML='<div class="empty-state" style="padding:20px"><p>暂无分类</p></div>';
+  }else{
+    container.innerHTML=cats.map(function(c){
+      return '<div class="category-item">'+
+        '<div class="info"><div class="name">'+escapeHtml(c.name)+'</div><div class="group">'+escapeHtml(c.group)+'</div></div>'+
+        '<div class="actions">'+
+          '<button class="btn btn-outline btn-sm" onclick="openCategoryModal(\''+c.id+'\')">编辑</button>'+
+          '<button class="btn btn-danger btn-sm" onclick="deleteCategory(\''+c.id+'\')">删除</button>'+
+        '</div></div>';
+    }).join('');
+  }
+}
+
+async function openCategoryModal(id){
+  editingCategoryId=id||null;
+  var cats=await getCategories();
+  var cat=id?cats.find(function(c){return c.id===id}):null;
+
+  var allGroups=cats.map(function(c){return c.group}).filter(function(v,i,a){return a.indexOf(v)===i});
+
+  var modal=document.createElement('div');
+  modal.className='modal-overlay';
+  modal.innerHTML='<div class="modal">'+
+    '<button class="close" onclick="this.closest(\'.modal-overlay\').remove()">×</button>'+
+    '<h3>'+(id?'编辑分类':'新增分类')+'</h3>'+
+    '<label>分类名称 *</label>'+
+    '<input id="cat-name" value="'+(cat?escapeHtml(cat.name):'')+'" placeholder="例如：设计费">'+
+    '<label>所属大类</label>'+
+    '<input id="cat-group" value="'+(cat?escapeHtml(cat.group):'')+'" placeholder="例如：项目收入、硬装改造" list="group-list">'+
+    '<datalist id="group-list">'+allGroups.map(function(g){return '<option value="'+escapeHtml(g)+'">'}).join('')+'</datalist>'+
+    '<button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="(async function(){await saveCategory()})()">保存</button>'+
+  '</div>';
+  document.body.appendChild(modal);
+  modal.addEventListener('click',function(e){if(e.target===modal)modal.remove()});
+}
+
+async function saveCategory(){
+  var name=document.getElementById('cat-name').value.trim();
+  if(!name){alert('请输入分类名称');return}
+  var group=document.getElementById('cat-group').value.trim();
+  var cats=await getCategories();
+
+  if(editingCategoryId){
+    var idx=cats.findIndex(function(c){return c.id===editingCategoryId});
+    if(idx>=0){
+      cats[idx].name=name;
+      cats[idx].group=group;
+    }
+  }else{
+    cats.push({
+      id:genId(),
+      name:name,
+      group:group||'其他',
+      createdAt:new Date().toISOString()
+    });
+  }
+  await saveCategories(cats);
+  await renderCategories();
+  document.querySelector('.modal-overlay')?.remove();
+  syncFromCloud();
+  syncFromCloud();
+}
+
+async function deleteCategory(id){
+  var cats=await getCategories(); var cat=cats.find(function(c){return c.id===id});
+  if(!cat)return;
+  var transactions=await getTransactions();
+  var usedCount=transactions.filter(function(t){return t.categoryId===id}).length;
+
+  if(usedCount>0){
+    var mergeCats=cats.filter(function(c){return c.id!==id});
+    if(mergeCats.length===0){
+      alert('该分类下有'+usedCount+'条账目在使用，且没有其他分类可合并。请先新增分类后再删除。');
+      return;
+    }
+    var msg='该分类下有'+usedCount+'条账目在使用。\n点击确定将合并到第一个可用分类「'+mergeCats[0].name+'」，或取消后手动调整。';
+    if(!confirm(msg))return;
+    transactions.forEach(function(t){
+      if(t.categoryId===id) t.categoryId=mergeCats[0].id;
+    });
+    await saveTransactions(transactions);
+  }else{
+    if(!confirm('确定删除分类「'+cat.name+'」吗？'))return;
+  }
+
+  var cats=(await getCategories()).filter(function(c){return c.id!==id});
+  await saveCategories(cats);
+  await renderCategories();
+}
+
+async function resetCategories(){
+  if(!confirm('恢复预设分类将删除所有自定义分类（已有账目使用的分类不会受影响）。确定恢复吗？'))return;
+  var transactions=await getTransactions();
+  var usedIds={};
+  transactions.forEach(function(t){
+    if(t.categoryId) usedIds[t.categoryId]=true;
+  });
+
+  var merged=DEFAULT_CATEGORIES.map(function(c){return Object.assign({},c)});
+  var currentCats=await loadCategories();
+  currentCats.forEach(function(c){
+    if(usedIds[c.id] && !merged.find(function(m){return m.id===c.id})){
+      merged.push({id:c.id,name:c.name,group:c.group||'',createdAt:c.createdAt||new Date().toISOString()});
+    }
+  });
+
+  await saveCategories(merged);
+  await renderCategories();
+}
+
+// ==================== 项目管理 ====================
+async function renderProjects(){
+  var projects=await loadProjectsLocal();
+  var transactions=await getTransactions();
+  var container=document.getElementById('project-list');
+  if(projects.length===0){
+    container.innerHTML='<div class="empty-state"><div class="icon">📋</div><p>还没有项目，点击上方按钮创建</p></div>';
+    return;
+  }
+  container.innerHTML=projects.map(function(p){
+    var income=transactions.filter(function(t){return t.projectId===p.id&&t.type==='income'}).reduce(function(s,t){return s+t.amount},0);
+    var expense=transactions.filter(function(t){return t.projectId===p.id&&t.type==='expense'}).reduce(function(s,t){return s+t.amount},0);
+    var profit=income-expense;
+    return '<div class="project-item" onclick="showProjectDetail(\''+p.id+'\')">'+
+      '<div class="name">'+escapeHtml(p.name)+'</div>'+
+      '<div class="info">'+(p.client?escapeHtml(p.client)+' · ':'')+'收入 ¥'+formatMoney(income)+' · 支出 ¥'+formatMoney(expense)+' · <span style="color:'+(profit>=0?'#27ae60':'#e74c3c')+';font-weight:600">利润 ¥'+formatMoney(profit)+'</span></div>'+
+      '<div class="action-btns">'+
+        '<button class="btn btn-outline btn-sm" onclick="event.stopPropagation();openProjectModal(\''+p.id+'\')">编辑</button>'+
+        '<button class="btn btn-danger btn-sm" onclick="event.stopPropagation();deleteProject(\''+p.id+'\')">删除</button>'+
+      '</div></div>';
+  }).join('');
+}
+
+async function openProjectModal(id){
+  editingProjectId=id||null;
+  var project=id?(await loadProjectsLocal()).find(function(p){return p.id===id}):null;
+  var modal=document.createElement('div');
+  modal.className='modal-overlay';
+  modal.innerHTML='<div class="modal">'+
+    '<button class="close" onclick="this.closest(\'.modal-overlay\').remove()">×</button>'+
+    '<h3>'+(id?'编辑项目':'新建项目')+'</h3>'+
+    '<label>项目名称 *</label>'+
+    '<input id="proj-name" value="'+(project?escapeHtml(project.name):'')+'" placeholder="例如：李总别墅设计">'+
+    '<label>客户名称</label>'+
+    '<input id="proj-client" value="'+(project?escapeHtml(project.client||''):'')+'" placeholder="客户姓名或公司">'+
+    '<label>地址</label>'+
+    '<input id="proj-address" value="'+(project?escapeHtml(project.address||''):'')+'" placeholder="项目地址">'+
+    '<div class="flex-row">'+
+      '<div><label>面积（㎡）</label><input id="proj-area" type="number" step="0.01" value="'+(project?project.area||'':'')+'" placeholder="0"></div>'+
+      '<div><label>预算金额</label><input id="proj-budget" type="number" step="0.01" value="'+(project?project.budget||'':'')+'" placeholder="预计总收入"></div>'+
+    '</div>'+
+    '<div class="flex-row">'+
+      '<div><label>开始时间</label><input id="proj-start" type="date" value="'+(project?project.startDate||'':'')+'"></div>'+
+      '<div><label>结束时间</label><input id="proj-end" type="date" value="'+(project?project.endDate||'':'')+'"></div>'+
+    '</div>'+
+    '<label>备注</label>'+
+    '<textarea id="proj-note" placeholder="项目备注...">'+(project?escapeHtml(project.note||''):'')+'</textarea>'+
+    '<button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="(async function(){await saveProject()})()">保存</button>'+
+  '</div>';
+  document.body.appendChild(modal);
+  modal.addEventListener('click',function(e){if(e.target===modal)modal.remove()});
+}
+
+async function saveProject(){
+  var name=document.getElementById('proj-name').value.trim();
+  if(!name){alert('请输入项目名称');return}
+  var projects=await loadProjectsLocal();
+  if(editingProjectId){
+    var idx=projects.findIndex(function(p){return p.id===editingProjectId});
+    if(idx>=0){
+      projects[idx].name=name;
+      projects[idx].client=document.getElementById('proj-client').value.trim();
+      projects[idx].address=document.getElementById('proj-address').value.trim();
+      projects[idx].area=parseFloat(document.getElementById('proj-area').value)||0;
+      projects[idx].budget=parseFloat(document.getElementById('proj-budget').value)||0;
+      projects[idx].startDate=document.getElementById('proj-start').value;
+      projects[idx].endDate=document.getElementById('proj-end').value;
+      projects[idx].note=document.getElementById('proj-note').value.trim();
+    }
+  }else{
+    projects.push({
+      id:genId(),
+      name:name,
+      client:document.getElementById('proj-client').value.trim(),
+      address:document.getElementById('proj-address').value.trim(),
+      area:parseFloat(document.getElementById('proj-area').value)||0,
+      budget:parseFloat(document.getElementById('proj-budget').value)||0,
+      startDate:document.getElementById('proj-start').value,
+      endDate:document.getElementById('proj-end').value,
+      note:document.getElementById('proj-note').value.trim(),
+      createdAt:new Date().toISOString()
+    });
+  }
+  await saveProjects(projects);
+  await renderProjects();
+  // 如果是从详情页编辑，刷新详情页
+  if(currentDetailProjectId) await renderProjectDetail();
+  document.querySelector('.modal-overlay')?.remove();
+  syncFromCloud();
+  syncFromCloud();
+}
+
+async function deleteProject(id){
+  if(!confirm('删除项目会同时删除该项目下的所有账目，确定吗？'))return;
+  var projects=(await loadProjectsLocal()).filter(function(p){return p.id!==id});
+  var transactions=(await getTransactions()).filter(function(t){return t.projectId!==id});
+  await saveProjects(projects);
+  await saveTransactions(transactions);
+  // 如果当前正在查看该项目详情，返回列表
+  if(currentDetailProjectId===id) backToProjects();
+  await renderProjects();
+}
+
+// ==================== 项目详情页 ====================
+async function renderProjectDetail(){
+  var projects=await loadProjectsLocal(); var project=projects.find(function(p){return p.id===currentDetailProjectId});
+  if(!project){backToProjects();return;}
+
+  var txns=await getFilteredTransactions();
+  var cats=await getCategories();
+
+  var totalIncome=txns.filter(function(t){return t.type==='income'}).reduce(function(s,t){return s+t.amount},0);
+  var totalExpense=txns.filter(function(t){return t.type==='expense'}).reduce(function(s,t){return s+t.amount},0);
+  var profit=totalIncome-totalExpense;
+
+  // --- 项目基本信息卡片 ---
+  var days='';
+  if(project.startDate && project.endDate){
+    var d1=new Date(project.startDate), d2=new Date(project.endDate);
+    var diff=Math.ceil((d2-d1)/(1000*60*60*24));
+    days='<div class="project-info-row"><span class="key">项目周期</span><span class="val">'+diff+' 天</span></div>';
+  }
+  var elapsed='';
+  if(project.startDate){
+    var d0=new Date(project.startDate), dNow=new Date();
+    var elap=Math.ceil((dNow-d0)/(1000*60*60*24));
+    elapsed='<div class="project-info-row"><span class="key">工期</span><span class="val">已进行 '+elap+' 天</span></div>';
+  }
+  var infoHtml=''+
+    '<div class="project-info-row"><span class="key">项目名称</span><span class="val">'+escapeHtml(project.name)+'</span></div>'+
+    '<div class="project-info-row"><span class="key">客户名称</span><span class="val">'+(project.client||'未填写')+'</span></div>'+
+    '<div class="project-info-row"><span class="key">地址</span><span class="val">'+(project.address||'未填写')+'</span></div>'+
+    '<div class="project-info-row"><span class="key">面积</span><span class="val">'+(project.area?project.area+' ㎡':'未填写')+'</span></div>'+
+    '<div class="project-info-row"><span class="key">开始时间</span><span class="val">'+(project.startDate||'未填写')+'</span></div>'+
+    '<div class="project-info-row"><span class="key">结束时间</span><span class="val">'+(project.endDate||'未填写')+'</span></div>'+
+    elapsed+
+    days+
+    '<div style="margin-top:10px"><button class="btn btn-outline btn-sm" onclick="openProjectModal(\''+project.id+'\')">编辑项目</button></div>';
+  document.getElementById('detail-info-card').innerHTML=infoHtml;
+
+  // --- 财务总览卡片 ---
+  document.getElementById('detail-finance-card').innerHTML=
+    '<div style="font-size:12px;color:#999;margin-bottom:8px">财务总览</div>'+
+    '<div class="stat-grid" style="margin-bottom:0">'+
+      '<div class="stat-card"><div class="label">总收入</div><div class="value income">¥'+formatMoney(totalIncome)+'</div></div>'+
+      '<div class="stat-card"><div class="label">总支出</div><div class="value expense">¥'+formatMoney(totalExpense)+'</div></div>'+
+      '<div class="stat-card" style="grid-column:1/-1"><div class="label">净利润</div><div class="value profit" style="font-size:28px">¥'+formatMoney(profit)+'</div></div>'+
+    '</div>';
+
+  // --- 收入饼图 ---
+  var incomeByCat={};
+  txns.filter(function(t){return t.type==='income'}).forEach(function(t){
+    var cid=t.categoryId||'__uncat__';
+    if(!incomeByCat[cid]) incomeByCat[cid]=0;
+    incomeByCat[cid]+=t.amount;
+  });
+  renderPieChart('detail-income-pie',incomeByCat,totalIncome,cats);
+
+  // --- 支出饼图 ---
+  var expenseByCat={};
+  txns.filter(function(t){return t.type==='expense'}).forEach(function(t){
+    var cid=t.categoryId||'__uncat__';
+    if(!expenseByCat[cid]) expenseByCat[cid]=0;
+    expenseByCat[cid]+=t.amount;
+  });
+  renderPieChart('detail-expense-pie',expenseByCat,totalExpense,cats);
+
+  // --- 各分类利润率列表 ---
+  var allCatIds={};
+  txns.forEach(function(t){
+    var cid=t.categoryId||'__uncat__';
+    if(!allCatIds[cid]) allCatIds[cid]={income:0,expense:0};
+    if(t.type==='income') allCatIds[cid].income+=t.amount;
+    else allCatIds[cid].expense+=t.amount;
+  });
+  var profitEntries=[];
+  for(var cid in allCatIds){
+    var cat=cats.find(function(c){return c.id===cid});
+    var d=allCatIds[cid];
+    profitEntries.push({
+      name:cat?cat.name:'未分类',
+      income:d.income,
+      expense:d.expense,
+      profit:d.income-d.expense
+    });
+  }
+  profitEntries.sort(function(a,b){return b.profit-a.profit});
+  var profitHtml='';
+  if(profitEntries.length===0){
+    profitHtml='<div class="no-data">暂无数据</div>';
+  }else{
+    profitHtml=profitEntries.map(function(e){
+      var cls=e.profit<0?'profit-neg':'profit-pos';
+      return '<div class="profit-list-item">'+
+        '<span class="cat-name">'+escapeHtml(e.name)+'</span>'+
+        '<span class="cat-nums">'+
+          '<span style="color:#27ae60">收 ¥'+formatMoney(e.income)+'</span>'+
+          '<span style="color:#e74c3c">支 ¥'+formatMoney(e.expense)+'</span>'+
+          '<span class="'+cls+'" style="font-weight:600">¥'+formatMoney(e.profit)+'</span>'+
+        '</span>'+
+      '</div>';
+    }).join('');
+  }
+  document.getElementById('detail-profit-list').innerHTML=profitHtml;
+
+  // --- 该项目流水列表 ---
+  var detailTxns=txns.sort(function(a,b){return (b.date||'').localeCompare(a.date||'')});
+  if(detailTxns.length===0){
+    document.getElementById('detail-transactions').innerHTML='<div class="no-data">暂无流水记录</div>';
+  }else{
+    document.getElementById('detail-transactions').innerHTML=detailTxns.map(function(t){
+      var cat=t.categoryId?cats.find(function(c){return c.id===t.categoryId}):null;
+      var catBadge='';
+      if(cat){
+        catBadge='<span class="badge badge-category">'+escapeHtml(cat.name)+'</span>';
+      }else{
+        catBadge='<span class="badge" style="background:#f5f5f5;color:#999">未分类</span>';
+      }
+      return '<div class="transaction-item">'+
+        '<div class="left">'+
+          '<div class="title">'+escapeHtml(t.note||(t.type==='income'?'收入':'支出'))+'</div>'+
+          '<div class="meta"><span>'+(t.date?.slice(0,10)||'')+'</span> <span class="badge '+(t.type==='income'?'badge-income':'badge-expense')+'">'+(t.type==='income'?'收入':'支出')+'</span> '+catBadge+'</div>'+
+        '</div>'+
+        '<div style="display:flex;align-items:center;gap:6px">'+
+          '<span class="amount '+(t.type==='income'?'amount-income':'amount-expense')+'">'+(t.type==='income'?'+':'-')+'¥'+formatMoney(t.amount)+'</span>'+
+          '<button class="btn btn-outline btn-sm" onclick="event.stopPropagation();openTransactionModal(\''+t.id+'\')" style="padding:3px 6px;font-size:10px">编辑</button>'+
+          '<button class="btn btn-danger btn-sm" onclick="deleteTransaction(\''+t.id+'\')" style="padding:3px 6px;font-size:10px">删</button>'+
+        '</div>'+
+      '</div>';
+    }).join('');
+  }
+}
+
+function renderPieChart(elemId,catData,total,cats){
+  var container=document.getElementById(elemId);
+  var entries=[];
+  for(var catId in catData){
+    var cat=cats.find(function(c){return c.id===catId});
+    entries.push({name:cat?cat.name:'未分类',amount:catData[catId]});
+  }
+  entries.sort(function(a,b){return b.amount-a.amount});
+
+  if(entries.length===0){
+    container.innerHTML='<div class="no-data">暂无数据</div>';
+    return;
+  }
+
+  // Build conic-gradient
+  var gradParts=[];
+  var cumPct=0;
+  for(var i=0;i<entries.length;i++){
+    var pct=entries[i].amount/total*100;
+    var color=PIE_COLORS[i%PIE_COLORS.length];
+    gradParts.push(color+' '+cumPct.toFixed(1)+'% '+(cumPct+pct).toFixed(1)+'%');
+    cumPct+=pct;
+  }
+
+  var legendHtml=entries.map(function(e,i){
+    var pct=e.amount/total*100;
+    var color=PIE_COLORS[i%PIE_COLORS.length];
+    return '<div class="pie-legend-item">'+
+      '<div class="pie-legend-dot" style="background:'+color+'"></div>'+
+      '<span class="pie-legend-name">'+escapeHtml(e.name)+'</span>'+
+      '<span class="pie-legend-amount">¥'+formatMoney(e.amount)+'</span>'+
+      '<span class="pie-legend-pct">'+pct.toFixed(1)+'%</span>'+
+    '</div>';
+  }).join('');
+
+  container.innerHTML=
+    '<div class="pie-container">'+
+      '<div class="pie-chart" style="background:conic-gradient('+gradParts.join(',')+')"></div>'+
+      '<div class="pie-legend">'+legendHtml+'</div>'+
+    '</div>';
+}
+
+// ==================== 流水 ====================
+async function renderTransactions(){
+  var projects=await loadProjectsLocal();
+  var transactions=await getTransactions();
+  var cats=await getCategories();
+  var filterProject=document.getElementById('filter-project')?.value||'';
+
+  // 更新筛选下拉
+  var projSelect=document.getElementById('filter-project');
+  if(projSelect&&projSelect.options.length<=1){
+    projSelect.innerHTML='<option value="">全部项目</option>'+projects.map(function(p){return '<option value="'+p.id+'">'+escapeHtml(p.name)+'</option>'}).join('');
+  }
+
+  // 全局时间筛选
+  if(recordsTimeFilter==='year'&&recordsFilterYear){
+    transactions=transactions.filter(function(t){return t.date&&t.date.slice(0,4)===recordsFilterYear});
+  }else if(recordsTimeFilter==='month'&&recordsFilterYear&&recordsFilterMonth){
+    var ym=recordsFilterYear+'-'+recordsFilterMonth;
+    transactions=transactions.filter(function(t){return t.date&&t.date.slice(0,7)===ym});
+  }
+
+  // 更新全局统计总览
+  var allTxns=transactions;
+  var totalIncome=0,totalExpense=0;
+  allTxns.forEach(function(t){
+    if(t.type==='income')totalIncome+=t.amount;
+    else totalExpense+=t.amount;
+  });
+  var totalProfit=totalIncome-totalExpense;
+  document.getElementById('rec-income').textContent='¥'+formatMoney(totalIncome);
+  document.getElementById('rec-expense').textContent='¥'+formatMoney(totalExpense);
+  var profitEl=document.getElementById('rec-profit');
+  profitEl.textContent='¥'+formatMoney(totalProfit);
+  profitEl.style.color=totalProfit>=0?'#27ae60':'#e74c3c';
+
+  // 项目筛选
+  if(filterProject)transactions=transactions.filter(function(t){return t.projectId===filterProject});
+
+  var container=document.getElementById('transaction-list');
+  if(transactions.length===0){
+    container.innerHTML='<div class="empty-state"><div class="icon">💰</div><p>还没有账目记录</p></div>';
+    return;
+  }
+
+  container.innerHTML=transactions.sort(function(a,b){return (b.date||'').localeCompare(a.date||'')}).map(function(t){
+    var project=projects.find(function(p){return p.id===t.projectId});
+    var cat=t.categoryId?cats.find(function(c){return c.id===t.categoryId}):null;
+    var catBadge='';
+    if(cat){
+      catBadge='<span class="badge badge-category">'+escapeHtml(cat.name)+'</span>';
+    }else{
+      catBadge='<span class="badge" style="background:#f5f5f5;color:#999">未分类</span>';
+    }
+    return '<div class="transaction-item">'+
+      '<div class="left">'+
+        '<div class="title">'+escapeHtml(t.note||(t.type==='income'?'收入':'支出'))+'</div>'+
+        '<div class="meta"><span>'+(t.date?.slice(0,10)||'')+' · '+(project?escapeHtml(project.name):'未知项目')+'</span> <span class="badge '+(t.type==='income'?'badge-income':'badge-expense')+'">'+(t.type==='income'?'收入':'支出')+'</span> '+catBadge+'</div>'+
+      '</div>'+
+      '<div style="display:flex;align-items:center;gap:6px">'+
+        '<span class="amount '+(t.type==='income'?'amount-income':'amount-expense')+'">'+(t.type==='income'?'+':'-')+'¥'+formatMoney(t.amount)+'</span>'+
+        '<button class="btn btn-outline btn-sm" onclick="event.stopPropagation();openTransactionModal(\''+t.id+'\')" style="padding:3px 6px;font-size:10px">编辑</button>'+
+        '<button class="btn btn-danger btn-sm" onclick="deleteTransaction(\''+t.id+'\')" style="padding:3px 6px;font-size:10px">删</button>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+  // 同步时间筛选下拉框状态
+  if(recordsTimeFilter==='year'){
+    var s=document.getElementById('rec-year-select');
+    if(s&&recordsFilterYear)s.value=recordsFilterYear;
+  }else if(recordsTimeFilter==='month'){
+    var s=document.getElementById('rec-month-select');
+    if(s&&recordsFilterYear&&recordsFilterMonth)s.value=recordsFilterYear+'-'+recordsFilterMonth;
+  }
+}
+
+async function openTransactionModal(editId){
+  editingTransactionId=editId||null;
+  var projects=await loadProjectsLocal();
+  var cats=await getCategories();
+  if(projects.length===0){alert('请先创建项目');return}
+  // 查找待编辑的交易
+  var editTxn=null;
+  if(editingTransactionId){
+    editTxn=(await getTransactions()).find(function(t){return t.id===editingTransactionId});
+  }
+  var modal=document.createElement('div');
+  modal.className='modal-overlay';
+  modal.innerHTML='<div class="modal">'+
+    '<button class="close" onclick="this.closest(\'.modal-overlay\').remove()">×</button>'+
+    '<h3>'+(editTxn?'编辑流水':'记一笔')+'</h3>'+
+    '<div class="type-toggle">'+
+      '<button class="income-btn'+(editTxn&&editTxn.type==='expense'?'':' active')+'" onclick="setType(\'income\',this)">收入</button>'+
+      '<button class="expense-btn'+(editTxn&&editTxn.type==='expense'?' active':'')+'" onclick="setType(\'expense\',this)">支出</button>'+
+    '</div>'+
+    '<input type="hidden" id="txn-type" value="'+(editTxn?editTxn.type:'income')+'">'+
+    '<label>项目</label>'+
+    '<select id="txn-project">'+projects.map(function(p){return '<option value="'+p.id+'"'+(editTxn&&editTxn.projectId===p.id?' selected':'')+'>'+escapeHtml(p.name)+'</option>'}).join('')+'</select>'+
+    '<label>金额 *</label>'+
+    '<input id="txn-amount" type="number" step="0.01" placeholder="0.00" value="'+(editTxn?editTxn.amount:'')+'">'+
+    '<label>分类 *</label>'+
+    '<select id="txn-category">'+renderCategoryOptionsAll(cats,editTxn?editTxn.categoryId:'')+'</select>'+
+    '<label>日期</label>'+
+    '<input id="txn-date" type="date" value="'+(editTxn?editTxn.date:new Date().toISOString().slice(0,10))+'">'+
+    '<label>备注</label>'+
+    '<input id="txn-note" placeholder="设计费、材料费..." value="'+(editTxn?escapeHtml(editTxn.note||''):'')+'">'+
+    '<button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="(async function(){await saveTransaction()})()">'+(editTxn?'更新':'保存')+'</button>'+
+  '</div>';
+  document.body.appendChild(modal);
+  modal.addEventListener('click',function(e){if(e.target===modal)modal.remove()});
+}
+
+function renderCategoryOptionsAll(cats,selectedId){
+  if(cats.length===0) return '<option value="">暂无分类，请先添加</option>';
+  var groups={};
+  cats.forEach(function(c){
+    var g=c.group||'其他';
+    if(!groups[g]) groups[g]=[];
+    groups[g].push(c);
+  });
+  var html='<option value="">请选择分类</option>';
+  Object.keys(groups).forEach(function(group){
+    html+='<optgroup label="'+escapeHtml(group)+'">';
+    groups[group].forEach(function(c){
+      html+='<option value="'+c.id+'"'+(selectedId&&c.id===selectedId?' selected':'')+'>'+escapeHtml(c.name)+'</option>';
+    });
+    html+='</optgroup>';
+  });
+  return html;
+}
+
+function setType(type,btn){
+  document.getElementById('txn-type').value=type;
+  btn.parentElement.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  // 不再切换分类下拉，始终显示全部
+}
+
+async function saveTransaction(){
+  var amount=parseFloat(document.getElementById('txn-amount').value);
+  if(!amount||amount<=0){alert('请输入有效金额');return}
+  var categoryId=document.getElementById('txn-category').value;
+  if(!categoryId){alert('请选择分类');return}
+  var transactions=await getTransactions();
+  var txnData={
+    projectId:document.getElementById('txn-project').value,
+    type:document.getElementById('txn-type').value,
+    categoryId:categoryId,
+    amount:amount,
+    date:document.getElementById('txn-date').value,
+    note:document.getElementById('txn-note').value.trim()
+  };
+  if(editingTransactionId){
+    // 编辑模式
+    var idx=transactions.findIndex(function(t){return t.id===editingTransactionId});
+    if(idx>=0){
+      txnData.id=editingTransactionId;
+      txnData.createdAt=transactions[idx].createdAt;
+      txnData.updatedAt=new Date().toISOString();
+      transactions[idx]=txnData;
+    }
+  }else{
+    // 新增模式
+    txnData.id=genId();
+    txnData.createdAt=new Date().toISOString();
+    transactions.push(txnData);
+  }
+  await saveTransactions(transactions);
+  editingTransactionId=null;
+  await renderTransactions();
+  document.querySelector('.modal-overlay')?.remove();
+  syncFromCloud();
+  syncFromCloud();
+}
+
+async function deleteTransaction(id){
+  if(!confirm('确定删除这条记录？'))return;
+  var all=await getTransactions(); await saveTransactions(all.filter(function(t){return t.id!==id}));
+  await renderTransactions();
+}
+
+// ==================== 数据管理 ====================
+async function exportData(){
+  var data={
+    projects:await loadProjectsLocal(),
+    transactions:await getTransactions(),
+    categories:await getCategories(),
+    exportedAt:new Date().toISOString()
+  };
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url;
+  a.download='记账备份_'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  alert('导出成功！');
+}
+
+async function importData(){
+  var input=document.createElement('input');
+  input.type='file';
+  input.accept='.json';
+  input.onchange=function(){
+    var file=this.files[0];
+    if(!file)return;
+    var reader=new FileReader();
+    reader.onload=async function(e){
+      try{
+        var data=JSON.parse(e.target.result);
+        if(!data.projects||!data.transactions){throw new Error('格式错误')}
+        if(!confirm('即将导入 '+data.projects.length+' 个项目、'+data.transactions.length+' 条账目'+(data.categories?', '+data.categories.length+' 个分类':'')+'，会覆盖当前数据。确定吗？'))return;
+        await saveProjects(data.projects);
+        await saveTransactions(data.transactions);
+        if(data.categories){
+          // 导入时自动清理 type 字段
+          var clean=data.categories.map(function(c){return {id:c.id,name:c.name,group:c.group||'',createdAt:c.createdAt||new Date().toISOString()}});
+          await saveCategories(clean);
+        }
+        alert('导入成功！');
+        switchTab(currentTab);
+      }catch(err){alert('文件格式不正确，请选择有效的备份文件')}
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+async function clearAll(){
+  if(!confirm('⚠️ 确定要清空所有项目和账目数据吗？此操作不可恢复！'))return;
+  if(!confirm('再次确认：真的要删除全部数据吗？'))return;
+  if(db){
+    await ensureCloudReady();
+    if(cloudReady){
+      try{ await db.collection('projects').where({_id: db.RegExp({regex: '.*', options: 's'})}).remove(); }catch(e){}
+      try{ await db.collection('transactions').where({_id: db.RegExp({regex: '.*', options: 's'})}).remove(); }catch(e){}
+      try{ await db.collection('categories').where({_id: db.RegExp({regex: '.*', options: 's'})}).remove(); }catch(e){}
+    }
+  }
+  localStorage.removeItem(STORAGE_KEY_PROJECTS);
+  localStorage.removeItem(STORAGE_KEY_TRANSACTIONS);
+  localStorage.removeItem(STORAGE_KEY_CATEGORIES);
+  alert('数据已清空');
+  await switchTabAsync(currentTab);
+}
+
+function escapeHtml(str){
+  var div=document.createElement('div');
+  div.textContent=str;
+  return div.innerHTML;
+}
+
+function formatMoney(n){
+  return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+
+// ==================== 初始化数据 ====================
+async function initData(){
+  try{
+    var needSave=false;
+    
+    var cats=localLoad(STORAGE_KEY_CATEGORIES);
+  if(cats.length===0){ await syncFromCloud(); cats=localLoad(STORAGE_KEY_CATEGORIES); }
+  if(cats.length===0){
+      var cats=DEFAULT_CATEGORIES.map(function(c){return Object.assign({},c)});
+      await saveCategories(cats);
+      needSave=true;
+    }
+
+    return needSave;
+  }catch(e){
+    console.error('initData error:',e);
+    return false;
+  }
+}
+
+// ==================== 启动 ====================
+document.addEventListener('DOMContentLoaded',async function(){
+  try{
+    var synced=await syncFromCloud(5);
+    if(!synced && (typeof cloudbase==='undefined')){
+      // SDK 完全没加载，静默使用本地数据
+    }
+    await initData();
+    await renderTransactions();
+    // 如果首次同步失败且无本地数据，启动后再次重试
+    if(!synced && localLoad(STORAGE_KEY_TRANSACTIONS).length===0){
+      setTimeout(async function(){ await syncFromCloud(3); await renderTransactions(); }, 5000);
+    }
+  }catch(e){
+    console.error('Startup error:',e);
+    document.getElementById('transaction-list').innerHTML='<div class="empty-state"><div class="icon">⚠️</div><p>加载出错，请刷新页面重试</p></div>';
+  }
+});
+</script>
+</body>
+</html>
