@@ -216,6 +216,39 @@ a:hover{color:#8B6508}
 .section-hero{margin-bottom:32px}
 .section-hero img{width:100%;max-height:420px;object-fit:cover;display:block}
 
+
+/* ============ Sidebar Accordion ============ */
+.module-group{margin:0}
+.module-title{
+  font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--text-muted);padding:16px 24px 6px;font-weight:600;
+  cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;
+  transition:color var(--transition);
+}
+.module-title:hover{color:var(--accent)}
+.module-title .arrow{font-size:0.7rem;transition:transform 0.25s ease;color:var(--text-muted)}
+.module-title.collapsed .arrow{transform:rotate(-90deg)}
+.module-body{overflow:hidden;transition:max-height 0.35s ease;max-height:800px}
+.module-body.collapsed{max-height:0}
+
+.nav-item.parent{
+  display:flex;justify-content:space-between;align-items:center;
+}
+.nav-item.parent .sub-arrow{
+  font-size:0.65rem;transition:transform 0.25s ease;margin-left:6px;
+  color:var(--text-muted);
+}
+.nav-item.parent.expanded .sub-arrow{transform:rotate(90deg)}
+.nav-item.parent.expanded{color:var(--accent)}
+
+.sub-nav{overflow:hidden;transition:max-height 0.3s ease;max-height:0}
+.sub-nav.open{max-height:600px}
+.nav-item.sub{
+  padding-left:44px;font-size:0.8rem;color:var(--text-secondary);
+}
+.nav-item.sub:hover{color:var(--accent);background:var(--bg-hover)}
+.nav-item.sub.active{color:var(--accent);font-weight:500;border-left-color:var(--accent)}
+
 /* ============ Responsive ============ */
 @media(max-width:768px){
   .sidebar{
@@ -262,7 +295,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <!-- Header -->
 <header class="header">
   <button class="hamburger" onclick="toggleSidebar()" aria-label="菜单">☰</button>
-  <div class="logo">四喜家<span>商学院</span></div>
+  <div class="logo">四喜家<span>装修商学院</span></div>
   <div class="search-wrap">
     <input type="text" id="searchInput" placeholder="搜索风格、工艺、材料、规范..." oninput="doSearch()">
     <span class="search-icon">🔍</span>
@@ -276,50 +309,91 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <aside class="sidebar" id="sidebar">
 <nav>
 
-<div class="module-title">设计风格</div>
-<a class="nav-item" data-target="style-modern" onclick="navTo('style-modern')"><span class="icon">▦</span>现代简约</a>
-<a class="nav-item" data-target="style-wabisabi" onclick="navTo('style-wabisabi')"><span class="icon">▦</span>侘寂风</a>
-<a class="nav-item" data-target="style-cream" onclick="navTo('style-cream')"><span class="icon">▦</span>奶油风</a>
-<a class="nav-item" data-target="style-midcentury" onclick="navTo('style-midcentury')"><span class="icon">▦</span>中古风</a>
-<a class="nav-item" data-target="style-newchinese" onclick="navTo('style-newchinese')"><span class="icon">▦</span>新中式</a>
-<a class="nav-item" data-target="style-minimal" onclick="navTo('style-minimal')"><span class="icon">▦</span>极简主义</a>
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">设计风格 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="style-modern" onclick="navTo('style-modern')">现代简约</a>
+<a class="nav-item" data-target="style-wabisabi" onclick="navTo('style-wabisabi')">侘寂风</a>
+<a class="nav-item" data-target="style-cream" onclick="navTo('style-cream')">奶油风</a>
+<a class="nav-item" data-target="style-midcentury" onclick="navTo('style-midcentury')">中古风</a>
+<a class="nav-item" data-target="style-newchinese" onclick="navTo('style-newchinese')">新中式</a>
+<a class="nav-item" data-target="style-minimal" onclick="navTo('style-minimal')">极简主义</a>
+</div>
+</div>
 
-<div class="module-title">装修工艺</div>
-<a class="nav-item" data-target="craft-plumbing" onclick="navTo('craft-plumbing')"><span class="icon">⚙</span>水电改造</a>
-<a class="nav-item" data-target="craft-waterproof" onclick="navTo('craft-waterproof')"><span class="icon">⚙</span>防水施工</a>
-<a class="nav-item" data-target="craft-tile" onclick="navTo('craft-tile')"><span class="icon">⚙</span>瓷砖铺贴</a>
-<a class="nav-item" data-target="craft-ceiling" onclick="navTo('craft-ceiling')"><span class="icon">⚙</span>木工吊顶</a>
-<a class="nav-item" data-target="craft-wall" onclick="navTo('craft-wall')"><span class="icon">⚙</span>墙面工艺</a>
-<a class="nav-item" data-target="craft-microcement" onclick="navTo('craft-microcement')"><span class="icon">⚙</span>微水泥施工</a>
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">装修工艺 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="craft-plumbing" onclick="navTo('craft-plumbing')">水电改造</a>
+<a class="nav-item" data-target="craft-waterproof" onclick="navTo('craft-waterproof')">防水施工</a>
+<a class="nav-item" data-target="craft-tile" onclick="navTo('craft-tile')">瓷砖铺贴</a>
+<a class="nav-item" data-target="craft-ceiling" onclick="navTo('craft-ceiling')">木工吊顶</a>
+<a class="nav-item" data-target="craft-wall" onclick="navTo('craft-wall')">墙面工艺</a>
+<a class="nav-item" data-target="craft-microcement" onclick="navTo('craft-microcement')">微水泥施工</a>
+</div>
+</div>
 
-<div class="module-title">材料百科</div>
-<a class="nav-item" data-target="mat-tile" onclick="navTo('mat-tile')"><span class="icon">■</span>瓷砖类</a>
-<a class="nav-item" data-target="mat-floor" onclick="navTo('mat-floor')"><span class="icon">■</span>地板类</a>
-<a class="nav-item" data-target="mat-paint" onclick="navTo('mat-paint')"><span class="icon">■</span>涂料类</a>
-<a class="nav-item" data-target="mat-stone" onclick="navTo('mat-stone')"><span class="icon">■</span>石材类</a>
-<a class="nav-item" data-target="mat-cabinet" onclick="navTo('mat-cabinet')"><span class="icon">■</span>定制柜体</a>
-<a class="nav-item" data-target="mat-doorwin" onclick="navTo('mat-doorwin')"><span class="icon">■</span>门窗类</a>
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">材料百科 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="mat-tile" onclick="navTo('mat-tile')">瓷砖类</a>
+<a class="nav-item" data-target="mat-floor" onclick="navTo('mat-floor')">地板类</a>
+<a class="nav-item" data-target="mat-paint" onclick="navTo('mat-paint')">涂料类</a>
+<a class="nav-item" data-target="mat-stone" onclick="navTo('mat-stone')">石材类</a>
+<a class="nav-item" data-target="mat-cabinet" onclick="navTo('mat-cabinet')">定制柜体</a>
+<a class="nav-item" data-target="mat-doorwin" onclick="navTo('mat-doorwin')">门窗类</a>
+</div>
+</div>
 
-<div class="module-title">软装搭配</div>
-<a class="nav-item" data-target="soft-color" onclick="navTo('soft-color')"><span class="icon">◈</span>配色法则</a>
-<a class="nav-item" data-target="soft-light" onclick="navTo('soft-light')"><span class="icon">◈</span>灯光设计</a>
-<a class="nav-item" data-target="soft-curtain" onclick="navTo('soft-curtain')"><span class="icon">◈</span>窗帘选择</a>
-<a class="nav-item" data-target="soft-furniture" onclick="navTo('soft-furniture')"><span class="icon">◈</span>家具尺度</a>
-<a class="nav-item" data-target="soft-art" onclick="navTo('soft-art')"><span class="icon">◈</span>挂画与装饰</a>
-<a class="nav-item" data-target="soft-plant" onclick="navTo('soft-plant')"><span class="icon">◈</span>绿植搭配</a>
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">软装搭配 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="soft-color" onclick="navTo('soft-color')">配色法则</a>
+<a class="nav-item" data-target="soft-light" onclick="navTo('soft-light')">灯光设计</a>
+<a class="nav-item" data-target="soft-curtain" onclick="navTo('soft-curtain')">窗帘选择</a>
+<a class="nav-item" data-target="soft-furniture" onclick="navTo('soft-furniture')">家具尺度</a>
+<a class="nav-item" data-target="soft-art" onclick="navTo('soft-art')">挂画与装饰</a>
+<a class="nav-item" data-target="soft-plant" onclick="navTo('soft-plant')">绿植搭配</a>
+</div>
+</div>
 
-<div class="module-title">空间规划</div>
-<a class="nav-item" data-target="space-layout" onclick="navTo('space-layout')"><span class="icon">⊞</span>户型改造</a>
-<a class="nav-item" data-target="space-flow" onclick="navTo('space-flow')"><span class="icon">⊞</span>动线设计</a>
-<a class="nav-item" data-target="space-storage" onclick="navTo('space-storage')"><span class="icon">⊞</span>收纳系统</a>
-<a class="nav-item" data-target="space-open" onclick="navTo('space-open')"><span class="icon">⊞</span>开放空间</a>
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">空间规划 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="space-layout" onclick="navTo('space-layout')">户型改造</a>
+<a class="nav-item" data-target="space-flow" onclick="navTo('space-flow')">动线设计</a>
+<a class="nav-item parent" data-target="space-storage" onclick="toggleSub(this); navTo('space-storage')">收纳系统 <span class="sub-arrow">▸</span></a>
+<div class="sub-nav">
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-basic" onclick="navToSub('space-storage','storage-basic')">基本原则</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-ergo" onclick="navToSub('space-storage','storage-ergo')">人体工学</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-material" onclick="navToSub('space-storage','storage-material')">材料选型</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-entry" onclick="navToSub('space-storage','storage-entry')">玄关收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-kitchen" onclick="navToSub('space-storage','storage-kitchen')">厨房收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-sideboard" onclick="navToSub('space-storage','storage-sideboard')">餐边柜收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-tv" onclick="navToSub('space-storage','storage-tv')">电视柜收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-wardrobe" onclick="navToSub('space-storage','storage-wardrobe')">衣柜细分</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-vanity" onclick="navToSub('space-storage','storage-vanity')">化妆桌收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-desk" onclick="navToSub('space-storage','storage-desk')">学习桌收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-figure" onclick="navToSub('space-storage','storage-figure')">手办收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-bathroom" onclick="navToSub('space-storage','storage-bathroom')">卫生间收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-balcony" onclick="navToSub('space-storage','storage-balcony')">阳台收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-japanese" onclick="navToSub('space-storage','storage-japanese')">日式理念</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-calc" onclick="navToSub('space-storage','storage-calc')">容量计算</a>
+</div>
+<a class="nav-item" data-target="space-open" onclick="navTo('space-open')">开放空间</a>
+</div>
+</div>
 
-<div class="module-title">施工规范与验收</div>
-<a class="nav-item" data-target="check-plumbing" onclick="navTo('check-plumbing')"><span class="icon">☑</span>水电验收</a>
-<a class="nav-item" data-target="check-masonry" onclick="navTo('check-masonry')"><span class="icon">☑</span>泥瓦验收</a>
-<a class="nav-item" data-target="check-wood" onclick="navTo('check-wood')"><span class="icon">☑</span>木工验收</a>
-<a class="nav-item" data-target="check-paint" onclick="navTo('check-paint')"><span class="icon">☑</span>油漆验收</a>
-<a class="nav-item" data-target="check-final" onclick="navTo('check-final')"><span class="icon">☑</span>竣工验收</a>
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">施工规范与验收 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="check-plumbing" onclick="navTo('check-plumbing')">水电验收</a>
+<a class="nav-item" data-target="check-masonry" onclick="navTo('check-masonry')">泥瓦验收</a>
+<a class="nav-item" data-target="check-wood" onclick="navTo('check-wood')">木工验收</a>
+<a class="nav-item" data-target="check-paint" onclick="navTo('check-paint')">油漆验收</a>
+<a class="nav-item" data-target="check-final" onclick="navTo('check-final')">竣工验收</a>
+</div>
+</div>
 </nav>
 </aside>
 
@@ -1275,7 +1349,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 
 <!-- 收纳设计基本原则 -->
 <div class="card">
-<h3>一、收纳设计基本原则</h3>
+<h3 id="storage-basic">一、收纳设计基本原则</h3>
 
 <h4>1. 动线规划</h4>
 <p>收纳不是"把东西藏起来"，而是让<strong>取物 → 使用 → 归位</strong>三段式动线最短。收纳点设在动线节点上，而非角落。厨房按"取→洗→切→炒→盛"路径就近布置调料和厨具；洗衣动线需在洗衣机旁预留折叠台面。</p>
@@ -1298,7 +1372,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 
 <!-- 人体工学 -->
 <div class="card">
-<h3>二、收纳人体工学（以身高 160-170cm 为基准）</h3>
+<h3 id="storage-ergo">二、收纳人体工学（以身高 160-170cm 为基准）</h3>
 
 <table class="material-table">
 <tr><th>区域</th><th>身体姿态</th><th>距地高度</th><th>适用物品</th><th>五金建议</th></tr>
@@ -1315,7 +1389,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 
 <!-- 收纳材料学 -->
 <div class="card">
-<h3>三、收纳材料学</h3>
+<h3 id="storage-material">三、收纳材料学</h3>
 
 <h4>板材选择</h4>
 <table class="material-table">
@@ -1346,7 +1420,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 
 <!-- 各空间深度方案 -->
 <div class="card">
-<h3>四、玄关收纳</h3>
+<h3 id="storage-entry">四、玄关收纳</h3>
 
 <h4>鞋柜尺寸规范</h4>
 <table class="material-table">
@@ -1368,7 +1442,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <div class="card">
-<h3>五、厨房收纳</h3>
+<h3 id="storage-kitchen">五、厨房收纳</h3>
 
 <h4>锅具尺寸与预留</h4>
 <table class="material-table">
@@ -1406,7 +1480,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <div class="card">
-<h3>六、餐边柜收纳</h3>
+<h3 id="storage-sideboard">六、餐边柜收纳</h3>
 
 <table class="material-table">
 <tr><th>物品</th><th>常见尺寸</th><th>设计预留</th></tr>
@@ -1425,7 +1499,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <div class="card">
-<h3>七、电视柜 / 起居室收纳</h3>
+<h3 id="storage-tv">七、电视柜 / 起居室收纳</h3>
 
 <h4>影音设备尺寸</h4>
 <table class="material-table">
@@ -1452,7 +1526,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <div class="card">
-<h3>八、衣柜细分</h3>
+<h3 id="storage-wardrobe">八、衣柜细分</h3>
 
 <h4>衣物折叠与挂放尺寸</h4>
 <table class="material-table">
@@ -1481,7 +1555,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <div class="card">
-<h3>九、化妆桌收纳</h3>
+<h3 id="storage-vanity">九、化妆桌收纳</h3>
 
 <table class="material-table">
 <tr><th>物品</th><th>常见尺寸（cm）</th><th>设计预留</th></tr>
@@ -1501,7 +1575,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <div class="card">
-<h3>十、学习桌 / 书桌收纳</h3>
+<h3 id="storage-desk">十、学习桌 / 书桌收纳</h3>
 
 <table class="material-table">
 <tr><th>物品</th><th>常见尺寸（cm）</th><th>设计预留</th></tr>
@@ -1520,7 +1594,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <div class="card">
-<h3>十一、手办 / 潮玩展示柜</h3>
+<h3 id="storage-figure">十一、手办 / 潮玩展示柜</h3>
 
 <table class="material-table">
 <tr><th>类型</th><th>典型高度（cm）</th><th>层板预留高度</th></tr>
@@ -1543,7 +1617,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <div class="card">
-<h3>十二、卫生间收纳</h3>
+<h3 id="storage-bathroom">十二、卫生间收纳</h3>
 <ul>
   <li><strong>镜柜必须做</strong>：深度 13-15cm；80%瓶罐藏进柜，20%常用放开放格；镜柜宽度 ≥ 80cm</li>
   <li><strong>壁龛</strong>：淋浴区非承重墙挖壁龛，深 15-20cm，层高 25-30cm（放大瓶沐浴露）</li>
@@ -1553,7 +1627,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <div class="card">
-<h3>十三、阳台收纳</h3>
+<h3 id="storage-balcony">十三、阳台收纳</h3>
 <ul>
   <li><strong>家政柜深</strong>：40-60cm，内置洞洞板挂清洁工具，底部留空放扫地机器人</li>
   <li><strong>洗衣机位</strong>：标准洗衣机宽 60cm，深 60cm，高 85cm；堆叠烘干机总高 ≥ 170cm</li>
@@ -1563,7 +1637,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </ul>
 </div><!-- 日式收纳理念 -->
 <div class="card">
-<h3>十四、日式收纳设计理念</h3>
+<h3 id="storage-japanese">十四、日式收纳设计理念</h3>
 
 <h4>近藤麻理惠「怦然心动法」</h4>
 <p>只留下"让自己怦然心动"的物品，其余果断丢弃。对设计师的启示：硬装阶段就要考虑"少而精"的收纳空间，而非无限扩容。鼓励客户入住前做一次彻底的丢弃。</p>
@@ -1586,7 +1660,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 
 <!-- 容量计算 -->
 <div class="card">
-<h3>十五、收纳容量计算与规划方法</h3>
+<h3 id="storage-calc">十五、收纳容量计算与规划方法</h3>
 
 <h4>核心公式</h4>
 <table class="material-table">
@@ -1810,130 +1884,100 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <script>
-/* ============ Navigation ============ */
-function navTo(targetId) {
-  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-  const navItem = document.querySelector(`[data-target="${targetId}"]`);
-  if (navItem) navItem.classList.add('active');
 
-  document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-  const section = document.getElementById(targetId);
-  if (section) {
-    section.style.display = 'block';
-    section.querySelector('.section-header').style.display = 'block';
-    document.getElementById('contentArea').scrollTop = 0;
-  }
-
-  localStorage.setItem('designKb_lastSection', targetId);
-
-  // Close sidebar on mobile
-  if (window.innerWidth <= 768) {
-    document.getElementById('sidebar').classList.remove('open');
-  }
+function toggleModule(el) {
+  el.classList.toggle('collapsed');
+  el.nextElementSibling.classList.toggle('collapsed');
 }
 
-/* ============ Search ============ */
-function doSearch() {
-  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+function toggleSub(el, e) {
+  if (e) e.stopPropagation();
+  el.classList.toggle('expanded');
+  el.nextElementSibling.classList.toggle('open');
+}
 
-  if (!query) {
-    // Restore last section
-    const lastSection = localStorage.getItem('designKb_lastSection') || 'style-modern';
-    navTo(lastSection);
-    clearHighlights();
+function navTo(target) {
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  
+  // Scroll to target section
+  var sec = document.getElementById(target);
+  if (sec) {
+    // Show section-header
+    var hdr = sec.querySelector('.section-header');
+    if (hdr) hdr.style.display = 'block';
+    
+    sec.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  
+  // Update active state
+  document.querySelectorAll('.nav-item').forEach(function(item){
+    item.classList.remove('active');
+  });
+  var activeItem = document.querySelector('[data-target="'+target+'"]');
+  if (activeItem) activeItem.classList.add('active');
+  
+  // Update URL hash
+  history.replaceState(null,null,'#'+target);
+}
+
+function navToSub(sectionId, scrollId) {
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  
+  // Scroll to section first, then sub-element
+  var sec = document.getElementById(sectionId);
+  if (sec) {
+    var hdr = sec.querySelector('.section-header');
+    if (hdr) hdr.style.display = 'block';
+    
+    // Try to scroll to the specific sub-element
+    var subEl = document.getElementById(scrollId);
+    if (subEl) {
+      subEl.scrollIntoView({behavior:'smooth',block:'start'});
+    } else {
+      sec.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
+  
+  // Update active state - highlight parent
+  document.querySelectorAll('.nav-item').forEach(function(item){
+    item.classList.remove('active');
+  });
+  var parentItem = document.querySelector('.nav-item.parent[data-target="'+sectionId+'"]');
+  if (parentItem) parentItem.classList.add('active');
+  
+  // Highlight sub item
+  document.querySelectorAll('.nav-item.sub').forEach(function(item){
+    item.classList.remove('active');
+  });
+  var subItems = document.querySelectorAll('.nav-item.sub[data-scroll="'+scrollId+'"]');
+  subItems.forEach(function(item){ item.classList.add('active'); });
+}
+
+function doSearch() {
+  var q = document.getElementById('searchInput').value.toLowerCase().trim();
+  if (!q) {
+    document.querySelectorAll('.section').forEach(function(s){ s.style.display='block'; });
+    document.querySelectorAll('.card').forEach(function(c){ c.style.display='block'; });
     return;
   }
-
-  // Show all sections for searching
-  document.querySelectorAll('.section').forEach(s => s.style.display = 'block');
-  document.querySelectorAll('.section-header').forEach(h => h.style.display = 'block');
-  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-
-  clearHighlights();
-
-  // Search and highlight
-  let hasResults = false;
-  document.querySelectorAll('.card').forEach(card => {
-    const text = card.textContent.toLowerCase();
-    if (text.includes(query)) {
-      hasResults = true;
-      highlightText(card, query);
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-
-  // Show/hide no-results
-  const existing = document.querySelector('.no-results');
-  if (!hasResults) {
-    if (!existing) {
-      const nr = document.createElement('div');
-      nr.className = 'no-results';
-      nr.innerHTML = `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="28" cy="28" r="20"/><line x1="42" y1="42" x2="56" y2="56"/></svg><p>未找到包含"<strong>${escapeHtml(query)}</strong>"的内容，请尝试其他关键词</p>`;
-      document.getElementById('contentArea').appendChild(nr);
-    }
-  } else if (existing) {
-    existing.remove();
-  }
-}
-
-function highlightText(element, query) {
-  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
-  const nodes = [];
-  while (walker.nextNode()) nodes.push(walker.currentNode);
-
-  nodes.forEach(node => {
-    const text = node.textContent;
-    const lower = text.toLowerCase();
-    if (lower.includes(query)) {
-      const span = document.createElement('span');
-      const idx = lower.indexOf(query);
-      span.innerHTML = escapeHtml(text.substring(0, idx)) +
-        `<mark class="search-hl">${escapeHtml(text.substring(idx, idx + query.length))}</mark>` +
-        escapeHtml(text.substring(idx + query.length));
-      node.parentNode.replaceChild(span, node);
+  
+  document.querySelectorAll('.section').forEach(function(sec){
+    var text = sec.textContent.toLowerCase();
+    var hasMatch = text.indexOf(q) !== -1;
+    sec.style.display = hasMatch ? 'block' : 'none';
+    
+    if (hasMatch) {
+      sec.querySelectorAll('.card').forEach(function(card){
+        card.style.display = card.textContent.toLowerCase().indexOf(q) !== -1 ? 'block' : 'none';
+      });
+      var hdr = sec.querySelector('.section-header');
+      if (hdr) hdr.style.display = 'block';
     }
   });
 }
 
-function clearHighlights() {
-  document.querySelectorAll('mark.search-hl').forEach(mark => {
-    const parent = mark.parentNode;
-    parent.replaceChild(document.createTextNode(mark.textContent), mark);
-    parent.normalize();
-  });
-}
-
-function escapeHtml(str) {
-  const div = document.createElement('div');
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-}
-
-/* ============ Sidebar Toggle ============ */
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-}
-
-/* ============ Init ============ */
-document.addEventListener('DOMContentLoaded', () => {
-  const lastSection = localStorage.getItem('designKb_lastSection') || 'style-modern';
-  navTo(lastSection);
-
-  // Keyboard shortcut: Ctrl+K or / to focus search
-  document.addEventListener('keydown', e => {
-    if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && !e.ctrlKey && !e.metaKey && document.activeElement === document.body)) {
-      e.preventDefault();
-      document.getElementById('searchInput').focus();
-    }
-    if (e.key === 'Escape' && document.activeElement === document.getElementById('searchInput')) {
-      document.getElementById('searchInput').value = '';
-      doSearch();
-      document.getElementById('searchInput').blur();
-    }
-  });
-});
 </script>
 
 <footer style="padding:48px 40px 32px;text-align:center;border-top:1px solid #E8E3DC;background:var(--bg);">
