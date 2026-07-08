@@ -106,15 +106,15 @@ a:hover{color:#8B6508}
 
 /* Level 1 — Module Title (section group header) */
 .sidebar .module-title{
-  font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;
-  color:#555;padding:22px 20px 8px;font-weight:700;
+  font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;
+  color:#4A4A4A;padding:14px 20px 10px;font-weight:700;
   cursor:pointer;user-select:none;
   display:flex;justify-content:space-between;align-items:center;
-  transition:color var(--transition);
-  border-top:1px solid var(--border);
+  transition:background var(--transition),color var(--transition);
+  background:#F0ECE4;margin:12px 0 0 0;
 }
-.module-group:first-child .module-title{border-top:none}
-.sidebar .module-title:hover{color:var(--accent)}
+.module-group:first-child .module-title{margin-top:0}
+.sidebar .module-title:hover{color:var(--accent);background:#E8E3D8}
 .sidebar .module-title .arrow{font-size:0.6rem;transition:transform 0.25s ease;color:#999}
 .sidebar .module-title.collapsed .arrow{transform:rotate(-90deg)}
 
