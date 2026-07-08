@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>四喜家商学院 | 室内设计知识库 - 四喜家</title>
+<title>装修商学院 | 室内设计知识库 - 四喜家</title>
 <meta name="description" content="四喜家商学院 - 南宁四喜家设计旗下四喜家商学院，涵盖设计风格、工艺标准、材料百科、软装搭配、空间规划、施工验收">
 <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIuiuoeWtpuS4l+eglOWFpeerr+S4juW7uumDqOWNoeeQhuiuvue9ruWbvuecu+aOqOWQjeaAuyIKfQ==">
 <meta name="theme-color" content="#1a1a2e">
@@ -98,12 +98,21 @@ a:hover{color:#8B6508}
   padding:20px 0;
   overflow-y:auto;
   transition:transform var(--transition);
+  position:sticky;top:var(--header-h);
+  height:calc(100vh - var(--header-h));
+  flex-shrink:0;
 }
 .sidebar nav{padding:0}
 .sidebar .module-title{
-  font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
-  color:var(--text-muted);padding:20px 24px 8px;font-weight:600;
+  font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--text-muted);padding:18px 24px 8px;font-weight:600;
+  cursor:pointer;user-select:none;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:color var(--transition);
 }
+.sidebar .module-title:hover{color:var(--accent)}
+.sidebar .module-title .arrow{font-size:0.65rem;transition:transform 0.25s ease;color:var(--text-muted)}
+.sidebar .module-title.collapsed .arrow{transform:rotate(-90deg)}
 .sidebar .nav-item{
   display:block;padding:7px 24px;
   color:var(--text-primary);font-size:0.85rem;
@@ -219,15 +228,6 @@ a:hover{color:#8B6508}
 
 /* ============ Sidebar Accordion ============ */
 .module-group{margin:0}
-.module-title{
-  font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;
-  color:var(--text-muted);padding:16px 24px 6px;font-weight:600;
-  cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;
-  transition:color var(--transition);
-}
-.module-title:hover{color:var(--accent)}
-.module-title .arrow{font-size:0.7rem;transition:transform 0.25s ease;color:var(--text-muted)}
-.module-title.collapsed .arrow{transform:rotate(-90deg)}
 .module-body{overflow:hidden;transition:max-height 0.35s ease;max-height:800px}
 .module-body.collapsed{max-height:0}
 
@@ -235,14 +235,14 @@ a:hover{color:#8B6508}
   display:flex;justify-content:space-between;align-items:center;
 }
 .nav-item.parent .sub-arrow{
-  font-size:0.65rem;transition:transform 0.25s ease;margin-left:6px;
+  font-size:0.6rem;transition:transform 0.25s ease;margin-left:6px;
   color:var(--text-muted);
 }
 .nav-item.parent.expanded .sub-arrow{transform:rotate(90deg)}
 .nav-item.parent.expanded{color:var(--accent)}
 
 .sub-nav{overflow:hidden;transition:max-height 0.3s ease;max-height:0}
-.sub-nav.open{max-height:600px}
+.sub-nav.open{max-height:700px}
 .nav-item.sub{
   padding-left:44px;font-size:0.8rem;color:var(--text-secondary);
 }
@@ -1885,53 +1885,42 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 
 <script>
 
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
 function toggleModule(el) {
   el.classList.toggle('collapsed');
   el.nextElementSibling.classList.toggle('collapsed');
 }
 
-function toggleSub(el, e) {
-  if (e) e.stopPropagation();
+function toggleSub(el) {
   el.classList.toggle('expanded');
   el.nextElementSibling.classList.toggle('open');
 }
 
 function navTo(target) {
-  // Close mobile sidebar
   document.getElementById('sidebar').classList.remove('open');
-  
-  // Scroll to target section
   var sec = document.getElementById(target);
   if (sec) {
-    // Show section-header
     var hdr = sec.querySelector('.section-header');
     if (hdr) hdr.style.display = 'block';
-    
     sec.scrollIntoView({behavior:'smooth',block:'start'});
   }
-  
-  // Update active state
-  document.querySelectorAll('.nav-item').forEach(function(item){
-    item.classList.remove('active');
-  });
-  var activeItem = document.querySelector('[data-target="'+target+'"]');
-  if (activeItem) activeItem.classList.add('active');
-  
-  // Update URL hash
+  // Update active
+  document.querySelectorAll('.nav-item').forEach(function(item){ item.classList.remove('active'); });
+  document.querySelectorAll('.nav-item.sub').forEach(function(item){ item.classList.remove('active'); });
+  var items = document.querySelectorAll('.nav-item[data-target="'+target+'"]:not([data-scroll])');
+  items.forEach(function(item){ item.classList.add('active'); });
   history.replaceState(null,null,'#'+target);
 }
 
 function navToSub(sectionId, scrollId) {
-  // Close mobile sidebar
   document.getElementById('sidebar').classList.remove('open');
-  
-  // Scroll to section first, then sub-element
   var sec = document.getElementById(sectionId);
   if (sec) {
     var hdr = sec.querySelector('.section-header');
     if (hdr) hdr.style.display = 'block';
-    
-    // Try to scroll to the specific sub-element
     var subEl = document.getElementById(scrollId);
     if (subEl) {
       subEl.scrollIntoView({behavior:'smooth',block:'start'});
@@ -1939,18 +1928,11 @@ function navToSub(sectionId, scrollId) {
       sec.scrollIntoView({behavior:'smooth',block:'start'});
     }
   }
-  
-  // Update active state - highlight parent
-  document.querySelectorAll('.nav-item').forEach(function(item){
-    item.classList.remove('active');
-  });
+  // Update active
+  document.querySelectorAll('.nav-item').forEach(function(item){ item.classList.remove('active'); });
+  document.querySelectorAll('.nav-item.sub').forEach(function(item){ item.classList.remove('active'); });
   var parentItem = document.querySelector('.nav-item.parent[data-target="'+sectionId+'"]');
   if (parentItem) parentItem.classList.add('active');
-  
-  // Highlight sub item
-  document.querySelectorAll('.nav-item.sub').forEach(function(item){
-    item.classList.remove('active');
-  });
   var subItems = document.querySelectorAll('.nav-item.sub[data-scroll="'+scrollId+'"]');
   subItems.forEach(function(item){ item.classList.add('active'); });
 }
@@ -1962,12 +1944,10 @@ function doSearch() {
     document.querySelectorAll('.card').forEach(function(c){ c.style.display='block'; });
     return;
   }
-  
   document.querySelectorAll('.section').forEach(function(sec){
     var text = sec.textContent.toLowerCase();
     var hasMatch = text.indexOf(q) !== -1;
     sec.style.display = hasMatch ? 'block' : 'none';
-    
     if (hasMatch) {
       sec.querySelectorAll('.card').forEach(function(card){
         card.style.display = card.textContent.toLowerCase().indexOf(q) !== -1 ? 'block' : 'none';
