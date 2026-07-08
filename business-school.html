@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四喜家商学院 | 室内设计知识库 - 四喜家</title>
+<meta name="description" content="四喜家商学院 - 南宁四喜家设计旗下四喜家商学院，涵盖设计风格、工艺标准、材料百科、软装搭配、空间规划、施工验收">
+<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIuiuoeWtpuS4l+eglOWFpeerr+S4juW7uumDqOWNoeeQhuiuvue9ruWbvuecu+aOqOWQjeaAuyIKfQ==">
+<meta name="theme-color" content="#1a1a2e">
+<style>
+/* ============ CSS Variables ============ */
+:root {
+  --bg-primary: #FAF8F5;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F5F2EC;
+  --text-primary: #2C2C2C;
+  --text-secondary: #666666;
+  --text-muted: #888888;
+  --accent: #B8860B;
+  --border: #E8E4DF;
+  --danger: #B8543A;
+  --warning: #B8860B;
+  --success: #5A8A6A;
+  --info: #6E8FB8;
+  --shadow: none;
+  --radius: 0px;
+  --radius-lg: 0px;
+  --transition: 0.25s ease;
+  --sidebar-w: 260px;
+  --header-h: 56px;
+  --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --content-max: 1040px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  font-size:15px;line-height:1.9;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg-primary)}
+::-webkit-scrollbar-thumb{background:var(--border)}
+a{color:var(--accent);text-decoration:none;transition:var(--transition)}
+a:hover{color:#8B6508}
+
+/* ============ Header ============ */
+.header{position:relative;margin-top:0;
+  position:sticky;top:0;z-index:100;
+  height:var(--header-h);
+  background:var(--bg-secondary);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 32px;gap:24px;
+}
+.header .logo{line-height:38px;
+  font-size:1.05rem;font-weight:500;color:var(--text-primary);white-space:nowrap;
+  display:flex;align-items:center;gap:10px;
+}
+.header .logo span{
+  color:var(--text-muted);font-weight:400;font-size:0.85rem;
+  letter-spacing:0.5px;
+}
+.header .logo img{max-height:30px;width:auto}
+
+.search-wrap{
+  flex:1;max-width:420px;position:relative;
+}
+.search-wrap input{
+  width:100%;height:38px;
+  border:1px solid var(--border);
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  padding:0 40px 0 14px;
+  font-size:0.88rem;
+  font-family:var(--font-sans);
+  outline:none;transition:var(--transition);
+}
+.search-wrap input:focus{border-color:var(--accent)}
+.search-wrap .search-icon{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  color:var(--text-muted);pointer-events:none;font-size:0.9rem;
+}
+.hamburger{
+  display:none;background:none;border:none;
+  color:var(--text-primary);font-size:1.3rem;cursor:pointer;padding:4px;
+}
+
+/* ============ Layout ============ */
+.app{display:flex;min-height:calc(100vh - var(--header-h));max-width:var(--content-max);margin:0 auto}
+.sidebar{
+  width:var(--sidebar-w);min-width:var(--sidebar-w);
+  background:var(--bg-secondary);
+  border-right:1px solid var(--border);
+  padding:20px 0;
+  overflow-y:auto;
+  transition:transform var(--transition);
+}
+.sidebar nav{padding:0}
+.sidebar .module-title{
+  font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--text-muted);padding:20px 24px 8px;font-weight:600;
+}
+.sidebar .nav-item{
+  display:block;padding:7px 24px;
+  color:var(--text-primary);font-size:0.85rem;
+  cursor:pointer;transition:var(--transition);
+  margin-bottom:0;border-left:2px solid transparent;
+}
+.sidebar .nav-item:hover{
+  background:var(--bg-hover);color:var(--text-primary);
+  border-left-color:var(--border);
+}
+.sidebar .nav-item.active{
+  background:var(--bg-hover);color:var(--accent);font-weight:500;
+  border-left:2px solid var(--accent);
+}
+.sidebar .nav-item .icon{display:inline-block;width:20px;margin-right:6px;text-align:center}
+
+.content{flex:1;padding:40px 48px;overflow-y:auto;max-width:calc(var(--content-max) - var(--sidebar-w))}
+
+/* ============ Cards ============ */
+.card{
+  background:var(--bg-card);border:1px solid var(--border);
+  padding:40px;margin-bottom:40px;
+}
+.card h3{
+  font-size:20px;font-weight:400;color:var(--text-primary);
+  margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);
+}
+.card h4{font-size:16px;font-weight:400;color:var(--text-primary);margin:24px 0 10px}
+.card ul,.card ol{padding-left:24px;margin:10px 0}
+.card li{margin-bottom:6px;color:var(--text-secondary);font-size:15px;line-height:1.9}
+.card p{color:var(--text-secondary);font-size:15px;line-height:1.9;margin:10px 0}
+.tag{
+  display:inline-block;padding:2px 10px;
+  font-size:12px;font-weight:500;margin:2px 4px;
+  border:1px solid;
+}
+.tag-warm{border-color:var(--accent);color:var(--accent);background:rgba(184,134,11,0.05)}
+.tag-cool{border-color:var(--info);color:var(--info);background:rgba(110,143,184,0.05)}
+.tag-green{border-color:var(--success);color:var(--success);background:rgba(90,138,106,0.05)}
+.tag-red{border-color:var(--danger);color:var(--danger);background:rgba(184,84,58,0.05)}
+
+/* ============ Color Palette ============ */
+.palette{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.palette .swatch{
+  width:44px;height:44px;
+  border:1px solid var(--border);
+  position:relative;cursor:pointer;transition:transform var(--transition);
+}
+.palette .swatch:hover{transform:scale(1.12);z-index:2}
+.palette .swatch::after{
+  content:attr(data-label);
+  position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);
+  font-size:11px;color:var(--text-muted);white-space:nowrap;
+}
+.palette-wrap{margin-bottom:8px}
+.palette-wrap strong{font-weight:500;color:var(--text-primary);font-size:13px;display:block;margin-bottom:4px}
+
+/* ============ Flow Chart (CSS) ============ */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:20px 0;overflow-x:auto;padding:8px 0}
+.flow .step{
+  background:var(--bg-primary);border:1px solid var(--border);
+  padding:10px 14px;text-align:center;
+  font-size:13px;color:var(--text-secondary);min-width:100px;
+  position:relative;white-space:nowrap;
+}
+.flow .step.emphasis{
+  background:rgba(184,134,11,0.06);border-color:var(--accent);
+  color:var(--accent);font-weight:500;
+}
+.flow .arrow{color:var(--accent);font-weight:normal;font-size:1rem;flex-shrink:0}
+
+/* ============ Table ============ */
+.material-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.material-table th{
+  background:var(--bg-primary);color:var(--text-primary);font-weight:500;
+  padding:12px 14px;text-align:left;border-bottom:1px solid var(--border);
+}
+.material-table td{
+  padding:10px 14px;border-bottom:1px solid var(--border);
+  color:var(--text-secondary);
+}
+.material-table tr:hover td{background:var(--bg-hover)}
+.material-table .price-low{color:var(--success)}
+.material-table .price-mid{color:var(--warning)}
+.material-table .price-high{color:var(--danger)}
+
+/* ============ Checklist ============ */
+.checklist{list-style:none;padding-left:0}
+.checklist li{padding:7px 0 7px 28px;position:relative;font-size:14px}
+.checklist li::before{
+  content:'✓';position:absolute;left:0;color:var(--success);font-weight:normal
+}
+
+/* ============ Highlight Box ============ */
+.highlight{
+  background:rgba(184,134,11,0.04);border-left:2px solid var(--accent);
+  padding:16px 18px;margin:16px 0;font-size:14px;color:var(--text-secondary);line-height:1.9;
+}
+.highlight strong{color:var(--text-primary);font-weight:500}
+
+/* ============ Section Header ============ */
+.section-header{display:none;margin-bottom:32px;padding-top:0}
+.section-header h2{
+  font-size:28px;font-weight:300;letter-spacing:1.5px;
+  color:var(--text-primary);margin-bottom:6px;
+}
+.section-header .desc{color:var(--text-muted);font-size:14px;font-weight:300}
+
+/* Section hero image */
+.section-hero{margin-bottom:32px}
+.section-hero img{width:100%;max-height:420px;object-fit:cover;display:block}
+
+
+/* ============ Sidebar Accordion ============ */
+.module-group{margin:0}
+.module-title{
+  font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--text-muted);padding:16px 24px 6px;font-weight:600;
+  cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;
+  transition:color var(--transition);
+}
+.module-title:hover{color:var(--accent)}
+.module-title .arrow{font-size:0.7rem;transition:transform 0.25s ease;color:var(--text-muted)}
+.module-title.collapsed .arrow{transform:rotate(-90deg)}
+.module-body{overflow:hidden;transition:max-height 0.35s ease;max-height:800px}
+.module-body.collapsed{max-height:0}
+
+.nav-item.parent{
+  display:flex;justify-content:space-between;align-items:center;
+}
+.nav-item.parent .sub-arrow{
+  font-size:0.65rem;transition:transform 0.25s ease;margin-left:6px;
+  color:var(--text-muted);
+}
+.nav-item.parent.expanded .sub-arrow{transform:rotate(90deg)}
+.nav-item.parent.expanded{color:var(--accent)}
+
+.sub-nav{overflow:hidden;transition:max-height 0.3s ease;max-height:0}
+.sub-nav.open{max-height:600px}
+.nav-item.sub{
+  padding-left:44px;font-size:0.8rem;color:var(--text-secondary);
+}
+.nav-item.sub:hover{color:var(--accent);background:var(--bg-hover)}
+.nav-item.sub.active{color:var(--accent);font-weight:500;border-left-color:var(--accent)}
+
+/* ============ Responsive ============ */
+@media(max-width:768px){
+  .sidebar{
+    position:fixed;top:var(--header-h);left:0;bottom:0;z-index:99;
+    transform:translateX(-100%);
+  }
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:block}
+  .content{padding:24px 16px}
+  .card{padding:24px 16px;margin-bottom:24px}
+  .header{position:relative;margin-top:0;padding:0 16px}
+  .search-wrap{max-width:100%}
+  .header .logo span{display:none}
+  .section-header h2{font-size:24px}
+}
+
+/* ============ Search highlight ============ */
+mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);padding:0 2px}
+
+/* ============ No results ============ */
+.no-results{text-align:center;padding:80px 20px;color:var(--text-muted);font-size:15px}
+.no-results svg{width:48px;height:48px;margin-bottom:16px;opacity:0.3}
+</style>
+</head>
+<body>
+<header id="site-header" style="position:sticky;top:0;z-index:200;padding:16px 0;background:rgba(250,248,245,0.92);backdrop-filter:blur(12px);border-bottom:1px solid #E8E3DC;">
+  <div style="display:flex;justify-content:space-between;align-items:center;max-width:1040px;margin:0 auto;padding:0 40px;">
+    <a href="index.html" style="text-decoration:none;display:flex;align-items:center;">
+      <span style="font-size:1.05rem;font-weight:500;color:#2C2C2C;">四喜家</span>
+    </a>
+    <nav style="display:flex;gap:32px;">
+      <a href="index.html" style="color:#8A8580;text-decoration:none;font-size:0.85rem;letter-spacing:0.05em;font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;">首页</a>
+      <a href="services.html" style="color:#8A8580;text-decoration:none;font-size:0.85rem;letter-spacing:0.05em;font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;">服务</a>
+      <a href="cases.html" style="color:#8A8580;text-decoration:none;font-size:0.85rem;letter-spacing:0.05em;font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;">案例</a>
+      <a href="business-school.html" class="active" style="color:#B8860B;text-decoration:none;font-size:0.85rem;letter-spacing:0.05em;font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;">商学院</a>
+      <a href="faq.html" style="color:#8A8580;text-decoration:none;font-size:0.85rem;letter-spacing:0.05em;font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;">问答</a>
+      <a href="soft-furnishing-guide.html" style="color:#8A8580;text-decoration:none;font-size:0.85rem;letter-spacing:0.05em;font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;">指南</a>
+      <a href="contact.html" style="color:#8A8580;text-decoration:none;font-size:0.85rem;letter-spacing:0.05em;font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;">联系</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- Header -->
+<header class="header">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="菜单">☰</button>
+  <div class="logo">四喜家<span>装修商学院</span></div>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="搜索风格、工艺、材料、规范..." oninput="doSearch()">
+    <span class="search-icon">🔍</span>
+  </div>
+</header>
+
+<!-- App -->
+<div class="app">
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+<nav>
+
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">设计风格 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="style-modern" onclick="navTo('style-modern')">现代简约</a>
+<a class="nav-item" data-target="style-wabisabi" onclick="navTo('style-wabisabi')">侘寂风</a>
+<a class="nav-item" data-target="style-cream" onclick="navTo('style-cream')">奶油风</a>
+<a class="nav-item" data-target="style-midcentury" onclick="navTo('style-midcentury')">中古风</a>
+<a class="nav-item" data-target="style-newchinese" onclick="navTo('style-newchinese')">新中式</a>
+<a class="nav-item" data-target="style-minimal" onclick="navTo('style-minimal')">极简主义</a>
+</div>
+</div>
+
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">装修工艺 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="craft-plumbing" onclick="navTo('craft-plumbing')">水电改造</a>
+<a class="nav-item" data-target="craft-waterproof" onclick="navTo('craft-waterproof')">防水施工</a>
+<a class="nav-item" data-target="craft-tile" onclick="navTo('craft-tile')">瓷砖铺贴</a>
+<a class="nav-item" data-target="craft-ceiling" onclick="navTo('craft-ceiling')">木工吊顶</a>
+<a class="nav-item" data-target="craft-wall" onclick="navTo('craft-wall')">墙面工艺</a>
+<a class="nav-item" data-target="craft-microcement" onclick="navTo('craft-microcement')">微水泥施工</a>
+</div>
+</div>
+
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">材料百科 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="mat-tile" onclick="navTo('mat-tile')">瓷砖类</a>
+<a class="nav-item" data-target="mat-floor" onclick="navTo('mat-floor')">地板类</a>
+<a class="nav-item" data-target="mat-paint" onclick="navTo('mat-paint')">涂料类</a>
+<a class="nav-item" data-target="mat-stone" onclick="navTo('mat-stone')">石材类</a>
+<a class="nav-item" data-target="mat-cabinet" onclick="navTo('mat-cabinet')">定制柜体</a>
+<a class="nav-item" data-target="mat-doorwin" onclick="navTo('mat-doorwin')">门窗类</a>
+</div>
+</div>
+
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">软装搭配 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="soft-color" onclick="navTo('soft-color')">配色法则</a>
+<a class="nav-item" data-target="soft-light" onclick="navTo('soft-light')">灯光设计</a>
+<a class="nav-item" data-target="soft-curtain" onclick="navTo('soft-curtain')">窗帘选择</a>
+<a class="nav-item" data-target="soft-furniture" onclick="navTo('soft-furniture')">家具尺度</a>
+<a class="nav-item" data-target="soft-art" onclick="navTo('soft-art')">挂画与装饰</a>
+<a class="nav-item" data-target="soft-plant" onclick="navTo('soft-plant')">绿植搭配</a>
+</div>
+</div>
+
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">空间规划 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="space-layout" onclick="navTo('space-layout')">户型改造</a>
+<a class="nav-item" data-target="space-flow" onclick="navTo('space-flow')">动线设计</a>
+<a class="nav-item parent" data-target="space-storage" onclick="toggleSub(this); navTo('space-storage')">收纳系统 <span class="sub-arrow">▸</span></a>
+<div class="sub-nav">
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-basic" onclick="navToSub('space-storage','storage-basic')">基本原则</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-ergo" onclick="navToSub('space-storage','storage-ergo')">人体工学</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-material" onclick="navToSub('space-storage','storage-material')">材料选型</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-entry" onclick="navToSub('space-storage','storage-entry')">玄关收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-kitchen" onclick="navToSub('space-storage','storage-kitchen')">厨房收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-sideboard" onclick="navToSub('space-storage','storage-sideboard')">餐边柜收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-tv" onclick="navToSub('space-storage','storage-tv')">电视柜收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-wardrobe" onclick="navToSub('space-storage','storage-wardrobe')">衣柜细分</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-vanity" onclick="navToSub('space-storage','storage-vanity')">化妆桌收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-desk" onclick="navToSub('space-storage','storage-desk')">学习桌收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-figure" onclick="navToSub('space-storage','storage-figure')">手办收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-bathroom" onclick="navToSub('space-storage','storage-bathroom')">卫生间收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-balcony" onclick="navToSub('space-storage','storage-balcony')">阳台收纳</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-japanese" onclick="navToSub('space-storage','storage-japanese')">日式理念</a>
+<a class="nav-item sub" data-target="space-storage" data-scroll="storage-calc" onclick="navToSub('space-storage','storage-calc')">容量计算</a>
+</div>
+<a class="nav-item" data-target="space-open" onclick="navTo('space-open')">开放空间</a>
+</div>
+</div>
+
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">施工规范与验收 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="check-plumbing" onclick="navTo('check-plumbing')">水电验收</a>
+<a class="nav-item" data-target="check-masonry" onclick="navTo('check-masonry')">泥瓦验收</a>
+<a class="nav-item" data-target="check-wood" onclick="navTo('check-wood')">木工验收</a>
+<a class="nav-item" data-target="check-paint" onclick="navTo('check-paint')">油漆验收</a>
+<a class="nav-item" data-target="check-final" onclick="navTo('check-final')">竣工验收</a>
+</div>
+</div>
+</nav>
+</aside>
+
+<!-- Content -->
+<main class="content" id="contentArea">
+
+<!-- ==================== 设计风格 ==================== -->
+
+<!-- 现代简约 -->
+<section id="style-modern" class="section">
+<div class="section-header"><h2>现代简约</h2><p class="desc">Modern Minimalist — 少即是多</p></div>
+<div class="section-hero"><img src="imgs/modern-minimalist.jpg" alt="现代简约风格室内设计" loading="lazy"></div>
+
+<div class="card">
+<h3>现代简约风格</h3>
+<p>现代简约风格起源于20世纪初的包豪斯学派，强调"形式服从功能"，摒弃多余装饰，追求空间本质。在南宁市场，该风格因造价可控、视觉清爽，是90-140㎡刚需/改善户型的首选。</p>
+
+<h4>核心设计原则</h4>
+<ul>
+  <li><strong>功能至上</strong>：每一件家具、每一条线条都有其存在理由，拒绝纯装饰性元素</li>
+  <li><strong>少即是多</strong>：Less is more — 路德维希·密斯·凡德罗的经典信条</li>
+  <li><strong>空间通透</strong>：强调开放式布局，减少实体隔断，用玻璃/半墙/家具划分区域</li>
+  <li><strong>线条简洁</strong>：直线为主，少量几何曲线，避免复杂雕花和造型</li>
+</ul>
+
+<h4>配色方案（CSS色板）</h4>
+<p>现代简约的配色以中性色为基底，点缀少量跳色。以下为经典配色组合：</p>
+<div class="palette-wrap">
+  <strong>基底色系：</strong>
+  <div class="palette">
+    <div class="swatch" style="background:#f5f5f0" data-label="暖白"></div>
+    <div class="swatch" style="background:#e0ddd5" data-label="浅灰"></div>
+    <div class="swatch" style="background:#b8b4a8" data-label="中灰"></div>
+  </div>
+</div>
+<div class="palette-wrap">
+  <strong>深色层次：</strong>
+  <div class="palette">
+    <div class="swatch" style="background:#4a4a42" data-label="深灰"></div>
+    <div class="swatch" style="background:#2c2c28" data-label="炭黑"></div>
+  </div>
+</div>
+<div class="palette-wrap">
+  <strong>跳色点缀：</strong>
+  <div class="palette">
+    <div class="swatch" style="background:#d4a76a" data-label="胡桃金"></div>
+    <div class="swatch" style="background:#5a7a6a" data-label="橄榄绿"></div>
+    <div class="swatch" style="background:#8b6f5a" data-label="褐棕"></div>
+  </div>
+</div>
+
+<h4>适用户型</h4>
+<ul>
+  <li><span class="tag tag-warm">最佳</span> 90-140㎡ 平层：空间适中，简约不显空旷</li>
+  <li><span class="tag tag-cool">通用</span> 60-90㎡ 小户型：视觉扩容效果明显</li>
+  <li><span class="tag tag-red">慎用</span> >200㎡ 大平层/别墅：过于空旷，需要融入其他元素</li>
+</ul>
+
+<h4>参考材料</h4>
+<table class="material-table">
+<tr><th>部位</th><th>推荐材料</th><th>备选</th></tr>
+<tr><td>地面</td><td>600×1200mm 柔光砖 / 实木复合地板</td><td>SPC石塑地板</td></tr>
+<tr><td>墙面</td><td>乳胶漆（哑光白/浅灰）</td><td>艺术漆微纹理</td></tr>
+<tr><td>天花</td><td>平顶 + 无主灯嵌入式射灯</td><td>局部悬浮吊顶</td></tr>
+<tr><td>柜体</td><td>PET肤感门板（纯色）</td><td>混油实木贴皮</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>南宁本地建议：</strong>回南天潮湿，现代简约方案中建议地面优先选用瓷砖而非木地板，或选用SPC石塑地板（防水防潮）。墙面乳胶漆建议选择防霉配方。
+</div>
+</div>
+</section>
+
+<!-- 侘寂风 -->
+<section id="style-wabisabi" class="section">
+<div class="section-header"><h2>侘寂风</h2><p class="desc">Wabi-Sabi — 残缺之美，时光之痕</p></div>
+
+<div class="card">
+<h3>侘寂风格</h3>
+<p>侘寂（Wabi-Sabi）源自日本禅宗美学，核心是接受不完美、欣赏自然老化带来的美感。在室内设计中表现为粗犷的墙面肌理、自然材料的本色呈现、克制低调的空间氛围。适合追求精神内涵和独特品味的高端客户。</p>
+
+<h4>核心理念</h4>
+<ul>
+  <li><strong>不对称之美</strong>：拒绝完美对称，追求自然随机的平衡感</li>
+  <li><strong>质朴与克制</strong>：材料回归本源，不刻意修饰，保留手工痕迹</li>
+  <li><strong>时间的痕迹</strong>：欣赏物品随时间老化的过程，锈迹/裂纹/褪色皆是美</li>
+  <li><strong>留白与静寂</strong>：大量留白营造沉思空间，拒绝视觉噪音</li>
+</ul>
+
+<h4>色调搭配</h4>
+<div class="palette">
+  <div class="swatch" style="background:#c4b9a8" data-label="米灰"></div>
+  <div class="swatch" style="background:#9e8e7e" data-label="陶土"></div>
+  <div class="swatch" style="background:#7a6e60" data-label="烟褐"></div>
+  <div class="swatch" style="background:#4a3f35" data-label="枯木"></div>
+  <div class="swatch" style="background:#d4c9b8" data-label="亚麻"></div>
+  <div class="swatch" style="background:#8b7d6b" data-label="岩灰"></div>
+</div>
+
+<h4>材质选择</h4>
+<table class="material-table">
+<tr><th>类别</th><th>首选材料</th><th>特征</th></tr>
+<tr><td>墙面</td><td>微水泥 / 艺术涂料（斑驳纹理）</td><td>手工批刮痕迹、色差容忍</td></tr>
+<tr><td>地面</td><td>哑光微水泥 / 水磨石 / 旧木地板</td><td>无缝、温润触感</td></tr>
+<tr><td>家具</td><td>风化实木 / 藤编 / 亚麻</td><td>原木本色、不涂装或薄涂</td></tr>
+<tr><td>装饰</td><td>手工陶器 / 干枝 / 石材摆件</td><td>粗陶质感、自然形态</td></tr>
+</table>
+
+<h4>注意事项</h4>
+<div class="highlight">
+  <strong>造价提示：</strong>侘寂风≠省钱。微水泥、手工艺术涂料、实木风化处理单价均较高（微水泥施工约200-400元/㎡）。且对施工师傅手艺要求极高，南宁本地能做纯正侘寂风的师傅较少，建议提前筛选。
+</div>
+<ul>
+  <li>避免过度装饰：一盏孤灯、一截枯木即可，无需堆砌</li>
+  <li>灯光必须暖色（2700K-3000K），冷光会破坏氛围</li>
+  <li>软装少而精，每件单品都应是"主角"</li>
+  <li>不适合有幼儿的家庭：微水泥地面硬，儿童摔倒风险大</li>
+</ul>
+</div>
+</section>
+
+<!-- 奶油风 -->
+<section id="style-cream" class="section">
+<div class="section-header"><h2>奶油风</h2><p class="desc">Cream Style — 温柔治愈，如沐春风</p></div>
+<div class="section-hero"><img src="imgs/cream-style.jpg" alt="奶油风格室内设计" loading="lazy"></div>
+
+<div class="card">
+<h3>奶油风格</h3>
+<p>奶油风是2022-2025年国内最火的装修风格之一，以低饱和度的奶白/奶咖/浅灰色系为主，营造温柔、治愈、慵懒的空间氛围。在南宁年轻女性业主中接受度极高，适合80-120㎡中小户型。</p>
+
+<h4>色彩体系</h4>
+<p>奶油风的核心是"加了灰调的白"，所有颜色都带暖灰底，绝不使用纯白或高饱和色。</p>
+<div class="palette">
+  <div class="swatch" style="background:#f2ebe1" data-label="奶白"></div>
+  <div class="swatch" style="background:#e8d5c4" data-label="奶咖"></div>
+  <div class="swatch" style="background:#d9d0c1" data-label="暖灰"></div>
+  <div class="swatch" style="background:#c9b99a" data-label="燕麦"></div>
+  <div class="swatch" style="background:#b8a894" data-label="驼色"></div>
+  <div class="swatch" style="background:#a89888" data-label="烟粉"></div>
+</div>
+
+<h4>软装搭配要点</h4>
+<ul>
+  <li><strong>沙发</strong>：云朵沙发/豆腐块沙发，米白色或奶咖色，材质选绒布或羊羔绒</li>
+  <li><strong>地毯</strong>：羊毛混纺，奶油色底 + 不规则几何线条</li>
+  <li><strong>窗帘</strong>：雪尼尔或绒布，同色系，比墙面深1-2度</li>
+  <li><strong>灯具</strong>：弧形/圆球造型，纸质灯罩或磨砂玻璃</li>
+  <li><strong>装饰画</strong>：抽象色块画，色调统一，不加玻璃反光</li>
+</ul>
+
+<h4>灯光设计</h4>
+<p>奶油风极度依赖灯光来烘托氛围，灯光设计是成败关键：</p>
+<ul>
+  <li><strong>全屋色温</strong>：统一 3000K，绝不上 4000K</li>
+  <li><strong>无主灯</strong>：射灯 + 磁吸轨道灯 + 线性灯带（间接照明）</li>
+  <li><strong>重点照明</strong>：沙发旁钓鱼灯/落地灯，床头壁灯</li>
+  <li><strong>氛围灯光</strong>：电视背景墙暗藏灯带、窗帘盒灯带</li>
+  <li><strong>显色指数</strong>：Ra ≥ 95，确保色彩还原真实</li>
+</ul>
+
+<div class="highlight">
+  <strong>避坑提醒：</strong>奶油风最怕"偏色"——墙面刷完偏粉/偏黄/偏青都很灾难。建议先在工地做 A4 大小的试色，不同光线条件下观察，确认后再大面积施工。
+</div>
+</div>
+</section>
+
+<!-- 中古风 -->
+<section id="style-midcentury" class="section">
+<div class="section-header"><h2>中古风</h2><p class="desc">Mid-Century Modern — 复古优雅，经典永存</p></div>
+<div class="section-hero"><img src="imgs/mid-century-modern.jpg" alt="中古风格室内设计" loading="lazy"></div>
+
+<div class="card">
+<h3>中古风格（Mid-Century Modern）</h3>
+<p>中古风起源于1940-1960年代的美国和北欧，以温暖的木色调、流畅的有机曲线和功能性设计著称。近年来在国内重新流行，尤其是对设计有一定品位的年轻中产群体。南宁市场多见于120㎡以上的改善型住宅。</p>
+
+<h4>起源与设计哲学</h4>
+<ul>
+  <li>时间背景：二战后经济复苏期，中产阶级崛起对"好设计"产生需求</li>
+  <li>代表人物：Charles & Ray Eames、Eero Saarinen、Hans Wegner</li>
+  <li>设计理念：好的设计应该是人人负担得起的，兼具美观与实用</li>
+</ul>
+
+<h4>标志性家具</h4>
+<ul>
+  <li><strong>伊姆斯躺椅（Eames Lounge Chair）</strong>：黑胡桃木 + 黑色皮革，中古风灵魂单品</li>
+  <li><strong>子宫椅（Womb Chair）</strong>：Saarinen 设计，有机曲线，舒适包裹感</li>
+  <li><strong>Y椅（CH24 Wishbone Chair）</strong>：Hans Wegner，纸绳坐垫 + 橡木框架</li>
+  <li><strong>野口勇茶几（Noguchi Table）</strong>：玻璃面 + 雕塑感实木底座</li>
+</ul>
+
+<h4>配色逻辑</h4>
+<div class="palette">
+  <div class="swatch" style="background:#8b6914" data-label="柚木"></div>
+  <div class="swatch" style="background:#5c3a21" data-label="胡桃"></div>
+  <div class="swatch" style="background:#d4a76a" data-label="蜂蜜"></div>
+  <div class="swatch" style="background:#3d5a3c" data-label="橄榄"></div>
+  <div class="swatch" style="background:#cb6d51" data-label="陶红"></div>
+  <div class="swatch" style="background:#2e4a7a" data-label="钴蓝"></div>
+</div>
+<p>中古风的配色公式：<strong>70% 暖木色 + 20% 中性底 + 10% 高饱和点缀</strong>（芥末黄/橄榄绿/陶土红/钴蓝任选一）。</p>
+
+<h4>空间特征</h4>
+<ul>
+  <li>开放式平面布局，客餐一体化</li>
+  <li>大面积窗户引入自然光</li>
+  <li>半墙护墙板（Chair Rail） + 墙纸上半部分</li>
+  <li>鱼骨拼/人字拼木地板</li>
+</ul>
+</div>
+</section>
+
+<!-- 新中式 -->
+<section id="style-newchinese" class="section">
+<div class="section-header"><h2>新中式</h2><p class="desc">New Chinese Style — 东方意蕴，当代演绎</p></div>
+<div class="section-hero"><img src="imgs/new-chinese.jpg" alt="新中式风格室内设计" loading="lazy"></div>
+
+<div class="card">
+<h3>新中式风格</h3>
+<p>新中式是对传统中式风格的现代化转译，摒弃了传统中式的繁复雕花和沉重色调，保留东方美学的留白、对称、意境等核心要素，用现代材料和简洁手法重新表达。南宁作为广西首府，民族文化底蕴深厚，新中式在当地有天然的接受土壤。</p>
+
+<h4>传统与现代的融合</h4>
+<ul>
+  <li><strong>去形取意</strong>：不照搬明清家具，而是提炼其线条比例和结构逻辑</li>
+  <li><strong>材质现代化</strong>：传统的红木替换为胡桃木/橡木搭配金属、玻璃、大理石</li>
+  <li><strong>色彩克制</strong>：以黑白灰为底，点缀朱砂红、黛蓝、墨绿等中国传统色</li>
+</ul>
+
+<h4>元素提取</h4>
+<div class="palette">
+  <div class="swatch" style="background:#2c2c2c" data-label="墨色"></div>
+  <div class="swatch" style="background:#ebe5d9" data-label="宣纸白"></div>
+  <div class="swatch" style="background:#8b4513" data-label="檀木"></div>
+  <div class="swatch" style="background:#c43a31" data-label="朱砂"></div>
+  <div class="swatch" style="background:#4a6b8a" data-label="黛蓝"></div>
+  <div class="swatch" style="background:#3d5a3c" data-label="青绿"></div>
+</div>
+<ul>
+  <li><strong>圆形元素</strong>：月洞门简化版、圆镜、圆形挂画</li>
+  <li><strong>格栅</strong>：木质格栅隔断（简化密度，避免压抑）</li>
+  <li><strong>山水意境</strong>：抽象水墨画、山形摆件</li>
+  <li><strong>盆景/枯山水局部</strong>：玄关或书房一角</li>
+</ul>
+
+<h4>空间布局</h4>
+<ul>
+  <li>讲究对称但非绝对对称，以中轴线为基准的均衡布局</li>
+  <li>玄关必做，体现"藏"的东方哲学</li>
+  <li>客厅主背景墙（电视/沙发背景）选用石材纹理呼应山水</li>
+  <li>书房/茶室是新中式标配，体现主人的精神空间</li>
+</ul>
+
+<div class="highlight">
+  <strong>南宁本地优势：</strong>可在设计中融入广西壮锦纹样、铜鼓元素、花山岩画符号等在地文化元素，形成差异化竞争力。红木市场在南宁（凭祥口岸）有价格优势。
+</div>
+</div>
+</section>
+
+<!-- 极简主义 -->
+<section id="style-minimal" class="section">
+<div class="section-header"><h2>极简主义</h2><p class="desc">Minimalism — 极致减法，心灵归处</p></div>
+
+<div class="card">
+<h3>极简主义风格</h3>
+<p>极简主义不同于现代简约——前者追求的是"极致减法"，几乎消除一切非必要元素。这种风格对收纳系统要求极高（所有物品必须藏起来），对施工精度要求严苛（没有装饰性线条来遮丑）。适合预算充足、追求极致品质的小众客户。</p>
+
+<h4>设计原则</h4>
+<ul>
+  <li><strong>一无所有</strong>：台面无物、地面无物、墙面极少装饰</li>
+  <li><strong>极致收纳</strong>：全屋收纳率需达到12%-15%（普通住宅8%-10%）</li>
+  <li><strong>隐形设计</strong>：隐形门、隐形踢脚线、无拉手柜门</li>
+  <li><strong>几何纯粹</strong>：空间中只有矩形、圆形等基本几何形</li>
+</ul>
+
+<h4>收纳系统</h4>
+<table class="material-table">
+<tr><th>区域</th><th>收纳方案</th><th>容量建议</th></tr>
+<tr><td>玄关</td><td>整墙柜体（鞋柜+挂衣+杂物），底部悬空15cm</td><td>≥ 80双鞋</td></tr>
+<tr><td>客厅</td><td>满墙电视柜（深35cm），开放格≤20%</td><td>≥ 5m³</td></tr>
+<tr><td>厨房</td><td>U型布局，吊柜到顶，高柜电器塔</td><td>≥ 6延米地柜</td></tr>
+<tr><td>卧室</td><td>整墙衣柜（深60cm），内部全挂装+抽屉</td><td>≥ 4m宽</td></tr>
+<tr><td>家政间</td><td>独立家政柜（清洁工具+洗涤用品+备品）</td><td>≥ 2㎡</td></tr>
+</table>
+
+<h4>留白艺术</h4>
+<div class="highlight">
+  <strong>关键数据：</strong>极简主义空间的留白面积应占总墙面面积的 60% 以上。任何一处墙面的装饰占比不超过该面墙的 20%。地面除家具外无任何堆物。
+</div>
+<ul>
+  <li>墙面留白：大面积纯色墙面，最多一幅抽象画点缀</li>
+  <li>天花留白：完全平面，无石膏线、无灯盘、无造型</li>
+  <li>地面留白：看不到任何杂物、电线、临时放置的物品</li>
+</ul>
+</div>
+</section>
+
+<!-- ==================== 装修工艺 ==================== -->
+
+<!-- 水电改造 -->
+<section id="craft-plumbing" class="section">
+<div class="section-header"><h2>水电改造</h2><p class="desc">隐蔽工程 — 绝对不能省的环节</p></div>
+
+<div class="card">
+<h3>水电改造工艺标准</h3>
+<p>水电改造是装修中最关键的隐蔽工程，一旦封槽贴砖后出现问题，维修成本是当初改造的10倍以上。以下为行业通用规范（参照GB 50327-2001《住宅装饰装修工程施工规范》）。</p>
+
+<h4>施工流程图</h4>
+<div class="flow">
+  <div class="step emphasis">现场定位弹线</div><div class="arrow">→</div>
+  <div class="step">开槽切割</div><div class="arrow">→</div>
+  <div class="step">布管穿线</div><div class="arrow">→</div>
+  <div class="step">打压测试</div><div class="arrow">→</div>
+  <div class="step">封槽固定</div><div class="arrow">→</div>
+  <div class="step emphasis">拍照留底</div>
+</div>
+
+<h4>定位标准</h4>
+<ul>
+  <li><strong>开关插座高度</strong>：普通插座距地 30cm；开关距地 130cm；厨房台面插座距台面 30cm</li>
+  <li><strong>强弱电间距</strong>：平行走管 ≥ 30cm；交叉处包锡箔纸屏蔽</li>
+  <li><strong>热水管</strong>：左热右冷，中心距 15cm</li>
+</ul>
+
+<h4>开槽规范</h4>
+<ul>
+  <li>横向开槽：承重墙禁止横向开槽超过 30cm；非承重墙不超过 50cm</li>
+  <li>槽深要求：线管直径的 1.5 倍以上</li>
+  <li>开槽后必须清理浮灰，浇水湿润后再封槽</li>
+</ul>
+
+<h4>管道走向</h4>
+<ul>
+  <li><strong>水路走顶</strong>：卫生间/厨房水管必须走顶（非走地），便于后期检修</li>
+  <li><strong>电路走地</strong>：点对点或横平竖直均可，大弧弯工艺为佳</li>
+  <li><strong>排水坡度</strong>：排水管坡度 ≥ 1%，即每米下降 ≥ 1cm</li>
+</ul>
+
+<h4>验收要点</h4>
+<ol>
+  <li><strong>打压测试</strong>：冷水管 0.9MPa（9公斤）、热水管 1.2MPa（12公斤），保压 30 分钟，压降 ≤ 0.05MPa 为合格</li>
+  <li><strong>绝缘电阻</strong>：≥ 0.5MΩ（兆欧表测量）</li>
+  <li><strong>通球试验</strong>：排水管投入直径不小于管径 2/3 的球，能顺利通过</li>
+  <li><strong>拍照留底</strong>：封槽前对所有管线走向拍照存档，标注尺寸，后期打孔参照</li>
+</ol>
+
+<div class="highlight">
+  <strong>南宁特别注意：</strong>部分老旧小区（如2000年前建成）入户主线仅4-6平方毫米，需评估是否升级到10平方毫米以满足现代用电需求（中央空调+电热水器+厨房电器）。
+</div>
+</div>
+</section>
+
+<!-- 防水施工 -->
+<section id="craft-waterproof" class="section">
+<div class="section-header"><h2>防水施工</h2><p class="desc">防水的钱一分不能省</p></div>
+
+<div class="card">
+<h3>防水施工标准</h3>
+
+<h4>各区域防水标准</h4>
+<table class="material-table">
+<tr><th>区域</th><th>防水高度</th><th>防水层数</th><th>推荐材料</th></tr>
+<tr><td>卫生间地面</td><td>全地面 + 上翻 30cm</td><td>≥ 2 遍</td><td>JS聚合物水泥防水涂料 II 型</td></tr>
+<tr><td>卫生间淋浴区墙面</td><td>≥ 180cm</td><td>≥ 2 遍</td><td>JS防水涂料 或 K11通用型</td></tr>
+<tr><td>卫生间干区墙面</td><td>≥ 30cm</td><td>1-2 遍</td><td>JS防水涂料</td></tr>
+<tr><td>阳台地面</td><td>全地面 + 上翻 20cm</td><td>≥ 2 遍</td><td>JS防水涂料</td></tr>
+<tr><td>厨房地面</td><td>全地面 + 上翻 20cm</td><td>1-2 遍</td><td>JS防水涂料</td></tr>
+</table>
+
+<h4>闭水试验流程</h4>
+<div class="flow">
+  <div class="step">堵好地漏/排水口</div><div class="arrow">→</div>
+  <div class="step">放水至 3-5cm 深</div><div class="arrow">→</div>
+  <div class="step emphasis">静置 48 小时</div><div class="arrow">→</div>
+  <div class="step">检查楼下天花板</div><div class="arrow">→</div>
+  <div class="step">无渗漏→验收合格</div>
+</div>
+
+<div class="highlight">
+  <strong>闭水试验黄金法则：</strong>不低于 48 小时，且必须通知楼下邻居到场确认。如有渗漏，修复后重新闭水 48 小时，直至无渗漏方可进行下一步贴砖。
+</div>
+
+<h4>关键节点处理</h4>
+<ul>
+  <li><strong>管根/地漏</strong>：用堵漏王做 R 角处理（抹成弧形），再刷防水</li>
+  <li><strong>阴阳角</strong>：做圆弧处理，附加无纺布加强层</li>
+  <li><strong>门槛石</strong>：先铺门槛石再做防水，防水层上翻门槛石侧面</li>
+  <li><strong>卫生间门口外侧</strong>：防水向外延伸 ≥ 50cm，做挡水坎</li>
+</ul>
+</div>
+</section>
+
+<!-- 瓷砖铺贴 -->
+<section id="craft-tile" class="section">
+<div class="section-header"><h2>瓷砖铺贴</h2><p class="desc">薄贴法 vs 传统法，选对工艺不空鼓</p></div>
+
+<div class="card">
+<h3>瓷砖铺贴工艺</h3>
+
+<h4>薄贴法 vs 传统法对比</h4>
+<table class="material-table">
+<tr><th>对比维度</th><th>薄贴法（推荐）</th><th>传统厚贴法</th></tr>
+<tr><td>粘结材料</td><td>瓷砖胶（C2TES1级别）</td><td>水泥砂浆（1:3）</td></tr>
+<tr><td>粘结层厚度</td><td>3-5mm</td><td>20-30mm</td></tr>
+<tr><td>空鼓率</td><td>&lt; 3%</td><td>5%-15%</td></tr>
+<tr><td>适用瓷砖</td><td>大板岩板/低吸水率砖</td><td>高吸水率瓷片</td></tr>
+<tr><td>单价（含人工）</td><td>60-80 元/㎡</td><td>40-55 元/㎡</td></tr>
+<tr><td>对基层要求</td><td>平整度 ≤ 3mm/2m</td><td>一般即可</td></tr>
+</table>
+
+<h4>排版设计要点</h4>
+<ul>
+  <li><strong>预排版</strong>：铺贴前做全屋排版图，避免窄条（< 10cm）出现在显眼位置</li>
+  <li><strong>起铺点</strong>：从入户门或客厅主视线方向起铺，整砖优先</li>
+  <li><strong>对缝</strong>：墙地对缝（墙面砖缝对齐地面砖缝），美观度提升 50%</li>
+  <li><strong>通铺</strong>：客厅/餐厅/厨房/阳台通铺不用过门石，空间感更强</li>
+</ul>
+
+<h4>美缝选择</h4>
+<table class="material-table">
+<tr><th>类型</th><th>特点</th><th>价格</th><th>推荐场景</th></tr>
+<tr><td>环氧彩砂</td><td>哑光质感、硬度高、耐黄变</td><td class="price-mid">15-25 元/㎡</td><td>卫生间/厨房墙面</td></tr>
+<tr><td>聚脲美缝</td><td>柔韧性好、极耐黄变、快干</td><td class="price-high">25-40 元/㎡</td><td>浅色砖/阳台/阳光直射区</td></tr>
+<tr><td>真瓷胶</td><td>亮光、易施工、价格低</td><td class="price-low">8-15 元/㎡</td><td>预算有限的次要空间</td></tr>
+</table>
+</div>
+</section>
+
+<!-- 木工吊顶 -->
+<section id="craft-ceiling" class="section">
+<div class="section-header"><h2>木工吊顶</h2><p class="desc">轻钢龙骨 — 南宁潮湿环境的首选</p></div>
+
+<div class="card">
+<h3>木工吊顶工艺</h3>
+
+<h4>轻钢龙骨 vs 木龙骨</h4>
+<table class="material-table">
+<tr><th>对比维度</th><th>轻钢龙骨</th><th>木龙骨</th></tr>
+<tr><td>防潮性</td><td>完全不吸潮</td><td>易受潮变形</td></tr>
+<tr><td>防火性</td><td>A级不燃</td><td>B级可燃（需刷防火涂料）</td></tr>
+<tr><td>平整度</td><td>高，不易变形</td><td>受温湿度影响大</td></tr>
+<tr><td>价格</td><td class="price-mid">45-60 元/㎡</td><td class="price-low">35-50 元/㎡</td></tr>
+<tr><td>南宁适用性</td><td><strong>强烈推荐</strong></td><td>仅限干燥区域零星使用</td></tr>
+</table>
+
+<h4>造型工艺</h4>
+<ul>
+  <li><strong>悬浮吊顶</strong>：四周留10-15cm灯槽，中间下沉，流行于现代简约/奶油风</li>
+  <li><strong>双眼皮</strong>：双层石膏板叠级（3+3cm），替代传统石膏线，简洁有层次</li>
+  <li><strong>弧形吊顶</strong>：过渡区做弧形，柔化空间，工艺难度较高</li>
+  <li><strong>满吊平顶</strong>：全屋吊平顶 + 嵌入式无主灯，极简标配</li>
+</ul>
+
+<h4>防裂处理</h4>
+<div class="flow">
+  <div class="step">石膏板L型/T型整板转角</div><div class="arrow">→</div>
+  <div class="step">接缝留 3-5mm V型槽</div><div class="arrow">→</div>
+  <div class="step">填嵌缝石膏</div><div class="arrow">→</div>
+  <div class="step">贴防裂纸带/网格带</div><div class="arrow">→</div>
+  <div class="step emphasis">预留伸缩缝</div>
+</div>
+<div class="highlight">
+  <strong>南宁防裂要点：</strong>吊顶转角处必须用整块石膏板裁成L型，严禁两块板拼接。石膏板之间留3-5mm伸缩缝，适应南宁高湿度环境下的材料膨胀。
+</div>
+</div>
+</section>
+
+<!-- 墙面工艺 -->
+<section id="craft-wall" class="section">
+<div class="section-header"><h2>墙面工艺</h2><p class="desc">从找平到面漆，每一步都不能省</p></div>
+
+<div class="card">
+<h3>墙面标准施工流程</h3>
+
+<div class="flow">
+  <div class="step">1. 基层清理/刷墙固</div><div class="arrow">→</div>
+  <div class="step">2. 石膏找平（冲筋）</div><div class="arrow">→</div>
+  <div class="step">3. 第一遍腻子</div><div class="arrow">→</div>
+  <div class="step">4. 第二遍腻子</div>
+  <div class="arrow">→</div>
+  <div class="step">5. 打磨（240#+320#）</div><div class="arrow">→</div>
+  <div class="step">6. 底漆（一遍）</div><div class="arrow">→</div>
+  <div class="step">7. 面漆（两遍）</div><div class="arrow">→</div>
+  <div class="step emphasis">8. 养护 7 天</div>
+</div>
+
+<h4>每步标准</h4>
+<table class="material-table">
+<tr><th>步骤</th><th>材料</th><th>标准要求</th><th>间隔时间</th></tr>
+<tr><td>墙固</td><td>界面剂（墙固）</td><td>满刷不漏底，封固基层浮灰</td><td>2小时</td></tr>
+<tr><td>石膏找平</td><td>粉刷石膏/轻质抹灰</td><td>2m靠尺 ≤ 3mm</td><td>24-48小时</td></tr>
+<tr><td>第一遍腻子</td><td>耐水腻子</td><td>满刮，厚度1-2mm，阴阳角顺直</td><td>24小时</td></tr>
+<tr><td>第二遍腻子</td><td>耐水腻子</td><td>收光平整，无砂眼气泡</td><td>48小时</td></tr>
+<tr><td>打磨</td><td>240# → 320# 砂纸</td><td>灯光侧照无波浪纹</td><td>—</td></tr>
+<tr><td>底漆</td><td>抗碱封闭底漆</td><td>均匀涂刷，不得漏刷</td><td>4-6小时</td></tr>
+<tr><td>面漆</td><td>乳胶漆（哑光/蛋壳光）</td><td>两遍，纹理均匀，无流挂</td><td>间隔4小时</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>南宁必用耐水腻子：</strong>南宁年均湿度80%+，普通腻子（如821腻子）遇潮会起皮脱落。必须使用耐水腻子（成品耐水腻子粉），单价比普通腻子贵约30%，但防潮寿命可延长5-8年。
+</div>
+</div>
+</section>
+
+<!-- 微水泥 -->
+<section id="craft-microcement" class="section">
+<div class="section-header"><h2>微水泥施工</h2><p class="desc">无缝美学，对基层和手艺要求极高</p></div>
+
+<div class="card">
+<h3>微水泥施工工艺</h3>
+
+<h4>基层处理</h4>
+<ul>
+  <li><strong>地面基层</strong>：水泥砂浆找平后打磨，平整度 ≤ 2mm/2m，无空鼓开裂</li>
+  <li><strong>墙面基层</strong>：耐水腻子 + 抗碱底漆，表面坚固无浮灰</li>
+  <li><strong>必须涂刷专用界面剂</strong>：增强微水泥与基层的粘结力</li>
+  <li><strong>铺设抗裂网格布</strong>：地面/墙面满铺，搭接 ≥ 10cm</li>
+</ul>
+
+<h4>批刮工艺</h4>
+<div class="flow">
+  <div class="step">界面剂</div><div class="arrow">→</div>
+  <div class="step">铺设网格布</div><div class="arrow">→</div>
+  <div class="step">第一遍微水泥（1mm）</div><div class="arrow">→</div>
+  <div class="step">第二遍微水泥（0.8mm）</div><div class="arrow">→</div>
+  <div class="step emphasis">打磨（400#-600#）</div><div class="arrow">→</div>
+  <div class="step">封闭底漆</div><div class="arrow">→</div>
+  <div class="step">双组份聚氨酯罩面 ×2</div>
+</div>
+
+<h4>罩面保护</h4>
+<ul>
+  <li>必须使用双组份水性聚氨酯罩面，单组分丙烯酸寿命短</li>
+  <li>罩面至少 2 遍，每遍间隔 4-6 小时</li>
+  <li>完全固化 7 天后方可正常使用（期间避免重物和尖锐物品）</li>
+  <li>后期维护：每 2-3 年重新滚涂一层罩面保护剂</li>
+</ul>
+
+<div class="highlight">
+  <strong>造价参考（南宁市场）：</strong>
+  <br>· 地面微水泥：200-400 元/㎡（含基层处理）
+  <br>· 墙面微水泥：150-250 元/㎡
+  <br>· 台面/洗手池微水泥：另议（造型复杂）
+  <br><br>
+  <strong>不适合场景：</strong>有宠物（爪子划痕）、幼儿家庭、预算紧张的刚需装修。
+</div>
+</div>
+</section>
+
+<!-- ==================== 材料百科 ==================== -->
+
+<!-- 瓷砖类 -->
+<section id="mat-tile" class="section">
+<div class="section-header"><h2>瓷砖类</h2><p class="desc">读懂瓷砖参数，选对不选贵</p></div>
+
+<div class="card">
+<h3>瓷砖品类对比</h3>
+<table class="material-table">
+<tr><th>品类</th><th>单价（元/㎡）</th><th>耐磨度</th><th>防滑性</th><th>适用场景</th><th>备注</th></tr>
+<tr><td>抛釉砖</td><td class="price-low">60-120</td><td>★★★☆</td><td>★★★</td><td>客餐厅地面</td><td>花色丰富，性价比高</td></tr>
+<tr><td>通体砖</td><td class="price-mid">100-200</td><td>★★★★★</td><td>★★★★</td><td>客餐厅/阳台/商业</td><td>表里如一，磨了还是那个色</td></tr>
+<tr><td>岩板</td><td class="price-high">300-1000+</td><td>★★★★☆</td><td>★★★</td><td>背景墙/岛台/台面</td><td>大规格（可到3.2m），薄而韧</td></tr>
+<tr><td>花砖/手工砖</td><td class="price-high">150-400</td><td>★★★</td><td>★★★☆</td><td>玄关/卫生间/局部点缀</td><td>釉面花色，不适合大面积</td></tr>
+<tr><td>柔光砖</td><td class="price-mid">80-180</td><td>★★★★</td><td>★★★</td><td>全屋通铺</td><td>介于亮光和哑光之间的质感</td></tr>
+<tr><td>木纹砖</td><td class="price-mid">80-150</td><td>★★★★</td><td>★★★★</td><td>卧室/客餐厅（替代木地板）</td><td>南宁潮湿环境替代木地板首选</td></tr>
+</table>
+
+<h4>选购要点</h4>
+<ul>
+  <li><strong>吸水率</strong>：地砖 ≤ 0.5%（全瓷），墙砖可放宽到 3%-6%</li>
+  <li><strong>平整度</strong>：两片砖面对面贴合，缝隙均匀 ≤ 0.5mm</li>
+  <li><strong>产地</strong>：广东佛山砖综合品质最稳定，山东砖价格低但釉面偏薄</li>
+</ul>
+</div>
+</section>
+
+<!-- 地板类 -->
+<section id="mat-floor" class="section">
+<div class="section-header"><h2>地板类</h2><p class="desc">实木/多层/强化/SPC，南宁潮湿环境怎么选</p></div>
+
+<div class="card">
+<h3>地板品类对比</h3>
+<table class="material-table">
+<tr><th>品类</th><th>单价（元/㎡）</th><th>环保等级</th><th>防潮性</th><th>脚感</th><th>南宁推荐度</th></tr>
+<tr><td>纯实木地板</td><td class="price-high">300-800+</td><td>天然</td><td>差</td><td>★★★★★</td><td>★★☆（易变形）</td></tr>
+<tr><td>多层实木复合</td><td class="price-mid">200-400</td><td>E0/ENF</td><td>中等</td><td>★★★★</td><td>★★★★</td></tr>
+<tr><td>强化地板</td><td class="price-low">80-200</td><td>E1/E0</td><td>中等</td><td>★★★</td><td>★★★</td></tr>
+<tr><td>SPC石塑地板</td><td class="price-low">60-150</td><td>零甲醛</td><td><strong>优</strong></td><td>★★☆</td><td>★★★★★</td></tr>
+<tr><td>WPC木塑地板</td><td class="price-mid">120-250</td><td>零甲醛</td><td>优</td><td>★★★</td><td>★★★★☆</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>南宁地板首选方案：</strong>
+  <br>· 预算充足+追求脚感 → 多层实木复合（选表层≥2mm厚木皮）
+  <br>· 性价比+防潮优先 → SPC石塑地板（卡扣式，自装可省人工费）
+  <br>· 不推荐纯实木：南宁回南天湿度可达95%，实木膨胀起拱风险极高
+</div>
+</div>
+</section>
+
+<!-- 涂料类 -->
+<section id="mat-paint" class="section">
+<div class="section-header"><h2>涂料类</h2><p class="desc">墙面材料选型指南</p></div>
+
+<div class="card">
+<h3>涂料品类对比</h3>
+<table class="material-table">
+<tr><th>品类</th><th>单价（元/㎡含工）</th><th>耐久性</th><th>环保性</th><th>质感</th><th>适用场景</th></tr>
+<tr><td>乳胶漆（哑光）</td><td class="price-low">20-40</td><td>8-12年</td><td>★★★★</td><td>平滑哑光</td><td>全屋通用，性价比之王</td></tr>
+<tr><td>艺术漆</td><td class="price-high">80-200</td><td>10-15年</td><td>★★★★☆</td><td>纹理丰富（天鹅绒/肌理/金属）</td><td>背景墙/侘寂风/中古风</td></tr>
+<tr><td>微水泥（墙面）</td><td class="price-high">150-250</td><td>15-20年</td><td>★★★★</td><td>无缝哑光工业感</td><td>侘寂/极简/工业风</td></tr>
+<tr><td>硅藻泥</td><td class="price-mid">60-120</td><td>8-15年</td><td>★★★★★</td><td>粗颗粒自然感</td><td>卧室/儿童房（调湿）</td></tr>
+</table>
+
+<h4>乳胶漆选购要点</h4>
+<ul>
+  <li><strong>耐擦洗次数</strong>：国标 ≥ 5000次为优等品，家庭建议 ≥ 6000次</li>
+  <li><strong>对比率</strong>：≥ 0.95（遮盖力强，一底两面即可）</li>
+  <li><strong>VOC含量</strong>：＜ 50g/L（国标），优选＜ 10g/L 的产品</li>
+  <li><strong>光泽度选择</strong>：客厅用哑光（隐藏墙面瑕疵），厨卫用丝光/蛋壳光（耐擦洗）</li>
+</ul>
+</div>
+</section>
+
+<!-- 石材类 -->
+<section id="mat-stone" class="section">
+<div class="section-header"><h2>石材类</h2><p class="desc">大理石/岩板/石英石/人造石 怎么选</p></div>
+
+<div class="card">
+<h3>石材品类对比</h3>
+<table class="material-table">
+<tr><th>品类</th><th>单价（元/延米或㎡）</th><th>硬度</th><th>耐污</th><th>适用</th><th>保养</th></tr>
+<tr><td>天然大理石</td><td class="price-high">400-2000/㎡</td><td>★★★</td><td>差（易渗色）</td><td>背景墙/窗台/淋浴房拉槽板</td><td>需定期结晶打磨</td></tr>
+<tr><td>岩板</td><td class="price-high">500-3000/延米</td><td>★★★★★</td><td>★★★★★</td><td>厨房台面/岛台/背景墙/餐桌</td><td>几乎免维护</td></tr>
+<tr><td>石英石</td><td class="price-mid">300-800/延米</td><td>★★★★☆</td><td>★★★★</td><td>厨房台面（主流）</td><td>常规清洁即可</td></tr>
+<tr><td>人造石（亚克力）</td><td class="price-mid">200-600/延米</td><td>★★☆</td><td>★★★</td><td>窗台/吧台/异形台面</td><td>可修复，易划伤</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>台面选择建议：</strong>
+  <br>· 厨房台面首选石英石（性价比+耐污），预算充足选岩板（颜值+耐高温）
+  <br>· 大理石慎用于厨房台面——酱油/红酒/柠檬汁都会渗色且不可逆
+  <br>· 岩板台面注意边缘倒角：建议做小圆弧（R3-R5），避免直角崩边
+</div>
+</div>
+</section>
+
+<!-- 定制柜体 -->
+<section id="mat-cabinet" class="section">
+<div class="section-header"><h2>定制柜体板材</h2><p class="desc">颗粒板/多层板/生态板/实木 — 一分钱一分货</p></div>
+
+<div class="card">
+<h3>柜体板材对比</h3>
+<table class="material-table">
+<tr><th>板材</th><th>单价（元/㎡投影）</th><th>环保</th><th>防潮</th><th>握钉力</th><th>推荐用途</th></tr>
+<tr><td>颗粒板（刨花板）</td><td class="price-low">700-1000</td><td>E0/ENF</td><td>★★☆</td><td>★★★</td><td>衣柜/书柜柜体</td></tr>
+<tr><td>多层实木板</td><td class="price-mid">900-1300</td><td>E0/ENF</td><td>★★★★</td><td>★★★★</td><td>厨柜/卫柜（防潮需求）</td></tr>
+<tr><td>生态板（大芯板）</td><td class="price-mid">800-1200</td><td>E0</td><td>★★★</td><td>★★★</td><td>衣柜柜体（木工现场做）</td></tr>
+<tr><td>实木（橡木/樱桃木）</td><td class="price-high">1800-4000+</td><td>天然</td><td>★★★</td><td>★★★★★</td><td>高端柜体/柜门</td></tr>
+<tr><td>PET肤感门板</td><td class="price-mid">200-350/㎡门板</td><td>—</td><td>—</td><td>—</td><td>柜门（奶油风/极简标配）</td></tr>
+</table>
+
+<h4>选购防坑指南</h4>
+<ul>
+  <li><strong>看截面</strong>：颗粒板截面均匀细腻，多层板截面可见木皮分层</li>
+  <li><strong>闻味道</strong>：打开柜门无明显刺激性气味</li>
+  <li><strong>问五金</strong>：铰链品牌（百隆/海蒂诗>悍高>杂牌），决定柜体寿命</li>
+  <li><strong>看封边</strong>：PUR封边 > EVA封边，激光封边最佳但价格翻倍</li>
+  <li><strong>南宁防潮</strong>：橱柜/卫柜/阳台柜必须选多层实木板或防潮颗粒板</li>
+</ul>
+</div>
+</section>
+
+<!-- 门窗类 -->
+<section id="mat-doorwin" class="section">
+<div class="section-header"><h2>门窗类</h2><p class="desc">断桥铝/系统窗/极窄框 — 隔音保温的关键</p></div>
+
+<div class="card">
+<h3>门窗品类对比</h3>
+<table class="material-table">
+<tr><th>品类</th><th>单价（元/㎡）</th><th>隔音</th><th>保温</th><th>适用场景</th></tr>
+<tr><td>普通断桥铝</td><td class="price-mid">500-800</td><td>★★★☆</td><td>★★★★</td><td>性价比之选，常规住宅</td></tr>
+<tr><td>系统门窗</td><td class="price-high">1000-2500</td><td>★★★★★</td><td>★★★★★</td><td>临街/高架/机场附近</td></tr>
+<tr><td>极窄框推拉门</td><td class="price-high">800-1500</td><td>★★★</td><td>★★★</td><td>阳台/厨房/室内隔断</td></tr>
+<tr><td>铝包木窗</td><td class="price-high">2000-4000+</td><td>★★★★☆</td><td>★★★★★</td><td>别墅/高端住宅</td></tr>
+</table>
+
+<h4>选购要点</h4>
+<ul>
+  <li><strong>型材壁厚</strong>：新国标 1.8mm（旧标 1.4mm 已淘汰）</li>
+  <li><strong>玻璃配置</strong>：标配 5+20A+5 中空钢化，临街选夹胶中空 5+0.76PVB+5+12A+5</li>
+  <li><strong>隔热条</strong>：必须 PA66 尼龙隔热条（非 PVC），宽度 ≥ 24mm</li>
+  <li><strong>五金件</strong>：德国好博（执手）/ 丝吉利娅 / 诺托</li>
+  <li><strong>安装</strong>：发泡胶填充 + 外墙防水 + 密封胶收口，安装质量占最终效果 50%</li>
+</ul>
+</div>
+</section>
+
+<!-- ==================== 软装搭配 ==================== -->
+
+<!-- 配色法则 -->
+<section id="soft-color" class="section">
+<div class="section-header"><h2>配色法则</h2><p class="desc">6:3:1 黄金配比 + 冷暖平衡</p></div>
+
+<div class="card">
+<h3>配色核心法则</h3>
+
+<h4>6:3:1 黄金配比</h4>
+<p>这是室内设计中最经典的颜色分配比例：</p>
+<ul>
+  <li><strong>60% — 主色调</strong>：墙面 + 地面 + 天花板 + 大面积柜体。通常为中性色（白/灰/米/奶咖）</li>
+  <li><strong>30% — 辅助色</strong>：沙发 + 窗帘 + 床品 + 地毯。与主色同色系或邻近色</li>
+  <li><strong>10% — 点缀色</strong>：抱枕 + 挂画 + 摆件 + 绿植。可以大胆使用高饱和/对比色</li>
+</ul>
+
+<div class="palette-wrap">
+  <strong>经典配色组合示例：</strong>
+  <div class="palette">
+    <div class="swatch" style="background:#f0ede6;width:72px" data-label="60%暖灰底"></div>
+    <div class="swatch" style="background:#8b7d6b;width:36px" data-label="30%褐棕"></div>
+    <div class="swatch" style="background:#c9a96e;width:12px" data-label="10%金"></div>
+  </div>
+</div>
+
+<h4>冷暖搭配技巧</h4>
+<table class="material-table">
+<tr><th>色调</th><th>色相范围</th><th>空间感受</th><th>推荐朝向</th></tr>
+<tr><td>暖色调</td><td>红/橙/黄/米/奶咖</td><td>温馨、亲近、活跃</td><td>朝北房间（缺阳光）</td></tr>
+<tr><td>冷色调</td><td>蓝/绿/紫/灰蓝</td><td>清爽、理性、安静</td><td>朝西/朝南（阳光足）</td></tr>
+<tr><td>中性调</td><td>白/灰/黑/米灰</td><td>百搭、包容</td><td>全朝向通用</td></tr>
+</table>
+
+<h4>跳色技巧</h4>
+<div class="highlight">
+  <strong>跳色三原则：</strong>
+  <br>① 一个空间最多 1 个跳色（多了就乱）
+  <br>② 跳色占比 ≤ 10%（抱枕、单椅、一盏灯、一幅画）
+  <br>③ 跳色与主色在色环上呈 120°-180°（互补或对比关系）
+</div>
+</div>
+</section>
+
+<!-- 灯光设计 -->
+<section id="soft-light" class="section">
+<div class="section-header"><h2>灯光设计</h2><p class="desc">无主灯方案 + 色温科学 + 三层照明</p></div>
+
+<div class="card">
+<h3>灯光设计方案</h3>
+
+<h4>无主灯方案</h4>
+<table class="material-table">
+<tr><th>灯具类型</th><th>功率建议</th><th>光束角</th><th>安装间距</th><th>用途</th></tr>
+<tr><td>嵌入式射灯</td><td>7-12W</td><td>24°/36°</td><td>80-120cm</td><td>基础照明/洗墙</td></tr>
+<tr><td>磁吸轨道灯</td><td>10-20W/米</td><td>泛光/格栅</td><td>距墙 50-70cm</td><td>客厅主照明</td></tr>
+<tr><td>线性灯带</td><td>8-14W/米</td><td>120°</td><td>天花/柜体/踢脚线</td><td>氛围/间接照明</td></tr>
+<tr><td>落地灯/壁灯</td><td>5-10W</td><td>—</td><td>阅读角/床头</td><td>重点照明</td></tr>
+</table>
+
+<h4>色温选择</h4>
+<ul>
+  <li><strong>2700K-3000K（暖黄光）</strong>：卧室、餐厅、客厅（温馨放松）</li>
+  <li><strong>3500K-4000K（自然光）</strong>：厨房、书房、卫生间（清晰明亮）</li>
+  <li><strong>5000K+（冷白光）</strong>：不推荐家用（医院/办公室风格，冰冷）</li>
+  <li><strong>色温统一原则</strong>：同一可视空间内色温必须统一，不同区域可分层设定</li>
+</ul>
+
+<h4>三层照明体系</h4>
+<div class="flow">
+  <div class="step">环境光<br><span style="font-size:0.7rem">（基础照明）</span></div>
+  <div class="arrow">+</div>
+  <div class="step">任务光<br><span style="font-size:0.7rem">（功能性照明）</span></div>
+  <div class="arrow">+</div>
+  <div class="step emphasis">氛围光<br><span style="font-size:0.7rem">（情绪照明）</span></div>
+  <div class="arrow">=</div>
+  <div class="step">层次照明</div>
+</div>
+<ul>
+  <li><strong>环境光</strong>：射灯、筒灯、吸顶灯 → 确保空间整体亮度</li>
+  <li><strong>任务光</strong>：橱柜灯带、书桌台灯、镜前灯 → 满足具体操作需求</li>
+  <li><strong>氛围光</strong>：灯带、壁灯、落地灯 → 营造层次和情绪</li>
+</ul>
+</div>
+</section>
+
+<!-- 窗帘选择 -->
+<section id="soft-curtain" class="section">
+<div class="section-header"><h2>窗帘选择</h2><p class="desc">面料 × 遮光度 × 安装方式</p></div>
+
+<div class="card">
+<h3>窗帘选型指南</h3>
+
+<h4>材质对比</h4>
+<table class="material-table">
+<tr><th>材质</th><th>遮光度</th><th>垂坠感</th><th>适合风格</th><th>价格（元/米）</th></tr>
+<tr><td>雪尼尔</td><td>80%-95%</td><td>★★★★★</td><td>现代简约/奶油风</td><td class="price-mid">80-150</td></tr>
+<tr><td>绒布</td><td>85%-100%</td><td>★★★★</td><td>轻奢/中古风</td><td class="price-mid">100-200</td></tr>
+<tr><td>高精密</td><td>70%-90%</td><td>★★★★☆</td><td>新中式/现代</td><td class="price-mid">120-250</td></tr>
+<tr><td>亚麻/棉麻</td><td>40%-70%</td><td>★★★</td><td>日式/侘寂/自然风</td><td class="price-low">60-120</td></tr>
+<tr><td>纱帘（幻影纱/金刚纱）</td><td>10%-30%</td><td>★★★</td><td>全风格（内层）</td><td class="price-low">30-80</td></tr>
+</table>
+
+<h4>安装方式</h4>
+<ul>
+  <li><strong>窗帘盒（推荐）</strong>：木工阶段预留，宽度 15-20cm（单层）/ 25-30cm（双层），隐藏轨道美观</li>
+  <li><strong>罗马杆</strong>：明装，适合复古/法式风格，遮光有漏光（杆头两端）</li>
+  <li><strong>电动轨道</strong>：窗帘盒内预留电源，支持智能家居联动，预算增加 1000-3000 元</li>
+</ul>
+</div>
+</section>
+
+<!-- 家具尺度 -->
+<section id="soft-furniture" class="section">
+<div class="section-header"><h2>家具尺度</h2><p class="desc">黄金尺寸让空间"刚刚好"</p></div>
+
+<div class="card">
+<h3>标准家具尺寸与空间关系</h3>
+
+<table class="material-table">
+<tr><th>家具</th><th>标准尺寸（长×宽×高 cm）</th><th>所需空间</th><th>注意事项</th></tr>
+<tr><td>三人沙发</td><td>220-280 × 90-100 × 70-85</td><td>前方留 60-80cm 通行</td><td>沙发深度别超 100cm，否则坐深过大不舒服</td></tr>
+<tr><td>双人沙发</td><td>160-200 × 85-95 × 70-85</td><td>前方留 60cm</td><td>小客厅首选</td></tr>
+<tr><td>单人休闲椅</td><td>75-90 × 75-90 × 75-85</td><td>周围留 50cm</td><td>配合落地灯形成阅读角</td></tr>
+<tr><td>茶几</td><td>120-140 × 60-80 × 38-45</td><td>距沙发 35-45cm</td><td>高度与沙发坐高平齐或略低</td></tr>
+<tr><td>餐桌（4人）</td><td>120-140 × 75-80 × 72-75</td><td>四周留 80-100cm</td><td>拉开椅子后需留通道</td></tr>
+<tr><td>餐桌（6人）</td><td>160-180 × 80-90 × 72-75</td><td>四周留 90-110cm</td><td>餐厅宽度需 ≥ 270cm</td></tr>
+<tr><td>双人床（1.8m）</td><td>210-220 × 180 × 45-55（床垫高）</td><td>两侧留 60-70cm</td><td>主卧宽度需 ≥ 300cm</td></tr>
+<tr><td>双人床（1.5m）</td><td>200-210 × 150 × 45-55</td><td>两侧留 50-60cm</td><td>次卧宽度需 ≥ 260cm</td></tr>
+<tr><td>电视柜</td><td>长度 ≈ 电视宽度+60cm</td><td>深度 35-40cm</td><td>高度 30-40cm（坐姿视线中心）</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>南宁户型常见问题：</strong>很多90年代老小区的客厅宽度仅3.3-3.6m。此时沙发深度建议不超过95cm，电视柜深度不超过35cm，中间过道才能保留60cm以上。
+</div>
+</div>
+</section>
+
+<!-- 挂画与装饰 -->
+<section id="soft-art" class="section">
+<div class="section-header"><h2>挂画与装饰</h2><p class="desc">挂对高度、选对风格、摆对阵列</p></div>
+
+<div class="card">
+<h3>挂画与装饰搭配</h3>
+
+<h4>挂画黄金高度</h4>
+<ul>
+  <li><strong>单幅挂画</strong>：画面中心点距地面 145-155cm（亚洲人平均视线高度）</li>
+  <li><strong>沙发上方</strong>：画框下沿距沙发靠背 15-25cm</li>
+  <li><strong>床头上方</strong>：画框下沿距床头板 15-25cm</li>
+  <li><strong>玄关/过道</strong>：画面中心距地面 150-160cm</li>
+</ul>
+
+<h4>排列方式</h4>
+<ul>
+  <li><strong>单幅居中</strong>：适合墙面宽度 100-180cm，画宽约为墙面的 50%-65%</li>
+  <li><strong>双联画</strong>：两幅等大，间距 5-10cm，适合较宽墙面</li>
+  <li><strong>三联画</strong>：等大或中间大两侧小，间距 5-8cm</li>
+  <li><strong>画廊墙（Gallery Wall）</strong>：多幅不同大小自由组合，底部对齐或中心线对齐</li>
+</ul>
+
+<h4>风格匹配</h4>
+<table class="material-table">
+<tr><th>装修风格</th><th>推荐挂画类型</th><th>推荐画框</th></tr>
+<tr><td>现代简约</td><td>抽象几何/黑白摄影</td><td>极细黑框/无框</td></tr>
+<tr><td>侘寂风</td><td>水墨/肌理画/素色织物</td><td>原木/旧木框</td></tr>
+<tr><td>奶油风</td><td>低饱和抽象色块/柔焦花卉</td><td>浅木/米色框</td></tr>
+<tr><td>中古风</td><td>复古海报/几何抽象/马蒂斯风格</td><td>柚木/深棕框</td></tr>
+<tr><td>新中式</td><td>抽象水墨/汉字书法/山水摄影</td><td>胡桃木/黑檀框</td></tr>
+</table>
+</div>
+</section>
+
+<!-- 绿植搭配 -->
+<section id="soft-plant" class="section">
+<div class="section-header"><h2>绿植搭配</h2><p class="desc">室内绿植的高度层次与养护</p></div>
+
+<div class="card">
+<h3>绿植搭配方案</h3>
+
+<table class="material-table">
+<tr><th>高度层级</th><th>推荐植物</th><th>摆放位置</th><th>光照需求</th><th>养护难度</th></tr>
+<tr><td><strong>高（>1.5m）</strong></td><td>琴叶榕</td><td>客厅角落/落地窗旁</td><td>明亮散射光</td><td>★★★</td></tr>
+<tr><td>高</td><td>天堂鸟</td><td>玄关/客厅</td><td>明亮散射光</td><td>★★☆</td></tr>
+<tr><td>高</td><td>散尾葵</td><td>阳台/客厅靠窗</td><td>半日照</td><td>★★☆</td></tr>
+<tr><td><strong>中（0.5-1.5m）</strong></td><td>龟背竹</td><td>沙发旁/电视柜旁</td><td>散射光/半阴</td><td>★☆（极易）</td></tr>
+<tr><td>中</td><td>橡皮树</td><td>玄关/书房</td><td>明亮散射光</td><td>★☆</td></tr>
+<tr><td>中</td><td>千年木</td><td>电视柜旁/餐厅</td><td>半阴</td><td>★☆</td></tr>
+<tr><td><strong>低（<0.5m）</strong></td><td>虎皮兰</td><td>茶几/电视柜/床头柜</td><td>耐阴/散射光</td><td>★（几乎不用管）</td></tr>
+<tr><td>低</td><td>空气凤梨</td><td>书桌/搁板/悬挂</td><td>散射光</td><td>★</td></tr>
+<tr><td>低</td><td>椒草/镜面草</td><td>茶几/桌面</td><td>散射光</td><td>★☆</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>南宁绿植养护优势：</strong>南宁属亚热带气候，全年温暖湿润，绝大多数室内绿植无需特殊养护即可良好生长。唯需注意冬季偶有寒潮（5°C以下），热带植物（龟背竹/琴叶榕）需移入室内保温。
+</div>
+</div>
+</section>
+
+<!-- ==================== 空间规划 ==================== -->
+
+<!-- 户型改造 -->
+<section id="space-layout" class="section">
+<div class="section-header"><h2>户型改造</h2><p class="desc">常见痛点与破解方案</p></div>
+
+<div class="card">
+<h3>常见户型痛点及解决方案</h3>
+
+<table class="material-table">
+<tr><th>痛点</th><th>常见于</th><th>解决方案</th></tr>
+<tr><td>入户无玄关<br>开门见厅</td><td>90㎡以下刚需户型</td><td>①定制玄关柜做半隔断（高1.2-1.5m）<br>②长虹玻璃隔断 + 矮柜<br>③鞋柜侧放形成自然玄关</td></tr>
+<tr><td>暗卫（无窗）</td><td>中间户/塔楼</td><td>①大功率排气扇（≥ 150m³/h）+ 止逆阀<br>②浅色瓷砖 + 镜柜扩大视觉<br>③玻璃门引入外部光线</td></tr>
+<tr><td>长条形厨房<br>（一字型/L型）</td><td>老小区/塔楼</td><td>①改成U型（不封门）增加操作台<br>②能拆的墙拆掉做开放式/半开放<br>③推拉门用透明玻璃，视觉连通</td></tr>
+<tr><td>过道浪费面积</td><td>几乎所有户型</td><td>①过道做收纳柜（深35cm）<br>②过道尽头做端景（挂画+射灯）<br>③利用过道墙面做黑板墙/照片墙</td></tr>
+<tr><td>小卧室（<8㎡）</td><td>刚需户型次卧</td><td>①榻榻米+书桌+衣柜一体化<br>②不做床头柜，用壁龛/搁板替代<br>③推拉门/折叠门代替平开门</td></tr>
+</table>
+</div>
+</section>
+
+<!-- 动线设计 -->
+<section id="space-flow" class="section">
+<div class="section-header"><h2>动线设计</h2><p class="desc">三条动线，决定了住得顺不顺</p></div>
+
+<div class="card">
+<h3>三大动线设计原则</h3>
+
+<h4>家务动线</h4>
+<ul>
+  <li><strong>买菜→厨房</strong>：入户→厨房距离尽量短，最好紧邻</li>
+  <li><strong>洗衣→晾晒</strong>：洗衣机→晾晒区路径 ≤ 5m，避免穿越客厅</li>
+  <li><strong>厨房三角</strong>：冰箱→水槽→灶台三点距离之和 ≤ 6m</li>
+</ul>
+
+<h4>访客动线</h4>
+<ul>
+  <li>入户→客厅→餐厅→客卫：不应穿越卧室区域</li>
+  <li>客卫应靠近公共区域，与主卧卫生间分开设置</li>
+  <li>动线宽度 ≥ 80cm（单人通行）/ ≥ 110cm（双人并行）</li>
+</ul>
+
+<h4>私密动线</h4>
+<ul>
+  <li>卧室区远离入户门，最好形成独立的睡眠区</li>
+  <li>主卧卫生间不应正对床（用衣帽间或墙体遮挡）</li>
+  <li>书房/工作室应远离客厅噪音源</li>
+</ul>
+
+<div class="highlight">
+  <strong>动线设计的核心目标：</strong>三条动线尽可能不交叉。访客看不到卧室区域，家务动线不穿过休闲区，私密动线有足够缓冲空间。
+</div>
+</div>
+</section>
+
+<!-- 收纳系统 -->
+<section id="space-storage" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">收纳是住宅设计的骨架——涉及材料学、人体工学、动线逻辑和行为心理学</p></div>
+
+<!-- 收纳设计基本原则 -->
+<div class="card">
+<h3 id="storage-basic">一、收纳设计基本原则</h3>
+
+<h4>1. 动线规划</h4>
+<p>收纳不是"把东西藏起来"，而是让<strong>取物 → 使用 → 归位</strong>三段式动线最短。收纳点设在动线节点上，而非角落。厨房按"取→洗→切→炒→盛"路径就近布置调料和厨具；洗衣动线需在洗衣机旁预留折叠台面。</p>
+
+<h4>2. 黄金分区与立面收纳</h4>
+<table class="material-table">
+<tr><th>分区</th><th>高度范围</th><th>存放内容</th><th>设计要点</th></tr>
+<tr><td>高频区（黄金区）</td><td>距地 60-190cm</td><td>每日必用：碗碟、调料、内衣、常穿衣物</td><td>多用抽屉，少用隔板；抽屉拉出后一目了然</td></tr>
+<tr><td>中频区（弯腰区）</td><td>距地 60cm 以下</td><td>囤货储备：米面油、行李箱、换季被子、锅具</td><td>深柜（≥50cm）需配下拉拉篮或高深拉篮</td></tr>
+<tr><td>低频区（登高区）</td><td>距地 190cm 以上</td><td>一年以上才用：过季棉被、纪念册</td><td>吊柜深 35-40cm，避免过深碰头；柜门带碰珠防误开</td></tr>
+</table>
+<p style="margin-top:12px;">立面收纳是扩容关键：双层抽屉分隔件、吊柜升降拉篮、墙面洞洞板/横杆——每1㎡墙面利用好，等于多出0.3㎡收纳面积。</p>
+
+<h4>3. 就近收纳原则</h4>
+<p>物品存放在使用场景的最小半径内：咖啡豆放在咖啡机旁而非餐厅酒柜；浴盐放在淋浴区而非洗手台下；玄关收纳"出门五件事"——钥匙、包、外套、口罩、伞。</p>
+
+<h4>4. 二八原则</h4>
+<p><strong>80% 藏、20% 露</strong>。杂乱的日用品、颜色不一的杂物藏进封闭柜门；书籍、摆件、常用钥匙盘进行展示。开放式收纳格深度建议 30-35cm、高度 30-40cm 模数，过深积灰、过浅放不下。</p>
+</div>
+
+<!-- 人体工学 -->
+<div class="card">
+<h3 id="storage-ergo">二、收纳人体工学（以身高 160-170cm 为基准）</h3>
+
+<table class="material-table">
+<tr><th>区域</th><th>身体姿态</th><th>距地高度</th><th>适用物品</th><th>五金建议</th></tr>
+<tr><td>伸手可及区</td><td>直立/微抬臂</td><td>60-190cm</td><td>碗碟、调料、日常衣物</td><td>抽屉优先于隔板</td></tr>
+<tr><td>弯腰区</td><td>屈膝/深蹲</td><td>0-60cm</td><td>囤货、行李箱、锅具</td><td>下拉拉篮、高深拉篮</td></tr>
+<tr><td>登高区</td><td>登凳/高举</td><td>190-240cm</td><td>过季棉被、纪念品</td><td>升降拉篮、碰珠柜门</td></tr>
+<tr><td>台面操作区</td><td>直立操作</td><td>85-95cm</td><td>切菜、备餐、折叠衣物</td><td>根据主厨身高定制台面</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>关键尺寸：</strong>厨房过道双面橱柜时净宽 ≥ 90cm（推荐 100-120cm）；衣柜开门区预留 ≥ 60cm；衣柜内短衣区挂高 ≥ 90cm、长衣区 ≥ 130cm；鞋柜标准深 35cm（受限可做斜插 25cm）。
+</div>
+</div>
+
+<!-- 收纳材料学 -->
+<div class="card">
+<h3 id="storage-material">三、收纳材料学</h3>
+
+<h4>板材选择</h4>
+<table class="material-table">
+<tr><th>板材</th><th>优点</th><th>缺点</th><th>适用场景</th></tr>
+<tr><td>实木颗粒板</td><td>稳定性好、握钉力强、性价比高</td><td>防潮性一般，截面需封边</td><td>衣柜、书柜、电视柜</td></tr>
+<tr><td>多层实木板</td><td>防潮性极佳、强度高</td><td>易变形，不适合超长门板</td><td>橱柜水槽柜、卫浴柜、阳台柜</td></tr>
+<tr><td>OSB（欧松板）</td><td>环保等级高、膨胀系数小</td><td>价格较高、表面纹理粗</td><td>对环保要求极高的柜体</td></tr>
+</table>
+
+<h4>五金——收纳的灵魂</h4>
+<table class="material-table">
+<tr><th>五金类型</th><th>选型要点</th><th>推荐场景</th></tr>
+<tr><td>铰链</td><td>必须带阻尼（防夹手+降噪）；转角柜用大角度铰链（170°开启）</td><td>所有柜门</td></tr>
+<tr><td>抽屉滑轨</td><td>托底式视觉效果最好、承重高；必须全拉出型</td><td>厨房地柜、衣柜抽屉</td></tr>
+<tr><td>转角飞碟/小怪物</td><td>解决 L 型厨房转角死角</td><td>厨房转角柜</td></tr>
+<tr><td>高身拉篮</td><td>利用高柜纵深存放食品调料</td><td>厨房高柜、零食柜</td></tr>
+<tr><td>升降拉篮</td><td>解决吊柜过高够不着的问题</td><td>厨房吊柜</td></tr>
+</table>
+
+<h4>收纳容器材质</h4>
+<table class="material-table">
+<tr><th>材质</th><th>特点</th><th>适用场景</th></tr>
+<tr><td>PP/PET 塑料</td><td>透明、防水、轻便、易清洗</td><td>冰箱内、卫浴、干货存储</td></tr>
+<tr><td>无纺布/牛津布</td><td>透气、可折叠、成本低</td><td>衣柜换季衣物、百纳箱</td></tr>
+<tr><td>亚克力</td><td>颜值高、通透感强、硬度高但易碎</td><td>桌面收纳、展示型收纳</td></tr>
+</table>
+</div>
+
+<!-- 各空间深度方案 -->
+<div class="card">
+<h3 id="storage-entry">四、玄关收纳</h3>
+
+<h4>鞋柜尺寸规范</h4>
+<table class="material-table">
+<tr><th>鞋型</th><th>产品实际尺寸</th><th>设计预留</th></tr>
+<tr><td>运动鞋/平底鞋</td><td>长 25-30cm，高 10-12cm</td><td>层板间隔 15-18cm，深 35cm（标准）</td></tr>
+<tr><td>高跟鞋/短靴</td><td>高 15-20cm</td><td>层板间隔 20-25cm，活动层板必做</td></tr>
+<tr><td>长靴</td><td>靴筒高 40-50cm</td><td>专用靴子区净高 45-50cm，或翻转鞋架</td></tr>
+<tr><td>拖鞋</td><td>高 5-8cm</td><td>层板间隔 10-12cm</td></tr>
+</table>
+
+<h4>玄关配套尺寸</h4>
+<ul>
+  <li><strong>换鞋凳</strong>：嵌入式深 35-40cm，座高 45cm，长度 ≥ 50cm</li>
+  <li><strong>挂衣区</strong>：挂衣杆距地 170-180cm，距顶板 ≥ 5cm（防衣架卡住）</li>
+  <li><strong>底部悬空</strong>：抬高 15-20cm 放常穿鞋；≥ 20cm 可塞 20 寸行李箱</li>
+  <li><strong>中部镂空</strong>：距地 100-110cm 处留空 30-40cm，深 12-15cm 放钥匙/口罩</li>
+  <li><strong>雨伞</strong>：长柄伞需 100cm 高通柜；折叠伞抽屉净高 12-15cm</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 id="storage-kitchen">五、厨房收纳</h3>
+
+<h4>锅具尺寸与预留</h4>
+<table class="material-table">
+<tr><th>锅型</th><th>常见直径</th><th>含盖高度</th><th>抽屉净高</th></tr>
+<tr><td>炒锅</td><td>28-34cm</td><td>18-22cm</td><td>20-25cm（深抽屉）</td></tr>
+<tr><td>汤锅</td><td>20-24cm</td><td>20-25cm</td><td>20-25cm</td></tr>
+<tr><td>平底锅</td><td>24-28cm</td><td>5-8cm</td><td>15-20cm（浅抽屉）</td></tr>
+</table>
+
+<h4>碗碟与调料</h4>
+<table class="material-table">
+<tr><th>物品</th><th>常见尺寸</th><th>设计预留</th></tr>
+<tr><td>4.5寸碗</td><td>直径 11.5cm，高 5.5cm</td><td rowspan="3">碗碟拉篮 15-20cm 宽标准模块</td></tr>
+<tr><td>8寸盘</td><td>直径 20.3cm</td></tr>
+<tr><td>10寸盘</td><td>直径 25.4cm</td></tr>
+<tr><td>调料瓶</td><td>高 20-26cm（大瓶 30cm）</td><td>墙面调料架层高 25-30cm</td></tr>
+<tr><td>5L油桶</td><td>高 35-40cm</td><td>柜内净高 ≥ 40cm 才能竖放</td></tr>
+<tr><td>15kg米桶</td><td>约 30×20×45cm</td><td>地柜抽屉净高 ≥ 45cm</td></tr>
+</table>
+
+<h4>小家电尺寸</h4>
+<table class="material-table">
+<tr><th>电器</th><th>常见尺寸（长×宽×高）</th><th>嵌入预留</th></tr>
+<tr><td>电饭煲 4-5L</td><td>28-32 × 28-32 × 25-28cm</td><td>高柜层净高 30cm</td></tr>
+<tr><td>空气炸锅</td><td>30-35 × 30-35 × 30-35cm</td><td>高柜层净高 35cm</td></tr>
+<tr><td>微波炉 20L</td><td>45×35×25cm</td><td>净高 30cm + 四周散热 5cm</td></tr>
+<tr><td>烤箱嵌入</td><td>标准 60cm 宽模块</td><td>按橱柜标准 60cm 宽，高度按型号</td></tr>
+</table>
+
+<ul>
+  <li><strong>地柜抽屉优于开门柜</strong>：第一层浅抽屉（15-20cm）放餐具，第二层深抽屉放锅具</li>
+  <li><strong>转角利用</strong>：转角飞碟/小怪物五金，避免 L 型厨房死角</li>
+  <li><strong>吊柜</strong>：上半存杂粮密封罐，下半放常用杯碟；吊柜深 35-40cm</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 id="storage-sideboard">六、餐边柜收纳</h3>
+
+<table class="material-table">
+<tr><th>物品</th><th>常见尺寸</th><th>设计预留</th></tr>
+<tr><td>胶囊咖啡机</td><td>约 20×30×25cm</td><td>台面宽 40cm，深 40cm</td></tr>
+<tr><td>全自动咖啡机</td><td>约 30×40×40cm</td><td>台面宽 50cm，深 45cm</td></tr>
+<tr><td>即热饮水机</td><td>台上式约 20×40×40cm</td><td>预留宽 45cm，高 45cm</td></tr>
+<tr><td>保温杯</td><td>高 18-22cm</td><td>杯架层高 20-25cm</td></tr>
+<tr><td>红酒杯（倒挂）</td><td>柄长 10-15cm</td><td>展示柜层高 30-35cm</td></tr>
+<tr><td>标准红酒瓶</td><td>高 30-33cm，直径 7-8cm</td><td>红酒格 10×10cm；斜放格深 35-40cm</td></tr>
+<tr><td>茶叶罐</td><td>直径 8-10cm，高 15-20cm</td><td>抽屉分隔宽 10-12cm，高 15-20cm</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>餐边柜黄金深度：</strong>40-45cm。35cm 放不下咖啡机，50cm 以上占用过道。台面操作区建议留 80-100cm 宽连续台面。
+</div>
+</div>
+
+<div class="card">
+<h3 id="storage-tv">七、电视柜 / 起居室收纳</h3>
+
+<h4>影音设备尺寸</h4>
+<table class="material-table">
+<tr><th>设备</th><th>常见尺寸（cm）</th><th>设计预留</th></tr>
+<tr><td>机顶盒</td><td>30×20×5</td><td rowspan="2">设备格深 40-45cm，高 15-20cm；背面留 10cm 理线</td></tr>
+<tr><td>路由器</td><td>25×15×5（含天线 20cm 高）</td></tr>
+<tr><td>PlayStation 5</td><td>39×10×26（立式）</td><td>设备格高 ≥ 30cm，深 ≥ 45cm</td></tr>
+<tr><td>扫地机器人基站</td><td>宽 40-50，深 40-50，高 50-60</td><td>预留宽 55-60cm，高 70-80cm，加进出水+电源</td></tr>
+</table>
+
+<h4>书籍尺寸</h4>
+<table class="material-table">
+<tr><th>书型</th><th>尺寸（cm）</th><th>层板预留</th></tr>
+<tr><td>A4 / 大16开画册</td><td>29.7×21，厚 2-5</td><td>层高 32-35cm</td></tr>
+<tr><td>32开常规书</td><td>20.3×14，厚 1.5-3</td><td>层高 25-28cm</td></tr>
+<tr><td>DVD / 蓝光盒</td><td>19×13.5，厚 1.5</td><td>格位高 19.5cm，深 15cm</td></tr>
+</table>
+
+<ul>
+  <li><strong>电视满墙柜深</strong>：35cm（覆盖绝大多数物品）</li>
+  <li><strong>开放格</strong>：≤ 20%，深 30-35cm，太高积灰太深陷进去</li>
+  <li><strong>穿线孔</strong>：每格预留直径 5cm 穿线孔，设备格背部留散热通道</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 id="storage-wardrobe">八、衣柜细分</h3>
+
+<h4>衣物折叠与挂放尺寸</h4>
+<table class="material-table">
+<tr><th>衣物类型</th><th>折叠后尺寸（cm）</th><th>挂放高度预留</th></tr>
+<tr><td>衬衫/T恤（近藤式）</td><td>20×15×3（A4大小）</td><td>短衣区 ≥ 90cm</td></tr>
+<tr><td>裤子叠放</td><td>30×20×5</td><td>裤架区 70-80cm</td></tr>
+<tr><td>长外套/连衣裙</td><td>—</td><td>长衣区 ≥ 130cm</td></tr>
+<tr><td>内衣收纳格</td><td>单格 15×15×10</td><td>抽屉净高 10-15cm</td></tr>
+<tr><td>袜子收纳格</td><td>单格 10×10×8</td><td>抽屉净高 10-15cm</td></tr>
+</table>
+
+<h4>大件收纳尺寸</h4>
+<table class="material-table">
+<tr><th>物品</th><th>常见尺寸（cm）</th><th>预留</th></tr>
+<tr><td>真空压缩夏被</td><td>50×30×15</td><td rowspan="2">顶柜净高 40-50cm，深 55-60cm</td></tr>
+<tr><td>羽绒被（未压缩）</td><td>60×40×30</td></tr>
+<tr><td>20寸行李箱</td><td>50×34×20</td><td rowspan="2">高柜预留宽 60cm，深 55cm，高 80cm</td></tr>
+<tr><td>28寸行李箱</td><td>70×50×30</td></tr>
+</table>
+
+<ul>
+  <li><strong>挂衣杆高度</strong>：距地 180-200cm；挂衣杆距顶板 ≥ 5cm</li>
+  <li><strong>抽屉位置</strong>：中段（距地 60-120cm）适合所有家庭成员</li>
+  <li><strong>高箱床</strong>：箱体高 ≥ 35cm 才有实用收纳容量</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 id="storage-vanity">九、化妆桌收纳</h3>
+
+<table class="material-table">
+<tr><th>物品</th><th>常见尺寸（cm）</th><th>设计预留</th></tr>
+<tr><td>化妆水/精华瓶</td><td>高 10-15</td><td>桌面收纳盒层高 15-20cm</td></tr>
+<tr><td>面霜/香水</td><td>高 5-8</td><td>抽屉第一层高 10-15cm</td></tr>
+<tr><td>口红</td><td>直径 2，长 7-8</td><td>收纳格宽 3-4cm，亚克力盒深 10-15cm</td></tr>
+<tr><td>眼影盘（标准）</td><td>15×8×1.5</td><td>抽屉分隔宽 ≥ 16cm</td></tr>
+<tr><td>化妆刷（散粉/粉底）</td><td>长 15-20</td><td>刷筒深 12-15cm</td></tr>
+<tr><td>吹风机（带风嘴）</td><td>长 25-30，直径 8-10</td><td>侧挂架预留 15×15cm 墙面；抽屉预留直径 8-10cm 圆孔</td></tr>
+<tr><td>卷发棒</td><td>长 30-35</td><td>耐热收纳格 ≥ 35cm 长</td></tr>
+<tr><td>LED台式化妆镜</td><td>底座直径 15-20，总高 40-50</td><td>台面预留 20×20cm</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>化妆桌设计要点：</strong>桌深 45-50cm（可放手臂+镜子）；抽屉做浅层（10-15cm）放首饰和小件；第一层抽屉建议做透明亚克力或玻璃面板，一眼找到。
+</div>
+</div>
+
+<div class="card">
+<h3 id="storage-desk">十、学习桌 / 书桌收纳</h3>
+
+<table class="material-table">
+<tr><th>物品</th><th>常见尺寸（cm）</th><th>设计预留</th></tr>
+<tr><td>24寸显示器</td><td>含底座 55×40×20</td><td rowspan="2">桌面深 60-70cm 才不顶胸；支架穿孔直径 8-10cm</td></tr>
+<tr><td>27寸显示器</td><td>含底座 62×45×23</td></tr>
+<tr><td>键盘（104键）</td><td>45×15</td><td>键盘托深 28-30cm，高 5-7cm</td></tr>
+<tr><td>喷墨一体机</td><td>40×30×20</td><td>柜内净宽 45cm，深 40cm，高 30cm；上方留 20cm 出纸</td></tr>
+<tr><td>A4文件夹</td><td>宽 25，厚 2-5</td><td>抽屉宽 ≥ 30cm</td></tr>
+<tr><td>笔筒</td><td>直径 8-10</td><td>抽屉分隔宽 5-8cm</td></tr>
+<tr><td>台灯底座</td><td>圆形直径 15-20</td><td>角落预留 20×20cm；推荐屏幕挂灯省空间</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>书桌黄金深度：</strong>60-70cm（贴墙放显示器不顶胸），最小不低于 50cm。长度单人 ≥ 100cm，双人 ≥ 180cm。
+</div>
+</div>
+
+<div class="card">
+<h3 id="storage-figure">十一、手办 / 潮玩展示柜</h3>
+
+<table class="material-table">
+<tr><th>类型</th><th>典型高度（cm）</th><th>层板预留高度</th></tr>
+<tr><td>1/8 比例手办</td><td>20-22</td><td>层高 22-25cm</td></tr>
+<tr><td>1/7 比例手办</td><td>23-25</td><td>层高 25-28cm</td></tr>
+<tr><td>Funko Pop</td><td>约 10</td><td>层高 12-15cm</td></tr>
+<tr><td>Bearbrick 100%</td><td>约 7</td><td>层高 10cm</td></tr>
+<tr><td>Bearbrick 400%</td><td>约 28</td><td>层高 30cm</td></tr>
+<tr><td>Bearbrick 1000%</td><td>约 70</td><td>独立展示位，留空 75cm</td></tr>
+</table>
+
+<h4>展示柜设计要点</h4>
+<ul>
+  <li><strong>深度</strong>：标准 30-35cm；大型雕塑 40-50cm</li>
+  <li><strong>层板</strong>：必须活动排孔，模数 15/20/30cm</li>
+  <li><strong>灯光</strong>：层板正面底部开 1×1cm U型槽暗藏LED灯带；顶部/底部预留 20×15×5cm 驱动电源位</li>
+  <li><strong>色温</strong>：3000K-4000K 暖白，显色指数 Ra ≥ 90</li>
+  <li><strong>玻璃门</strong>：推荐钢化超白玻，透光率 91%+；门框选极窄（≤ 2cm）不挡视线</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 id="storage-bathroom">十二、卫生间收纳</h3>
+<ul>
+  <li><strong>镜柜必须做</strong>：深度 13-15cm；80%瓶罐藏进柜，20%常用放开放格；镜柜宽度 ≥ 80cm</li>
+  <li><strong>壁龛</strong>：淋浴区非承重墙挖壁龛，深 15-20cm，层高 25-30cm（放大瓶沐浴露）</li>
+  <li><strong>浴室柜</strong>：深 50cm，台下做U型抽屉避开下水管；侧边预留吹风机收纳格</li>
+  <li><strong>干湿分区</strong>：毛巾、纸巾、卫生棉条存放在干区，避免潮湿发霉</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 id="storage-balcony">十三、阳台收纳</h3>
+<ul>
+  <li><strong>家政柜深</strong>：40-60cm，内置洞洞板挂清洁工具，底部留空放扫地机器人</li>
+  <li><strong>洗衣机位</strong>：标准洗衣机宽 60cm，深 60cm，高 85cm；堆叠烘干机总高 ≥ 170cm</li>
+  <li><strong>叠衣台</strong>：洗衣机上方做折叠台面，高度 90-100cm</li>
+  <li><strong>洗涤用品</strong>：柜内净高 ≥ 35cm 放洗衣液大瓶</li>
+  <li><strong>长柄工具</strong>：拖把/扫把/吸尘器墙挂，柜内净高 ≥ 120cm</li>
+</ul>
+</div><!-- 日式收纳理念 -->
+<div class="card">
+<h3 id="storage-japanese">十四、日式收纳设计理念</h3>
+
+<h4>近藤麻理惠「怦然心动法」</h4>
+<p>只留下"让自己怦然心动"的物品，其余果断丢弃。对设计师的启示：硬装阶段就要考虑"少而精"的收纳空间，而非无限扩容。鼓励客户入住前做一次彻底的丢弃。</p>
+
+<h4>JALO 收纳检定四级理论</h4>
+<table class="material-table">
+<tr><th>级别</th><th>症状</th><th>解决方案</th></tr>
+<tr><td>1级：物品乱</td><td>物品散落表面，台面堆满</td><td>增加统一容器，隐藏杂物</td></tr>
+<tr><td>2级：难归位</td><td>找不到东西，归位麻烦</td><td>优化动线，分隔件固定物品位置</td></tr>
+<tr><td>3级：难维持</td><td>整洁维持不了 3 天就乱</td><td>减少物品总量，全家制定规则</td></tr>
+<tr><td>4级：极致宜居</td><td>不仅整洁，还能展示个性和生活美学</td><td>——这就是设计的终极目标</td></tr>
+</table>
+
+<h4>两个经典技法</h4>
+<ul>
+  <li><strong>竖立收纳</strong>：衣物或文件竖立放入抽屉，避免堆叠压坏底部，拿取不弄乱其他</li>
+  <li><strong>统一容器</strong>：颜色、材质、形状统一的收纳盒，显著降低视觉噪音，空间显大</li>
+</ul>
+</div>
+
+<!-- 容量计算 -->
+<div class="card">
+<h3 id="storage-calc">十五、收纳容量计算与规划方法</h3>
+
+<h4>核心公式</h4>
+<table class="material-table">
+<tr><th>收纳类型</th><th>计算公式</th><th>实例</th></tr>
+<tr><td>衣物收纳</td><td>(当季 + 过季件数) ÷ 收纳效率系数</td><td>80件衣服全挂：需约 2.5m 宽挂杆（每米挂 30-40 件）</td></tr>
+<tr><td>衣物折叠</td><td>件数 ÷ 单抽屉容量</td><td>40cm 宽抽屉可叠 30-40 件 T 恤</td></tr>
+<tr><td>书籍收纳</td><td>册数 × 平均厚度(3-5cm) × 1.2</td><td>100 本书约需 4-6m 搁板总长</td></tr>
+</table>
+
+<h4>按人口估算</h4>
+<table class="material-table">
+<tr><th>家庭结构</th><th>衣柜总容量</th><th>约合柜体</th></tr>
+<tr><td>单人</td><td>3-4 m³</td><td>3-4 组 60cm 深衣柜</td></tr>
+<tr><td>夫妻二人</td><td>6-8 m³</td><td>5-6 组 60cm 深衣柜</td></tr>
+<tr><td>三口之家</td><td>10-14 m³</td><td>8-10 组 + 独立储物间</td></tr>
+</table>
+
+<h4>五步规划法</h4>
+<ol>
+  <li><strong>清点</strong>：让客户列出所有物品清单，特别是大件和囤货</li>
+  <li><strong>分类</strong>：按每天/每周/季节性/偶尔使用分级</li>
+  <li><strong>测量</strong>：确定柜体内部净尺寸（净深=柜深-背板-门板）</li>
+  <li><strong>匹配</strong>：高频物品→黄金区，低频物品→登高/弯腰区</li>
+  <li><strong>预留</strong>：空余 10%-20% 收纳空间，应对未来 3-5 年生活变化</li>
+</ol>
+
+<div class="highlight">
+  <strong>收纳黄金比例：</strong>全屋收纳投影面积占套内面积的 10%-15%。100㎡ 套内 → 至少 10-15㎡ 投影柜体。换算：15㎡ 约等于 10 组标准衣柜或 25 延米地柜。低于 8% 的住宅，入住一年后必然"爆仓"。
+</div>
+</div>
+</section>
+
+<!-- 开放空间 -->
+<section id="space-open" class="section">
+<div class="section-header"><h2>开放空间</h2><p class="desc">客餐厨一体化（LDK）设计要义</p></div>
+
+<div class="card">
+<h3>客餐厨一体化（LDK）设计要点</h3>
+
+<h4>LDK 概念</h4>
+<p>LDK = Living（客厅）+ Dining（餐厅）+ Kitchen（厨房）三者打通为一个大空间，源自日本住宅设计，现已成为国内主流户型改造方向。适用面积 ≥ 80㎡。</p>
+
+<h4>核心优势</h4>
+<ul>
+  <li>空间通透感倍增，小户型显大</li>
+  <li>家人互动增强（做饭时也能与家人交流）</li>
+  <li>采光通风改善，减少暗区</li>
+</ul>
+
+<h4>设计要点</h4>
+<ul>
+  <li><strong>油烟解决方案</strong>：大吸力油烟机（≥ 21m³/min）+ 集成灶更佳 + 独立排烟管道</li>
+  <li><strong>地面统一</strong>：客餐厨通铺同款瓷砖（750×1500mm / 600×1200mm），视觉无缝</li>
+  <li><strong>岛台/吧台</strong>：厨房与餐厅之间的过渡，既是操作台也是轻食区</li>
+  <li><strong>燃气合规</strong>：开放式厨房需加装燃气泄漏报警器 + 电磁切断阀（南宁燃气公司硬性要求）</li>
+</ul>
+
+<div class="highlight">
+  <strong>南宁燃气公司规定：</strong>开放式厨房必须安装燃气泄漏报警器及与之联动的电磁切断阀才能开通燃气。设计阶段就需预留报警器电源（220V）和信号线。部分老小区燃气管道位置不可改动，改造前需先咨询燃气公司。
+</div>
+</div>
+</section>
+
+<!-- ==================== 施工规范与验收 ==================== -->
+
+<!-- 水电验收 -->
+<section id="check-plumbing" class="section">
+<div class="section-header"><h2>水电验收</h2><p class="desc">水电验收清单 — 逐项打勾，一项不漏</p></div>
+
+<div class="card">
+<h3>水电验收检查清单</h3>
+
+<ul class="checklist">
+<li>给水管打压测试：冷水 0.9MPa / 热水 1.2MPa，保压30min，压降 ≤ 0.05MPa</li>
+<li>排水管灌水试验：灌满水静置15min，液面不下降</li>
+<li>排水管通球试验：球径 ≥ 管径2/3，顺利排出</li>
+<li>强弱电交叉处包锡箔纸屏蔽（长度 ≥ 30cm）</li>
+<li>电线分色正确：红-火线 / 蓝-零线 / 黄绿双色-地线</li>
+<li>同一回路电线线径一致，严禁粗细混用</li>
+<li>卫生间等电位端子箱已接线（防触电关键）</li>
+<li>所有插座相位正确（左零右火上接地，用相位仪测试）</li>
+<li>漏电保护器测试按钮正常跳闸</li>
+<li>管线走向拍照存档（带尺寸标注），封槽前完成</li>
+<li>给水管保温处理（热水管包保温棉，厚度 ≥ 2cm）</li>
+<li>排水管降噪处理（包隔音棉，尤其是主立管）</li>
+</ul>
+</div>
+</section>
+
+<!-- 泥瓦验收 -->
+<section id="check-masonry" class="section">
+<div class="section-header"><h2>泥瓦验收</h2><p class="desc">空鼓率 + 平整度 + 垂直度</p></div>
+
+<div class="card">
+<h3>泥瓦验收标准</h3>
+
+<table class="material-table">
+<tr><th>检查项目</th><th>检查工具</th><th>合格标准</th><th>不合格处理</th></tr>
+<tr><td>空鼓率（墙砖）</td><td>空鼓锤</td><td>单片空鼓 ≤ 15%（中心不允许空鼓）<br>整面墙空鼓率 ≤ 5%</td><td>灌浆或拆除重贴</td></tr>
+<tr><td>空鼓率（地砖）</td><td>空鼓锤</td><td>不允许有空鼓</td><td>拆除重铺</td></tr>
+<tr><td>平整度</td><td>2m 靠尺 + 塞尺</td><td>偏差 ≤ 2mm（普通砖）<br>偏差 ≤ 1mm（大板/岩板）</td><td>重新找平</td></tr>
+<tr><td>垂直度</td><td>2m 靠尺</td><td>偏差 ≤ 2mm</td><td>重新找平</td></tr>
+<tr><td>阴阳角方正</td><td>直角尺</td><td>偏差 ≤ 3mm</td><td>修补</td></tr>
+<tr><td>砖缝宽度</td><td>塞尺/目测</td><td>均匀一致，偏差 ≤ 0.5mm</td><td>调整</td></tr>
+<tr><td>卫生间坡度</td><td>水平尺 + 弹珠</td><td>地漏为最低点，坡度 ≥ 1%</td><td>重铺</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>空鼓锤使用方法：</strong>用空鼓锤（或金属棒）轻敲瓷砖，听声音判断。实心清脆声 = 合格，空洞沉闷声 = 空鼓。验收时逐块检查，发现空鼓用美纹纸标记位置。
+</div>
+</div>
+</section>
+
+<!-- 木工验收 -->
+<section id="check-wood" class="section">
+<div class="section-header"><h2>木工验收</h2><p class="desc">吊顶 + 柜体 验收标准</p></div>
+
+<div class="card">
+<h3>木工验收标准</h3>
+
+<h4>吊顶验收</h4>
+<ul class="checklist">
+<li>龙骨间距：主龙骨 ≤ 90cm，副龙骨 ≤ 40cm</li>
+<li>吊杆间距：≤ 90cm（轻钢龙骨）/ ≤ 60cm（木龙骨）</li>
+<li>石膏板转角处必须用整板 L 型裁切，不能拼接</li>
+<li>石膏板接缝预留 3-5mm V 型伸缩缝</li>
+<li>自攻螺丝间距 ≤ 15cm（板边）/ ≤ 20cm（板中），沉入板面 0.5-1mm</li>
+<li>吊顶水平度：2m 靠尺偏差 ≤ 3mm</li>
+<li>木龙骨已刷防火涂料（三遍）</li>
+<li>造型吊顶弧度顺滑，无折角</li>
+</ul>
+
+<h4>柜体验收</h4>
+<ul class="checklist">
+<li>柜体与墙面/地面贴合紧密，缝隙 ≤ 2mm</li>
+<li>柜门开合顺畅，无摩擦异响</li>
+<li>柜门缝隙均匀：上下缝 ≤ 2mm，左右缝 ≤ 2mm</li>
+<li>抽屉推拉顺畅，带阻尼缓冲</li>
+<li>层板牢固，无晃动，承重能力 ≥ 30kg</li>
+<li>封边条无脱胶、无溢胶、无毛刺</li>
+</ul>
+</div>
+</section>
+
+<!-- 油漆验收 -->
+<section id="check-paint" class="section">
+<div class="section-header"><h2>油漆验收</h2><p class="desc">平整度 / 色差 / 流挂 / 阴阳角</p></div>
+
+<div class="card">
+<h3>油漆验收标准</h3>
+
+<table class="material-table">
+<tr><th>检查项目</th><th>检查方法</th><th>合格标准</th></tr>
+<tr><td>表面平整</td><td>灯光侧照（强光手电筒贴墙侧照）</td><td>无明显波浪纹、无砂眼、无起皮</td></tr>
+<tr><td>色差</td><td>自然光 + 灯光下目测</td><td>1.5m 距离肉眼分辨不出色差</td></tr>
+<tr><td>流挂</td><td>目测 + 手摸</td><td>无流挂、无疙瘩、无颗粒</td></tr>
+<tr><td>阴阳角顺直</td><td>直角尺 + 目测</td><td>偏差 ≤ 2mm</td></tr>
+<tr><td>与踢脚线/门套交接</td><td>目测</td><td>收口平直、无缝隙、无污染</td></tr>
+<tr><td>手感</td><td>手掌抚摸</td><td>顺滑、无粗糙感</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>灯光侧照验收法（必做）：</strong>油漆验收最有效的方法是在晚上关闭房间主灯，用强光手电筒（或手机闪光灯）贴墙从侧面照射。任何不平整、波浪纹、砂眼都会在侧光下原形毕露。这是油漆师傅最怕的验收方式，也是最有效的。
+</div>
+</div>
+</section>
+
+<!-- 竣工验收 -->
+<section id="check-final" class="section">
+<div class="section-header"><h2>竣工验收</h2><p class="desc">全套验收流程清单 — 一个都不落</p></div>
+
+<div class="card">
+<h3>竣工验收全流程清单</h3>
+
+<h4>第一阶段：功能验收</h4>
+<ul class="checklist">
+<li>所有开关控制对应的灯，无串路</li>
+<li>所有插座通电，相位正确（相位仪逐个测试）</li>
+<li>漏电保护器测试正常</li>
+<li>弱电插座（网线/电视）信号正常</li>
+<li>水龙头/花洒出水正常，冷热标识正确</li>
+<li>排水通畅（洗手盆/水槽/地漏/马桶逐个冲水测试）</li>
+<li>马桶冲水有力，无堵塞</li>
+<li>地漏排水速度 ≥ 0.5L/s</li>
+<li>门窗开合顺畅，锁具正常，密封条完好</li>
+<li>空调/新风/地暖运行正常（如有）</li>
+<li>燃气灶/热水器点火正常</li>
+<li>烟道止逆阀有效（点一支香在烟道口测试排烟）</li>
+</ul>
+
+<h4>第二阶段：外观验收</h4>
+<ul class="checklist">
+<li>墙面/天花无裂缝、无起皮、无色差</li>
+<li>瓷砖无空鼓、无崩边、砖缝均匀</li>
+<li>木地板无起拱、无响声、踢脚线贴合</li>
+<li>柜体无划痕、无脱胶、门缝均匀</li>
+<li>玻璃无划痕、无气泡</li>
+<li>五金件（拉手/铰链/挂钩）安装牢固</li>
+</ul>
+
+<h4>第三阶段：文档验收</h4>
+<ul class="checklist">
+<li>水电管线走向图（照片+尺寸标注）</li>
+<li>主要材料质保卡/合格证</li>
+<li>电器说明书+保修卡</li>
+<li>装修公司质保协议（水电路5年，其他2年）</li>
+<li>空气质量检测报告（甲醛 ≤ 0.08mg/m³，TVOC ≤ 0.50mg/m³）</li>
+</ul>
+
+<div class="highlight">
+  <strong>南宁雨季验收提醒：</strong>如果竣工验收恰逢回南天或雨季（3-5月/6-8月），特别增加以下检查项：
+  <br>① 窗框周边墙面是否有渗水痕迹
+  <br>② 卫生间门口外侧墙角是否潮湿
+  <br>③ 天花板角落是否有水渍（顶楼/边套尤其注意）
+  <br>④ 柜体背板是否受潮
+</div>
+</div>
+</section>
+
+</main>
+</div>
+
+<script>
+
+function toggleModule(el) {
+  el.classList.toggle('collapsed');
+  el.nextElementSibling.classList.toggle('collapsed');
+}
+
+function toggleSub(el, e) {
+  if (e) e.stopPropagation();
+  el.classList.toggle('expanded');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+function navTo(target) {
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  
+  // Scroll to target section
+  var sec = document.getElementById(target);
+  if (sec) {
+    // Show section-header
+    var hdr = sec.querySelector('.section-header');
+    if (hdr) hdr.style.display = 'block';
+    
+    sec.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  
+  // Update active state
+  document.querySelectorAll('.nav-item').forEach(function(item){
+    item.classList.remove('active');
+  });
+  var activeItem = document.querySelector('[data-target="'+target+'"]');
+  if (activeItem) activeItem.classList.add('active');
+  
+  // Update URL hash
+  history.replaceState(null,null,'#'+target);
+}
+
+function navToSub(sectionId, scrollId) {
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  
+  // Scroll to section first, then sub-element
+  var sec = document.getElementById(sectionId);
+  if (sec) {
+    var hdr = sec.querySelector('.section-header');
+    if (hdr) hdr.style.display = 'block';
+    
+    // Try to scroll to the specific sub-element
+    var subEl = document.getElementById(scrollId);
+    if (subEl) {
+      subEl.scrollIntoView({behavior:'smooth',block:'start'});
+    } else {
+      sec.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
+  
+  // Update active state - highlight parent
+  document.querySelectorAll('.nav-item').forEach(function(item){
+    item.classList.remove('active');
+  });
+  var parentItem = document.querySelector('.nav-item.parent[data-target="'+sectionId+'"]');
+  if (parentItem) parentItem.classList.add('active');
+  
+  // Highlight sub item
+  document.querySelectorAll('.nav-item.sub').forEach(function(item){
+    item.classList.remove('active');
+  });
+  var subItems = document.querySelectorAll('.nav-item.sub[data-scroll="'+scrollId+'"]');
+  subItems.forEach(function(item){ item.classList.add('active'); });
+}
+
+function doSearch() {
+  var q = document.getElementById('searchInput').value.toLowerCase().trim();
+  if (!q) {
+    document.querySelectorAll('.section').forEach(function(s){ s.style.display='block'; });
+    document.querySelectorAll('.card').forEach(function(c){ c.style.display='block'; });
+    return;
+  }
+  
+  document.querySelectorAll('.section').forEach(function(sec){
+    var text = sec.textContent.toLowerCase();
+    var hasMatch = text.indexOf(q) !== -1;
+    sec.style.display = hasMatch ? 'block' : 'none';
+    
+    if (hasMatch) {
+      sec.querySelectorAll('.card').forEach(function(card){
+        card.style.display = card.textContent.toLowerCase().indexOf(q) !== -1 ? 'block' : 'none';
+      });
+      var hdr = sec.querySelector('.section-header');
+      if (hdr) hdr.style.display = 'block';
+    }
+  });
+}
+
+</script>
+
+<footer style="padding:48px 40px 32px;text-align:center;border-top:1px solid #E8E3DC;background:var(--bg);">
+  <div style="max-width:1040px;margin:0 auto;">
+    <div style="display:flex;justify-content:center;gap:32px;margin-bottom:24px;">
+      <a href="index.html" style="color:#8A8580;text-decoration:none;font-size:0.8rem;">首页</a>
+      <a href="services.html" style="color:#8A8580;text-decoration:none;font-size:0.8rem;">服务</a>
+      <a href="cases.html" style="color:#8A8580;text-decoration:none;font-size:0.8rem;">案例</a>
+      <a href="business-school.html" style="color:#B8860B;text-decoration:none;font-size:0.8rem;">商学院</a>
+      <a href="faq.html" style="color:#8A8580;text-decoration:none;font-size:0.8rem;">问答</a>
+      <a href="soft-furnishing-guide.html" style="color:#8A8580;text-decoration:none;font-size:0.8rem;">指南</a>
+      <a href="contact.html" style="color:#8A8580;text-decoration:none;font-size:0.8rem;">联系</a>
+    </div>
+    <p style="font-size:0.78rem;color:#8A8580;"><span style="color:#B8860B;">四喜家</span> © 2026</p>
+    <p style="font-size:0.78rem;color:#8A8580;">南宁市江南区万泰隆建材市场9栋3楼20-22号 | 18007717818</p>
+  </div>
+</footer>
+
+</body>
+</html>
