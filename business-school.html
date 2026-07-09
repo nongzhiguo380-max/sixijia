@@ -96,13 +96,14 @@ a:hover{color:#8B6508}
   background:var(--bg-secondary);
   border-right:1px solid var(--border);
   padding:20px 0;
+  position:sticky;top:var(--header-h);height:calc(100vh - var(--header-h));
   overflow-y:auto;
   transition:transform var(--transition);
 }
 .sidebar nav{padding:0}
 .sidebar .module-title{
   font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
-  color:var(--text-muted);padding:20px 24px 8px;font-weight:600;
+  color:var(--text-primary);background:#F0ECE4;padding:14px 24px;font-weight:700;
 }
 .sidebar .nav-item{
   display:block;padding:7px 24px;
@@ -124,7 +125,7 @@ a:hover{color:#8B6508}
 .sidebar .module-group{margin:0}
 .sidebar .module-group .module-title{
   font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
-  color:var(--text-muted);padding:20px 24px 8px;font-weight:600;
+  color:var(--text-primary);background:#F0ECE4;padding:14px 24px;font-weight:700;
   cursor:pointer;user-select:none;
   display:flex;justify-content:space-between;align-items:center;
 }
