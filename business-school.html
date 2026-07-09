@@ -120,6 +120,24 @@ a:hover{color:#8B6508}
 }
 .sidebar .nav-item .icon{display:inline-block;width:20px;margin-right:6px;text-align:center}
 
+/* ============ 手风琴模块组 ============ */
+.sidebar .module-group{margin:0}
+.sidebar .module-group .module-title{
+  font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--text-muted);padding:20px 24px 8px;font-weight:600;
+  cursor:pointer;user-select:none;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.sidebar .module-group .module-title .arrow{
+  font-size:0.65rem;transition:transform 0.2s ease;
+}
+.sidebar .module-group .module-title.collapsed .arrow{transform:rotate(-90deg)}
+.sidebar .module-group .module-body{
+  overflow:hidden;transition:max-height 0.3s ease;max-height:500px;
+}
+.sidebar .module-group .module-body.collapsed{max-height:0}
+.sidebar .module-group .nav-item{padding-left:32px}
+
 .content{flex:1;padding:40px 48px;overflow-y:auto;max-width:calc(var(--content-max) - var(--sidebar-w))}
 
 /* ============ Cards ============ */
@@ -321,6 +339,23 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <a class="nav-item" data-target="check-paint" onclick="navTo('check-paint')"><span class="icon">☑</span>油漆验收</a>
 <a class="nav-item" data-target="check-final" onclick="navTo('check-final')"><span class="icon">☑</span>竣工验收</a>
 </nav>
+
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">国家规范标准 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="standard-basic" onclick="navTo('standard-basic')">基础通用标准</a>
+<a class="nav-item" data-target="standard-design" onclick="navTo('standard-design')">设计规范</a>
+<a class="nav-item" data-target="standard-construct" onclick="navTo('standard-construct')">施工规范</a>
+<a class="nav-item" data-target="standard-accept" onclick="navTo('standard-accept')">验收标准</a>
+<a class="nav-item" data-target="standard-material" onclick="navTo('standard-material')">材料环保标准</a>
+<a class="nav-item" data-target="standard-fire" onclick="navTo('standard-fire')">防火安全标准</a>
+<a class="nav-item" data-target="standard-env" onclick="navTo('standard-env')">室内环境与健康</a>
+<a class="nav-item" data-target="standard-tech" onclick="navTo('standard-tech')">专项技术标准</a>
+<a class="nav-item" data-target="standard-law" onclick="navTo('standard-law')">法律法规</a>
+<a class="nav-item" data-target="standard-cbda" onclick="navTo('standard-cbda')">协会团体标准</a>
+</div>
+</div>
+
 </aside>
 
 <!-- Content -->
@@ -1806,6 +1841,241 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 </section>
 
+
+<!-- ==================== 国家规范标准 ==================== -->
+
+<style>
+.standard-latest {
+  background: linear-gradient(135deg, #FFF8E1, #FFF3CD);
+  border-left: 4px solid #B8860B;
+}
+.standard-latest td:first-child {
+  font-weight: 700;
+  color: #8B6508;
+}
+.standard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 16px 0;
+}
+.standard-table th {
+  background: #F5F2EC;
+  color: #5A4A3A;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid #D4C8B0;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+}
+.standard-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #E8E3DC;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.standard-table tr:hover td {
+  background: #FAF8F5;
+}
+.standard-table td:first-child {
+  white-space: nowrap;
+  font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+  font-size: 0.82rem;
+  color: #B8860B;
+  font-weight: 500;
+}
+.standard-table td:nth-child(2) {
+  font-weight: 500;
+  min-width: 200px;
+}
+.standard-table td:nth-child(3) {
+  color: #666;
+  font-size: 0.84rem;
+}
+.standard-count {
+  display: inline-block;
+  background: #E8E3DC;
+  color: #8A8580;
+  font-size: 0.75rem;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: 400;
+}
+</style>
+
+<section id="standard-basic" class="section">
+<div class="section-header"><h2>基础通用标准 <span class="standard-count">4项</span></h2><p class="desc">建筑工程通用基础标准，装饰装修的总纲性文件</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr class="standard-latest"><td>GB 55038-2025</td><td>住宅项目规范</td><td>2025年5月1日实施，强制性规范，全部条文必须严格执行</td></tr>
+<tr><td>GB 50300-2013</td><td>建筑工程施工质量验收统一标准</td><td>质量验收总框架，分部分项划分</td></tr>
+<tr><td>GB 50352-2019</td><td>民用建筑设计统一标准</td><td>民用建筑设计通用规则</td></tr>
+<tr><td>GB/T 50002-2013</td><td>建筑模数协调标准</td><td>模数化设计尺寸协调</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-design" class="section">
+<div class="section-header"><h2>设计规范 <span class="standard-count">7项</span></h2><p class="desc">住宅室内外设计相关规范，涵盖空间、照明、电气、给排水等</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>GB 50096-2011</td><td>住宅设计规范</td><td>住宅日照/采光/通风/套型设计</td></tr>
+<tr><td>JGJ 367-2015</td><td>住宅室内装饰装修设计规范</td><td>空间布局/无障碍/照明/收纳设计</td></tr>
+<tr><td>GB 50034-2013</td><td>建筑照明设计标准</td><td>照度/色温/眩光限制</td></tr>
+<tr><td>JGJ 242-2011</td><td>住宅建筑电气设计规范</td><td>回路划分/负荷计算/配电</td></tr>
+<tr><td>GB 50015-2019</td><td>建筑给水排水设计标准</td><td>管道布置/流量/水压</td></tr>
+<tr><td>GB 50763-2012</td><td>无障碍设计规范</td><td>无障碍厕位/坡道/扶手</td></tr>
+<tr><td>GB 50118-2010</td><td>民用建筑隔声设计规范</td><td>空气声/撞击声隔声限值</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-construct" class="section">
+<div class="section-header"><h2>施工规范 <span class="standard-count">11项</span></h2><p class="desc">装饰装修各分项工程施工质量规范，覆盖水电、防水、地面等</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>GB 50327-2001</td><td>住宅装饰装修工程施工规范</td><td>水电/防水/木作/涂饰施工全流程</td></tr>
+<tr><td>GB 50242-2002</td><td>建筑给水排水及采暖工程施工质量验收规范</td><td>管道安装/水压试验/采暖</td></tr>
+<tr><td>GB 50303-2015</td><td>建筑电气工程施工质量验收规范</td><td>导线穿管/配电箱/接地/等电位</td></tr>
+<tr><td>GB 50209-2010</td><td>建筑地面工程施工质量验收规范</td><td>地面基层/面层/防水</td></tr>
+<tr><td>GB 50204-2015</td><td>混凝土结构工程施工质量验收规范</td><td>结构安全/植筋/加固</td></tr>
+<tr><td>GB 50203-2011</td><td>砌体结构工程施工质量验收规范</td><td>砌筑/抹灰/构造柱</td></tr>
+<tr><td>JGJ 298-2013</td><td>住宅室内防水工程技术规范</td><td>防水层设计/施工/闭水试验</td></tr>
+<tr><td>JGJ 142-2012</td><td>辐射供暖供冷技术规程</td><td>地暖盘管/保温层/伸缩缝</td></tr>
+<tr><td>JGJ/T 304-2013</td><td>住宅室内装饰装修工程质量验收规范</td><td>全过程质量验收/分户验收</td></tr>
+<tr><td>GB 50411-2019</td><td>建筑节能工程施工质量验收标准</td><td>保温/隔热/节能</td></tr>
+<tr><td>GB/T 50312-2016</td><td>综合布线系统工程验收规范</td><td>弱电布线/光纤/配线架</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-accept" class="section">
+<div class="section-header"><h2>验收标准 <span class="standard-count">4项</span></h2><p class="desc">装饰装修分项及竣工验收标准</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>GB 50210-2018</td><td>建筑装饰装修工程质量验收标准</td><td>核心验收标准，十大分项工程</td></tr>
+<tr><td>GB 50300-2013</td><td>建筑工程施工质量验收统一标准</td><td>验收程序/分部分项划分</td></tr>
+<tr><td>JGJ/T 304-2013</td><td>住宅室内装饰装修工程质量验收规范</td><td>住宅专项，分户验收</td></tr>
+<tr><td>GB 50617-2010</td><td>建筑电气照明装置施工与验收规范</td><td>灯具/开关/插座验收</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-material" class="section">
+<div class="section-header"><h2>材料环保标准 <span class="standard-count">14项</span></h2><p class="desc">室内装饰装修材料有害物质限量，涵盖人造板、涂料、胶粘剂等</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心指标</th></tr></thead>
+<tbody>
+<tr><td>GB 18580-2017</td><td>室内装饰装修材料 人造板甲醛释放限量</td><td>E1级 ≤ 0.124mg/m³</td></tr>
+<tr><td>GB/T 39600-2021</td><td>人造板及其制品甲醛释放量分级</td><td>ENF级 ≤ 0.025mg/m³</td></tr>
+<tr><td>GB 18581-2020</td><td>室内装饰装修材料 溶剂型木器涂料有害物质限量</td><td>VOC/苯/甲苯限量</td></tr>
+<tr><td>GB 18582-2020</td><td>室内装饰装修材料 内墙涂料有害物质限量</td><td>VOC/甲醛/重金属</td></tr>
+<tr><td>GB 18583-2008</td><td>室内装饰装修材料 胶粘剂有害物质限量</td><td>甲醛/苯/VOC</td></tr>
+<tr><td>GB 18584-2001</td><td>室内装饰装修材料 木家具有害物质限量</td><td>甲醛/重金属</td></tr>
+<tr><td>GB 18585-2001</td><td>室内装饰装修材料 壁纸有害物质限量</td><td>重金属/氯乙烯单体</td></tr>
+<tr><td>GB 18586-2001</td><td>室内装饰装修材料 聚氯乙烯卷材地板有害物质限量</td><td>氯乙烯单体/铅</td></tr>
+<tr><td>GB 18587-2001</td><td>室内装饰装修材料 地毯/地毯衬垫有害物质限量</td><td>VOC/甲醛/苯乙烯</td></tr>
+<tr><td>GB 18588-2001</td><td>室内装饰装修材料 混凝土外加剂释放氨限量</td><td>氨释放量</td></tr>
+<tr><td>GB 6566-2010</td><td>建筑材料放射性核素限量</td><td>A/B/C三类，A类室内用</td></tr>
+<tr><td>GB/T 4100-2015</td><td>陶瓷砖</td><td>尺寸偏差/吸水率/耐磨性</td></tr>
+<tr><td>GB/T 19766-2016</td><td>天然大理石建筑板材</td><td>规格/物理性能/放射性</td></tr>
+<tr><td>GB/T 18601-2009</td><td>天然花岗石建筑板材</td><td>规格/物理性能/放射性</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-fire" class="section">
+<div class="section-header"><h2>防火安全标准 <span class="standard-count">4项</span></h2><p class="desc">建筑内部装修防火设计与验收</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>GB 50222-2017</td><td>建筑内部装修设计防火规范</td><td>材料燃烧性能等级（A/B1/B2/B3）</td></tr>
+<tr><td>GB 50354-2005</td><td>建筑内部装修防火施工及验收规范</td><td>隐蔽工程防火封堵</td></tr>
+<tr><td>GB 50016-2014</td><td>建筑设计防火规范（2018版）</td><td>疏散/防火分区/材料要求</td></tr>
+<tr><td>GB 51348-2019</td><td>民用建筑电气设计标准</td><td>电气防火/应急照明</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-env" class="section">
+<div class="section-header"><h2>室内环境与健康标准 <span class="standard-count">3项</span></h2><p class="desc">民用建筑室内环境污染控制与空气质量</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心指标</th></tr></thead>
+<tbody>
+<tr><td>GB 50325-2020</td><td>民用建筑工程室内环境污染控制标准</td><td>Ⅰ/Ⅱ类工程，甲醛 ≤ 0.07/0.08mg/m³</td></tr>
+<tr><td>GB/T 18883-2022</td><td>室内空气质量标准</td><td>甲醛 ≤ 0.08mg/m³，苯 ≤ 0.09mg/m³，19项</td></tr>
+<tr><td>JGJ/T 436-2018</td><td>住宅建筑室内装修污染控制技术标准</td><td>材料叠加污染计算/新风配置</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-tech" class="section">
+<div class="section-header"><h2>专项技术标准 <span class="standard-count">6项</span></h2><p class="desc">玻璃、新风、装配式厨卫等专项技术规程</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>适用范围</th></tr></thead>
+<tbody>
+<tr><td>JGJ 113-2015</td><td>建筑玻璃应用技术规程</td><td>安全玻璃/栏杆玻璃</td></tr>
+<tr><td>JGJ/T 440-2018</td><td>住宅新风系统技术标准</td><td>新风量/管道/过滤</td></tr>
+<tr><td>JGJ/T 467-2018</td><td>装配式整体卫生间应用技术标准</td><td>整体卫浴安装/防水</td></tr>
+<tr><td>JGJ/T 477-2018</td><td>装配式整体厨房应用技术标准</td><td>整体厨房/橱柜</td></tr>
+<tr><td>JGJ/T 427-2017</td><td>建筑装饰装修工程成品保护技术标准</td><td>成品保护/工序衔接</td></tr>
+<tr><td>JG/T 194-2018</td><td>住宅厨房和卫生间排烟(气)道制品</td><td>烟道/止回阀</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-law" class="section">
+<div class="section-header"><h2>法律法规 <span class="standard-count">4项</span></h2><p class="desc">装饰装修相关法律法规与部门规章</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>关键条款</th></tr></thead>
+<tbody>
+<tr><td>建设部令第110号</td><td>住宅室内装饰装修管理办法</td><td>禁止拆改承重结构/申报登记</td></tr>
+<tr><td>—</td><td>建设工程质量管理条例</td><td>质量责任/保修/处罚</td></tr>
+<tr><td>—</td><td>中华人民共和国建筑法</td><td>从业资质/质量安全</td></tr>
+<tr><td>—</td><td>中华人民共和国消防法</td><td>消防设计审核/验收</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-cbda" class="section">
+<div class="section-header"><h2>协会团体标准（T/CBDA）</h2><p class="desc">中国建筑装饰协会（CBDA）发布的行业自律团体标准</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>T/CBDA 42-2020</td><td>住宅室内装饰装修电气工程施工技术规程</td><td>电气施工 CBDA 团体标准</td></tr>
+<tr><td>T/CBDA 43-2020</td><td>住宅室内装饰装修给水排水工程施工技术规程</td><td>给排水施工 CBDA 团体标准</td></tr>
+<tr><td>T/CBDA 系列</td><td>住宅室内装饰装修墙面/地面/吊顶/涂裱/木作/细部工程施工技术规程</td><td>各分项工程 CBDA 团体标准体系</td></tr>
+</tbody></table>
+
+<div class="highlight" style="margin-top:20px;">
+  <strong>标准体系说明：</strong>
+  <ul style="margin:8px 0 0 16px;line-height:2;">
+    <li><strong>强制性标准（GB）</strong>：必须执行，违反可追究法律责任</li>
+    <li><strong>推荐性标准（GB/T）</strong>：鼓励采用</li>
+    <li><strong>行业标准（JGJ/CJJ）</strong>：行业技术规范</li>
+    <li><strong>团体标准（T/CBDA）</strong>：中国建筑装饰协会发布，行业自律</li>
+    <li><strong style="color:#B8860B;">GB 55038-2025《住宅项目规范》</strong>是最新强制性规范，2025年5月1日起施行，取代多项旧标准中的强制条文</li>
+  </ul>
+</div>
+</div>
+</section>
+
 </main>
 </div>
 
@@ -1934,7 +2204,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+function toggleModule(titleEl) {
+  titleEl.classList.toggle('collapsed');
+  var body = titleEl.nextElementSibling;
+  if (body) body.classList.toggle('collapsed');
+}
 </script>
+
 
 <footer style="padding:48px 40px 32px;text-align:center;border-top:1px solid #E8E3DC;background:var(--bg);">
   <div style="max-width:1040px;margin:0 auto;">
