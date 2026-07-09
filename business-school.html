@@ -488,7 +488,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <!-- ==================== 设计风格 ==================== -->
 
 <!-- 现代简约 -->
-<section id="style-modern" class="section">
+<section id="style-modern" class="section" style="display:block">
 <div class="section-header"><h2>现代简约</h2><p class="desc">Modern Minimalist — 少即是多</p></div>
 <div class="section-hero"><img src="imgs/modern-minimalist.jpg" alt="现代简约风格室内设计" loading="lazy"></div>
 
@@ -3079,8 +3079,14 @@ function toggleSidebar() {
 
 /* ============ Init ============ */
 document.addEventListener('DOMContentLoaded', () => {
-  const lastSection = localStorage.getItem('designKb_lastSection') || 'style-modern';
-  navTo(lastSection);
+  try {
+    const lastSection = localStorage.getItem('designKb_lastSection') || 'style-modern';
+    navTo(lastSection);
+  } catch(e) {
+    // fallback: 确保至少有一个section可见
+    const first = document.querySelector('.section');
+    if (first && first.style.display !== 'block') first.style.display = 'block';
+  }
 
   // Keyboard shortcut: Ctrl+K or / to focus search
   document.addEventListener('keydown', e => {
