@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>装修商学院 | 室内设计知识库 - 四喜家</title>
+<title>四喜家商学院 | 室内设计知识库 - 四喜家</title>
 <meta name="description" content="四喜家商学院 - 南宁四喜家设计旗下四喜家商学院，涵盖设计风格、工艺标准、材料百科、软装搭配、空间规划、施工验收">
 <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIuiuoeWtpuS4l+eglOWFpeerr+S4juW7uumDqOWNoeeQhuiuvue9ruWbvuecu+aOqOWQjeaAuyIKfQ==">
 <meta name="theme-color" content="#1a1a2e">
@@ -98,43 +98,45 @@ a:hover{color:#8B6508}
   padding:20px 0;
   overflow-y:auto;
   transition:transform var(--transition);
-  position:sticky;top:var(--header-h);
-  height:calc(100vh - var(--header-h));
-  flex-shrink:0;
 }
 .sidebar nav{padding:0}
-
-/* Level 1 — Module Title (section group header) */
 .sidebar .module-title{
-  font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;
-  color:#4A4A4A;padding:14px 20px 10px;font-weight:700;
-  cursor:pointer;user-select:none;
-  display:flex;justify-content:space-between;align-items:center;
-  transition:background var(--transition),color var(--transition);
-  background:#F0ECE4;margin:12px 0 0 0;
+  font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--text-muted);padding:20px 24px 8px;font-weight:600;
 }
-.module-group:first-child .module-title{margin-top:0}
-.sidebar .module-title:hover{color:var(--accent);background:#E8E3D8}
-.sidebar .module-title .arrow{font-size:0.6rem;transition:transform 0.25s ease;color:#999}
-.sidebar .module-title.collapsed .arrow{transform:rotate(-90deg)}
-
-/* Level 2 — Section link */
 .sidebar .nav-item{
-  display:block;padding:8px 20px 8px 16px;
+  display:block;padding:7px 24px;
   color:var(--text-primary);font-size:0.85rem;
   cursor:pointer;transition:var(--transition);
-  margin-bottom:0;border-left:3px solid transparent;
-  font-weight:400;
+  margin-bottom:0;border-left:2px solid transparent;
 }
 .sidebar .nav-item:hover{
   background:var(--bg-hover);color:var(--text-primary);
-  border-left-color:var(--accent);
+  border-left-color:var(--border);
 }
 .sidebar .nav-item.active{
-  background:rgba(184,134,11,0.06);color:var(--accent);font-weight:500;
-  border-left:3px solid var(--accent);
+  background:var(--bg-hover);color:var(--accent);font-weight:500;
+  border-left:2px solid var(--accent);
 }
 .sidebar .nav-item .icon{display:inline-block;width:20px;margin-right:6px;text-align:center}
+
+/* ============ 手风琴模块组 ============ */
+.sidebar .module-group{margin:0}
+.sidebar .module-group .module-title{
+  font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--text-muted);padding:20px 24px 8px;font-weight:600;
+  cursor:pointer;user-select:none;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.sidebar .module-group .module-title .arrow{
+  font-size:0.65rem;transition:transform 0.2s ease;
+}
+.sidebar .module-group .module-title.collapsed .arrow{transform:rotate(-90deg)}
+.sidebar .module-group .module-body{
+  overflow:hidden;transition:max-height 0.3s ease;max-height:500px;
+}
+.sidebar .module-group .module-body.collapsed{max-height:0}
+.sidebar .module-group .nav-item{padding-left:32px}
 
 .content{flex:1;padding:40px 48px;overflow-y:auto;max-width:calc(var(--content-max) - var(--sidebar-w))}
 
@@ -232,43 +234,6 @@ a:hover{color:#8B6508}
 .section-hero{margin-bottom:32px}
 .section-hero img{width:100%;max-height:420px;object-fit:cover;display:block}
 
-
-/* ============ Sidebar Accordion ============ */
-.module-group{margin:0}
-.module-body{overflow:hidden;transition:max-height 0.35s ease;max-height:800px}
-.module-body.collapsed{max-height:0}
-
-.nav-item.parent{
-  display:flex;justify-content:space-between;align-items:center;
-}
-.nav-item.parent .sub-arrow{
-  font-size:0.55rem;transition:transform 0.25s ease;margin-left:6px;
-  color:#999;
-}
-.nav-item.parent.expanded .sub-arrow{transform:rotate(90deg)}
-.nav-item.parent.expanded{color:var(--accent)}
-
-/* Level 3 — Sub-section link */
-.sub-nav{overflow:hidden;transition:max-height 0.3s ease;max-height:0}
-.sub-nav.open{max-height:700px}
-.nav-item.sub{
-  display:block;padding:5px 20px 5px 34px;
-  font-size:0.78rem;color:var(--text-secondary);
-  cursor:pointer;transition:var(--transition);
-  border-left:3px solid transparent;
-  font-weight:400;
-  margin:0;
-}
-.nav-item.sub:hover{
-  color:var(--accent);background:var(--bg-hover);
-  border-left-color:var(--accent);
-}
-.nav-item.sub.active{
-  color:var(--accent);font-weight:500;
-  border-left:3px solid var(--accent);
-  background:rgba(184,134,11,0.04);
-}
-
 /* ============ Responsive ============ */
 @media(max-width:768px){
   .sidebar{
@@ -315,7 +280,7 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <!-- Header -->
 <header class="header">
   <button class="hamburger" onclick="toggleSidebar()" aria-label="菜单">☰</button>
-  <div class="logo">四喜家<span>装修商学院</span></div>
+  <div class="logo">四喜家<span>商学院</span></div>
   <div class="search-wrap">
     <input type="text" id="searchInput" placeholder="搜索风格、工艺、材料、规范..." oninput="doSearch()">
     <span class="search-icon">🔍</span>
@@ -329,100 +294,68 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <aside class="sidebar" id="sidebar">
 <nav>
 
-<div class="module-group">
-<div class="module-title" onclick="toggleModule(this)">设计风格 <span class="arrow">▾</span></div>
-<div class="module-body">
-<a class="nav-item" data-target="style-modern" onclick="navTo('style-modern')">现代简约</a>
-<a class="nav-item" data-target="style-wabisabi" onclick="navTo('style-wabisabi')">侘寂风</a>
-<a class="nav-item" data-target="style-cream" onclick="navTo('style-cream')">奶油风</a>
-<a class="nav-item" data-target="style-midcentury" onclick="navTo('style-midcentury')">中古风</a>
-<a class="nav-item" data-target="style-newchinese" onclick="navTo('style-newchinese')">新中式</a>
-<a class="nav-item" data-target="style-minimal" onclick="navTo('style-minimal')">极简主义</a>
-</div>
-</div>
+<div class="module-title">设计风格</div>
+<a class="nav-item" data-target="style-modern" onclick="navTo('style-modern')"><span class="icon">▦</span>现代简约</a>
+<a class="nav-item" data-target="style-wabisabi" onclick="navTo('style-wabisabi')"><span class="icon">▦</span>侘寂风</a>
+<a class="nav-item" data-target="style-cream" onclick="navTo('style-cream')"><span class="icon">▦</span>奶油风</a>
+<a class="nav-item" data-target="style-midcentury" onclick="navTo('style-midcentury')"><span class="icon">▦</span>中古风</a>
+<a class="nav-item" data-target="style-newchinese" onclick="navTo('style-newchinese')"><span class="icon">▦</span>新中式</a>
+<a class="nav-item" data-target="style-minimal" onclick="navTo('style-minimal')"><span class="icon">▦</span>极简主义</a>
 
-<div class="module-group">
-<div class="module-title" onclick="toggleModule(this)">装修工艺 <span class="arrow">▾</span></div>
-<div class="module-body">
-<a class="nav-item" data-target="craft-plumbing" onclick="navTo('craft-plumbing')">水电改造</a>
-<a class="nav-item" data-target="craft-waterproof" onclick="navTo('craft-waterproof')">防水施工</a>
-<a class="nav-item" data-target="craft-tile" onclick="navTo('craft-tile')">瓷砖铺贴</a>
-<a class="nav-item" data-target="craft-ceiling" onclick="navTo('craft-ceiling')">木工吊顶</a>
-<a class="nav-item" data-target="craft-wall" onclick="navTo('craft-wall')">墙面工艺</a>
-<a class="nav-item" data-target="craft-microcement" onclick="navTo('craft-microcement')">微水泥施工</a>
-<a class="nav-item" data-target="craft-plumbing-detail" onclick="navTo('craft-plumbing-detail')">水电实战要点</a>
-<a class="nav-item" data-target="craft-node-gallery" onclick="navTo('craft-node-gallery')">关键节点图解</a>
-<a class="nav-item" data-target="craft-closure" onclick="navTo('craft-closure')">收口工艺精讲</a>
-</div>
-</div>
+<div class="module-title">装修工艺</div>
+<a class="nav-item" data-target="craft-plumbing" onclick="navTo('craft-plumbing')"><span class="icon">⚙</span>水电改造</a>
+<a class="nav-item" data-target="craft-waterproof" onclick="navTo('craft-waterproof')"><span class="icon">⚙</span>防水施工</a>
+<a class="nav-item" data-target="craft-tile" onclick="navTo('craft-tile')"><span class="icon">⚙</span>瓷砖铺贴</a>
+<a class="nav-item" data-target="craft-ceiling" onclick="navTo('craft-ceiling')"><span class="icon">⚙</span>木工吊顶</a>
+<a class="nav-item" data-target="craft-wall" onclick="navTo('craft-wall')"><span class="icon">⚙</span>墙面工艺</a>
+<a class="nav-item" data-target="craft-microcement" onclick="navTo('craft-microcement')"><span class="icon">⚙</span>微水泥施工</a>
 
-<div class="module-group">
-<div class="module-title" onclick="toggleModule(this)">材料百科 <span class="arrow">▾</span></div>
-<div class="module-body">
-<a class="nav-item" data-target="mat-tile" onclick="navTo('mat-tile')">瓷砖类</a>
-<a class="nav-item" data-target="mat-floor" onclick="navTo('mat-floor')">地板类</a>
-<a class="nav-item" data-target="mat-paint" onclick="navTo('mat-paint')">涂料类</a>
-<a class="nav-item" data-target="mat-stone" onclick="navTo('mat-stone')">石材类</a>
-<a class="nav-item" data-target="mat-cabinet" onclick="navTo('mat-cabinet')">定制柜体</a>
-<a class="nav-item" data-target="mat-doorwin" onclick="navTo('mat-doorwin')">门窗类</a>
-<a class="nav-item" data-target="mat-photocatalyst" onclick="navTo('mat-photocatalyst')">光触媒陶瓷板</a>
-</div>
-</div>
+<div class="module-title">材料百科</div>
+<a class="nav-item" data-target="mat-tile" onclick="navTo('mat-tile')"><span class="icon">■</span>瓷砖类</a>
+<a class="nav-item" data-target="mat-floor" onclick="navTo('mat-floor')"><span class="icon">■</span>地板类</a>
+<a class="nav-item" data-target="mat-paint" onclick="navTo('mat-paint')"><span class="icon">■</span>涂料类</a>
+<a class="nav-item" data-target="mat-stone" onclick="navTo('mat-stone')"><span class="icon">■</span>石材类</a>
+<a class="nav-item" data-target="mat-cabinet" onclick="navTo('mat-cabinet')"><span class="icon">■</span>定制柜体</a>
+<a class="nav-item" data-target="mat-doorwin" onclick="navTo('mat-doorwin')"><span class="icon">■</span>门窗类</a>
 
-<div class="module-group">
-<div class="module-title" onclick="toggleModule(this)">软装搭配 <span class="arrow">▾</span></div>
-<div class="module-body">
-<a class="nav-item" data-target="soft-color" onclick="navTo('soft-color')">配色法则</a>
-<a class="nav-item" data-target="soft-light" onclick="navTo('soft-light')">灯光设计</a>
-<a class="nav-item" data-target="soft-curtain" onclick="navTo('soft-curtain')">窗帘选择</a>
-<a class="nav-item" data-target="soft-furniture" onclick="navTo('soft-furniture')">家具尺度</a>
-<a class="nav-item" data-target="soft-art" onclick="navTo('soft-art')">挂画与装饰</a>
-<a class="nav-item" data-target="soft-plant" onclick="navTo('soft-plant')">绿植搭配</a>
-<a class="nav-item" data-target="soft-light-detail" onclick="navTo('soft-light-detail')">灯光设计精要</a>
-</div>
-</div>
+<div class="module-title">软装搭配</div>
+<a class="nav-item" data-target="soft-color" onclick="navTo('soft-color')"><span class="icon">◈</span>配色法则</a>
+<a class="nav-item" data-target="soft-light" onclick="navTo('soft-light')"><span class="icon">◈</span>灯光设计</a>
+<a class="nav-item" data-target="soft-curtain" onclick="navTo('soft-curtain')"><span class="icon">◈</span>窗帘选择</a>
+<a class="nav-item" data-target="soft-furniture" onclick="navTo('soft-furniture')"><span class="icon">◈</span>家具尺度</a>
+<a class="nav-item" data-target="soft-art" onclick="navTo('soft-art')"><span class="icon">◈</span>挂画与装饰</a>
+<a class="nav-item" data-target="soft-plant" onclick="navTo('soft-plant')"><span class="icon">◈</span>绿植搭配</a>
 
-<div class="module-group">
-<div class="module-title" onclick="toggleModule(this)">空间规划 <span class="arrow">▾</span></div>
-<div class="module-body">
-<a class="nav-item" data-target="space-layout" onclick="navTo('space-layout')">户型改造</a>
-<a class="nav-item" data-target="space-flow" onclick="navTo('space-flow')">动线设计</a>
-<a class="nav-item parent" data-target="space-storage" onclick="toggleSub(this); navTo('space-storage')">收纳系统 <span class="sub-arrow">▸</span></a>
-<div class="sub-nav">
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-basic" onclick="navToSub('space-storage','storage-basic')">基本原则</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-ergo" onclick="navToSub('space-storage','storage-ergo')">人体工学</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-material" onclick="navToSub('space-storage','storage-material')">材料选型</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-entry" onclick="navToSub('space-storage','storage-entry')">玄关收纳</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-kitchen" onclick="navToSub('space-storage','storage-kitchen')">厨房收纳</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-sideboard" onclick="navToSub('space-storage','storage-sideboard')">餐边柜收纳</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-tv" onclick="navToSub('space-storage','storage-tv')">电视柜收纳</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-wardrobe" onclick="navToSub('space-storage','storage-wardrobe')">衣柜细分</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-vanity" onclick="navToSub('space-storage','storage-vanity')">化妆桌收纳</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-desk" onclick="navToSub('space-storage','storage-desk')">学习桌收纳</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-figure" onclick="navToSub('space-storage','storage-figure')">手办收纳</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-bathroom" onclick="navToSub('space-storage','storage-bathroom')">卫生间收纳</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-balcony" onclick="navToSub('space-storage','storage-balcony')">阳台收纳</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-japanese" onclick="navToSub('space-storage','storage-japanese')">日式理念</a>
-<a class="nav-item sub" data-target="space-storage" data-scroll="storage-calc" onclick="navToSub('space-storage','storage-calc')">容量计算</a>
-</div>
-<a class="nav-item" data-target="space-open" onclick="navTo('space-open')">开放空间</a>
-<a class="nav-item" data-target="space-anatomy" onclick="navTo('space-anatomy')">格局解剖</a>
-<a class="nav-item" data-target="space-public-restroom" onclick="navTo('space-public-restroom')">公卫设计规范</a>
-</div>
-</div>
+<div class="module-title">空间规划</div>
+<a class="nav-item" data-target="space-layout" onclick="navTo('space-layout')"><span class="icon">⊞</span>户型改造</a>
+<a class="nav-item" data-target="space-flow" onclick="navTo('space-flow')"><span class="icon">⊞</span>动线设计</a>
+<a class="nav-item" data-target="space-storage" onclick="navTo('space-storage')"><span class="icon">⊞</span>收纳系统</a>
+<a class="nav-item" data-target="space-open" onclick="navTo('space-open')"><span class="icon">⊞</span>开放空间</a>
 
-<div class="module-group">
-<div class="module-title" onclick="toggleModule(this)">施工规范与验收 <span class="arrow">▾</span></div>
-<div class="module-body">
-<a class="nav-item" data-target="check-plumbing" onclick="navTo('check-plumbing')">水电验收</a>
-<a class="nav-item" data-target="check-masonry" onclick="navTo('check-masonry')">泥瓦验收</a>
-<a class="nav-item" data-target="check-wood" onclick="navTo('check-wood')">木工验收</a>
-<a class="nav-item" data-target="check-paint" onclick="navTo('check-paint')">油漆验收</a>
-<a class="nav-item" data-target="check-final" onclick="navTo('check-final')">竣工验收</a>
-<a class="nav-item" data-target="check-ceiling-detail" onclick="navTo('check-ceiling-detail')">吊顶验收标准</a>
-</div>
-</div>
+<div class="module-title">施工规范与验收</div>
+<a class="nav-item" data-target="check-plumbing" onclick="navTo('check-plumbing')"><span class="icon">☑</span>水电验收</a>
+<a class="nav-item" data-target="check-masonry" onclick="navTo('check-masonry')"><span class="icon">☑</span>泥瓦验收</a>
+<a class="nav-item" data-target="check-wood" onclick="navTo('check-wood')"><span class="icon">☑</span>木工验收</a>
+<a class="nav-item" data-target="check-paint" onclick="navTo('check-paint')"><span class="icon">☑</span>油漆验收</a>
+<a class="nav-item" data-target="check-final" onclick="navTo('check-final')"><span class="icon">☑</span>竣工验收</a>
 </nav>
+
+<div class="module-group">
+<div class="module-title" onclick="toggleModule(this)">国家规范标准 <span class="arrow">▾</span></div>
+<div class="module-body">
+<a class="nav-item" data-target="standard-basic" onclick="navTo('standard-basic')">基础通用标准</a>
+<a class="nav-item" data-target="standard-design" onclick="navTo('standard-design')">设计规范</a>
+<a class="nav-item" data-target="standard-construct" onclick="navTo('standard-construct')">施工规范</a>
+<a class="nav-item" data-target="standard-accept" onclick="navTo('standard-accept')">验收标准</a>
+<a class="nav-item" data-target="standard-material" onclick="navTo('standard-material')">材料环保标准</a>
+<a class="nav-item" data-target="standard-fire" onclick="navTo('standard-fire')">防火安全标准</a>
+<a class="nav-item" data-target="standard-env" onclick="navTo('standard-env')">室内环境与健康</a>
+<a class="nav-item" data-target="standard-tech" onclick="navTo('standard-tech')">专项技术标准</a>
+<a class="nav-item" data-target="standard-law" onclick="navTo('standard-law')">法律法规</a>
+<a class="nav-item" data-target="standard-cbda" onclick="navTo('standard-cbda')">协会团体标准</a>
+</div>
+</div>
+
 </aside>
 
 <!-- Content -->
@@ -969,148 +902,6 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 </section>
 
-<!-- 水电实战50要点 -->
-<section id="craft-plumbing-detail" class="section">
-<div class="section-header"><h2>水电实战50要点</h2><p class="desc">给排水+电气施工 — 设计得到·dop设计团队</p></div>
-
-<div class="card">
-<h3>给排水工程施工流程</h3>
-<div class="flow">
-<div class="step">施工准备</div><span class="arrow">→</span>
-<div class="step">测量定位</div><span class="arrow">→</span>
-<div class="step">墙面开槽</div><span class="arrow">→</span>
-<div class="step">排管布管</div><span class="arrow">→</span>
-<div class="step">管线检测</div><span class="arrow">→</span>
-<div class="step emphasis">封闭管槽</div><span class="arrow">→</span>
-<div class="step emphasis">二次防水</div>
-</div>
-
-<h4>给排水核心要点</h4>
-<ul class="checklist">
-<li>冷热水管排列：左热右冷（左右排列）；上热下冷（上下排列）</li>
-<li>出水管口水平一致，间隔保持 15cm</li>
-<li>水管安装完成必须做打压测试</li>
-<li>给水管道固定点处必须加橡胶软垫</li>
-<li>淋浴混水器安装用实物模型或红外线找平</li>
-<li>排水管穿过楼板开洞尺寸应大于管外径至少 60mm</li>
-<li>排水支管连接应采用 45° 三通或 90° 斜三通</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>电气工程施工流程</h3>
-<div class="flow">
-<div class="step">施工准备</div><span class="arrow">→</span>
-<div class="step">弹线定位</div><span class="arrow">→</span>
-<div class="step">墙面开槽</div><span class="arrow">→</span>
-<div class="step">预埋底盒</div><span class="arrow">→</span>
-<div class="step">排管布线</div><span class="arrow">→</span>
-<div class="step">封闭电槽</div><span class="arrow">→</span>
-<div class="step emphasis">底盒保护</div>
-</div>
-
-<h4>电气核心要点</h4>
-<ul class="checklist">
-<li>开槽深度不低于 25mm</li>
-<li>强电和弱电间隔 15cm 以上，避免磁场干扰</li>
-<li>电气导管弯曲处弯扁度 ≤ 0.1D</li>
-<li>开关插座接线盒固定应采用金属支架，不应采用可燃易燃支架</li>
-<li>木饰面等易燃装饰面上安装开关插座，应采取防火措施</li>
-<li>3 根及以上单股导线接入汇流排必须使用线鼻子压接</li>
-<li>封闭电槽前拍照留底</li>
-</ul>
-
-<div class="highlight">
-  <strong>来源：</strong>设计得到 dop设计团队 — <a href="https://www.shejidedao.com/library/b67ee86e9e0543a0ba58b7a6a5689887" target="_blank" rel="noopener">水电阶段施工要点（50个设计要点）</a>
-</div>
-</div>
-</section>
-
-<!-- 关键节点图解 -->
-<section id="craft-node-gallery" class="section">
-<div class="section-header"><h2>关键节点图解</h2><p class="desc">16 个设计师必用关键节点 — 设计得到·dop设计团队</p></div>
-
-<div class="card">
-<h3>精选 16 个关键节点</h3>
-<p>每个节点包含深化知识点（构造做法/图纸表达）和 5 个深度设计思考问题，覆盖从基础构造到实际应用的全链路。</p>
-
-<h4>节点一览</h4>
-<table class="material-table">
-<tr><th>序号</th><th>节点名称</th><th>核心关注点</th></tr>
-<tr><td>1</td><td>室内浴缸节点</td><td>防水收口、检修口预留</td></tr>
-<tr><td>2</td><td>沐浴间隔墙节点</td><td>玻璃固定方式、防水层收头</td></tr>
-<tr><td>3</td><td>卫生间地漏节点</td><td>找坡方向、排水通畅</td></tr>
-<tr><td>4</td><td>地暖与隔墙收口节点</td><td>膨胀缝处理、热桥阻断</td></tr>
-<tr><td>5</td><td>玻化砖钢架墙节点</td><td>干挂体系、抗震设计</td></tr>
-<tr><td>6</td><td>地暖地面与地漏节点</td><td>地暖管与排水管交叉</td></tr>
-<tr><td>7</td><td>加气块墙体挂重物节点</td><td>锚固方式、荷载计算</td></tr>
-<tr><td>8</td><td>全轻钢龙骨吊顶节点</td><td>吊杆间距、反支撑设置</td></tr>
-<tr><td>9</td><td>石材蜂窝铝板吊顶节点</td><td>轻量化干挂、接缝处理</td></tr>
-<tr><td>10</td><td>石材地暖地面节点</td><td>导热层设置、防裂措施</td></tr>
-<tr><td>11</td><td>墙面马赛克铺贴节点</td><td>基层平整度、填缝工艺</td></tr>
-<tr><td>12</td><td>卫生间隔墙与地暖节点</td><td>隔墙防潮、地暖管保护</td></tr>
-<tr><td>13</td><td>标准门套节点</td><td>门套与墙体收口方式</td></tr>
-<tr><td>14</td><td>石材墙面湿挂节点</td><td>铜丝绑扎、灌浆密实度</td></tr>
-<tr><td>15</td><td>淋浴间石材地面节点</td><td>拉槽防滑、排水沟设计</td></tr>
-<tr><td>16</td><td>全龙骨跌级吊顶节点</td><td>跌级构造、灯槽预留</td></tr>
-</table>
-
-<div class="highlight">
-  <strong>来源：</strong>设计得到 dop设计团队 — <a href="https://www.shejidedao.com/library/9a6094b1e51949b4ad769acb458d8c18" target="_blank" rel="noopener">设计师必用的16个关键节点</a>
-</div>
-</div>
-</section>
-
-<!-- 收口工艺精讲 -->
-<section id="craft-closure" class="section">
-<div class="section-header"><h2>收口工艺精讲</h2><p class="desc">木饰面 + 瓷砖收口原则 — 设计得到·dop设计团队</p></div>
-
-<div class="card">
-<h3>木饰面收口原则</h3>
-<div class="highlight">
-  <strong>核心铁律：</strong>所有收口尽量都在阴角，哪怕在平面上收口，也千万不要在阳角收口。
-</div>
-<p>木饰面收口分为三大类型：</p>
-<ul>
-<li><strong>平面收口</strong>：同一平面上两块木饰面板之间的拼接处理，常用留缝/密拼/嵌金属条三种方式</li>
-<li><strong>阴阳角收口</strong>：阳角处推荐 45° 对角或海棠角拼接；阴角处推荐自然留缝或压条处理</li>
-<li><strong>踢脚线收口</strong>：木饰面与地面交接处，可选内嵌式踢脚线或悬浮式留缝方案</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>瓷砖与瓷砖的收口方式</h3>
-<p>瓷砖过渡分为四种关系：<strong>水平、阴角、阳角、高低差</strong>。</p>
-
-<h4>阳角处理</h4>
-<table class="material-table">
-<tr><th>方式</th><th>做法</th><th>特点</th></tr>
-<tr><td>密拼角</td><td>瓷砖 45° 磨边后直接对拼</td><td>视觉效果极简，但边角脆弱易崩瓷</td></tr>
-<tr><td>海棠角</td><td>瓷砖磨边留 2-3mm 侧边再拼接</td><td>比密拼角更耐用，留缝后填美缝剂效果佳</td></tr>
-<tr><td>阳角条/护角条</td><td>用成品金属或 PVC 型材包裹阳角</td><td>最耐用，适合公共空间或家有老人儿童</td></tr>
-</table>
-
-<h4>阴角处理</h4>
-<ul>
-<li><strong>墙压地收口</strong>：先铺墙面砖，再铺地面砖，墙砖压在地砖上——经典做法，防渗水效果好</li>
-<li><strong>成品铝型材收口</strong>：转角处嵌入铝型材——方便清理、避免卫生死角，现代酒店常用</li>
-</ul>
-
-<h4>高低差处理</h4>
-<ul>
-<li><strong>小落差（≤5mm）</strong>：用型材收口条过渡</li>
-<li><strong>大落差（＞5mm）</strong>：需用特定型材（L型/T型收口条）处理</li>
-</ul>
-
-<h4>收口方式选择原则</h4>
-<p>综合考虑：工程造价 → 多样性 → 美观性 → 材料本身质量</p>
-
-<div class="highlight">
-  <strong>来源：</strong>设计得到 dop设计团队 — <a href="https://www.shejidedao.com/library/40289f8180bb4ce20180bb5ebe8007b5" target="_blank" rel="noopener">瓷砖与瓷砖的收口方式</a> · <a href="https://www.shejidedao.com/library/190-1.html" target="_blank" rel="noopener">木饰面收口原则</a>
-</div>
-</div>
-</section>
-
 <!-- ==================== 材料百科 ==================== -->
 
 <!-- 瓷砖类 -->
@@ -1257,59 +1048,6 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <li><strong>五金件</strong>：德国好博（执手）/ 丝吉利娅 / 诺托</li>
   <li><strong>安装</strong>：发泡胶填充 + 外墙防水 + 密封胶收口，安装质量占最终效果 50%</li>
 </ul>
-</div>
-</section>
-
-<!-- 光触媒陶瓷板 -->
-<section id="mat-photocatalyst" class="section">
-<div class="section-header"><h2>光触媒陶瓷板</h2><p class="desc">自清洁墙砖新材料 — 设计得到·dop设计团队</p></div>
-
-<div class="card">
-<h3>光触媒陶瓷板（自清洁墙砖）</h3>
-<p>光触媒原理：纳米级二氧化钛在紫外光及可见光作用下产生催化降解，将有机污染物分解为 CO₂ 和 H₂O，实现自清洁效果。</p>
-
-<h4>8 大优势</h4>
-<table class="material-table">
-<tr><th>优势</th><th>说明</th></tr>
-<tr><td>分解污垢</td><td>分解油脂、灰尘、霉菌等有机污垢</td></tr>
-<tr><td>超级亲水性</td><td>雨水即可冲洗自洁，降低外墙维护成本</td></tr>
-<tr><td>空气净化</td><td>分解甲醛、苯、NOx 等有害气体</td></tr>
-<tr><td>高耐候性</td><td>防紫外线褪色，户外 20 年不变色</td></tr>
-<tr><td>抗震</td><td>轻量化设计，质量仅为石材的 1/3</td></tr>
-<tr><td>隔热</td><td>低热传导率，降低建筑能耗</td></tr>
-<tr><td>隔音</td><td>250-1000Hz 音域隔音效果显著</td></tr>
-<tr><td>透气构造</td><td>散发湿气，防止墙体结露发霉</td></tr>
-</table>
-
-<h4>产品规格</h4>
-<ul>
-<li><strong>尺寸</strong>：15-21mm × 455 × 3030mm</li>
-<li><strong>重量</strong>：每片约 20-28kg</li>
-<li><strong>面积</strong>：每片约 1.38㎡</li>
-</ul>
-
-<h4>安装方式</h4>
-<table class="material-table">
-<tr><th>位置</th><th>安装方式</th><th>说明</th></tr>
-<tr><td>外墙</td><td>龙骨干挂</td><td>标准幕墙干挂体系</td></tr>
-<tr><td>内墙（＜3m）</td><td>墙体点挂</td><td>专用挂件直接固定在墙体上</td></tr>
-</table>
-
-<h4>阳角处理方式</h4>
-<ul>
-<li>切 45° 角拼接</li>
-<li>安装转角材</li>
-<li>阳角处安装铝条</li>
-</ul>
-
-<h4>参考价格</h4>
-<div class="highlight">
-  <strong>300 ~ 500 元/㎡</strong>（含材料费，不含安装）
-</div>
-
-<div class="highlight">
-  <strong>来源：</strong>设计得到 dop设计团队 — <a href="https://www.shejidedao.com/library/222556-1.html" target="_blank" rel="noopener">光触媒陶瓷板（自清洁墙砖）</a>
-</div>
 </div>
 </section>
 
@@ -1512,52 +1250,6 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 </section>
 
-<!-- 灯光设计精要 -->
-<section id="soft-light-detail" class="section">
-<div class="section-header"><h2>灯光设计精要</h2><p class="desc">三大类型 + 黄金比例 — 设计得到·dop设计团队</p></div>
-
-<div class="card">
-<h3>灯光三大类型</h3>
-<table class="material-table">
-<tr><th>类型</th><th>定义</th><th>典型灯具</th></tr>
-<tr><td>环境光</td><td>普照式基础照明，照亮整个空间</td><td>筒灯、吸顶灯、间接灯带</td></tr>
-<tr><td>轮廓光</td><td>勾勒空间轮廓，营造层次感</td><td>线性灯带、洗墙灯、天花槽灯</td></tr>
-<tr><td>焦点光</td><td>重点突出某一区域或物体</td><td>射灯、轨道灯、落地灯、壁灯</td></tr>
-</table>
-
-<div class="highlight">
-  <strong>照明黄金比例 1 : 3 : 5</strong><br>
-  普通照明（环境光）: 气氛照明（轮廓光）: 功能照明（焦点光）= 1 : 3 : 5
-</div>
-</div>
-
-<div class="card">
-<h3>常见灯光设计错误</h3>
-<ul>
-<li><strong>灯光过多布置</strong>：茶室装了 18 组灯 → 空间急促、失去宁静感</li>
-<li><strong>灯光过亮</strong>：未考虑空间反射系数（深色墙面反射率仅 10-20%），灯再多也不亮</li>
-<li><strong>色温选择不当</strong>：卧室用 6000K 冷光 → 影响睡眠质量；厨房用 2700K 暖光 → 看不清食材</li>
-</ul>
-
-<h4>线性灯应用场景</h4>
-<table class="material-table">
-<tr><th>场景</th><th>方式</th><th>效果</th></tr>
-<tr><td>吧台</td><td>台面下暗藏灯带</td><td>悬浮感，聚焦操作区</td></tr>
-<tr><td>厨房</td><td>吊柜底部安装</td><td>补充操作台照明，消除阴影</td></tr>
-<tr><td>酒柜</td><td>层板后置灯带</td><td>展示酒品，提升高级感</td></tr>
-<tr><td>楼梯</td><td>踏步下方暗藏</td><td>引导动线，夜间安全照明</td></tr>
-<tr><td>书柜</td><td>层板前沿嵌入</td><td>展示书籍，弱化柜体体量</td></tr>
-<tr><td>卫生间</td><td>镜柜四周环绕</td><td>面部无阴影，化妆/剃须更精准</td></tr>
-<tr><td>卧室</td><td>床头背景暗藏</td><td>柔和的间接照明，助眠氛围</td></tr>
-<tr><td>过道</td><td>踢脚线位置嵌入</td><td>低位照明，夜间不刺眼</td></tr>
-</table>
-
-<div class="highlight">
-  <strong>来源：</strong>设计得到 dop设计团队 — <a href="https://www.shejidedao.com/library/16665-2.html" target="_blank" rel="noopener">室内灯光设计要点 ①</a> · <a href="https://www.shejidedao.com/library/798961cb09934ad0a1e741903b20077c" target="_blank" rel="noopener">室内灯光设计要点 ②</a>
-</div>
-</div>
-</section>
-
 <!-- ==================== 空间规划 ==================== -->
 
 <!-- 户型改造 -->
@@ -1616,686 +1308,349 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <section id="space-storage" class="section">
 <div class="section-header"><h2>收纳系统</h2><p class="desc">收纳是住宅设计的骨架——涉及材料学、人体工学、动线逻辑和行为心理学</p></div>
 
-<!-- 一、收纳设计基本原则 -->
+<!-- 收纳设计基本原则 -->
 <div class="card">
-<h3 id="storage-basic">一、收纳设计基本原则</h3>
+<h3>一、收纳设计基本原则</h3>
 
-<h4>1. 立体集成原则（黄金三区划分）</h4>
-<p>所有收纳空间遵循统一的"三区模型"：</p>
-<table class="material-table">
-<tr><th>区域</th><th>高度范围</th><th>使用频率</th><th>存放策略</th></tr>
-<tr><td>高频区（中部）</td><td>650-1850mm</td><td>每天使用</td><td>常用物品：碗碟、调料、日常衣物、洗漱品。多用抽屉、活动层板</td></tr>
-<tr><td>中频区（下部）</td><td>0-650mm</td><td>每周/每月</td><td>较重较大物品：锅具、米面油、行李箱。配下拉拉篮或高深拉篮</td></tr>
-<tr><td>低频区（上部）</td><td>1850mm以上</td><td>换季/备用</td><td>轻质不常用物品：过季棉被、备用手纸、纪念品。吊柜深35-40cm</td></tr>
-</table>
-
-<h4>2. 动线规划</h4>
+<h4>1. 动线规划</h4>
 <p>收纳不是"把东西藏起来"，而是让<strong>取物 → 使用 → 归位</strong>三段式动线最短。收纳点设在动线节点上，而非角落。厨房按"取→洗→切→炒→盛"路径就近布置调料和厨具；洗衣动线需在洗衣机旁预留折叠台面。</p>
 
-<h4>3. 就近原则</h4>
-<p>物品存放在使用场景的最小半径内：咖啡豆放在咖啡机旁而非餐厅酒柜；浴盐放在淋浴区而非洗手台下；玄关收纳"出门五件事"——钥匙、包、外套、口罩、伞。设计时先分析每个空间的行为动线，再确定收纳位置。</p>
-
-<h4>4. 可调灵活原则</h4>
-<p>柜体两侧每隔30-50mm预留排孔，活动层板优先于固定层板。家庭成员变化、季节更替、物品增减，收纳系统应能灵活适应。固定层板一旦封死，后期无法补救。</p>
-
-<h4>5. 二八原则</h4>
-<p><strong>80%藏、20%露</strong>。杂乱的日用品、颜色不一的杂物藏进封闭柜门；书籍、摆件、常用钥匙盘进行展示。开放式收纳格深度建议30-35cm、高度30-40cm模数，过深积灰、过浅放不下。</p>
-
-<h4>6. 设计优先级</h4>
-<div class="flow">
-<div class="step emphasis">分析行为动线</div><span class="arrow">→</span>
-<div class="step emphasis">确定所需物品</div><span class="arrow">→</span>
-<div class="step emphasis">计算储藏量</div><span class="arrow">→</span>
-<div class="step emphasis">设计柜体尺寸</div>
-</div>
-<p style="margin-top:12px;">先定功能再定尺寸，而非先画柜子再往里塞东西。</p>
-</div>
-
-<!-- 二、人体工学 -->
-<div class="card">
-<h3 id="storage-ergo">二、收纳人体工学（650-1850三区模型）</h3>
-
-<h4>各空间高度分区统一模型</h4>
-<p>以下以身高160-170cm成年人为基准，各空间高度分区略有微调但遵循统一的三区逻辑：</p>
-
+<h4>2. 黄金分区与立面收纳</h4>
 <table class="material-table">
-<tr><th>空间</th><th>底面/低区（0-650mm）</th><th>中部核心区（650-1850mm）</th><th>高区（1850mm+）</th></tr>
-<tr><td>玄关</td><td>底面抬高250mm放拖鞋；低柜放长靴</td><td>650-1200mm台面+抽屉；1200-1500mm视线最佳</td><td>不常用鞋盒、储物箱</td></tr>
-<tr><td>厨房</td><td>600mm以下：锅、米桶、油桶（重物）</td><td>600-1800mm：常用碗筷、调料、小电器（核心区）</td><td>备用餐具、干货（轻质）</td></tr>
-<tr><td>卧室/衣柜</td><td>650mm以下：杂物箱、床单被套、过季衣物</td><td>650-1200mm抽屉/折叠区；1200-1850mm悬挂区（最佳）</td><td>被褥、靠垫、过季衣物</td></tr>
-<tr><td>卫生间</td><td>0-200mm：体重计、折叠脚凳；200-600mm：大瓶洗涤剂</td><td>650-1850mm：洗漱品、护肤品、化妆品、常用药品</td><td>备用手纸、备用化妆品（轻物）</td></tr>
+<tr><th>分区</th><th>高度范围</th><th>存放内容</th><th>设计要点</th></tr>
+<tr><td>高频区（黄金区）</td><td>距地 60-190cm</td><td>每日必用：碗碟、调料、内衣、常穿衣物</td><td>多用抽屉，少用隔板；抽屉拉出后一目了然</td></tr>
+<tr><td>中频区（弯腰区）</td><td>距地 60cm 以下</td><td>囤货储备：米面油、行李箱、换季被子、锅具</td><td>深柜（≥50cm）需配下拉拉篮或高深拉篮</td></tr>
+<tr><td>低频区（登高区）</td><td>距地 190cm 以上</td><td>一年以上才用：过季棉被、纪念册</td><td>吊柜深 35-40cm，避免过深碰头；柜门带碰珠防误开</td></tr>
 </table>
+<p style="margin-top:12px;">立面收纳是扩容关键：双层抽屉分隔件、吊柜升降拉篮、墙面洞洞板/横杆——每1㎡墙面利用好，等于多出0.3㎡收纳面积。</p>
 
-<h4>关键节点尺寸</h4>
+<h4>3. 就近收纳原则</h4>
+<p>物品存放在使用场景的最小半径内：咖啡豆放在咖啡机旁而非餐厅酒柜；浴盐放在淋浴区而非洗手台下；玄关收纳"出门五件事"——钥匙、包、外套、口罩、伞。</p>
+
+<h4>4. 二八原则</h4>
+<p><strong>80% 藏、20% 露</strong>。杂乱的日用品、颜色不一的杂物藏进封闭柜门；书籍、摆件、常用钥匙盘进行展示。开放式收纳格深度建议 30-35cm、高度 30-40cm 模数，过深积灰、过浅放不下。</p>
+</div>
+
+<!-- 人体工学 -->
+<div class="card">
+<h3>二、收纳人体工学（以身高 160-170cm 为基准）</h3>
+
 <table class="material-table">
-<tr><th>部位</th><th>推荐尺寸</th><th>说明</th></tr>
-<tr><td>厨房台面高度</td><td>750mm（可根据主厨身高微调）</td><td>台面操作区距地85-95cm为直立舒适区</td></tr>
-<tr><td>衣柜挂衣杆</td><td>距地1800-2000mm</td><td>距顶板≥50mm以防衣架卡住</td></tr>
-<tr><td>抽屉最高位置</td><td>≤1200mm</td><td>高于此高度不便取物</td></tr>
-<tr><td>1200mm线</td><td>视平线位置</td><td>存取最舒适高度</td></tr>
-<tr><td>1500mm线</td><td>经常/不常使用分界线</td><td>以上需抬手或登高</td></tr>
+<tr><th>区域</th><th>身体姿态</th><th>距地高度</th><th>适用物品</th><th>五金建议</th></tr>
+<tr><td>伸手可及区</td><td>直立/微抬臂</td><td>60-190cm</td><td>碗碟、调料、日常衣物</td><td>抽屉优先于隔板</td></tr>
+<tr><td>弯腰区</td><td>屈膝/深蹲</td><td>0-60cm</td><td>囤货、行李箱、锅具</td><td>下拉拉篮、高深拉篮</td></tr>
+<tr><td>登高区</td><td>登凳/高举</td><td>190-240cm</td><td>过季棉被、纪念品</td><td>升降拉篮、碰珠柜门</td></tr>
+<tr><td>台面操作区</td><td>直立操作</td><td>85-95cm</td><td>切菜、备餐、折叠衣物</td><td>根据主厨身高定制台面</td></tr>
 </table>
 
 <div class="highlight">
-  <strong>设计口诀：</strong>650以下放重物，650-1200放常用，1200-1850放当季，1850以上放换季。所有空间一以贯之，业主自己就会收纳。
+  <strong>关键尺寸：</strong>厨房过道双面橱柜时净宽 ≥ 90cm（推荐 100-120cm）；衣柜开门区预留 ≥ 60cm；衣柜内短衣区挂高 ≥ 90cm、长衣区 ≥ 130cm；鞋柜标准深 35cm（受限可做斜插 25cm）。
 </div>
 </div>
 
-<!-- 三、收纳材料学 -->
+<!-- 收纳材料学 -->
 <div class="card">
-<h3 id="storage-material">三、收纳材料学</h3>
+<h3>三、收纳材料学</h3>
 
 <h4>板材选择</h4>
 <table class="material-table">
-<tr><th>板材</th><th>优点</th><th>缺点</th><th>适用场景</th><th>参考价（投影面积）</th></tr>
-<tr><td>实木颗粒板</td><td>稳定性好、握钉力强、性价比高</td><td>防潮性一般，截面需封边</td><td>衣柜、书柜、电视柜</td><td class="price-low">600-900元/㎡</td></tr>
-<tr><td>多层实木板</td><td>防潮性极佳、强度高、握钉力强</td><td>易变形，不适合超长门板（>2.4m）</td><td>橱柜水槽柜、卫浴柜、阳台柜</td><td class="price-mid">800-1200元/㎡</td></tr>
-<tr><td>OSB（欧松板）</td><td>环保等级高（ENF级可达）、膨胀系数小</td><td>价格较高、表面纹理粗需饰面</td><td>对环保要求极高的柜体</td><td class="price-high">1000-1500元/㎡</td></tr>
-<tr><td>实木指接板</td><td>天然木纹、环保、可修复</td><td>价格高、易开裂变形、需定期养护</td><td>高端定制、展示柜、书柜</td><td class="price-high">1500-3000元/㎡</td></tr>
-</table>
-
-<h4>板材环保等级速查</h4>
-<table class="material-table">
-<tr><th>等级</th><th>甲醛释放量</th><th>适用建议</th></tr>
-<tr><td>E1级</td><td>≤0.124mg/m³</td><td>国标底线，出租房/短期使用</td></tr>
-<tr><td>E0级</td><td>≤0.050mg/m³</td><td>家庭装修推荐起步</td></tr>
-<tr><td>ENF级</td><td>≤0.025mg/m³</td><td>母婴房/儿童房首选</td></tr>
+<tr><th>板材</th><th>优点</th><th>缺点</th><th>适用场景</th></tr>
+<tr><td>实木颗粒板</td><td>稳定性好、握钉力强、性价比高</td><td>防潮性一般，截面需封边</td><td>衣柜、书柜、电视柜</td></tr>
+<tr><td>多层实木板</td><td>防潮性极佳、强度高</td><td>易变形，不适合超长门板</td><td>橱柜水槽柜、卫浴柜、阳台柜</td></tr>
+<tr><td>OSB（欧松板）</td><td>环保等级高、膨胀系数小</td><td>价格较高、表面纹理粗</td><td>对环保要求极高的柜体</td></tr>
 </table>
 
 <h4>五金——收纳的灵魂</h4>
 <table class="material-table">
 <tr><th>五金类型</th><th>选型要点</th><th>推荐场景</th></tr>
 <tr><td>铰链</td><td>必须带阻尼（防夹手+降噪）；转角柜用大角度铰链（170°开启）</td><td>所有柜门</td></tr>
-<tr><td>抽屉滑轨</td><td>托底式视觉效果最好、承重高（≥30kg）；必须全拉出型</td><td>厨房地柜、衣柜抽屉</td></tr>
-<tr><td>转角飞碟/小怪物</td><td>解决L型/U型厨房转角死角，充分利用盲区</td><td>厨房转角柜</td></tr>
-<tr><td>高身拉篮</td><td>利用高柜纵深存放食品调料，抽拉顺畅</td><td>厨房高柜、零食柜</td></tr>
-<tr><td>升降拉篮</td><td>解决吊柜过高够不着的问题，下拉式最实用</td><td>厨房吊柜</td></tr>
-<tr><td>裤架</td><td>可拉伸式，同时挂裤子/围巾/皮带，省空间</td><td>衣柜</td></tr>
+<tr><td>抽屉滑轨</td><td>托底式视觉效果最好、承重高；必须全拉出型</td><td>厨房地柜、衣柜抽屉</td></tr>
+<tr><td>转角飞碟/小怪物</td><td>解决 L 型厨房转角死角</td><td>厨房转角柜</td></tr>
+<tr><td>高身拉篮</td><td>利用高柜纵深存放食品调料</td><td>厨房高柜、零食柜</td></tr>
+<tr><td>升降拉篮</td><td>解决吊柜过高够不着的问题</td><td>厨房吊柜</td></tr>
 </table>
 
 <h4>收纳容器材质</h4>
 <table class="material-table">
 <tr><th>材质</th><th>特点</th><th>适用场景</th></tr>
-<tr><td>PP/PET塑料</td><td>透明、防水、轻便、易清洗</td><td>冰箱内、卫浴、干货存储</td></tr>
+<tr><td>PP/PET 塑料</td><td>透明、防水、轻便、易清洗</td><td>冰箱内、卫浴、干货存储</td></tr>
 <tr><td>无纺布/牛津布</td><td>透气、可折叠、成本低</td><td>衣柜换季衣物、百纳箱</td></tr>
 <tr><td>亚克力</td><td>颜值高、通透感强、硬度高但易碎</td><td>桌面收纳、展示型收纳</td></tr>
-<tr><td>藤编/竹编</td><td>自然透气、美观、环保</td><td>客厅收纳篮、脏衣篮</td></tr>
 </table>
-
-<div class="highlight">
-  <strong>南宁本地建议：</strong>回南天潮湿，厨房和卫浴柜体必须选用多层实木板，严禁用颗粒板。铰链和滑轨选用不锈钢或冷轧钢镀镍材质，防锈是关键。抽屉滑轨预算不要省——一套好滑轨用10年，差滑轨3年就卡顿。
-</div>
 </div>
 
-<!-- 四、玄关收纳 -->
+<!-- 各空间深度方案 -->
 <div class="card">
-<h3 id="storage-entry">四、玄关收纳</h3>
+<h3>四、玄关收纳</h3>
 
-<h4>鞋柜核心尺寸</h4>
+<h4>鞋柜尺寸规范</h4>
 <table class="material-table">
-<tr><th>项目</th><th>精确尺寸</th><th>说明</th></tr>
-<tr><td>鞋柜净深</td><td>330-380mm</td><td>不含背板及门扇，满足绝大多数鞋型</td></tr>
-<tr><td>鞋柜总深</td><td>350-400mm</td><td>含背板+门扇厚度</td></tr>
-<tr><td>靠鞋柜墙垛</td><td>≥400mm（宜450mm）</td><td>含门套线50mm，否则门套与鞋柜冲突</td></tr>
-<tr><td>鞋柜底面抬高</td><td>250mm</td><td>放置常用拖鞋/常用鞋，可站立直接穿</td></tr>
-<tr><td>架空区深度</td><td>约150mm</td><td>鞋柜下方内缩空间</td></tr>
-</table>
-
-<h4>鞋类储藏格高</h4>
-<table class="material-table">
-<tr><th>鞋类</th><th>所需格高</th><th>建议</th></tr>
-<tr><td>凉拖鞋（平放）</td><td>100mm</td><td>抬高区下方/底层</td></tr>
-<tr><td>平跟鞋/运动鞋</td><td>150mm</td><td>最常用层，多做几格</td></tr>
-<tr><td>短靴</td><td>≥180mm</td><td>设2-3格活动层板</td></tr>
-<tr><td>长靴</td><td>≥400mm（宜450-600mm）</td><td>必须预留，女性家庭刚需</td></tr>
-<tr><td>鞋盒</td><td>150mm/格</td><td>高区存放不常用鞋</td></tr>
-</table>
-
-<h4>玄关人体工学高度分区</h4>
-<table class="material-table">
-<tr><th>区域</th><th>高度范围</th><th>使用建议</th></tr>
-<tr><td>底面抬高区</td><td>250mm以下</td><td>拖鞋、常用鞋，可站立直接穿，内置灯光</td></tr>
-<tr><td>低部柜</td><td>250-650mm</td><td>弯腰/下蹲存取，设长靴等大格</td></tr>
-<tr><td>中下部</td><td>650-1200mm</td><td>台面区（900-1200mm），适合抽屉放小件</td></tr>
-<tr><td>中上部</td><td>1200-1500mm</td><td>视线最佳，方便存取常用鞋</td></tr>
-<tr><td>中高部</td><td>1500-1850mm</td><td>存取鞋盒，平行或略高于视线</td></tr>
-<tr><td>高部柜</td><td>1850mm以上</td><td>不常用物品，储物箱/过季鞋盒</td></tr>
-</table>
-
-<h4>玄关分类布局</h4>
-<table class="material-table">
-<tr><th>类型</th><th>适用条件</th><th>布局要点</th></tr>
-<tr><td>一字式（进深面）</td><td>净宽小的玄关</td><td>坐凳和鞋柜并排放置在同侧墙面</td></tr>
-<tr><td>一字式（开间面）</td><td>进深较大，入户即客厅</td><td>鞋柜作为对景，避免客厅一览无余</td></tr>
-<tr><td>双排式（Ⅱ型）</td><td>净宽大的玄关</td><td>两侧墙面，一侧鞋柜一侧坐凳+挂衣</td></tr>
-<tr><td>L式</td><td>入户门对景有墙</td><td>鞋柜靠侧墙，正面留空或设端景</td></tr>
+<tr><th>鞋型</th><th>产品实际尺寸</th><th>设计预留</th></tr>
+<tr><td>运动鞋/平底鞋</td><td>长 25-30cm，高 10-12cm</td><td>层板间隔 15-18cm，深 35cm（标准）</td></tr>
+<tr><td>高跟鞋/短靴</td><td>高 15-20cm</td><td>层板间隔 20-25cm，活动层板必做</td></tr>
+<tr><td>长靴</td><td>靴筒高 40-50cm</td><td>专用靴子区净高 45-50cm，或翻转鞋架</td></tr>
+<tr><td>拖鞋</td><td>高 5-8cm</td><td>层板间隔 10-12cm</td></tr>
 </table>
 
 <h4>玄关配套尺寸</h4>
 <ul>
-  <li><strong>换鞋凳</strong>：嵌入式深35-40cm，座高45cm，长度≥50cm；老人家庭必须配备</li>
-  <li><strong>挂衣区</strong>：外套/夹克需800-1000mm高，大衣/风衣需1100-1500mm高</li>
-  <li><strong>中部镂空</strong>：距地100-110cm处留空30-40cm，深12-15cm放钥匙/口罩/消毒液</li>
-  <li><strong>雨伞</strong>：长柄伞需100cm高通柜；折叠伞抽屉净高12-15cm</li>
-  <li><strong>穿衣镜</strong>：长度≥1m，视距约1m，顶部略高于人身高，避开光源直射方向</li>
+  <li><strong>换鞋凳</strong>：嵌入式深 35-40cm，座高 45cm，长度 ≥ 50cm</li>
+  <li><strong>挂衣区</strong>：挂衣杆距地 170-180cm，距顶板 ≥ 5cm（防衣架卡住）</li>
+  <li><strong>底部悬空</strong>：抬高 15-20cm 放常穿鞋；≥ 20cm 可塞 20 寸行李箱</li>
+  <li><strong>中部镂空</strong>：距地 100-110cm 处留空 30-40cm，深 12-15cm 放钥匙/口罩</li>
+  <li><strong>雨伞</strong>：长柄伞需 100cm 高通柜；折叠伞抽屉净高 12-15cm</li>
 </ul>
-
-<h4>关键设计要点</h4>
-<ul>
-  <li><strong>鞋柜优先</strong>：玄关必须优先考虑放置鞋柜和坐凳，再布置其他功能</li>
-  <li><strong>洁污分区</strong>：换鞋区与室内地面材料不同，防滑耐污高硬度</li>
-  <li><strong>通风</strong>：背板/底板留通风孔，入墙鞋柜用百叶门扇</li>
-  <li><strong>隔板灵活</strong>：柜体两侧每隔30mm预留固定孔，活动隔板可调</li>
-  <li><strong>照明</strong>：架空区内置灯光，避免鞋柜处于阴影</li>
-  <li><strong>门扇</strong>：平开门400-500mm宽；低柜拉手靠上，方便站立开启</li>
-</ul>
-
-<div class="highlight">
-  <strong>常见错误：</strong>鞋柜底面不抬高→常用鞋堆门口；忽略长靴→靴筒折弯损坏；穿衣镜位置背光→根本看不清；入户门居中→无法布置鞋柜；墙垛不足400mm→门套冲突装不上。
-</div>
 </div>
 
-<!-- 五、厨房收纳 -->
 <div class="card">
-<h3 id="storage-kitchen">五、厨房收纳</h3>
+<h3>五、厨房收纳</h3>
 
-<h4>核心尺寸数据</h4>
+<h4>锅具尺寸与预留</h4>
 <table class="material-table">
-<tr><th>项目</th><th>精确尺寸</th><th>说明</th></tr>
-<tr><td>操作台（低柜）进深</td><td>600mm</td><td>不低于550mm，有条件加宽到650mm</td></tr>
-<tr><td>吊柜进深</td><td>250-280mm</td><td>不宜过深以防碰头；台面700mm时可适当增加</td></tr>
-<tr><td>操作台高度</td><td>750mm（可按身高微调）</td><td>身高170cm对应85-90cm台面更舒适</td></tr>
-<tr><td>吊柜底面标高</td><td>≥1300mm</td><td>不低于台面；进深600mm时需升高防碰头</td></tr>
-<tr><td>吊柜门宽度</td><td>350-400mm</td><td>过大（如900mm）开启时碰头</td></tr>
-<tr><td>中部柜高度范围</td><td>600-1800mm</td><td>存取最方便区域，优先布置常用物品</td></tr>
+<tr><th>锅型</th><th>常见直径</th><th>含盖高度</th><th>抽屉净高</th></tr>
+<tr><td>炒锅</td><td>28-34cm</td><td>18-22cm</td><td>20-25cm（深抽屉）</td></tr>
+<tr><td>汤锅</td><td>20-24cm</td><td>20-25cm</td><td>20-25cm</td></tr>
+<tr><td>平底锅</td><td>24-28cm</td><td>5-8cm</td><td>15-20cm（浅抽屉）</td></tr>
 </table>
 
-<h4>操作三角与动线</h4>
-<p><strong>冰箱 → 水槽 → 炉灶</strong>三者之间的连线构成"工作三角"。三角总周长宜在3600-6600mm之间，三边均不宜小于1200mm或大于2700mm。动线顺序：取（冰箱）→洗（水槽）→切（备餐台）→炒（炉灶）→盛（出餐区）。</p>
-
-<h4>物品分区原则</h4>
-<table class="material-table">
-<tr><th>区域</th><th>存放物品</th><th>原理</th></tr>
-<tr><td>炉灶附近</td><td>炒锅、调料、锅铲、锅盖</td><td>右手拿铲左手取调料，操作半径≤60cm</td></tr>
-<tr><td>水池附近</td><td>碗筷、洗剂、抹布、砧板、沥水架</td><td>就近清洁操作，通风防潮</td></tr>
-<tr><td>水池与炉灶间</td><td>常用餐具、调味篮</td><td>兼顾清洁和烹饪，双动线交汇</td></tr>
-<tr><td>吊柜</td><td>干货、备用餐具、密封罐（轻质物品）</td><td>上方取物不便，放轻物</td></tr>
-<tr><td>低柜</td><td>锅具、米桶、油桶、粮食（重物）</td><td>重物在下方省力安全</td></tr>
-<tr><td>转角</td><td>旋转架/对开门利用</td><td>避免L型/U型厨房死角</td></tr>
-</table>
-
-<h4>抽屉分隔建议</h4>
-<table class="material-table">
-<tr><th>抽屉层</th><th>高度</th><th>宽度</th><th>存放内容</th></tr>
-<tr><td>第一层（浅）</td><td>100-150mm</td><td>450-900mm</td><td>餐具、筷子、保鲜膜、姜蒜</td></tr>
-<tr><td>第二层（中）</td><td>200-250mm</td><td>450-900mm</td><td>碗碟、杯具、调料瓶</td></tr>
-<tr><td>第三层（深）</td><td>250-300mm</td><td>600-900mm</td><td>锅具、米桶、油桶</td></tr>
-</table>
-
-<h4>锅具与电器尺寸</h4>
+<h4>碗碟与调料</h4>
 <table class="material-table">
 <tr><th>物品</th><th>常见尺寸</th><th>设计预留</th></tr>
-<tr><td>炒锅（28-34cm）</td><td>含盖高18-22cm</td><td>深抽屉净高20-25cm</td></tr>
-<tr><td>平底锅（24-28cm）</td><td>高5-8cm</td><td>浅抽屉净高15-20cm</td></tr>
-<tr><td>5L油桶</td><td>高35-40cm</td><td>柜内净高≥40cm竖放</td></tr>
-<tr><td>15kg米桶</td><td>约30×20×45cm</td><td>地柜抽屉净高≥45cm</td></tr>
-<tr><td>电饭煲4-5L</td><td>28-32×28-32×25-28cm</td><td>高柜层净高30cm+蒸汽空间</td></tr>
-<tr><td>微波炉20L</td><td>45×35×25cm</td><td>净高30cm+四周散热5cm</td></tr>
+<tr><td>4.5寸碗</td><td>直径 11.5cm，高 5.5cm</td><td rowspan="3">碗碟拉篮 15-20cm 宽标准模块</td></tr>
+<tr><td>8寸盘</td><td>直径 20.3cm</td></tr>
+<tr><td>10寸盘</td><td>直径 25.4cm</td></tr>
+<tr><td>调料瓶</td><td>高 20-26cm（大瓶 30cm）</td><td>墙面调料架层高 25-30cm</td></tr>
+<tr><td>5L油桶</td><td>高 35-40cm</td><td>柜内净高 ≥ 40cm 才能竖放</td></tr>
+<tr><td>15kg米桶</td><td>约 30×20×45cm</td><td>地柜抽屉净高 ≥ 45cm</td></tr>
 </table>
 
-<h4>关键设计要点</h4>
-<ul>
-  <li><strong>地柜抽屉优于开门柜</strong>：弯腰翻找是最差体验，抽屉拉出一目了然</li>
-  <li><strong>窄拉屉</strong>：150-300mm宽，放调料瓶、砧板等窄长物品</li>
-  <li><strong>转角处理</strong>：L型/U型转角用旋转架或对开门，切忌留死角</li>
-  <li><strong>水池下方</strong>：不推荐内置垃圾桶（异味污染），可用通高抽屉或U型抽屉</li>
-  <li><strong>油烟机两侧</strong>：可做吊柜充分利用，视觉整齐</li>
-</ul>
-
-<div class="highlight">
-  <strong>常见错误：</strong>操作台进深不足550mm→操作局促；吊柜底面过低→碰头和视线遮挡；吊柜门过宽→开启时碰头；忽视中部柜→台面堆满物品；水池下内置垃圾桶→异味难忍。
-</div>
-</div>
-
-<!-- 六、餐边柜收纳 -->
-<div class="card">
-<h3 id="storage-sideboard">六、餐边柜收纳</h3>
-
-<h4>电器与物品尺寸表</h4>
+<h4>小家电尺寸</h4>
 <table class="material-table">
-<tr><th>物品</th><th>常见尺寸（cm）</th><th>设计预留</th></tr>
-<tr><td>胶囊咖啡机</td><td>约20×30×25</td><td>台面宽40cm，深40cm</td></tr>
-<tr><td>全自动咖啡机</td><td>约30×40×40</td><td>台面宽50cm，深45cm</td></tr>
-<tr><td>即热饮水机</td><td>台上式约20×40×40</td><td>预留宽45cm，高45cm</td></tr>
-<tr><td>保温杯</td><td>高18-22</td><td>杯架层高20-25cm</td></tr>
-<tr><td>红酒杯（倒挂）</td><td>柄长10-15</td><td>展示柜层高30-35cm</td></tr>
-<tr><td>标准红酒瓶</td><td>高30-33，直径7-8</td><td>红酒格10×10cm；斜放格深35-40cm</td></tr>
-<tr><td>茶叶罐</td><td>直径8-10，高15-20</td><td>抽屉分隔宽10-12cm，高15-20cm</td></tr>
-<tr><td>零食/干货密封罐</td><td>直径10-15，高15-25</td><td>深抽屉25-30cm，带分隔件</td></tr>
+<tr><th>电器</th><th>常见尺寸（长×宽×高）</th><th>嵌入预留</th></tr>
+<tr><td>电饭煲 4-5L</td><td>28-32 × 28-32 × 25-28cm</td><td>高柜层净高 30cm</td></tr>
+<tr><td>空气炸锅</td><td>30-35 × 30-35 × 30-35cm</td><td>高柜层净高 35cm</td></tr>
+<tr><td>微波炉 20L</td><td>45×35×25cm</td><td>净高 30cm + 四周散热 5cm</td></tr>
+<tr><td>烤箱嵌入</td><td>标准 60cm 宽模块</td><td>按橱柜标准 60cm 宽，高度按型号</td></tr>
 </table>
 
-<h4>餐边柜设计要点</h4>
 <ul>
-  <li><strong>黄金深度</strong>：40-45cm。35cm放不下咖啡机，50cm以上占用过道</li>
-  <li><strong>台面连续操作区</strong>：建议留80-100cm宽连续台面，用于冲咖啡、切水果、摆放茶具</li>
-  <li><strong>插座预留</strong>：台面以上15-20cm处预留3-4个五孔插座（咖啡机+饮水机+充电+备用）</li>
-  <li><strong>上柜下柜分区</strong>：上柜玻璃门展示茶具酒杯，下柜封闭门收纳零食干货</li>
-  <li><strong>中空区</strong>：距台面50-60cm处留中空区放饮水机和咖啡机，方便操作</li>
-  <li><strong>抽屉优于开门柜</strong>：零食、茶包、药品用小抽屉分隔存放，一眼找到</li>
+  <li><strong>地柜抽屉优于开门柜</strong>：第一层浅抽屉（15-20cm）放餐具，第二层深抽屉放锅具</li>
+  <li><strong>转角利用</strong>：转角飞碟/小怪物五金，避免 L 型厨房死角</li>
+  <li><strong>吊柜</strong>：上半存杂粮密封罐，下半放常用杯碟；吊柜深 35-40cm</li>
 </ul>
+</div>
+
+<div class="card">
+<h3>六、餐边柜收纳</h3>
+
+<table class="material-table">
+<tr><th>物品</th><th>常见尺寸</th><th>设计预留</th></tr>
+<tr><td>胶囊咖啡机</td><td>约 20×30×25cm</td><td>台面宽 40cm，深 40cm</td></tr>
+<tr><td>全自动咖啡机</td><td>约 30×40×40cm</td><td>台面宽 50cm，深 45cm</td></tr>
+<tr><td>即热饮水机</td><td>台上式约 20×40×40cm</td><td>预留宽 45cm，高 45cm</td></tr>
+<tr><td>保温杯</td><td>高 18-22cm</td><td>杯架层高 20-25cm</td></tr>
+<tr><td>红酒杯（倒挂）</td><td>柄长 10-15cm</td><td>展示柜层高 30-35cm</td></tr>
+<tr><td>标准红酒瓶</td><td>高 30-33cm，直径 7-8cm</td><td>红酒格 10×10cm；斜放格深 35-40cm</td></tr>
+<tr><td>茶叶罐</td><td>直径 8-10cm，高 15-20cm</td><td>抽屉分隔宽 10-12cm，高 15-20cm</td></tr>
+</table>
 
 <div class="highlight">
-  <strong>南宁本地经验：</strong>餐边柜是最容易被低估的收纳空间。很多业主装修时不重视，入住后餐桌堆满水杯、零食、药品。建议餐边柜台面至少1.2m宽，带2-3个抽屉，利用率远超想象。
+  <strong>餐边柜黄金深度：</strong>40-45cm。35cm 放不下咖啡机，50cm 以上占用过道。台面操作区建议留 80-100cm 宽连续台面。
 </div>
 </div>
 
-<!-- 七、电视柜收纳 -->
 <div class="card">
-<h3 id="storage-tv">七、电视柜 / 起居室收纳</h3>
+<h3>七、电视柜 / 起居室收纳</h3>
 
 <h4>影音设备尺寸</h4>
 <table class="material-table">
 <tr><th>设备</th><th>常见尺寸（cm）</th><th>设计预留</th></tr>
-<tr><td>机顶盒</td><td>30×20×5</td><td rowspan="2">设备格深40-45cm，高15-20cm；背面留10cm理线空间</td></tr>
-<tr><td>路由器</td><td>25×15×5（含天线20cm高）</td></tr>
-<tr><td>PlayStation 5</td><td>39×10×26（立式）</td><td>设备格高≥30cm，深≥45cm</td></tr>
-<tr><td>扫地机器人基站</td><td>宽40-50，深40-50，高50-60</td><td>预留宽55-60cm，高70-80cm，加进出水+电源</td></tr>
-<tr><td>Soundbar回音壁</td><td>长80-120，深10-15，高5-8</td><td>电视下方预留长≥100cm凹位</td></tr>
+<tr><td>机顶盒</td><td>30×20×5</td><td rowspan="2">设备格深 40-45cm，高 15-20cm；背面留 10cm 理线</td></tr>
+<tr><td>路由器</td><td>25×15×5（含天线 20cm 高）</td></tr>
+<tr><td>PlayStation 5</td><td>39×10×26（立式）</td><td>设备格高 ≥ 30cm，深 ≥ 45cm</td></tr>
+<tr><td>扫地机器人基站</td><td>宽 40-50，深 40-50，高 50-60</td><td>预留宽 55-60cm，高 70-80cm，加进出水+电源</td></tr>
 </table>
 
 <h4>书籍尺寸</h4>
 <table class="material-table">
 <tr><th>书型</th><th>尺寸（cm）</th><th>层板预留</th></tr>
-<tr><td>A4/大16开画册</td><td>29.7×21，厚2-5</td><td>层高32-35cm</td></tr>
-<tr><td>32开常规书</td><td>20.3×14，厚1.5-3</td><td>层高25-28cm</td></tr>
-<tr><td>DVD/蓝光盒</td><td>19×13.5，厚1.5</td><td>格位高19.5cm，深15cm</td></tr>
+<tr><td>A4 / 大16开画册</td><td>29.7×21，厚 2-5</td><td>层高 32-35cm</td></tr>
+<tr><td>32开常规书</td><td>20.3×14，厚 1.5-3</td><td>层高 25-28cm</td></tr>
+<tr><td>DVD / 蓝光盒</td><td>19×13.5，厚 1.5</td><td>格位高 19.5cm，深 15cm</td></tr>
 </table>
 
-<h4>满墙电视柜设计要点</h4>
 <ul>
-  <li><strong>柜体深度</strong>：35cm覆盖绝大多数物品（书籍、杂物、设备），超过40cm显得压抑</li>
-  <li><strong>开放格比例</strong>：≤20%，深30-35cm；太高积灰，太深物品陷进去不好拿</li>
-  <li><strong>穿线孔</strong>：每格预留直径5cm穿线孔，设备格背部留散热通道</li>
-  <li><strong>电视区</strong>：预留电视机尺寸+四周5cm散热空间；电视背后预埋50管走线</li>
-  <li><strong>底部悬空</strong>：抬高15-20cm，方便扫地机器人通行，视觉轻盈</li>
-  <li><strong>灯光</strong>：开放格内嵌灯带（3000K），提升展示效果</li>
+  <li><strong>电视满墙柜深</strong>：35cm（覆盖绝大多数物品）</li>
+  <li><strong>开放格</strong>：≤ 20%，深 30-35cm，太高积灰太深陷进去</li>
+  <li><strong>穿线孔</strong>：每格预留直径 5cm 穿线孔，设备格背部留散热通道</li>
 </ul>
-
-<div class="highlight">
-  <strong>设计建议：</strong>满墙电视柜是小户型收纳利器，35cm深×整面墙=十几个行李箱的收纳量。但注意客厅开间小于3.3m不建议做满墙柜，会严重压缩空间感。开间3.6m以上最适合。
-</div>
 </div>
 
-<!-- 八、衣柜细分 -->
 <div class="card">
-<h3 id="storage-wardrobe">八、衣柜细分</h3>
+<h3>八、衣柜细分</h3>
 
-<h4>衣柜核心尺寸</h4>
+<h4>衣物折叠与挂放尺寸</h4>
 <table class="material-table">
-<tr><th>项目</th><th>尺寸</th><th>说明</th></tr>
-<tr><td>普通衣柜深度</td><td>600mm</td><td>外开门式，衣物不蹭门板</td></tr>
-<tr><td>推拉门衣柜深度</td><td>可略减至550mm</td><td>衣物可借用走道空间</td></tr>
-<tr><td>开敞式衣柜深度</td><td>≥450mm</td><td>悬挂借用走道</td></tr>
-<tr><td>衣柜门扇宽度</td><td>400-500mm</td><td>保证站立空间</td></tr>
-<tr><td>床与衣柜间距</td><td>≥600mm</td><td>通道宽度，开门不碰床</td></tr>
-<tr><td>衣帽间通道宽度</td><td>≥900mm</td><td>两侧高柜时</td></tr>
+<tr><th>衣物类型</th><th>折叠后尺寸（cm）</th><th>挂放高度预留</th></tr>
+<tr><td>衬衫/T恤（近藤式）</td><td>20×15×3（A4大小）</td><td>短衣区 ≥ 90cm</td></tr>
+<tr><td>裤子叠放</td><td>30×20×5</td><td>裤架区 70-80cm</td></tr>
+<tr><td>长外套/连衣裙</td><td>—</td><td>长衣区 ≥ 130cm</td></tr>
+<tr><td>内衣收纳格</td><td>单格 15×15×10</td><td>抽屉净高 10-15cm</td></tr>
+<tr><td>袜子收纳格</td><td>单格 10×10×8</td><td>抽屉净高 10-15cm</td></tr>
 </table>
 
-<h4>悬挂空间尺寸</h4>
+<h4>大件收纳尺寸</h4>
 <table class="material-table">
-<tr><th>衣物类型</th><th>所需高度</th><th>说明</th></tr>
-<tr><td>短上衣/衬衣</td><td>700-900mm</td><td>最常用，占悬挂区最大比例</td></tr>
-<tr><td>中长外套/西服</td><td>800-1100mm</td><td>男装主要需求</td></tr>
-<tr><td>长外套/连衣裙</td><td>1100-1500mm</td><td>女装刚需，至少保留一格</td></tr>
-<tr><td>裤子（对折悬挂）</td><td>600-800mm</td><td>裤架可节省约40%空间</td></tr>
+<tr><th>物品</th><th>常见尺寸（cm）</th><th>预留</th></tr>
+<tr><td>真空压缩夏被</td><td>50×30×15</td><td rowspan="2">顶柜净高 40-50cm，深 55-60cm</td></tr>
+<tr><td>羽绒被（未压缩）</td><td>60×40×30</td></tr>
+<tr><td>20寸行李箱</td><td>50×34×20</td><td rowspan="2">高柜预留宽 60cm，深 55cm，高 80cm</td></tr>
+<tr><td>28寸行李箱</td><td>70×50×30</td></tr>
 </table>
 
-<h4>人体工学高度分区（衣柜专用）</h4>
-<table class="material-table">
-<tr><th>区域</th><th>高度</th><th>适宜存放</th><th>舒适度</th></tr>
-<tr><td>低部柜</td><td>650mm以下</td><td>杂物箱、床单被套、过季衣物</td><td>需弯腰</td></tr>
-<tr><td>中部柜下部</td><td>650-1200mm</td><td>抽屉、折叠衣物</td><td>较舒适</td></tr>
-<tr><td>中部柜上部</td><td>1200-1850mm</td><td>当季衣物、包、帽子（挂衣区核心）</td><td>最佳</td></tr>
-<tr><td>高部柜</td><td>1850mm以上</td><td>被褥、靠垫、毛绒、过季衣物</td><td>需登高</td></tr>
-</table>
-
-<h4>抽屉类型选择</h4>
-<table class="material-table">
-<tr><th>抽屉类型</th><th>高度</th><th>用途</th><th>推荐宽度</th></tr>
-<tr><td>浅抽屉</td><td>120-150mm</td><td>袜子、内衣、领带、丝巾</td><td>800mm（可平放3件衬衫）</td></tr>
-<tr><td>中抽屉</td><td>200-250mm</td><td>叠放毛衣、T恤、家居服</td><td>800-900mm</td></tr>
-<tr><td>深抽屉</td><td>250mm+</td><td>堆放袜子、运动服等可挤压物品</td><td>600-900mm</td></tr>
-</table>
-
-<h4>衣柜功能块标准配置</h4>
-<table class="material-table">
-<tr><th>功能块</th><th>位置</th><th>形式</th><th>尺寸建议</th></tr>
-<tr><td>被褥/枕头</td><td>高部柜（1850+）</td><td>大格，左右连通</td><td>净高400-500mm</td></tr>
-<tr><td>行李箱/储物箱</td><td>低部柜</td><td>深抽屉或大格</td><td>净高≥800mm</td></tr>
-<tr><td>短衣悬挂</td><td>中部柜700-1000mm</td><td>挂衣杆</td><td>占衣柜宽度的40-50%</td></tr>
-<tr><td>长衣悬挂</td><td>中部柜1100-1500mm</td><td>挂衣杆</td><td>占衣柜宽度的20-30%</td></tr>
-<tr><td>折叠衣物</td><td>中部柜1200mm以下</td><td>格/抽屉</td><td>每格宽400-500mm</td></tr>
-<tr><td>包/帽子</td><td>中部柜上段</td><td>格300-400mm</td><td>活动层板可调</td></tr>
-</table>
-
-<h4>日本衣柜参考</h4>
 <ul>
-  <li><strong>600mm深储藏间</strong>：储物箱+隔板+短衣+长衣+抽屉+裤架，正面存取</li>
-  <li><strong>900mm深储藏间</strong>：可进入式，前后分区。前600mm悬挂衣物，后部添加隔板存放被子/行李箱</li>
-  <li><strong>可拉伸挂衣杆</strong>：窄于600mm的空间也能实现挂衣功能</li>
+  <li><strong>挂衣杆高度</strong>：距地 180-200cm；挂衣杆距顶板 ≥ 5cm</li>
+  <li><strong>抽屉位置</strong>：中段（距地 60-120cm）适合所有家庭成员</li>
+  <li><strong>高箱床</strong>：箱体高 ≥ 35cm 才有实用收纳容量</li>
 </ul>
-
-<h4>关键设计要点</h4>
-<ul>
-  <li><strong>隔板可调</strong>：柜体两侧每隔50mm预留排孔，活动层板适应换季变化</li>
-  <li><strong>多用抽屉</strong>：底部优先用深抽屉（防尘+方便观察），透明抽屉不需拉开即见内容</li>
-  <li><strong>裤架</strong>：可挂裤子/围巾/皮带，比折叠省40%空间</li>
-  <li><strong>转角处理</strong>：连续悬挂/转角柜格，避免衣柜转角形成"黑空间"</li>
-  <li><strong>衣帽间开门方向</strong>：1800×2400端部开门比1600×2700效率高近一倍</li>
-</ul>
-
-<div class="highlight">
-  <strong>常见错误：</strong>抽屉设在1200mm以上→取物不便；衣柜转角形成"黑空间"无法使用；隔板固定不可调→无法适应衣物变化；衣柜与床间距不足600mm→开门碰撞。
-</div>
 </div>
 
-<!-- 九、化妆桌收纳 -->
 <div class="card">
-<h3 id="storage-vanity">九、化妆桌收纳</h3>
+<h3>九、化妆桌收纳</h3>
 
 <table class="material-table">
 <tr><th>物品</th><th>常见尺寸（cm）</th><th>设计预留</th></tr>
-<tr><td>化妆水/精华瓶</td><td>高10-15</td><td>桌面收纳盒层高15-20cm</td></tr>
-<tr><td>面霜/香水</td><td>高5-8</td><td>抽屉第一层高10-15cm</td></tr>
-<tr><td>口红</td><td>直径2，长7-8</td><td>收纳格宽3-4cm，亚克力盒深10-15cm</td></tr>
-<tr><td>眼影盘（标准）</td><td>15×8×1.5</td><td>抽屉分隔宽≥16cm</td></tr>
-<tr><td>化妆刷（散粉/粉底）</td><td>长15-20</td><td>刷筒深12-15cm，分开存放避免混色</td></tr>
-<tr><td>吹风机（带风嘴）</td><td>长25-30，直径8-10</td><td>侧挂架预留15×15cm墙面；抽屉预留直径8-10cm圆孔走线</td></tr>
-<tr><td>卷发棒</td><td>长30-35</td><td>耐热收纳格≥35cm长，侧边散热</td></tr>
-<tr><td>LED台式化妆镜</td><td>底座直径15-20，总高40-50</td><td>台面预留20×20cm</td></tr>
-<tr><td>美容仪/洁面仪</td><td>约10×5×3</td><td>抽屉设独立分隔格，远离水源</td></tr>
+<tr><td>化妆水/精华瓶</td><td>高 10-15</td><td>桌面收纳盒层高 15-20cm</td></tr>
+<tr><td>面霜/香水</td><td>高 5-8</td><td>抽屉第一层高 10-15cm</td></tr>
+<tr><td>口红</td><td>直径 2，长 7-8</td><td>收纳格宽 3-4cm，亚克力盒深 10-15cm</td></tr>
+<tr><td>眼影盘（标准）</td><td>15×8×1.5</td><td>抽屉分隔宽 ≥ 16cm</td></tr>
+<tr><td>化妆刷（散粉/粉底）</td><td>长 15-20</td><td>刷筒深 12-15cm</td></tr>
+<tr><td>吹风机（带风嘴）</td><td>长 25-30，直径 8-10</td><td>侧挂架预留 15×15cm 墙面；抽屉预留直径 8-10cm 圆孔</td></tr>
+<tr><td>卷发棒</td><td>长 30-35</td><td>耐热收纳格 ≥ 35cm 长</td></tr>
+<tr><td>LED台式化妆镜</td><td>底座直径 15-20，总高 40-50</td><td>台面预留 20×20cm</td></tr>
 </table>
 
-<h4>化妆桌设计要点</h4>
-<ul>
-  <li><strong>桌深</strong>：45-50cm（可放手臂+镜子）；若兼书桌则60cm</li>
-  <li><strong>抽屉做浅层</strong>：第一层10-15cm放首饰和小件；建议做透明亚克力或玻璃面板，一眼找到</li>
-  <li><strong>台面插座</strong>：预留2个五孔插座（吹风机+美容仪），距台面15cm</li>
-  <li><strong>灯光</strong>：镜子两侧装灯带（4000K自然白），消除面部阴影；避免顶部单光源</li>
-  <li><strong>收纳分区</strong>：高频（每天用）放台面收纳盒，中频（每周用）放第一层抽屉，低频（偶尔用）放深抽屉</li>
-  <li><strong>吹风机专属位</strong>：侧柜或抽屉预留插座+散热空间，用完即收，台面清爽</li>
-</ul>
-
 <div class="highlight">
-  <strong>化妆桌黄金布局：</strong>桌宽80-100cm、深45-50cm、配3层抽屉（浅-中-深）。镜子两侧加灯带，台面只留每天用的3-5件，其余全部进抽屉。这样的化妆桌用3年都不会乱。
+  <strong>化妆桌设计要点：</strong>桌深 45-50cm（可放手臂+镜子）；抽屉做浅层（10-15cm）放首饰和小件；第一层抽屉建议做透明亚克力或玻璃面板，一眼找到。
 </div>
 </div>
 
-<!-- 十、学习桌收纳 -->
 <div class="card">
-<h3 id="storage-desk">十、学习桌 / 书桌收纳</h3>
+<h3>十、学习桌 / 书桌收纳</h3>
 
 <table class="material-table">
 <tr><th>物品</th><th>常见尺寸（cm）</th><th>设计预留</th></tr>
-<tr><td>24寸显示器</td><td>含底座55×40×20</td><td rowspan="2">桌面深60-70cm才不顶胸；支架穿孔直径8-10cm</td></tr>
-<tr><td>27寸显示器</td><td>含底座62×45×23</td></tr>
-<tr><td>键盘（104键）</td><td>45×15</td><td>键盘托深28-30cm，高5-7cm</td></tr>
-<tr><td>喷墨一体机</td><td>40×30×20</td><td>柜内净宽45cm，深40cm，高30cm；上方留20cm出纸空间</td></tr>
-<tr><td>A4文件夹</td><td>宽25，厚2-5</td><td>抽屉宽≥30cm</td></tr>
-<tr><td>笔筒</td><td>直径8-10</td><td>抽屉分隔宽5-8cm</td></tr>
-<tr><td>台灯底座</td><td>圆形直径15-20</td><td>角落预留20×20cm；推荐屏幕挂灯省空间</td></tr>
-<tr><td>笔记本电脑</td><td>约30×21</td><td>桌面预留35×25cm；配立式支架更省空间</td></tr>
-<tr><td>数据线/充电器</td><td>—</td><td>抽屉设线缆分隔格；桌面预留理线盒位</td></tr>
+<tr><td>24寸显示器</td><td>含底座 55×40×20</td><td rowspan="2">桌面深 60-70cm 才不顶胸；支架穿孔直径 8-10cm</td></tr>
+<tr><td>27寸显示器</td><td>含底座 62×45×23</td></tr>
+<tr><td>键盘（104键）</td><td>45×15</td><td>键盘托深 28-30cm，高 5-7cm</td></tr>
+<tr><td>喷墨一体机</td><td>40×30×20</td><td>柜内净宽 45cm，深 40cm，高 30cm；上方留 20cm 出纸</td></tr>
+<tr><td>A4文件夹</td><td>宽 25，厚 2-5</td><td>抽屉宽 ≥ 30cm</td></tr>
+<tr><td>笔筒</td><td>直径 8-10</td><td>抽屉分隔宽 5-8cm</td></tr>
+<tr><td>台灯底座</td><td>圆形直径 15-20</td><td>角落预留 20×20cm；推荐屏幕挂灯省空间</td></tr>
 </table>
 
-<h4>书桌设计要点</h4>
-<ul>
-  <li><strong>黄金深度</strong>：60-70cm（贴墙放显示器不顶胸），最小不低于50cm</li>
-  <li><strong>长度</strong>：单人≥100cm，双人≥180cm</li>
-  <li><strong>桌面高度</strong>：72-75cm（标准），儿童学习桌建议可升降（52-76cm）</li>
-  <li><strong>抽屉配置</strong>：侧边浅抽屉（10-15cm）放文具小件；底部文件抽屉（25-30cm）放A4文档</li>
-  <li><strong>理线系统</strong>：桌面预留直径5cm穿线孔+桌下理线槽，整洁有序</li>
-  <li><strong>书架/吊柜</strong>：桌面上方60-70cm处做开放书架，层高25-35cm，深25-30cm</li>
-  <li><strong>腿部空间</strong>：桌下净宽≥70cm，净高≥65cm，保证舒适坐姿</li>
-</ul>
-
 <div class="highlight">
-  <strong>儿童学习桌特别建议：</strong>桌面深度至少60cm（课本+练习册同时摊开），配可调节高度桌椅，书架做到伸手可及。台灯选4000K色温、Ra≥95高显色，从非执笔侧照射避免手影。
+  <strong>书桌黄金深度：</strong>60-70cm（贴墙放显示器不顶胸），最小不低于 50cm。长度单人 ≥ 100cm，双人 ≥ 180cm。
 </div>
 </div>
 
-<!-- 十一、手办展示柜 -->
 <div class="card">
-<h3 id="storage-figure">十一、手办 / 潮玩展示柜</h3>
+<h3>十一、手办 / 潮玩展示柜</h3>
 
 <table class="material-table">
-<tr><th>类型</th><th>典型高度（cm）</th><th>层板预留高度</th><th>深度建议</th></tr>
-<tr><td>1/8比例手办</td><td>20-22</td><td>层高22-25cm</td><td>30-35cm</td></tr>
-<tr><td>1/7比例手办</td><td>23-25</td><td>层高25-28cm</td><td>30-35cm</td></tr>
-<tr><td>Funko Pop</td><td>约10</td><td>层高12-15cm</td><td>20-25cm</td></tr>
-<tr><td>Bearbrick 100%</td><td>约7</td><td>层高10cm</td><td>15-20cm</td></tr>
-<tr><td>Bearbrick 400%</td><td>约28</td><td>层高30cm</td><td>25-30cm</td></tr>
-<tr><td>Bearbrick 1000%</td><td>约70</td><td>独立展示位75cm</td><td>35-40cm</td></tr>
-<tr><td>GK雕像（1/4）</td><td>45-55</td><td>独立层50-60cm</td><td>40-50cm</td></tr>
+<tr><th>类型</th><th>典型高度（cm）</th><th>层板预留高度</th></tr>
+<tr><td>1/8 比例手办</td><td>20-22</td><td>层高 22-25cm</td></tr>
+<tr><td>1/7 比例手办</td><td>23-25</td><td>层高 25-28cm</td></tr>
+<tr><td>Funko Pop</td><td>约 10</td><td>层高 12-15cm</td></tr>
+<tr><td>Bearbrick 100%</td><td>约 7</td><td>层高 10cm</td></tr>
+<tr><td>Bearbrick 400%</td><td>约 28</td><td>层高 30cm</td></tr>
+<tr><td>Bearbrick 1000%</td><td>约 70</td><td>独立展示位，留空 75cm</td></tr>
 </table>
 
 <h4>展示柜设计要点</h4>
 <ul>
-  <li><strong>深度</strong>：标准30-35cm；大型雕塑/GK雕像40-50cm</li>
-  <li><strong>层板</strong>：必须活动排孔，模数15/20/30cm可调；钢化玻璃层板（8-10mm厚）承重更强、视觉更通透</li>
-  <li><strong>灯光系统</strong>：层板正面底部开1×1cm U型槽暗藏LED灯带；顶部/底部预留20×15×5cm驱动电源位；每层独立控制更灵活</li>
-  <li><strong>色温</strong>：3000K-4000K暖白，显色指数Ra≥90；冷白光（5000K+）会让手办色彩失真</li>
-  <li><strong>玻璃门</strong>：推荐钢化超白玻，透光率91%+；门框选极窄（≤2cm）不挡视线</li>
-  <li><strong>防尘密封</strong>：柜门加密封胶条，减少灰尘进入；底部预留透气孔+防尘网</li>
-  <li><strong>背景色调</strong>：深灰/黑色背景凸显手办主体，白色背景适合浅色系潮玩</li>
+  <li><strong>深度</strong>：标准 30-35cm；大型雕塑 40-50cm</li>
+  <li><strong>层板</strong>：必须活动排孔，模数 15/20/30cm</li>
+  <li><strong>灯光</strong>：层板正面底部开 1×1cm U型槽暗藏LED灯带；顶部/底部预留 20×15×5cm 驱动电源位</li>
+  <li><strong>色温</strong>：3000K-4000K 暖白，显色指数 Ra ≥ 90</li>
+  <li><strong>玻璃门</strong>：推荐钢化超白玻，透光率 91%+；门框选极窄（≤ 2cm）不挡视线</li>
 </ul>
-
-<div class="highlight">
-  <strong>灯光布线提醒：</strong>展示柜灯光需要在装修水电阶段就预留线路——每层灯带的驱动电源需要220V供电。后期加装只能走明线，严重影响美观。建议柜体后方预留2-3个插座，每个驱动可带3-5层灯带。
-</div>
 </div>
 
-<!-- 十二、卫生间收纳 -->
 <div class="card">
-<h3 id="storage-bathroom">十二、卫生间收纳</h3>
-
-<h4>镜箱（镜柜）尺寸数据</h4>
-<table class="material-table">
-<tr><th>项目</th><th>精确尺寸</th><th>说明</th></tr>
-<tr><td>镜箱离地高度</td><td>1000mm左右</td><td>可照到上半身</td></tr>
-<tr><td>镜箱上限</td><td>≤1200mm</td><td>超过只能照到头部</td></tr>
-<tr><td>镜箱深度</td><td>130-150mm</td><td>过深碰头、过浅放不下瓶罐</td></tr>
-<tr><td>洗手池上方柜门宽</td><td>≤350mm</td><td>过宽开启时需后退，空间局促</td></tr>
-<tr><td>镜箱宽度</td><td>≥800mm（推荐）</td><td>容纳两人同时使用</td></tr>
-</table>
-
-<h4>镜箱形式选择</h4>
-<table class="material-table">
-<tr><th>形式</th><th>特点</th><th>适用</th></tr>
-<tr><td>一面镜</td><td>面宽较小时使用</td><td>中小户型，宽度600-800mm</td></tr>
-<tr><td>两面镜（对开）</td><td>面宽适中，可增加储藏</td><td>面宽800-1200mm</td></tr>
-<tr><td>三面镜</td><td>面宽较大，中间+两侧镜门</td><td>面宽1200mm以上充裕空间</td></tr>
-</table>
-
-<h4>侧边柜规格</h4>
-<table class="material-table">
-<tr><th>宽度</th><th>形式</th><th>存放内容</th></tr>
-<tr><td>150mm</td><td>抽拉式窄柜</td><td>洗衣粉、柔顺剂、清洁剂瓶</td></tr>
-<tr><td>300mm</td><td>推拉筐</td><td>备用毛巾、浴巾、干净衣物</td></tr>
-<tr><td>450mm</td><td>抽屉式</td><td>小件物品分类：护肤品、药品、梳子</td></tr>
-</table>
-
-<h4>洗手池下方储柜形式对比</h4>
-<table class="material-table">
-<tr><th>形式</th><th>优点</th><th>缺点</th></tr>
-<tr><td>单柜式</td><td>存放大件物品（水桶、大瓶装）</td><td>缺少小件存储，内部杂乱</td></tr>
-<tr><td>柜+抽屉式</td><td>大小兼顾，分区合理</td><td>大件空间稍不足</td></tr>
-<tr><td>小柜+大柜+抽屉</td><td>分区最明确，分类最细</td><td>占用空间大，小卫生间不适合</td></tr>
-<tr><td>下空式</td><td>灵活利用，视觉轻盈</td><td>物品外露视觉杂乱</td></tr>
-<tr><td>抽屉式（U型）</td><td>分类细致，避开下水管</td><td>需定制U型抽屉，价格较高</td></tr>
-</table>
-
-<h4>抽屉分层原则</h4>
-<p>上浅下深：第一层（10-15cm）放小杂物（剪刀/指甲刀/发圈），第二层（20-25cm）放毛巾/浴巾，第三层（25-30cm）放洗衣液/大瓶储备。</p>
-
-<h4>物品分类存放</h4>
-<table class="material-table">
-<tr><th>物品</th><th>储藏位置</th><th>要求</th></tr>
-<tr><td>洗漱/化妆用品</td><td>镜箱或台面</td><td>拿取方便，镜箱内分隔格</td></tr>
-<tr><td>吹风机/剃须刀</td><td>接近插座和镜子</td><td>柜内预留插座（防潮盒）</td></tr>
-<tr><td>沐浴用品</td><td>淋浴区专用架/壁龛</td><td>壁龛深度200mm，层高25-30cm</td></tr>
-<tr><td>清洁工具</td><td>角落隐蔽处</td><td>避免来回搬动，就近存放</td></tr>
-<tr><td>手纸</td><td>座便器侧前方</td><td>容易拿取，离地40-50cm</td></tr>
-<tr><td>干净衣物</td><td>洗手池旁台面/侧边柜</td><td>干湿分离，防溅水</td></tr>
-<tr><td>换洗衣物</td><td>洗衣机附近篮筐</td><td>洁污分离，通风防潮</td></tr>
-<tr><td>药品</td><td>高柜上层（避免潮湿）</td><td>口服外用分开，儿童不可及</td></tr>
-</table>
-
-<h4>关键设计要点</h4>
+<h3>十二、卫生间收纳</h3>
 <ul>
-  <li><strong>镜柜预留插座</strong>：电动牙刷、剃须刀充电口藏在镜箱内，台面零电线</li>
-  <li><strong>防雾镜面</strong>：镜箱底部沥水板防霉，可选电热防雾膜</li>
-  <li><strong>U型抽屉</strong>：避开洗手池下水管，充分利用洗手台下方空间</li>
-  <li><strong>台盆悬空</strong>：下方放电子秤、婴儿澡盆，灵活利用</li>
-  <li><strong>壁龛深度</strong>：利用管井空隙做壁龛，深度200mm，层高25-30cm（放大瓶沐浴露）</li>
-  <li><strong>马桶侧边收纳</strong>：壁龛或窄柜放手机、卷纸；马桶喷枪便于清洁</li>
-  <li><strong>电热毛巾架</strong>：烘干+抑菌+除湿，南宁回南天必备</li>
+  <li><strong>镜柜必须做</strong>：深度 13-15cm；80%瓶罐藏进柜，20%常用放开放格；镜柜宽度 ≥ 80cm</li>
+  <li><strong>壁龛</strong>：淋浴区非承重墙挖壁龛，深 15-20cm，层高 25-30cm（放大瓶沐浴露）</li>
+  <li><strong>浴室柜</strong>：深 50cm，台下做U型抽屉避开下水管；侧边预留吹风机收纳格</li>
+  <li><strong>干湿分区</strong>：毛巾、纸巾、卫生棉条存放在干区，避免潮湿发霉</li>
 </ul>
-
-<div class="highlight">
-  <strong>常见错误：</strong>镜柜离地过高（>1200mm）→只能照到头部；洗手池上方柜门过宽→开启需后退过多；水龙头距池边过近→洗手碰壁；柜格均一高度→未考虑人视域差异；未预留小电器插座→台面到处是充电线。
-</div>
 </div>
 
-<!-- 十三、阳台收纳 -->
 <div class="card">
-<h3 id="storage-balcony">十三、阳台收纳</h3>
-
-<h4>家政柜核心尺寸</h4>
-<table class="material-table">
-<tr><th>项目</th><th>尺寸</th><th>说明</th></tr>
-<tr><td>家政柜深度</td><td>40-60cm</td><td>40cm放清洁工具，60cm可放洗衣机</td></tr>
-<tr><td>洗衣机位</td><td>宽60cm×深60cm×高85cm</td><td>标准滚筒洗衣机尺寸</td></tr>
-<tr><td>堆叠烘干机</td><td>总高≥170cm</td><td>上下叠放，中间需连接件</td></tr>
-<tr><td>叠衣台高度</td><td>90-100cm</td><td>洗衣机上方做折叠台面</td></tr>
-<tr><td>洗涤用品柜</td><td>净高≥35cm</td><td>放洗衣液大瓶（补充装更高）</td></tr>
-<tr><td>长柄工具墙挂</td><td>净高≥120cm</td><td>拖把、扫把、吸尘器竖放</td></tr>
-</table>
-
-<h4>阳台柜设计要点</h4>
+<h3>十三、阳台收纳</h3>
 <ul>
-  <li><strong>功能分区</strong>：洗衣机区（水电位）→ 洗涤用品区（柜）→ 清洁工具区（洞洞板墙挂）→ 杂物区（上层吊柜）</li>
-  <li><strong>家政柜内置洞洞板</strong>：挂清洁工具一目了然，比堆在地上整洁10倍</li>
-  <li><strong>底部留空</strong>：扫地机器人基站预留宽55-60cm、高70-80cm，加进出水+电源</li>
-  <li><strong>通风防潮</strong>：阳台柜门百叶式或留通风缝隙，避免柜内发霉</li>
-  <li><strong>插座预留</strong>：洗衣机（16A三孔）+烘干机（16A三孔）+扫地机器人（10A五孔）+备用（10A五孔），至少4个插座</li>
-  <li><strong>洗衣机地漏</strong>：专用洗衣机地漏带存水弯，防溢水防反味</li>
-  <li><strong>板材防潮</strong>：阳台柜必须用多层实木板或铝蜂窝板，严禁用颗粒板</li>
+  <li><strong>家政柜深</strong>：40-60cm，内置洞洞板挂清洁工具，底部留空放扫地机器人</li>
+  <li><strong>洗衣机位</strong>：标准洗衣机宽 60cm，深 60cm，高 85cm；堆叠烘干机总高 ≥ 170cm</li>
+  <li><strong>叠衣台</strong>：洗衣机上方做折叠台面，高度 90-100cm</li>
+  <li><strong>洗涤用品</strong>：柜内净高 ≥ 35cm 放洗衣液大瓶</li>
+  <li><strong>长柄工具</strong>：拖把/扫把/吸尘器墙挂，柜内净高 ≥ 120cm</li>
 </ul>
-
-<div class="highlight">
-  <strong>南宁阳台特别建议：</strong>南宁夏季长达6个月，阳台柜长期受日晒高温和回南天潮湿双重考验。板材首选铝蜂窝板（防水防晒），预算有限选多层实木板+UV漆封闭。阳台柜背面和侧面务必做防潮处理。
-</div>
-</div>
-
-<!-- 十四、日式收纳理念 -->
+</div><!-- 日式收纳理念 -->
 <div class="card">
-<h3 id="storage-japanese">十四、日式收纳设计理念</h3>
+<h3>十四、日式收纳设计理念</h3>
 
 <h4>近藤麻理惠「怦然心动法」</h4>
-<p>只留下"让自己怦然心动"的物品，其余果断丢弃。对设计师的启示：硬装阶段就要考虑"少而精"的收纳空间，而非无限扩容。鼓励客户入住前做一次彻底的丢弃——日本家庭平均丢弃30-40%的物品后再进行收纳设计。</p>
+<p>只留下"让自己怦然心动"的物品，其余果断丢弃。对设计师的启示：硬装阶段就要考虑"少而精"的收纳空间，而非无限扩容。鼓励客户入住前做一次彻底的丢弃。</p>
 
-<h4>JALO收纳检定四级理论</h4>
+<h4>JALO 收纳检定四级理论</h4>
 <table class="material-table">
 <tr><th>级别</th><th>症状</th><th>解决方案</th></tr>
 <tr><td>1级：物品乱</td><td>物品散落表面，台面堆满</td><td>增加统一容器，隐藏杂物</td></tr>
 <tr><td>2级：难归位</td><td>找不到东西，归位麻烦</td><td>优化动线，分隔件固定物品位置</td></tr>
-<tr><td>3级：难维持</td><td>整洁维持不了3天就乱</td><td>减少物品总量，全家制定规则</td></tr>
+<tr><td>3级：难维持</td><td>整洁维持不了 3 天就乱</td><td>减少物品总量，全家制定规则</td></tr>
 <tr><td>4级：极致宜居</td><td>不仅整洁，还能展示个性和生活美学</td><td>——这就是设计的终极目标</td></tr>
 </table>
 
-<h4>日本衣柜深度参考</h4>
-<table class="material-table">
-<tr><th>深度</th><th>形式</th><th>功能配置</th></tr>
-<tr><td>600mm</td><td>正面存取储藏间</td><td>储物箱+隔板+短衣区+长衣区+抽屉+裤架，一人正面操作</td></tr>
-<tr><td>900mm</td><td>可进入式储藏间</td><td>前后双区：前600mm悬挂衣物，后300mm添加隔板存放被子/行李箱/过季物品</td></tr>
-</table>
-
-<h4>日本厨房特色收纳</h4>
-<ul>
-  <li><strong>可升降吊柜</strong>：下拉式吊柜五金，身高150cm也能轻松取放吊柜物品</li>
-  <li><strong>踏步储藏</strong>：地柜踢脚线位置做成抽屉，存放扁平物品（烤盘、砧板、保鲜膜）</li>
-  <li><strong>电动升降餐具干燥机</strong>：吊柜底部安装升降式沥水架，洗完碗直接升上去晾干，不占台面</li>
-  <li><strong>窄缝收纳</strong>：150-200mm窄柜做抽拉调料架，利用冰箱/橱柜之间的缝隙</li>
-</ul>
-
 <h4>两个经典技法</h4>
 <ul>
-  <li><strong>竖立收纳</strong>：衣物或文件竖立放入抽屉，像书本一样排列，避免堆叠压坏底部，拿取不弄乱其他——这是日式收纳最核心的技法</li>
-  <li><strong>统一容器</strong>：颜色、材质、形状统一的收纳盒，显著降低视觉噪音，空间显大。日本主妇的冰箱内部都用统一白色收纳盒</li>
+  <li><strong>竖立收纳</strong>：衣物或文件竖立放入抽屉，避免堆叠压坏底部，拿取不弄乱其他</li>
+  <li><strong>统一容器</strong>：颜色、材质、形状统一的收纳盒，显著降低视觉噪音，空间显大</li>
 </ul>
-
-<div class="highlight">
-  <strong>日式收纳核心哲学：</strong>收纳不是买更多收纳盒，而是先减少物品总量，再让每件物品都有"固定座位"。日本住宅收纳面积约占套内面积的12-15%，远高于国内8-10%的平均水平。设计时多预留5%的收纳面积，入住后幸福感提升不止50%。
-</div>
 </div>
 
-<!-- 十五、容量计算 -->
+<!-- 容量计算 -->
 <div class="card">
-<h3 id="storage-calc">十五、收纳容量计算与规划方法</h3>
+<h3>十五、收纳容量计算与规划方法</h3>
 
-<h4>鞋的储藏量参考表</h4>
-<table class="material-table">
-<tr><th>家庭类型</th><th>鞋基本量（双）</th><th>鞋储藏量（双）</th><th>所需鞋柜宽度（mm，35cm深×5层）</th></tr>
-<tr><td>单身男青年（1人）</td><td>6-8</td><td>8-11</td><td>400-550</td></tr>
-<tr><td>单身女青年（1人）</td><td>8-12</td><td>11-17</td><td>550-850</td></tr>
-<tr><td>青年夫妇（2人）</td><td>14-20</td><td>20-28</td><td>1000-1400</td></tr>
-<tr><td>三口之家</td><td>19-30</td><td>27-42</td><td>1350-2100</td></tr>
-<tr><td>四-五口之家</td><td>25-44</td><td>35-62</td><td>1750-3100</td></tr>
-</table>
-<p style="font-size:13px;color:var(--text-muted);">鞋储藏量/基本量≈140%（日本调研数据），每双鞋在35cm深鞋柜中约占5cm宽×15cm高</p>
-
-<h4>厨房储藏量参考</h4>
-<table class="material-table">
-<tr><th>物品类别</th><th>典型数量/体积</th><th>所需柜体容积</th></tr>
-<tr><td>锅具</td><td>约8个（至少考虑6个）</td><td>约0.1m³（2个深抽屉）</td></tr>
-<tr><td>碗盘餐具</td><td>约37件</td><td>约0.05m³（1个碗碟拉篮）</td></tr>
-<tr><td>辅助器具</td><td>刀具、饭盒、洗涤品等</td><td>约0.02m³（1个浅抽屉）</td></tr>
-<tr><td>米面干货调料</td><td>常温食品储备</td><td>约0.1m³（2个地柜）</td></tr>
-<tr><td>冰箱</td><td>3-5口人</td><td>190-250L</td></tr>
-</table>
-
-<h4>衣物收纳容量公式</h4>
+<h4>核心公式</h4>
 <table class="material-table">
 <tr><th>收纳类型</th><th>计算公式</th><th>实例</th></tr>
-<tr><td>衣物悬挂</td><td>件数÷每米挂件数</td><td>80件÷35件/米≈2.3m挂杆（每米挂30-40件）</td></tr>
-<tr><td>衣物折叠</td><td>件数÷单抽屉容量</td><td>40件T恤÷35件/40cm宽抽屉≈1.2个抽屉</td></tr>
-<tr><td>书籍收纳</td><td>册数×平均厚度×1.2</td><td>100本×3cm×1.2≈3.6m搁板总长</td></tr>
-<tr><td>被褥收纳</td><td>件数×折叠体积</td><td>3床棉被×50×30×15cm≈0.07m³（约1格顶柜）</td></tr>
+<tr><td>衣物收纳</td><td>(当季 + 过季件数) ÷ 收纳效率系数</td><td>80件衣服全挂：需约 2.5m 宽挂杆（每米挂 30-40 件）</td></tr>
+<tr><td>衣物折叠</td><td>件数 ÷ 单抽屉容量</td><td>40cm 宽抽屉可叠 30-40 件 T 恤</td></tr>
+<tr><td>书籍收纳</td><td>册数 × 平均厚度(3-5cm) × 1.2</td><td>100 本书约需 4-6m 搁板总长</td></tr>
 </table>
 
-<h4>按家庭结构估算总容量</h4>
+<h4>按人口估算</h4>
 <table class="material-table">
-<tr><th>家庭结构</th><th>衣柜总容量</th><th>约合柜体</th><th>收纳面积占比</th></tr>
-<tr><td>单人</td><td>3-4m³</td><td>3-4组60cm深衣柜</td><td>8-10%</td></tr>
-<tr><td>夫妻二人</td><td>6-8m³</td><td>5-6组60cm深衣柜</td><td>10-12%</td></tr>
-<tr><td>三口之家</td><td>10-14m³</td><td>8-10组+独立储物间</td><td>12-15%</td></tr>
-<tr><td>四-五口之家</td><td>15-20m³</td><td>12-15组+储物间</td><td>15-18%</td></tr>
+<tr><th>家庭结构</th><th>衣柜总容量</th><th>约合柜体</th></tr>
+<tr><td>单人</td><td>3-4 m³</td><td>3-4 组 60cm 深衣柜</td></tr>
+<tr><td>夫妻二人</td><td>6-8 m³</td><td>5-6 组 60cm 深衣柜</td></tr>
+<tr><td>三口之家</td><td>10-14 m³</td><td>8-10 组 + 独立储物间</td></tr>
 </table>
-
-<h4>收纳黄金比例</h4>
-<div class="highlight">
-  <strong>全屋收纳投影面积应占套内面积的10%-15%。</strong>100㎡套内→至少10-15㎡投影柜体。换算：15㎡约等于10组标准衣柜或25延米地柜。低于8%的住宅，入住一年后必然"爆仓"。建议设计阶段就将收纳面积纳入平面规划，而非后期添置成品柜。
-</div>
 
 <h4>五步规划法</h4>
 <ol>
-  <li><strong>清点</strong>：让客户列出所有物品清单，特别是大件（行李箱、吸尘器、电风扇）和囤货（纸巾、洗衣液）</li>
-  <li><strong>分类</strong>：按每天/每周/季节性/偶尔使用四级分级，确定每个物品的使用频率</li>
-  <li><strong>测量</strong>：确定柜体内部净尺寸（净深=柜深-背板-门板厚度），别用外尺寸算容量</li>
-  <li><strong>匹配</strong>：高频物品→黄金区（650-1850mm），低频物品→登高/弯腰区</li>
-  <li><strong>预留</strong>：空余10%-20%收纳空间，应对未来3-5年生活变化（孩子出生、老人同住、新爱好）</li>
+  <li><strong>清点</strong>：让客户列出所有物品清单，特别是大件和囤货</li>
+  <li><strong>分类</strong>：按每天/每周/季节性/偶尔使用分级</li>
+  <li><strong>测量</strong>：确定柜体内部净尺寸（净深=柜深-背板-门板）</li>
+  <li><strong>匹配</strong>：高频物品→黄金区，低频物品→登高/弯腰区</li>
+  <li><strong>预留</strong>：空余 10%-20% 收纳空间，应对未来 3-5 年生活变化</li>
 </ol>
+
+<div class="highlight">
+  <strong>收纳黄金比例：</strong>全屋收纳投影面积占套内面积的 10%-15%。100㎡ 套内 → 至少 10-15㎡ 投影柜体。换算：15㎡ 约等于 10 组标准衣柜或 25 延米地柜。低于 8% 的住宅，入住一年后必然"爆仓"。
+</div>
 </div>
 </section>
 
@@ -2326,184 +1681,6 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 
 <div class="highlight">
   <strong>南宁燃气公司规定：</strong>开放式厨房必须安装燃气泄漏报警器及与之联动的电磁切断阀才能开通燃气。设计阶段就需预留报警器电源（220V）和信号线。部分老小区燃气管道位置不可改动，改造前需先咨询燃气公司。
-</div>
-</div>
-</section>
-
-<!-- 格局解剖 -->
-<section id="space-anatomy" class="section">
-<div class="section-header"><h2>格局解剖</h2><p class="desc">《住宅格局解剖图鉴》— 铃木信弘 · 为每个物品设计收纳规则</p></div>
-
-<div class="card">
-<h3>核心理念：追随人的动向</h3>
-<p>「井井有条的家 = 把整理收纳纳入住宅设计，为物件规划好收纳空间。」日本建筑师铃木信弘提出：住宅设计的出发点不是美观与性价比，而是<strong>「人的活动」</strong>——梳理清楚「人会把什么带回家、如何使用、不用时放在哪」这一完整流程，是设计理想住宅的根基。</p>
-
-<div class="highlight">
-  <strong>三条金律：</strong>① 收纳空间要「就近」而非「集中」——如同港口需要配套仓库，每个功能空间必须就近配置收纳；② 墙壁比窗户重要——收纳的前提是有墙壁，家具靠墙摆放的理想墙长 <strong>≥1350mm</strong>；③ 先设计「人的动线」，再规划「物的位置」——为每一件细小物品设计具体、明确的收纳场所。
-</div>
-</div>
-
-<div class="card">
-<h3>各空间格局设计要点</h3>
-
-<h4>玄关 — 住宅的「港口仓库」</h4>
-<p>玄关不仅是脱鞋穿鞋的地方，更是外出物品的中转站。除了鞋子，外套、帽子、高尔夫球袋、婴儿车、钓具等不便拿进室内的东西都应就近收纳。大门正对墙面挂装饰画可避免「走廊尽头就是客厅」的呆板印象，鞋柜上方设搁板并开小窗引入阳光，挂外套处设在客人视线之外。</p>
-<table class="material-table">
-<tr><th>要素</th><th>关键尺寸/数据</th><th>说明</th></tr>
-<tr><td>最小宽度</td><td>保证两人并排站立</td><td>迎接客人基本需求</td></tr>
-<tr><td>鞋柜+壁橱组合</td><td>约 1820mm 宽</td><td>鞋 + 外套 + 雨伞一体化</td></tr>
-<tr><td>内部通道</td><td>家人侧面出入</td><td>保持玄关长期整洁</td></tr>
-</table>
-
-<h4>客厅 — 解放茶几，创造活动广场</h4>
-<p>茶几是「杂物滞留」的主角，因为随手放的物品没有明确的收纳场所。最佳方案是<strong>不要放茶几</strong>，电视机前变成健身、游戏的「活动广场」；或将茶几从「沙发前面」移到「沙发左右」，同时在沙发附近摆放矮柜（距离 ≤ 500mm）。电视与沙发<strong>直角摆放</strong>比平行更省空间，尤其适合狭长型客厅。</p>
-<table class="material-table">
-<tr><th>要素</th><th>关键尺寸</th><th>说明</th></tr>
-<tr><td>沙发前空间</td><td>300~500mm</td><td>伸腿所需；放茶几需 ≥ 500mm</td></tr>
-<tr><td>三人沙发实际占地</td><td>约 5m²</td><td>含前后左右留白空间</td></tr>
-<tr><td>茶几替代：矮柜距离</td><td>≤ 500mm</td><td>太远杂物又会回到茶几上</td></tr>
-</table>
-
-<h4>厨房 — 台面「空地」决定好用程度</h4>
-<p>厨房 4 步工作流（洗→切→烹→装）每个步骤都需要专属空地。炉灶与水槽间距宜 <strong>75cm</strong>（比常规 60cm 更舒适），水槽高度 <strong>85cm</strong>，炉灶高度 <strong>75cm</strong>（看清深底锅）。岛型布局比细长型更高效，但中岛型厨房因四周墙壁消失而导致收纳空间严重不足，<strong>L 型半开放式</strong>是兼顾互动与收纳的最佳折中。</p>
-<table class="material-table">
-<tr><th>操作区</th><th>所需尺寸</th><th>用途</th></tr>
-<tr><td>水槽区</td><td>300mm</td><td>洗菜</td></tr>
-<tr><td>流理台</td><td><strong>900mm（核心）</strong></td><td>切菜、备料</td></tr>
-<tr><td>炉灶旁</td><td>600mm</td><td>装盘</td></tr>
-<tr><td>沥水篮</td><td>300×450mm</td><td>洗碗控水</td></tr>
-</table>
-
-<h4>壁橱 — 越「深」越糟糕</h4>
-<p>日本传统壁橱 1820mm×910mm，深度超过 800mm 时分前后两排，里面的东西极易被遗忘。推荐的深浅分区策略：<strong>深区（>800mm）</strong>放被褥、旅行箱、取暖设备；<strong>浅区（450mm）</strong>放书籍、文具、衣物箱。壁橱门前必须留 <strong>≥ 800mm</strong> 余白（推拉门除外），两处收纳<strong>共享余白</strong>可显著扩大房间有效空间。</p>
-
-<h4>浴室 — 搬到南侧，告别霉斑</h4>
-<p>日本传统浴室朝北，光照少、通风差，霉斑严重。将浴室迁到住宅南侧，紫外线杀菌 + 红外线温室效果，白天开窗即可保持干燥。也可将浴室设在 2 楼，楼下对应玄关（即使漏水损失最小），形成「脱衣→洗澡→2 楼露台晾干」的合理动线。</p>
-
-<h4>厕所 — 收纳「王牌」</h4>
-<p>厕所拥有最多墙壁 = 最多收纳潜力。标准尺寸 800×1500mm，<strong>长度 +300mm</strong> 可放书架、收纳柜（总长 1800mm），<strong>宽度 +300mm</strong> 可增加洗手台（总宽 1100mm）。门应设在侧面而非正面，使用推拉门连接洗漱间更省空间。楼梯下空间可改造为洗手池或收纳。</p>
-
-<h4>家务间 — 全家唯一不用整理的地方</h4>
-<p>家务间支持主妇「做到一半的工作」随做随停、不用清理。桌子最小尺寸 450×900mm（仅笔记本），配缝纫机需 600×1200mm，辅导功课需 600×1500mm。最佳位置在厨房旁边，周围设遮蔽物但不宜太封闭（会产生孤独感）。</p>
-
-<h4>土间 / 下屋 — 不用脱鞋的「半室外空间」</h4>
-<p>日本传统空间，用于收纳「不想放在外面也不想放在里面」的东西：户外用具（烧烤架、雨伞、婴儿车）、沾泥食材、旧报纸等。现代实现方式：扩大玄关三合土部分（约 2730mm）、拓宽车库、或在 LDK 旁设置阳光房。</p>
-
-<h4>跃层 — 地板纵向错开</h4>
-<p>在 1 层和 2 层之间利用高度差创造「缝隙」收纳空间。收纳量对比：阁楼 = 1 倍，「跃」一次 = 2 倍，「跃」两次 = 4 倍。注意高度未满 1.4m 的空间在日本法规中认定为 Loft，且设计不当会使住宅变成迷宫。</p>
-</div>
-
-<div class="card">
-<h3>关键尺寸速查表</h3>
-<table class="material-table">
-<tr><th>空间/元素</th><th>关键尺寸</th><th>说明</th></tr>
-<tr><td>放家具墙壁</td><td>1350~1800mm</td><td>理想长度，越大越好</td></tr>
-<tr><td>厨房流理台</td><td>900mm</td><td>切菜核心区，不可压缩</td></tr>
-<tr><td>炉灶-水槽间距</td><td>750mm</td><td>比常规 60cm 更舒适</td></tr>
-<tr><td>垃圾桶空间</td><td>800×500×600mm</td><td>四口之家厨房标配</td></tr>
-<tr><td>壁橱门前余白</td><td>≥ 800mm</td><td>推拉门可豁免</td></tr>
-<tr><td>晾衣杆长度</td><td>≥ 4500mm</td><td>四口之家衣物+被褥</td></tr>
-<tr><td>阳台屋檐伸出</td><td>≥ 1000mm</td><td>防雨打湿晾晒衣物</td></tr>
-<tr><td>步入式衣橱总长</td><td>约 7200mm</td><td>四口之家（每人 1.8m）</td></tr>
-<tr><td>室内晾衣处</td><td>+600mm 宽度</td><td>卧室或更衣室拓宽即可</td></tr>
-<tr><td>家务桌最小</td><td>450×900mm</td><td>仅笔记本电脑</td></tr>
-<tr><td>自行车存放</td><td>2000×600mm</td><td>1 辆，需配屋檐防雨</td></tr>
-<tr><td>食材收纳架深度</td><td>250~360mm</td><td>过深会导致遗忘</td></tr>
-<tr><td>食材总收纳量</td><td>约 0.6m³</td><td>相当于一台冰箱容量</td></tr>
-</table>
-</div>
-
-<div class="card">
-<h3>动线规划方法</h3>
-<div class="flow">
-  <div class="step">脱衣</div><div class="arrow">→</div>
-  <div class="step">洗涤</div><div class="arrow">→</div>
-  <div class="step emphasis">室内晾衣</div><div class="arrow">→</div>
-  <div class="step">叠好</div><div class="arrow">→</div>
-  <div class="step">收入衣橱</div>
-</div>
-<p style="margin-top:16px"><strong>洗涤动线（直线型）：</strong>在卧室或更衣室拓宽 600mm 设置室内晾衣处，实现「晾干→床上叠好→直接收进衣橱」的零折返动线。室内晾衣处与厨房相邻则形成<strong>循环设计（circulation plan）</strong>——在家中走几圈就能做完所有主要家务。</p>
-
-<div class="highlight">
-  <strong>动线核心原则：</strong>① 冰箱→水槽→流理台→炉灶→装盘区，每步对应独立空地；② 脱衣→洗涤→晾晒→收纳，全程直线不折返；③ 垃圾桶置于厨房中央（垃圾产生处），厨余垃圾设侧门或杂物间（约 3m²）就近存放。
-</div>
-</div>
-
-<div class="card">
-<h3>日本住宅独特理念</h3>
-
-<h4>「土间」与「下屋」文化</h4>
-<p>保留不用脱鞋即可踩踏的「半室外空间」，水泥地面，用于收纳湿物、泥污物品和户外用具。这是日本住宅区别于现代全封闭公寓的重要特征。即使用现代方式实现——扩大玄关三合土、拓宽车库、或设置与 LDK 相连的阳光房——都应该确保家里至少有一处「不用脱鞋的空间」。</p>
-
-<h4>「穿过式衣橱」（Walk-through Closet）</h4>
-<p>从「步入式」升级为「穿过式」：衣橱设置在卧室与卫生间之间，进出必须穿过衣橱。好处是消除收纳死角、动线自然流畅，欧美大多数公寓均采用此格局。</p>
-
-<h4>循环设计（Circulation Plan）</h4>
-<p>将室内晾衣处、厨房、家务间等高频家务空间集中在同一区域，形成闭合循环回路。主妇在家中走几圈就能完成所有主要家务，减少无效移动。</p>
-
-<h4>「住宅小一些才恰到好处」</h4>
-<p>铃木信弘反对按建筑面积最大值设计。面积和高度都稍稍减小后：施工面积和楼梯层级数减少 → 费用降低；整体高度较低 → 可建造更深屋檐（符合日本斜线限制法规）→ 更好保护外墙和晾晒衣物。实际感受到的面积往往与图纸数字相去甚远。</p>
-
-<h4>布制品分层与声音控制</h4>
-<p>厨房布制品按清洁度自然分层：干净的在上（擦手巾、洗碗布），脏的在下（抹布），墙壁预留挂钩。现代住宅材料（木地板、石膏板、铝合金）反射噪音，传统日式材料（榻榻米、土墙、纸拉门）吸收噪音——可用挂布、地毯、窗帘、毛绒玩具弥补。</p>
-
-<h4>照明：一室多灯 > 一室一灯</h4>
-<p>日本住宅照明应模仿舞台照明——分层次使用多种光源（吸顶灯 + 吊灯 + 射灯 + 嵌灯 + 间接照明），创造光影层次感，避免「到处都亮 = 到处都不亮」的办公室化空间。</p>
-</div>
-
-<div class="card">
-<h3>适用场景与本地化建议</h3>
-<ul>
-<li><span class="tag tag-warm">80-140㎡</span> 平层户型：玄关收纳扩容、厨房台面空地规划、壁橱深浅分区均可直接参考</li>
-<li><span class="tag tag-cool">小户型</span> 跃层/阁楼设计可大幅增加收纳量（跃一次 = 阁楼 2 倍）</li>
-<li><span class="tag tag-green">南宁回南天</span> 浴室朝南策略 + 室内晾衣处可解决潮湿季晾晒难题</li>
-<li><span class="tag tag-red">注意</span> 日本推拉门文化（壁橱余白豁免）、土间玄关（三合土）需结合国内施工习惯调整</li>
-</ul>
-<div class="highlight">
-  <strong>参考来源：</strong>《住宅格局解剖图鉴》[日]铃木信弘 著，南海出版公司 2014 年版。本书以「住宅 = 人的活动」为线索，涵盖 26 个主题，从玄关到照明，系统解剖住宅格局设计的智慧。
-</div>
-</div>
-</section>
-
-<!-- 公卫设计规范 -->
-<section id="space-public-restroom" class="section">
-<div class="section-header"><h2>公卫设计规范</h2><p class="desc">公共卫生间尺寸与无障碍设计 — 设计得到·dop设计团队</p></div>
-
-<div class="card">
-<h3>参考规范</h3>
-<p>《民用建筑通用规范》GB 55031-2022 · 《民用建筑设计统一标准》GB 50352-2019 · 《无障碍设计规范》GB 50763-2012</p>
-
-<div class="highlight">
-  <strong>男女厕位比例：</strong>女厕位与男厕位比例不应小于 <strong>2:1</strong>（人流集中场所）。这是强制性规范要求，设计阶段必须满足。
-</div>
-
-<h4>核心尺寸表</h4>
-<table class="material-table">
-<tr><th>项目</th><th>最小尺寸要求</th></tr>
-<tr><td>洗手盆水嘴中心与侧墙净距</td><td>≥ 0.55m</td></tr>
-<tr><td>并列洗手盆水嘴中心间距</td><td>≥ 0.70m</td></tr>
-<tr><td>单侧洗手盆至对面墙净距</td><td>≥ 1.25m</td></tr>
-<tr><td>蹲便隔间（外开门）</td><td>0.90m × 1.20m</td></tr>
-<tr><td>蹲便隔间（内开门）</td><td>0.90m × 1.40m</td></tr>
-<tr><td>坐便隔间（外开门）</td><td>0.90m × 1.30m</td></tr>
-<tr><td>坐便隔间（内开门）</td><td>0.90m × 1.50m</td></tr>
-<tr><td>并列小便器中心距离</td><td>≥ 0.70m</td></tr>
-<tr><td>无障碍厕位</td><td>≥ 1.80m × 1.00m（宜 2.00m × 1.50m）</td></tr>
-<tr><td>无障碍卫生间面积</td><td>≥ 4.00㎡，回转直径 ≥ 1.50m</td></tr>
-</table>
-</div>
-
-<div class="card">
-<h3>无障碍设计要点</h3>
-<table class="material-table">
-<tr><th>设施</th><th>规范要求</th></tr>
-<tr><td>安全抓杆</td><td>直径 Φ30-40mm，距墙 ≥ 40mm</td></tr>
-<tr><td>救助呼叫按钮</td><td>安装高度 400-500mm（地面起算），便于倒地时触达</td></tr>
-<tr><td>无障碍小便器</td><td>下口距地 ≤ 400mm，两侧设安全抓杆</td></tr>
-</table>
-
-<div class="highlight">
-  <strong>来源：</strong>设计得到 dop设计团队 — <a href="https://www.shejidedao.com/library/d2ee594678d647249522d7a981af549f" target="_blank" rel="noopener">公共卫生间平面布置尺寸规范</a>
 </div>
 </div>
 </section>
@@ -2664,48 +1841,237 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 </section>
 
-<!-- 吊顶验收标准 -->
-<section id="check-ceiling-detail" class="section">
-<div class="section-header"><h2>吊顶验收标准</h2><p class="desc">GB 50210-2018 建筑装饰装修工程质量验收标准</p></div>
 
+<!-- ==================== 国家规范标准 ==================== -->
+
+<style>
+.standard-latest {
+  background: linear-gradient(135deg, #FFF8E1, #FFF3CD);
+  border-left: 4px solid #B8860B;
+}
+.standard-latest td:first-child {
+  font-weight: 700;
+  color: #8B6508;
+}
+.standard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 16px 0;
+}
+.standard-table th {
+  background: #F5F2EC;
+  color: #5A4A3A;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid #D4C8B0;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+}
+.standard-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #E8E3DC;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.standard-table tr:hover td {
+  background: #FAF8F5;
+}
+.standard-table td:first-child {
+  white-space: nowrap;
+  font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+  font-size: 0.82rem;
+  color: #B8860B;
+  font-weight: 500;
+}
+.standard-table td:nth-child(2) {
+  font-weight: 500;
+  min-width: 200px;
+}
+.standard-table td:nth-child(3) {
+  color: #666;
+  font-size: 0.84rem;
+}
+.standard-count {
+  display: inline-block;
+  background: #E8E3DC;
+  color: #8A8580;
+  font-size: 0.75rem;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: 400;
+}
+</style>
+
+<section id="standard-basic" class="section">
+<div class="section-header"><h2>基础通用标准 <span class="standard-count">4项</span></h2><p class="desc">建筑工程通用基础标准，装饰装修的总纲性文件</p></div>
 <div class="card">
-<h3>隐蔽工程验收项目（7 项）</h3>
-<p>以下项目必须在封板前完成验收，封板后无法检查：</p>
-<ul class="checklist">
-<li>吊顶内管道、设备安装及试压</li>
-<li>木龙骨防火、防腐处理</li>
-<li>预埋件或拉结筋</li>
-<li>吊杆安装</li>
-<li>龙骨安装</li>
-<li>填充材料设置</li>
-<li>反支撑及钢结构转换层</li>
-</ul>
-
-<div class="highlight">
-  <strong>关键提醒：</strong>隐蔽工程验收是整个吊顶质量控制的核心环节。封板后一旦出现问题，拆板重做的代价远高于提前验收。
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr class="standard-latest"><td>GB 55038-2025</td><td>住宅项目规范</td><td>2025年5月1日实施，强制性规范，全部条文必须严格执行</td></tr>
+<tr><td>GB 50300-2013</td><td>建筑工程施工质量验收统一标准</td><td>质量验收总框架，分部分项划分</td></tr>
+<tr><td>GB 50352-2019</td><td>民用建筑设计统一标准</td><td>民用建筑设计通用规则</td></tr>
+<tr><td>GB/T 50002-2013</td><td>建筑模数协调标准</td><td>模数化设计尺寸协调</td></tr>
+</tbody></table>
 </div>
-</div>
+</section>
 
+<section id="standard-design" class="section">
+<div class="section-header"><h2>设计规范 <span class="standard-count">7项</span></h2><p class="desc">住宅室内外设计相关规范，涵盖空间、照明、电气、给排水等</p></div>
 <div class="card">
-<h3>构造要求</h3>
-<table class="material-table">
-<tr><th>项目</th><th>要求</th></tr>
-<tr><td>吊杆距主龙骨端部</td><td>≤ 300mm（超过则需增设吊杆）</td></tr>
-<tr><td>吊杆长度 > 1500mm</td><td>应设置反支撑</td></tr>
-<tr><td>吊杆长度 > 2500mm</td><td>应设置钢结构转换层</td></tr>
-<tr><td>重型设备</td><td>严禁安装在吊顶龙骨上，必须有独立吊杆</td></tr>
-</table>
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>GB 50096-2011</td><td>住宅设计规范</td><td>住宅日照/采光/通风/套型设计</td></tr>
+<tr><td>JGJ 367-2015</td><td>住宅室内装饰装修设计规范</td><td>空间布局/无障碍/照明/收纳设计</td></tr>
+<tr><td>GB 50034-2013</td><td>建筑照明设计标准</td><td>照度/色温/眩光限制</td></tr>
+<tr><td>JGJ 242-2011</td><td>住宅建筑电气设计规范</td><td>回路划分/负荷计算/配电</td></tr>
+<tr><td>GB 50015-2019</td><td>建筑给水排水设计标准</td><td>管道布置/流量/水压</td></tr>
+<tr><td>GB 50763-2012</td><td>无障碍设计规范</td><td>无障碍厕位/坡道/扶手</td></tr>
+<tr><td>GB 50118-2010</td><td>民用建筑隔声设计规范</td><td>空气声/撞击声隔声限值</td></tr>
+</tbody></table>
+</div>
+</section>
 
-<h3>面层验收偏差标准</h3>
-<table class="material-table">
-<tr><th>项目</th><th>允许偏差</th></tr>
-<tr><td>表面平整度</td><td>≤ 2mm</td></tr>
-<tr><td>接缝直线度</td><td>≤ 1.5mm</td></tr>
-<tr><td>压条平直度</td><td>≤ 3mm</td></tr>
-</table>
+<section id="standard-construct" class="section">
+<div class="section-header"><h2>施工规范 <span class="standard-count">11项</span></h2><p class="desc">装饰装修各分项工程施工质量规范，覆盖水电、防水、地面等</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>GB 50327-2001</td><td>住宅装饰装修工程施工规范</td><td>水电/防水/木作/涂饰施工全流程</td></tr>
+<tr><td>GB 50242-2002</td><td>建筑给水排水及采暖工程施工质量验收规范</td><td>管道安装/水压试验/采暖</td></tr>
+<tr><td>GB 50303-2015</td><td>建筑电气工程施工质量验收规范</td><td>导线穿管/配电箱/接地/等电位</td></tr>
+<tr><td>GB 50209-2010</td><td>建筑地面工程施工质量验收规范</td><td>地面基层/面层/防水</td></tr>
+<tr><td>GB 50204-2015</td><td>混凝土结构工程施工质量验收规范</td><td>结构安全/植筋/加固</td></tr>
+<tr><td>GB 50203-2011</td><td>砌体结构工程施工质量验收规范</td><td>砌筑/抹灰/构造柱</td></tr>
+<tr><td>JGJ 298-2013</td><td>住宅室内防水工程技术规范</td><td>防水层设计/施工/闭水试验</td></tr>
+<tr><td>JGJ 142-2012</td><td>辐射供暖供冷技术规程</td><td>地暖盘管/保温层/伸缩缝</td></tr>
+<tr><td>JGJ/T 304-2013</td><td>住宅室内装饰装修工程质量验收规范</td><td>全过程质量验收/分户验收</td></tr>
+<tr><td>GB 50411-2019</td><td>建筑节能工程施工质量验收标准</td><td>保温/隔热/节能</td></tr>
+<tr><td>GB/T 50312-2016</td><td>综合布线系统工程验收规范</td><td>弱电布线/光纤/配线架</td></tr>
+</tbody></table>
+</div>
+</section>
 
-<div class="highlight">
-  <strong>来源：</strong>《建筑装饰装修工程质量验收标准》<a href="https://www.shejidedao.com" target="_blank" rel="noopener">GB 50210-2018</a> — dop设计团队整理
+<section id="standard-accept" class="section">
+<div class="section-header"><h2>验收标准 <span class="standard-count">4项</span></h2><p class="desc">装饰装修分项及竣工验收标准</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>GB 50210-2018</td><td>建筑装饰装修工程质量验收标准</td><td>核心验收标准，十大分项工程</td></tr>
+<tr><td>GB 50300-2013</td><td>建筑工程施工质量验收统一标准</td><td>验收程序/分部分项划分</td></tr>
+<tr><td>JGJ/T 304-2013</td><td>住宅室内装饰装修工程质量验收规范</td><td>住宅专项，分户验收</td></tr>
+<tr><td>GB 50617-2010</td><td>建筑电气照明装置施工与验收规范</td><td>灯具/开关/插座验收</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-material" class="section">
+<div class="section-header"><h2>材料环保标准 <span class="standard-count">14项</span></h2><p class="desc">室内装饰装修材料有害物质限量，涵盖人造板、涂料、胶粘剂等</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心指标</th></tr></thead>
+<tbody>
+<tr><td>GB 18580-2017</td><td>室内装饰装修材料 人造板甲醛释放限量</td><td>E1级 ≤ 0.124mg/m³</td></tr>
+<tr><td>GB/T 39600-2021</td><td>人造板及其制品甲醛释放量分级</td><td>ENF级 ≤ 0.025mg/m³</td></tr>
+<tr><td>GB 18581-2020</td><td>室内装饰装修材料 溶剂型木器涂料有害物质限量</td><td>VOC/苯/甲苯限量</td></tr>
+<tr><td>GB 18582-2020</td><td>室内装饰装修材料 内墙涂料有害物质限量</td><td>VOC/甲醛/重金属</td></tr>
+<tr><td>GB 18583-2008</td><td>室内装饰装修材料 胶粘剂有害物质限量</td><td>甲醛/苯/VOC</td></tr>
+<tr><td>GB 18584-2001</td><td>室内装饰装修材料 木家具有害物质限量</td><td>甲醛/重金属</td></tr>
+<tr><td>GB 18585-2001</td><td>室内装饰装修材料 壁纸有害物质限量</td><td>重金属/氯乙烯单体</td></tr>
+<tr><td>GB 18586-2001</td><td>室内装饰装修材料 聚氯乙烯卷材地板有害物质限量</td><td>氯乙烯单体/铅</td></tr>
+<tr><td>GB 18587-2001</td><td>室内装饰装修材料 地毯/地毯衬垫有害物质限量</td><td>VOC/甲醛/苯乙烯</td></tr>
+<tr><td>GB 18588-2001</td><td>室内装饰装修材料 混凝土外加剂释放氨限量</td><td>氨释放量</td></tr>
+<tr><td>GB 6566-2010</td><td>建筑材料放射性核素限量</td><td>A/B/C三类，A类室内用</td></tr>
+<tr><td>GB/T 4100-2015</td><td>陶瓷砖</td><td>尺寸偏差/吸水率/耐磨性</td></tr>
+<tr><td>GB/T 19766-2016</td><td>天然大理石建筑板材</td><td>规格/物理性能/放射性</td></tr>
+<tr><td>GB/T 18601-2009</td><td>天然花岗石建筑板材</td><td>规格/物理性能/放射性</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-fire" class="section">
+<div class="section-header"><h2>防火安全标准 <span class="standard-count">4项</span></h2><p class="desc">建筑内部装修防火设计与验收</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
+<tbody>
+<tr><td>GB 50222-2017</td><td>建筑内部装修设计防火规范</td><td>材料燃烧性能等级（A/B1/B2/B3）</td></tr>
+<tr><td>GB 50354-2005</td><td>建筑内部装修防火施工及验收规范</td><td>隐蔽工程防火封堵</td></tr>
+<tr><td>GB 50016-2014</td><td>建筑设计防火规范（2018版）</td><td>疏散/防火分区/材料要求</td></tr>
+<tr><td>GB 51348-2019</td><td>民用建筑电气设计标准</td><td>电气防火/应急照明</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-env" class="section">
+<div class="section-header"><h2>室内环境与健康标准 <span class="standard-count">3项</span></h2><p class="desc">民用建筑室内环境污染控制与空气质量</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>核心指标</th></tr></thead>
+<tbody>
+<tr><td>GB 50325-2020</td><td>民用建筑工程室内环境污染控制标准</td><td>Ⅰ/Ⅱ类工程，甲醛 ≤ 0.07/0.08mg/m³</td></tr>
+<tr><td>GB/T 18883-2022</td><td>室内空气质量标准</td><td>甲醛 ≤ 0.08mg/m³，苯 ≤ 0.09mg/m³，19项</td></tr>
+<tr><td>JGJ/T 436-2018</td><td>住宅建筑室内装修污染控制技术标准</td><td>材料叠加污染计算/新风配置</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-tech" class="section">
+<div class="section-header"><h2>专项技术标准 <span class="standard-count">6项</span></h2><p class="desc">玻璃、新风、装配式厨卫等专项技术规程</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>适用范围</th></tr></thead>
+<tbody>
+<tr><td>JGJ 113-2015</td><td>建筑玻璃应用技术规程</td><td>安全玻璃/栏杆玻璃</td></tr>
+<tr><td>JGJ/T 440-2018</td><td>住宅新风系统技术标准</td><td>新风量/管道/过滤</td></tr>
+<tr><td>JGJ/T 467-2018</td><td>装配式整体卫生间应用技术标准</td><td>整体卫浴安装/防水</td></tr>
+<tr><td>JGJ/T 477-2018</td><td>装配式整体厨房应用技术标准</td><td>整体厨房/橱柜</td></tr>
+<tr><td>JGJ/T 427-2017</td><td>建筑装饰装修工程成品保护技术标准</td><td>成品保护/工序衔接</td></tr>
+<tr><td>JG/T 194-2018</td><td>住宅厨房和卫生间排烟(气)道制品</td><td>烟道/止回阀</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-law" class="section">
+<div class="section-header"><h2>法律法规 <span class="standard-count">4项</span></h2><p class="desc">装饰装修相关法律法规与部门规章</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>关键条款</th></tr></thead>
+<tbody>
+<tr><td>建设部令第110号</td><td>住宅室内装饰装修管理办法</td><td>禁止拆改承重结构/申报登记</td></tr>
+<tr><td>—</td><td>建设工程质量管理条例</td><td>质量责任/保修/处罚</td></tr>
+<tr><td>—</td><td>中华人民共和国建筑法</td><td>从业资质/质量安全</td></tr>
+<tr><td>—</td><td>中华人民共和国消防法</td><td>消防设计审核/验收</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="standard-cbda" class="section">
+<div class="section-header"><h2>协会团体标准（T/CBDA）</h2><p class="desc">中国建筑装饰协会（CBDA）发布的行业自律团体标准</p></div>
+<div class="card">
+<table class="standard-table">
+<thead><tr><th>编号</th><th>名称</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>T/CBDA 42-2020</td><td>住宅室内装饰装修电气工程施工技术规程</td><td>电气施工 CBDA 团体标准</td></tr>
+<tr><td>T/CBDA 43-2020</td><td>住宅室内装饰装修给水排水工程施工技术规程</td><td>给排水施工 CBDA 团体标准</td></tr>
+<tr><td>T/CBDA 系列</td><td>住宅室内装饰装修墙面/地面/吊顶/涂裱/木作/细部工程施工技术规程</td><td>各分项工程 CBDA 团体标准体系</td></tr>
+</tbody></table>
+
+<div class="highlight" style="margin-top:20px;">
+  <strong>标准体系说明：</strong>
+  <ul style="margin:8px 0 0 16px;line-height:2;">
+    <li><strong>强制性标准（GB）</strong>：必须执行，违反可追究法律责任</li>
+    <li><strong>推荐性标准（GB/T）</strong>：鼓励采用</li>
+    <li><strong>行业标准（JGJ/CJJ）</strong>：行业技术规范</li>
+    <li><strong>团体标准（T/CBDA）</strong>：中国建筑装饰协会发布，行业自律</li>
+    <li><strong style="color:#B8860B;">GB 55038-2025《住宅项目规范》</strong>是最新强制性规范，2025年5月1日起施行，取代多项旧标准中的强制条文</li>
+  </ul>
 </div>
 </div>
 </section>
@@ -2714,81 +2080,138 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 
 <script>
+/* ============ Navigation ============ */
+function navTo(targetId) {
+  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+  const navItem = document.querySelector(`[data-target="${targetId}"]`);
+  if (navItem) navItem.classList.add('active');
 
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-}
-
-function toggleModule(el) {
-  el.classList.toggle('collapsed');
-  el.nextElementSibling.classList.toggle('collapsed');
-}
-
-function toggleSub(el) {
-  el.classList.toggle('expanded');
-  el.nextElementSibling.classList.toggle('open');
-}
-
-function navTo(target) {
-  document.getElementById('sidebar').classList.remove('open');
-  var sec = document.getElementById(target);
-  if (sec) {
-    var hdr = sec.querySelector('.section-header');
-    if (hdr) hdr.style.display = 'block';
-    sec.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+  const section = document.getElementById(targetId);
+  if (section) {
+    section.style.display = 'block';
+    section.querySelector('.section-header').style.display = 'block';
+    document.getElementById('contentArea').scrollTop = 0;
   }
-  // Update active
-  document.querySelectorAll('.nav-item').forEach(function(item){ item.classList.remove('active'); });
-  document.querySelectorAll('.nav-item.sub').forEach(function(item){ item.classList.remove('active'); });
-  var items = document.querySelectorAll('.nav-item[data-target="'+target+'"]:not([data-scroll])');
-  items.forEach(function(item){ item.classList.add('active'); });
-  history.replaceState(null,null,'#'+target);
-}
 
-function navToSub(sectionId, scrollId) {
-  document.getElementById('sidebar').classList.remove('open');
-  var sec = document.getElementById(sectionId);
-  if (sec) {
-    var hdr = sec.querySelector('.section-header');
-    if (hdr) hdr.style.display = 'block';
-    var subEl = document.getElementById(scrollId);
-    if (subEl) {
-      subEl.scrollIntoView({behavior:'smooth',block:'start'});
-    } else {
-      sec.scrollIntoView({behavior:'smooth',block:'start'});
-    }
+  localStorage.setItem('designKb_lastSection', targetId);
+
+  // Close sidebar on mobile
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.remove('open');
   }
-  // Update active
-  document.querySelectorAll('.nav-item').forEach(function(item){ item.classList.remove('active'); });
-  document.querySelectorAll('.nav-item.sub').forEach(function(item){ item.classList.remove('active'); });
-  var parentItem = document.querySelector('.nav-item.parent[data-target="'+sectionId+'"]');
-  if (parentItem) parentItem.classList.add('active');
-  var subItems = document.querySelectorAll('.nav-item.sub[data-scroll="'+scrollId+'"]');
-  subItems.forEach(function(item){ item.classList.add('active'); });
 }
 
+/* ============ Search ============ */
 function doSearch() {
-  var q = document.getElementById('searchInput').value.toLowerCase().trim();
-  if (!q) {
-    document.querySelectorAll('.section').forEach(function(s){ s.style.display='block'; });
-    document.querySelectorAll('.card').forEach(function(c){ c.style.display='block'; });
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+
+  if (!query) {
+    // Restore last section
+    const lastSection = localStorage.getItem('designKb_lastSection') || 'style-modern';
+    navTo(lastSection);
+    clearHighlights();
     return;
   }
-  document.querySelectorAll('.section').forEach(function(sec){
-    var text = sec.textContent.toLowerCase();
-    var hasMatch = text.indexOf(q) !== -1;
-    sec.style.display = hasMatch ? 'block' : 'none';
-    if (hasMatch) {
-      sec.querySelectorAll('.card').forEach(function(card){
-        card.style.display = card.textContent.toLowerCase().indexOf(q) !== -1 ? 'block' : 'none';
-      });
-      var hdr = sec.querySelector('.section-header');
-      if (hdr) hdr.style.display = 'block';
+
+  // Show all sections for searching
+  document.querySelectorAll('.section').forEach(s => s.style.display = 'block');
+  document.querySelectorAll('.section-header').forEach(h => h.style.display = 'block');
+  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+
+  clearHighlights();
+
+  // Search and highlight
+  let hasResults = false;
+  document.querySelectorAll('.card').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(query)) {
+      hasResults = true;
+      highlightText(card, query);
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  // Show/hide no-results
+  const existing = document.querySelector('.no-results');
+  if (!hasResults) {
+    if (!existing) {
+      const nr = document.createElement('div');
+      nr.className = 'no-results';
+      nr.innerHTML = `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="28" cy="28" r="20"/><line x1="42" y1="42" x2="56" y2="56"/></svg><p>未找到包含"<strong>${escapeHtml(query)}</strong>"的内容，请尝试其他关键词</p>`;
+      document.getElementById('contentArea').appendChild(nr);
+    }
+  } else if (existing) {
+    existing.remove();
+  }
+}
+
+function highlightText(element, query) {
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(node => {
+    const text = node.textContent;
+    const lower = text.toLowerCase();
+    if (lower.includes(query)) {
+      const span = document.createElement('span');
+      const idx = lower.indexOf(query);
+      span.innerHTML = escapeHtml(text.substring(0, idx)) +
+        `<mark class="search-hl">${escapeHtml(text.substring(idx, idx + query.length))}</mark>` +
+        escapeHtml(text.substring(idx + query.length));
+      node.parentNode.replaceChild(span, node);
     }
   });
 }
 
+function clearHighlights() {
+  document.querySelectorAll('mark.search-hl').forEach(mark => {
+    const parent = mark.parentNode;
+    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+    parent.normalize();
+  });
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
+/* ============ Sidebar Toggle ============ */
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+/* ============ Init ============ */
+document.addEventListener('DOMContentLoaded', () => {
+  const lastSection = localStorage.getItem('designKb_lastSection') || 'style-modern';
+  navTo(lastSection);
+
+  // Keyboard shortcut: Ctrl+K or / to focus search
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && !e.ctrlKey && !e.metaKey && document.activeElement === document.body)) {
+      e.preventDefault();
+      document.getElementById('searchInput').focus();
+    }
+    if (e.key === 'Escape' && document.activeElement === document.getElementById('searchInput')) {
+      document.getElementById('searchInput').value = '';
+      doSearch();
+      document.getElementById('searchInput').blur();
+    }
+  });
+});
+
+function toggleModule(titleEl) {
+  titleEl.classList.toggle('collapsed');
+  var body = titleEl.nextElementSibling;
+  if (body) body.classList.toggle('collapsed');
+}
 </script>
+
 
 <footer style="padding:48px 40px 32px;text-align:center;border-top:1px solid #E8E3DC;background:var(--bg);">
   <div style="max-width:1040px;margin:0 auto;">
