@@ -96,13 +96,14 @@ a:hover{color:#8B6508}
   background:var(--bg-secondary);
   border-right:1px solid var(--border);
   padding:20px 0;
+  position:sticky;top:var(--header-h);height:calc(100vh - var(--header-h));
   overflow-y:auto;
   transition:transform var(--transition);
 }
 .sidebar nav{padding:0}
 .sidebar .module-title{
   font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
-  color:var(--text-muted);padding:20px 24px 8px;font-weight:600;
+  color:var(--text-primary);background:#F0ECE4;padding:14px 24px;font-weight:700;
 }
 .sidebar .nav-item{
   display:block;padding:7px 24px;
@@ -124,7 +125,7 @@ a:hover{color:#8B6508}
 .sidebar .module-group{margin:0}
 .sidebar .module-group .module-title{
   font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
-  color:var(--text-muted);padding:20px 24px 8px;font-weight:600;
+  color:var(--text-primary);background:#F0ECE4;padding:14px 24px;font-weight:700;
   cursor:pointer;user-select:none;
   display:flex;justify-content:space-between;align-items:center;
 }
@@ -256,6 +257,129 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 /* ============ No results ============ */
 .no-results{text-align:center;padding:80px 20px;color:var(--text-muted);font-size:15px}
 .no-results svg{width:48px;height:48px;margin-bottom:16px;opacity:0.3}
+
+/* ============ 三级菜单 ============ */
+.sidebar .sub-module { margin: 0; }
+.sidebar .sub-module-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition);
+}
+.sidebar .sub-module-title:hover { background: var(--bg-hover); }
+.sidebar .sub-module-title .arrow {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+.sidebar .sub-module-title.collapsed .arrow { transform: rotate(-90deg); }
+.sidebar .sub-module-body {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  max-height: 600px;
+}
+.sidebar .sub-module-body.collapsed { max-height: 0; }
+.sidebar .nav-cat {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text-primary);
+  padding: 7px 24px;
+  font-size: 0.85rem;
+  display: block;
+  border-left: 2px solid transparent;
+  margin-bottom: 0;
+}
+.sidebar .nav-cat:hover {
+  background: var(--bg-hover);
+  color: var(--accent);
+  border-left-color: var(--border);
+}
+.sidebar .nav-sub {
+  padding-left: 48px !important;
+  font-size: 0.78rem !important;
+  color: var(--text-secondary) !important;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar .nav-sub:hover { color: var(--accent) !important; }
+.sidebar .nav-sub.active { color: var(--accent) !important; font-weight: 500; }
+
+/* ============ 标准详细卡片 ============ */
+.standard-detail .section-header { display: block !important; }
+.standard-detail .section-header h2 {
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px;
+}
+.standard-detail-meta {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.standard-tag {
+  display: inline-block;
+  padding: 3px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: rgba(184,134,11,0.05);
+}
+.standard-tag.mandatory { border-color: #B8543A; color: #B8543A; background: rgba(184,84,58,0.05); }
+.standard-tag.recommend { border-color: var(--info); color: var(--info); background: rgba(110,143,184,0.05); }
+.standard-detail .standard-table { margin-bottom: 24px; }
+.standard-detail .standard-table th {
+  width: 120px;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+.standard-detail h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 24px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.standard-detail ol { padding-left: 20px; margin: 10px 0; }
+.standard-detail ol li {
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+.standard-detail ol li strong { color: var(--text-primary); }
+.standard-detail ul { padding-left: 20px; margin: 10px 0; }
+.standard-detail ul li {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+/* ============ 展开按钮 ============ */
+.expand-btn-wrap { text-align: center; margin: 0 0 40px; }
+.expand-btn {
+  display: inline-block;
+  padding: 8px 24px;
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all var(--transition);
+}
+.expand-btn:hover { background: rgba(184,134,11,0.06); }
+
 </style>
 </head>
 <body>
@@ -1911,11 +2035,15 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <table class="standard-table">
 <thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
 <tbody>
-<tr class="standard-latest"><td>GB 55038-2025</td><td>住宅项目规范</td><td>2025年5月1日实施，强制性规范，全部条文必须严格执行</td></tr>
-<tr><td>GB 50300-2013</td><td>建筑工程施工质量验收统一标准</td><td>质量验收总框架，分部分项划分</td></tr>
-<tr><td>GB 50352-2019</td><td>民用建筑设计统一标准</td><td>民用建筑设计通用规则</td></tr>
+<tr class="standard-latest"><td>GB 55038-2025</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-55038-2025')" class="std-link">住宅项目规范</a></td><td>2025年5月1日实施，强制性规范，全部条文必须严格执行</td></tr>
+<tr><td>GB 50300-2013</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50300-2013')" class="std-link">建筑工程施工质量验收统一标准</a></td><td>质量验收总框架，分部分项划分</td></tr>
+<tr><td>GB 50352-2019</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50352-2019')" class="std-link">民用建筑设计统一标准</a></td><td>民用建筑设计通用规则</td></tr>
 <tr><td>GB/T 50002-2013</td><td>建筑模数协调标准</td><td>模数化设计尺寸协调</td></tr>
 </tbody></table>
+</div>
+
+<div class="expand-btn-wrap">
+  <button class="expand-btn" onclick="toggleDetails('standard-detail-gb-55038-2025,standard-detail-gb-50300-2013,standard-detail-gb-50352-2019')">展开查看各标准详情</button>
 </div>
 </section>
 
@@ -1925,14 +2053,18 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <table class="standard-table">
 <thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
 <tbody>
-<tr><td>GB 50096-2011</td><td>住宅设计规范</td><td>住宅日照/采光/通风/套型设计</td></tr>
-<tr><td>JGJ 367-2015</td><td>住宅室内装饰装修设计规范</td><td>空间布局/无障碍/照明/收纳设计</td></tr>
-<tr><td>GB 50034-2013</td><td>建筑照明设计标准</td><td>照度/色温/眩光限制</td></tr>
-<tr><td>JGJ 242-2011</td><td>住宅建筑电气设计规范</td><td>回路划分/负荷计算/配电</td></tr>
+<tr><td>GB 50096-2011</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50096-2011')" class="std-link">住宅设计规范</a></td><td>住宅日照/采光/通风/套型设计</td></tr>
+<tr><td>JGJ 367-2015</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-jgj-367-2015')" class="std-link">住宅室内装饰装修设计规范</a></td><td>空间布局/无障碍/照明/收纳设计</td></tr>
+<tr><td>GB 50034-2013</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50034-2013')" class="std-link">建筑照明设计标准</a></td><td>照度/色温/眩光限制</td></tr>
+<tr><td>JGJ 242-2011</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-jgj-242-2011')" class="std-link">住宅建筑电气设计规范</a></td><td>回路划分/负荷计算/配电</td></tr>
 <tr><td>GB 50015-2019</td><td>建筑给水排水设计标准</td><td>管道布置/流量/水压</td></tr>
-<tr><td>GB 50763-2012</td><td>无障碍设计规范</td><td>无障碍厕位/坡道/扶手</td></tr>
-<tr><td>GB 50118-2010</td><td>民用建筑隔声设计规范</td><td>空气声/撞击声隔声限值</td></tr>
+<tr><td>GB 50763-2012</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50763-2012')" class="std-link">无障碍设计规范</a></td><td>无障碍厕位/坡道/扶手</td></tr>
+<tr><td>GB 50118-2010</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50118-2010')" class="std-link">民用建筑隔声设计规范</a></td><td>空气声/撞击声隔声限值</td></tr>
 </tbody></table>
+</div>
+
+<div class="expand-btn-wrap">
+  <button class="expand-btn" onclick="toggleDetails('standard-detail-gb-50096-2011,standard-detail-jgj-367-2015,standard-detail-gb-50034-2013,standard-detail-jgj-242-2011,standard-detail-gb-50763-2012,standard-detail-gb-50118-2010')">展开查看各标准详情</button>
 </div>
 </section>
 
@@ -1942,18 +2074,22 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <table class="standard-table">
 <thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
 <tbody>
-<tr><td>GB 50327-2001</td><td>住宅装饰装修工程施工规范</td><td>水电/防水/木作/涂饰施工全流程</td></tr>
-<tr><td>GB 50242-2002</td><td>建筑给水排水及采暖工程施工质量验收规范</td><td>管道安装/水压试验/采暖</td></tr>
-<tr><td>GB 50303-2015</td><td>建筑电气工程施工质量验收规范</td><td>导线穿管/配电箱/接地/等电位</td></tr>
-<tr><td>GB 50209-2010</td><td>建筑地面工程施工质量验收规范</td><td>地面基层/面层/防水</td></tr>
+<tr><td>GB 50327-2001</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50327-2001')" class="std-link">住宅装饰装修工程施工规范</a></td><td>水电/防水/木作/涂饰施工全流程</td></tr>
+<tr><td>GB 50242-2002</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50242-2002')" class="std-link">建筑给水排水及采暖工程施工质量验收规范</a></td><td>管道安装/水压试验/采暖</td></tr>
+<tr><td>GB 50303-2015</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50303-2015')" class="std-link">建筑电气工程施工质量验收规范</a></td><td>导线穿管/配电箱/接地/等电位</td></tr>
+<tr><td>GB 50209-2010</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50209-2010')" class="std-link">建筑地面工程施工质量验收规范</a></td><td>地面基层/面层/防水</td></tr>
 <tr><td>GB 50204-2015</td><td>混凝土结构工程施工质量验收规范</td><td>结构安全/植筋/加固</td></tr>
 <tr><td>GB 50203-2011</td><td>砌体结构工程施工质量验收规范</td><td>砌筑/抹灰/构造柱</td></tr>
-<tr><td>JGJ 298-2013</td><td>住宅室内防水工程技术规范</td><td>防水层设计/施工/闭水试验</td></tr>
-<tr><td>JGJ 142-2012</td><td>辐射供暖供冷技术规程</td><td>地暖盘管/保温层/伸缩缝</td></tr>
-<tr><td>JGJ/T 304-2013</td><td>住宅室内装饰装修工程质量验收规范</td><td>全过程质量验收/分户验收</td></tr>
+<tr><td>JGJ 298-2013</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-jgj-298-2013')" class="std-link">住宅室内防水工程技术规范</a></td><td>防水层设计/施工/闭水试验</td></tr>
+<tr><td>JGJ 142-2012</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-jgj-142-2012')" class="std-link">辐射供暖供冷技术规程</a></td><td>地暖盘管/保温层/伸缩缝</td></tr>
+<tr><td>JGJ/T 304-2013</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-jgjt-304-2013')" class="std-link">住宅室内装饰装修工程质量验收规范</a></td><td>全过程质量验收/分户验收</td></tr>
 <tr><td>GB 50411-2019</td><td>建筑节能工程施工质量验收标准</td><td>保温/隔热/节能</td></tr>
 <tr><td>GB/T 50312-2016</td><td>综合布线系统工程验收规范</td><td>弱电布线/光纤/配线架</td></tr>
 </tbody></table>
+</div>
+
+<div class="expand-btn-wrap">
+  <button class="expand-btn" onclick="toggleDetails('standard-detail-gb-50327-2001,standard-detail-gb-50242-2002,standard-detail-gb-50303-2015,standard-detail-gb-50209-2010,standard-detail-jgj-298-2013,standard-detail-jgj-142-2012,standard-detail-jgjt-304-2013')">展开查看各标准详情</button>
 </div>
 </section>
 
@@ -1963,11 +2099,15 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <table class="standard-table">
 <thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
 <tbody>
-<tr><td>GB 50210-2018</td><td>建筑装饰装修工程质量验收标准</td><td>核心验收标准，十大分项工程</td></tr>
-<tr><td>GB 50300-2013</td><td>建筑工程施工质量验收统一标准</td><td>验收程序/分部分项划分</td></tr>
-<tr><td>JGJ/T 304-2013</td><td>住宅室内装饰装修工程质量验收规范</td><td>住宅专项，分户验收</td></tr>
+<tr><td>GB 50210-2018</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50210-2018')" class="std-link">建筑装饰装修工程质量验收标准</a></td><td>核心验收标准，十大分项工程</td></tr>
+<tr><td>GB 50300-2013</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50300-2013-v2')" class="std-link">建筑工程施工质量验收统一标准</a></td><td>验收程序/分部分项划分</td></tr>
+<tr><td>JGJ/T 304-2013</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-jgjt-304-2013')" class="std-link">住宅室内装饰装修工程质量验收规范</a></td><td>住宅专项，分户验收</td></tr>
 <tr><td>GB 50617-2010</td><td>建筑电气照明装置施工与验收规范</td><td>灯具/开关/插座验收</td></tr>
 </tbody></table>
+</div>
+
+<div class="expand-btn-wrap">
+  <button class="expand-btn" onclick="toggleDetails('standard-detail-gb-50210-2018,standard-detail-gb-50300-2013-v2')">展开查看各标准详情</button>
 </div>
 </section>
 
@@ -1977,21 +2117,25 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <table class="standard-table">
 <thead><tr><th>编号</th><th>名称</th><th>核心指标</th></tr></thead>
 <tbody>
-<tr><td>GB 18580-2017</td><td>室内装饰装修材料 人造板甲醛释放限量</td><td>E1级 ≤ 0.124mg/m³</td></tr>
-<tr><td>GB/T 39600-2021</td><td>人造板及其制品甲醛释放量分级</td><td>ENF级 ≤ 0.025mg/m³</td></tr>
+<tr><td>GB 18580-2017</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-18580-2017')" class="std-link">室内装饰装修材料 人造板甲醛释放限量</a></td><td>E1级 ≤ 0.124mg/m³</td></tr>
+<tr><td>GB/T 39600-2021</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gbt-39600-2021')" class="std-link">人造板及其制品甲醛释放量分级</a></td><td>ENF级 ≤ 0.025mg/m³</td></tr>
 <tr><td>GB 18581-2020</td><td>室内装饰装修材料 溶剂型木器涂料有害物质限量</td><td>VOC/苯/甲苯限量</td></tr>
-<tr><td>GB 18582-2020</td><td>室内装饰装修材料 内墙涂料有害物质限量</td><td>VOC/甲醛/重金属</td></tr>
+<tr><td>GB 18582-2020</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-18582-2020')" class="std-link">室内装饰装修材料 内墙涂料有害物质限量</a></td><td>VOC/甲醛/重金属</td></tr>
 <tr><td>GB 18583-2008</td><td>室内装饰装修材料 胶粘剂有害物质限量</td><td>甲醛/苯/VOC</td></tr>
 <tr><td>GB 18584-2001</td><td>室内装饰装修材料 木家具有害物质限量</td><td>甲醛/重金属</td></tr>
 <tr><td>GB 18585-2001</td><td>室内装饰装修材料 壁纸有害物质限量</td><td>重金属/氯乙烯单体</td></tr>
 <tr><td>GB 18586-2001</td><td>室内装饰装修材料 聚氯乙烯卷材地板有害物质限量</td><td>氯乙烯单体/铅</td></tr>
 <tr><td>GB 18587-2001</td><td>室内装饰装修材料 地毯/地毯衬垫有害物质限量</td><td>VOC/甲醛/苯乙烯</td></tr>
 <tr><td>GB 18588-2001</td><td>室内装饰装修材料 混凝土外加剂释放氨限量</td><td>氨释放量</td></tr>
-<tr><td>GB 6566-2010</td><td>建筑材料放射性核素限量</td><td>A/B/C三类，A类室内用</td></tr>
+<tr><td>GB 6566-2010</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-6566-2010')" class="std-link">建筑材料放射性核素限量</a></td><td>A/B/C三类，A类室内用</td></tr>
 <tr><td>GB/T 4100-2015</td><td>陶瓷砖</td><td>尺寸偏差/吸水率/耐磨性</td></tr>
 <tr><td>GB/T 19766-2016</td><td>天然大理石建筑板材</td><td>规格/物理性能/放射性</td></tr>
 <tr><td>GB/T 18601-2009</td><td>天然花岗石建筑板材</td><td>规格/物理性能/放射性</td></tr>
 </tbody></table>
+</div>
+
+<div class="expand-btn-wrap">
+  <button class="expand-btn" onclick="toggleDetails('standard-detail-gb-18580-2017,standard-detail-gbt-39600-2021,standard-detail-gb-18582-2020,standard-detail-gb-6566-2010')">展开查看各标准详情</button>
 </div>
 </section>
 
@@ -2001,11 +2145,15 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <table class="standard-table">
 <thead><tr><th>编号</th><th>名称</th><th>核心内容</th></tr></thead>
 <tbody>
-<tr><td>GB 50222-2017</td><td>建筑内部装修设计防火规范</td><td>材料燃烧性能等级（A/B1/B2/B3）</td></tr>
+<tr><td>GB 50222-2017</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50222-2017')" class="std-link">建筑内部装修设计防火规范</a></td><td>材料燃烧性能等级（A/B1/B2/B3）</td></tr>
 <tr><td>GB 50354-2005</td><td>建筑内部装修防火施工及验收规范</td><td>隐蔽工程防火封堵</td></tr>
 <tr><td>GB 50016-2014</td><td>建筑设计防火规范（2018版）</td><td>疏散/防火分区/材料要求</td></tr>
 <tr><td>GB 51348-2019</td><td>民用建筑电气设计标准</td><td>电气防火/应急照明</td></tr>
 </tbody></table>
+</div>
+
+<div class="expand-btn-wrap">
+  <button class="expand-btn" onclick="toggleDetails('standard-detail-gb-50222-2017')">展开查看各标准详情</button>
 </div>
 </section>
 
@@ -2015,10 +2163,14 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <table class="standard-table">
 <thead><tr><th>编号</th><th>名称</th><th>核心指标</th></tr></thead>
 <tbody>
-<tr><td>GB 50325-2020</td><td>民用建筑工程室内环境污染控制标准</td><td>Ⅰ/Ⅱ类工程，甲醛 ≤ 0.07/0.08mg/m³</td></tr>
-<tr><td>GB/T 18883-2022</td><td>室内空气质量标准</td><td>甲醛 ≤ 0.08mg/m³，苯 ≤ 0.09mg/m³，19项</td></tr>
+<tr><td>GB 50325-2020</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gb-50325-2020')" class="std-link">民用建筑工程室内环境污染控制标准</a></td><td>Ⅰ/Ⅱ类工程，甲醛 ≤ 0.07/0.08mg/m³</td></tr>
+<tr><td>GB/T 18883-2022</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-gbt-18883-2022')" class="std-link">室内空气质量标准</a></td><td>甲醛 ≤ 0.08mg/m³，苯 ≤ 0.09mg/m³，19项</td></tr>
 <tr><td>JGJ/T 436-2018</td><td>住宅建筑室内装修污染控制技术标准</td><td>材料叠加污染计算/新风配置</td></tr>
 </tbody></table>
+</div>
+
+<div class="expand-btn-wrap">
+  <button class="expand-btn" onclick="toggleDetails('standard-detail-gb-50325-2020,standard-detail-gbt-18883-2022')">展开查看各标准详情</button>
 </div>
 </section>
 
@@ -2044,11 +2196,15 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <table class="standard-table">
 <thead><tr><th>编号</th><th>名称</th><th>关键条款</th></tr></thead>
 <tbody>
-<tr><td>建设部令第110号</td><td>住宅室内装饰装修管理办法</td><td>禁止拆改承重结构/申报登记</td></tr>
+<tr><td>建设部令第110号</td><td><a href="javascript:void(0)" onclick="navTo('standard-detail-建设部令第110号')" class="std-link">住宅室内装饰装修管理办法</a></td><td>禁止拆改承重结构/申报登记</td></tr>
 <tr><td>—</td><td>建设工程质量管理条例</td><td>质量责任/保修/处罚</td></tr>
 <tr><td>—</td><td>中华人民共和国建筑法</td><td>从业资质/质量安全</td></tr>
 <tr><td>—</td><td>中华人民共和国消防法</td><td>消防设计审核/验收</td></tr>
 </tbody></table>
+</div>
+
+<div class="expand-btn-wrap">
+  <button class="expand-btn" onclick="toggleDetails('standard-detail-建设部令第110号,standard-detail-国务院令第279号')">展开查看各标准详情</button>
 </div>
 </section>
 
@@ -2075,6 +2231,741 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </div>
 </div>
 </section>
+
+
+
+<!-- ==================== 标准详细卡片 ==================== -->
+
+<!-- 详细标准卡片：GB 55038-2025 -->
+<section id="standard-detail-gb-55038-2025" class="section standard-detail">
+<div class="section-header"><h2>GB 55038-2025《住宅项目规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 55038-2025</td></tr>
+    <tr><th>全称</th><td>住宅项目规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2025年5月1日实施</td></tr>
+    <tr><th>标准类型</th><td>强制性国家标准，全部条文必须严格执行</td></tr>
+    <tr><th>适用范围</th><td>适用于新建、扩建和改建的住宅项目的建设、使用和维护。取代以往分散在各类标准中的强制性条文。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**层高与净高**：新建住宅层高不应低于2.80m，卧室/起居室室内净高不应低于2.50m。直接决定吊顶方案——满吊平顶后需确保净高达标。</li>
+    <li>**电梯设置**：入户层为四层及以上的住宅，每单元至少设置一台电梯。</li>
+    <li>**隔声要求**：分户墙空气声隔声量≥45dB，楼板撞击声压级≤70dB。装修时需选用隔音材料。</li>
+    <li>**防水工程**：卫生间、厨房、阳台等涉水房间必须做防水层，淋浴区墙面防水高度≥1.8m。</li>
+    <li>**安全防护**：阳台栏杆高度≥1.1m（24m以上≥1.2m），垂直杆件净距≤0.11m。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**层高验收前置**：收房时先测量层高和净高，若不符合要求可拒绝收房。</li>
+    <li>**隔声不能省**：楼板隔音建议做减震垫+细石混凝土找平层，成本约50-80元/㎡。</li>
+    <li>**防水多层防护**：装修时必须重做防水且做闭水试验48小时，管根、地漏、门槛石等节点加强处理。</li>
+    <li>**阳台安全红线**：封阳台时不得拆除原护栏，若确需拆改须安装符合新规范高度的新护栏。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50300-2013 -->
+<section id="standard-detail-gb-50300-2013" class="section standard-detail">
+<div class="section-header"><h2>GB 50300-2013《建筑工程施工质量验收统一标准》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50300-2013</td></tr>
+    <tr><th>全称</th><td>建筑工程施工质量验收统一标准</td></tr>
+    <tr><th>发布/实施日期</th><td>2013年发布，2014年6月1日实施</td></tr>
+    <tr><th>适用范围</th><td>建筑工程施工质量验收的母标准，定义分部分项工程划分和验收程序。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**分部分项划分**：建筑装饰装修下分抹灰、门窗、吊顶、轻质隔墙、饰面板（砖）、幕墙、涂饰、裱糊与软包、细部等子分部。</li>
+    <li>**验收程序**：检验批→分项工程→分部工程→单位工程，逐级验收。上道未通过不得进入下道。</li>
+    <li>**合格条件**：主控项目全部合格+一般项目抽样合格率≥80%。</li>
+    <li>**验收记录**：所有验收须形成书面记录，由监理/业主签字确认。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**工序验收铁律**：坚持'上道工序不验收、下道工序不开工'。水电封槽前、防水闭水后、腻子打磨后这几个关键节点必须到现场确认。</li>
+    <li>**验收文件存档**：所有验收记录拍照留档，是后期维权的最有力证据。</li>
+    <li>**找正规监理**：建议聘请独立第三方监理，按GB 50300框架逐项验收，费用约2000-5000元/套。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50352-2019 -->
+<section id="standard-detail-gb-50352-2019" class="section standard-detail">
+<div class="section-header"><h2>GB 50352-2019《民用建筑设计统一标准》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50352-2019</td></tr>
+    <tr><th>全称</th><td>民用建筑设计统一标准</td></tr>
+    <tr><th>发布/实施日期</th><td>2019年发布，2019年10月1日实施</td></tr>
+    <tr><th>适用范围</th><td>新建、扩建和改建的民用建筑设计通用规则。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**采光要求**：住宅卧室、起居室窗地面积比不应小于1/7。装修中做隔断改变窗地比需确保采光不受影响。</li>
+    <li>**通风要求**：卧室、起居室、厨房应有自然通风。封阳台、加隔断时不能阻断原有通风路径。</li>
+    <li>**无障碍设计**：公共出入口、通道、电梯等需满足无障碍通行要求。</li>
+    <li>**室内净高**：吊顶设计必须以实测净高为基准，确保装修后不违反净高规定。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**采光不可牺牲**：做隔断改造时考虑采光影响，可用玻璃隔断、半墙保持通透。</li>
+    <li>**通风路径保留**：开放式厨房改封闭式需加装强力排烟系统弥补自然通风损失。</li>
+    <li>**层高利用策略**：层高不足2.7m不建议做满吊平顶，可考虑局部吊顶+原顶刷漆。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50096-2011 -->
+<section id="standard-detail-gb-50096-2011" class="section standard-detail">
+<div class="section-header"><h2>GB 50096-2011《住宅设计规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50096-2011</td></tr>
+    <tr><th>全称</th><td>住宅设计规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2011年发布，2012年8月1日实施</td></tr>
+    <tr><th>适用范围</th><td>全国城镇新建、扩建和改建的住宅设计，涵盖套型、采光、通风、隔声、采暖等。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**套型设计**：每套住宅应设卧室、起居室（厅）、厨房和卫生间等基本功能空间。合并功能空间需评估影响。</li>
+    <li>**日照要求**：至少有一个居住空间获得冬季日照（大寒日≥2小时）。封阳台不应遮挡日照。</li>
+    <li>**自然通风**：卧室、起居室、厨房通风开口面积≥地面面积的1/20。</li>
+    <li>**隔声要求**：分户墙空气声隔声≥45dB，楼板撞击声≤75dB。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**套型改造须谨慎**：打通卧室与客厅前评估对私密性的影响。有老人小孩的家庭保留至少一个封闭卧室。</li>
+    <li>**日照权保护**：封阳台选材避免深色镀膜玻璃，透光率需≥70%。</li>
+    <li>**通风优化**：单侧采光户型建议安装新风系统（≥150m³/h）。厨房烟道止逆阀必须安装。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：JGJ 367-2015 -->
+<section id="standard-detail-jgj-367-2015" class="section standard-detail">
+<div class="section-header"><h2>JGJ 367-2015《住宅室内装饰装修设计规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag recommend">推荐性标准 / 行业标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>JGJ 367-2015</td></tr>
+    <tr><th>全称</th><td>住宅室内装饰装修设计规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2015年发布，2016年4月1日实施</td></tr>
+    <tr><th>适用范围</th><td>住宅室内装饰装修设计，涵盖功能空间、收纳、照明、无障碍等。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**功能空间设计**：各空间应满足基本使用功能和舒适度要求，含最小面积、家具布置、通行宽度等量化指标。</li>
+    <li>**收纳设计**：建议收纳面积≥套内面积的10%。玄关、卧室、厨房、卫生间为收纳重点。</li>
+    <li>**照明设计**：各空间照度标准：客厅100-300lx、厨房150-300lx、书房300-500lx。色温推荐2700K-4000K。</li>
+    <li>**无障碍设计**：有老年人居住的住宅应考虑无障碍通行，过道宽度≥1.0m，卫生间门宽≥0.8m。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**收纳先行**：设计阶段先做全屋收纳规划。衣柜深度标准60cm，鞋柜35cm，电视柜35cm。</li>
+    <li>**灯光分路控制**：同一空间至少分2-3路灯光（环境光/任务光/氛围光）。客厅建议不少于3路。</li>
+    <li>**适老化预留**：即使现在没有老人同住，也建议卫生间预留扶手加固位（墙体预埋钢板）。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50034-2013 -->
+<section id="standard-detail-gb-50034-2013" class="section standard-detail">
+<div class="section-header"><h2>GB 50034-2013《建筑照明设计标准》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50034-2013</td></tr>
+    <tr><th>全称</th><td>建筑照明设计标准</td></tr>
+    <tr><th>发布/实施日期</th><td>2013年发布，2014年6月1日实施</td></tr>
+    <tr><th>适用范围</th><td>民用建筑和工业建筑照明设计，规定照度、均匀度、眩光限制和显色性要求。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**照度标准值**：起居室100-300lx，卧室75-200lx，厨房150-300lx，书房300-500lx（阅读区）。</li>
+    <li>**眩光限制**：居住区统一眩光值（UGR）≤19，卧室≤16。筒灯/射灯需选防眩款。</li>
+    <li>**显色性要求**：住宅室内一般显色指数Ra≥80，厨房/化妆间Ra≥90。</li>
+    <li>**功率密度限值**：住宅照明功率密度（LPD）≤5W/㎡（现行值）≤4W/㎡（目标值）。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**照度计算不能靠感觉**：100㎡住宅合理灯具总功率约200-300W（全LED）。无主灯方案需增加灯具数量。</li>
+    <li>**防眩是舒适关键**：射灯光束角选24°-36°，距墙30-50cm安装。避免射灯直射沙发区、床头区。</li>
+    <li>**显色指数Ra≥90**：厨房、化妆台、衣柜内部灯光Ra必须≥90，否则肉色发灰、衣服偏色。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：JGJ 242-2011 -->
+<section id="standard-detail-jgj-242-2011" class="section standard-detail">
+<div class="section-header"><h2>JGJ 242-2011《住宅建筑电气设计规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag recommend">推荐性标准 / 行业标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>JGJ 242-2011</td></tr>
+    <tr><th>全称</th><td>住宅建筑电气设计规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2011年发布，2012年4月1日实施</td></tr>
+    <tr><th>适用范围</th><td>住宅建筑电气设计，包括供配电、照明、防雷接地、弱电智能化等。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**回路划分**：照明、插座、空调、厨房、卫生间应分设独立回路。每套住宅配电回路数不宜少于6个。</li>
+    <li>**用电负荷**：≤90㎡不低于6kW，90-150㎡不低于8kW，＞150㎡不低于10kW。老房装修前确认电表容量。</li>
+    <li>**插座配置**：卧室每间≥3组，起居室≥4组，厨房≥5组（含带开关插座），卫生间≥2组（带防溅盒）。</li>
+    <li>**漏电保护**：插座回路必须装设漏电保护器（动作电流≤30mA）。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**回路越多越好**：建议做8-12个回路（照明2路+插座2路+厨房2路+卫生间2路+空调2-3路+冰箱1路）。</li>
+    <li>**老房入户线检查**：2000年前建成小区入户主线可能只有4-6mm²，装修前评估是否需升级到10mm²。</li>
+    <li>**插座宁可多不可少**：每个房间插座在规范基础上再加30%余量。客厅电视墙最少留4个五孔+1个网口。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50763-2012 -->
+<section id="standard-detail-gb-50763-2012" class="section standard-detail">
+<div class="section-header"><h2>GB 50763-2012《无障碍设计规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50763-2012</td></tr>
+    <tr><th>全称</th><td>无障碍设计规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2012年发布，2012年9月1日实施</td></tr>
+    <tr><th>适用范围</th><td>各类新建、扩建和改建建筑的无障碍设计。住宅装修主要涉及适老化改造。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**通行宽度**：户内过道宽度≥1.0m，各房间门宽≥0.8m。适老化装修中卫生间门建议≥0.85m。</li>
+    <li>**地面无高差**：套内各房间交接处不应有高差，阳台与室内之间做斜坡处理（坡度≤1:12）。</li>
+    <li>**卫生间安全**：坐便器、淋浴区旁安装安全抓杆（水平长度≥0.7m），承受力≥1.0kN。淋浴区设置坐凳。</li>
+    <li>**扶手要求**：楼梯、坡道两侧设扶手，高度0.85-0.90m，末端向墙面或向下延伸≥0.3m。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**适老化从门宽开始**：卫生间和卧室门宽至少保证80cm（标准门洞90cm，装门后净宽约80cm）。</li>
+    <li>**预埋加固件**：即使暂时不需要扶手，马桶旁、淋浴区墙面预埋钢板或加固木工板。</li>
+    <li>**取消门槛石**：全屋通铺取消门槛石，卫生间做下沉式或长条地漏解决挡水，使全屋地面零高差。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50118-2010 -->
+<section id="standard-detail-gb-50118-2010" class="section standard-detail">
+<div class="section-header"><h2>GB 50118-2010《民用建筑隔声设计规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50118-2010</td></tr>
+    <tr><th>全称</th><td>民用建筑隔声设计规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2010年发布，2011年6月1日实施</td></tr>
+    <tr><th>适用范围</th><td>民用建筑隔声设计。住宅装修中重点关注分户墙、楼板、外窗的隔声处理。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**分户墙隔声**：相邻两户空气声隔声量Rw+C≥45dB。不得在分户墙上开槽过深（≤墙厚1/3）。</li>
+    <li>**楼板撞击声**：计权标准化撞击声压级L'nTw≤75dB（≤65dB为高要求）。楼上铺木地板需加隔音垫≥5mm厚。</li>
+    <li>**外窗隔声**：临街外窗空气声隔声量≥30dB（交通干线两侧≥35dB）。优先选夹胶中空玻璃窗。</li>
+    <li>**设备噪音**：电梯、水泵等不应紧邻卧室，管道穿越楼板和墙体的孔洞必须用不燃材料封堵隔音。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**隔音是装修最易被忽视的痛点**：吊顶填入50mm隔音棉，地面铺木地板时加铺5mm隔音垫。</li>
+    <li>**管道包隔音棉**：所有下水立管用隔音棉包裹后再封管，否则每次楼上冲水都像在自家轰鸣。</li>
+    <li>**临街住宅窗升级**：预算允许上三玻两腔或夹胶中空玻璃，隔音效果提升50%以上。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50327-2001 -->
+<section id="standard-detail-gb-50327-2001" class="section standard-detail">
+<div class="section-header"><h2>GB 50327-2001《住宅装饰装修工程施工规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50327-2001</td></tr>
+    <tr><th>全称</th><td>住宅装饰装修工程施工规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2001年发布，2002年5月1日实施</td></tr>
+    <tr><th>适用范围</th><td>住宅装饰装修工程施工全过程，涵盖水电、防水、木作、涂饰等各类分项工程。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**施工基本规定**：施工前应进行设计交底和图纸会审；不得擅改建筑主体和承重结构；承重墙横向开槽不超30cm。</li>
+    <li>**防火安全**：施工现场严禁吸烟和明火作业，易燃材料存放在阴凉通风处，木工区配灭火器。</li>
+    <li>**室内环境污染控制**：材料应选符合国家环保标准的产品，竣工后通风7天以上再入住。</li>
+    <li>**防水工程**：涉水区域必须做防水层。淋浴区墙面防水高度≥1.8m，其他区域≥0.3m。</li>
+    <li>**电气工程**：电线必须穿管敷设，强弱电分管分槽间距≥30cm。插座回路须装漏电保护器。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**开工前先做三交底**：设计交底（图纸核对）、施工交底（工艺标准）、安全交底（防火/用电安全），三方签字。</li>
+    <li>**水电定位拍照存档**：封槽前对所有管线走向拍照并标注尺寸，打印图纸留存。这是后期打孔维修的保命图。</li>
+    <li>**材料进场验收**：所有材料进场时核对品牌、规格、环保等级，并拍照留证。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50242-2002 -->
+<section id="standard-detail-gb-50242-2002" class="section standard-detail">
+<div class="section-header"><h2>GB 50242-2002《建筑给水排水及采暖工程施工质量验收规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50242-2002</td></tr>
+    <tr><th>全称</th><td>建筑给水排水及采暖工程施工质量验收规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2002年发布，2002年4月1日实施</td></tr>
+    <tr><th>适用范围</th><td>建筑给水排水及采暖工程施工质量验收。装修中主要涉及给水管道安装、水压试验等。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**管道安装**：暗装管道必须在封闭前做水压试验，合格后方可隐蔽。</li>
+    <li>**水压试验**：试验压力为工作压力的1.5倍且≥0.6MPa，稳压10分钟压力降≤0.02MPa后降至工作压力检查不渗不漏。</li>
+    <li>**排水坡度**：DN50管≥0.035（每米降3.5cm），DN75管≥0.025，DN100管≥0.02。坡度不足会导致排水不畅和反味。</li>
+    <li>**管道间距**：给水管与排水管平行敷设水平间距≥0.5m，交叉时给水管在排水管上方≥0.15m。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**打压必须现场盯着**：水压试验是装修最重要的隐蔽验收环节，业主必须到场。冷热水管分别打压保压至少30分钟。</li>
+    <li>**排水坡度用手电照**：用强光手电顺管道方向照射，看管内是否有积水。坡度不够的地方水会滞留。</li>
+    <li>**热水管保温必须做**：所有热水管（含墙内暗管）包保温棉厚度≥2cm。不做会导致热水降温2-3°C和结露发霉。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50303-2015 -->
+<section id="standard-detail-gb-50303-2015" class="section standard-detail">
+<div class="section-header"><h2>GB 50303-2015《建筑电气工程施工质量验收规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50303-2015</td></tr>
+    <tr><th>全称</th><td>建筑电气工程施工质量验收规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2015年发布，2016年8月1日实施</td></tr>
+    <tr><th>适用范围</th><td>建筑电气工程施工质量验收。装修中重点：导线穿管、配电箱安装、接地保护和等电位联结。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**导线穿管**：不同回路、不同电压等级的导线不得穿入同一管内；管内导线总截面积≤管截面积的40%。</li>
+    <li>**配电箱安装**：底边距地高度≥1.5m（暗装）/≥1.8m（明装），各回路标识清晰。</li>
+    <li>**接地保护**：金属线槽、金属导管、配电箱金属外壳必须可靠接地（PE线连接）。接地电阻≤1Ω。</li>
+    <li>**等电位联结**：卫生间必须做局部等电位联结（LEB端子箱），这是防触电的最后一道防线。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**穿线量严格把控**：一根16mm线管最多穿3根2.5mm²线（或2根4mm²线）。多穿线是火灾隐患，坚决要求整改。</li>
+    <li>**等电位不能省**：卫生间等电位端子箱是保命装置。业主务必要求接线并验收。</li>
+    <li>**配电箱标识必须做**：每个回路贴标签标注控制区域（厨房插座/主卧空调/客厅照明等）。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50209-2010 -->
+<section id="standard-detail-gb-50209-2010" class="section standard-detail">
+<div class="section-header"><h2>GB 50209-2010《建筑地面工程施工质量验收规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50209-2010</td></tr>
+    <tr><th>全称</th><td>建筑地面工程施工质量验收规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2010年发布，2011年2月1日实施</td></tr>
+    <tr><th>适用范围</th><td>建筑地面工程施工质量验收，涵盖基层铺设、整体面层、板块面层（瓷砖）、木竹面层四大类。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**基层铺设**：基层表面应坚固密实平整，不应有起砂空鼓裂缝。自流平找平后应达到≤2mm。</li>
+    <li>**板块面层（瓷砖）**：瓷砖铺贴应粘贴牢固无空鼓（地砖零容忍）。砖缝平直宽窄均匀，缝宽偏差≤0.5mm。</li>
+    <li>**木竹面层（地板）**：基层含水率≤12%，地板与墙面留伸缩缝8-12mm，用踢脚线遮盖。</li>
+    <li>**面层坡度**：卫生间、阳台等有排水要求地面，面层坡度应坡向地漏，坡度≥1%，地漏处为最低点。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**找平是地板品质的基础**：铺木地板前必须做自流平或水泥砂浆精找平，2m靠尺≤3mm。</li>
+    <li>**伸缩缝必须留**：木地板四周留8-12mm伸缩缝。踢脚线选≥1.5cm厚以完全遮盖伸缩缝。</li>
+    <li>**卫生间坡度验收**：贴完砖验收时倒一盆水在地面，看水流是否全部流向地漏、有无积水。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：JGJ 298-2013 -->
+<section id="standard-detail-jgj-298-2013" class="section standard-detail">
+<div class="section-header"><h2>JGJ 298-2013《住宅室内防水工程技术规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag recommend">推荐性标准 / 行业标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>JGJ 298-2013</td></tr>
+    <tr><th>全称</th><td>住宅室内防水工程技术规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2013年发布，2014年3月1日实施</td></tr>
+    <tr><th>适用范围</th><td>新建和既有住宅室内防水工程的设计、施工和质量验收，是住宅防水最权威的专项技术规范。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**防水设计**：卫生间、厨房、阳台防水等级为Ⅰ级（不允许渗漏）。地面防水层应连续满铺。</li>
+    <li>**材料选择**：推荐JS聚合物水泥防水涂料（Ⅱ型）或K11通用型。不得使用溶剂型防水涂料（有毒有害）。</li>
+    <li>**施工工艺**：管根、地漏、阴阳角处做R角处理并附加无纺布。防水涂料至少涂刷2-3遍，每遍厚度0.5-0.8mm。</li>
+    <li>**闭水试验**：防水层干燥后做闭水试验。蓄水深度20-30mm，静置24小时以上检查无渗漏。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**防水涂料薄涂多遍**：JS防水涂料每次厚度不超1mm。刷2-3遍，每遍间隔4-6小时（指触不粘手）。总厚度1.5-2mm最佳。</li>
+    <li>**管根是渗漏重灾区**：先用堵漏王做R角（弧形坡），干燥后再刷防水，附加无纺布。这个节点最好亲自盯着。</li>
+    <li>**闭水试验不少于48小时**：规范要求24小时，实战建议48小时。有渗漏必须修复后重新闭水直到通过。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：JGJ 142-2012 -->
+<section id="standard-detail-jgj-142-2012" class="section standard-detail">
+<div class="section-header"><h2>JGJ 142-2012《辐射供暖供冷技术规程》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag recommend">推荐性标准 / 行业标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>JGJ 142-2012</td></tr>
+    <tr><th>全称</th><td>辐射供暖供冷技术规程</td></tr>
+    <tr><th>发布/实施日期</th><td>2012年发布，2013年7月1日实施</td></tr>
+    <tr><th>适用范围</th><td>以低温热水为热媒的地面辐射供暖工程的设计、施工及验收。铺设地暖必须遵守此规程。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**保温层**：地暖盘管下方必须铺设保温层（挤塑聚苯板XPS厚度≥20mm），保温层上铺设反射膜（铝箔）。</li>
+    <li>**伸缩缝设置**：面积超30㎡或长度超6m的区域应设伸缩缝，宽度≥10mm，用弹性材料填充。</li>
+    <li>**盘管间距**：常规区域150-200mm（客厅/卧室），卫生间等高热负荷区域可加密至100-150mm。</li>
+    <li>**混凝土填充层**：盘管上浇筑细石混凝土填充层厚度≥50mm。养护期≥21天。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**层高影响需提前规划**：地暖全屋铺设占用8-10cm层高，层高低于2.7m的户型谨慎选择或考虑干式地暖（3-4cm）。</li>
+    <li>**分区控制省钱**：按房间分区控制温度，不常住房间可关小或关闭，长期可省30%以上燃气费。</li>
+    <li>**地暖+木地板选材**：必须选'地暖专用'多层实木复合或强化地板，厚度≤12mm。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：JGJ/T 304-2013 -->
+<section id="standard-detail-jgjt-304-2013" class="section standard-detail">
+<div class="section-header"><h2>JGJ/T 304-2013《住宅室内装饰装修工程质量验收规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag recommend">推荐性标准 / 行业标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>JGJ/T 304-2013</td></tr>
+    <tr><th>全称</th><td>住宅室内装饰装修工程质量验收规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2013年发布，2014年3月1日实施</td></tr>
+    <tr><th>适用范围</th><td>住宅室内装饰装修工程全过程质量验收，是住宅装修最全面的质量验收标准。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**分户验收**：住宅装饰装修工程竣工后应进行分户验收，每套住宅独立验收。</li>
+    <li>**质量保修**：装修工程最低保修期限：防水工程5年；其他项目2年。保修期自验收合格之日起计算。</li>
+    <li>**室内环境质量**：竣工后应委托有资质检测机构检测室内空气质量。甲醛≤0.08mg/m³，苯≤0.09mg/m³，TVOC≤0.50mg/m³。</li>
+    <li>**竣工资料移交**：应向业主移交全套竣工资料包括设计图纸、材料清单、水电走向图、保修卡、检测报告等。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**分户验收自己做三遍**：①水电封槽前（隐蔽工程）②贴砖/刷漆完成后（面层）③竣工验收（整体）。每遍逐项打勾拍照存档。</li>
+    <li>**空气检测不要省**：完工通风7-14天后找CMA认证检测机构做空气检测（约500-1000元）。数据说话。</li>
+    <li>**竣工资料是维权武器**：务必索要水电走向图（标注尺寸）、材料清单和合格证、保修协议。缺任何一项不要签竣工确认单。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50210-2018 -->
+<section id="standard-detail-gb-50210-2018" class="section standard-detail">
+<div class="section-header"><h2>GB 50210-2018《建筑装饰装修工程质量验收标准》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50210-2018</td></tr>
+    <tr><th>全称</th><td>建筑装饰装修工程质量验收标准</td></tr>
+    <tr><th>发布/实施日期</th><td>2018年发布，2018年9月1日实施</td></tr>
+    <tr><th>适用范围</th><td>装饰装修工程最核心的验收标准，涵盖十大分项工程：抹灰、门窗、吊顶、轻质隔墙、饰面板（砖）、幕墙、涂饰、裱糊与软包、细部、地面。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**十大分项工程**：装修验收需按抹灰、门窗、吊顶、轻质隔墙、饰面板（砖）、幕墙、涂饰、裱糊与软包、细部、地面逐项检查。</li>
+    <li>**抹灰工程**：表面光滑洁净接槎平整，无脱层空鼓。普通抹灰平整度2m靠尺≤4mm，高级抹灰≤3mm。</li>
+    <li>**饰面板（砖）工程**：表面平整洁净色泽一致无裂痕缺损。墙砖空鼓率单片≤15%，整面墙≤5%。</li>
+    <li>**涂饰工程**：颜色均匀光泽一致，无泛碱咬色流坠疙瘩。1.5m距离目测分辨不出色差。</li>
+    <li>**细部工程**：橱柜、窗帘盒、窗台板、护栏扶手等安装位置正确、割角整齐、接缝严密、安装牢固。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**验收工具必须齐全**：自备验收工具包：2m靠尺、塞尺、空鼓锤、直角尺、相位仪、强光手电、水平尺。</li>
+    <li>**空鼓是瓷砖第一杀手**：用空鼓锤逐块敲击。地砖绝对零容忍（一块空鼓就得返工），墙砖单片空鼓不超过15%。</li>
+    <li>**灯光侧照验收墙面**：晚上关灯用手电筒贴墙侧照，任何波浪纹、砂眼、打磨痕都会暴露。这是油漆师傅最怕的验收方式。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50300-2013 -->
+<section id="standard-detail-gb-50300-2013-v2" class="section standard-detail">
+<div class="section-header"><h2>GB 50300-2013《建筑工程施工质量验收统一标准（验收篇）》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50300-2013</td></tr>
+    <tr><th>全称</th><td>建筑工程施工质量验收统一标准</td></tr>
+    <tr><th>发布/实施日期</th><td>2013年发布，2014年6月1日实施</td></tr>
+    <tr><th>适用范围</th><td>在验收标准分类中，本规范侧重于装修工程的质量保修、竣工验收程序和分户验收要求。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**验收程序**：检验批→分项工程→分部工程→单位工程逐级验收。上道工序未通过不得进入下道。</li>
+    <li>**合格条件**：主控项目全部合格+一般项目抽样合格率≥80%。装修中安全/功能类主控项必须100%合格。</li>
+    <li>**质量保修**：防水工程5年、其他项目2年。保修期自竣工验收合格之日起计算。</li>
+    <li>**竣工资料移交**：应向业主移交全套竣工资料包括设计图纸、材料清单、水电走向图、保修卡等。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**保修条款写入合同**：签装修合同时明确保修期限和范围。防水5年、其他2年是法定最低标准。</li>
+    <li>**竣工资料=房产证**：水电走向图、材料清单、保修卡像房产证一样妥善保管。10年后电路故障没有资料维修无从下手。</li>
+    <li>**空气检测是最后一道关**：无论装修公司如何保证环保，竣工后一定要做CMA认证的室内空气质量检测。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 18580-2017 -->
+<section id="standard-detail-gb-18580-2017" class="section standard-detail">
+<div class="section-header"><h2>GB 18580-2017《室内装饰装修材料 人造板及其制品中甲醛释放限量》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 18580-2017</td></tr>
+    <tr><th>全称</th><td>室内装饰装修材料 人造板及其制品中甲醛释放限量</td></tr>
+    <tr><th>发布/实施日期</th><td>2017年发布，2018年5月1日实施</td></tr>
+    <tr><th>适用范围</th><td>纤维板、刨花板、胶合板、细木工板等人造板及其制品（地板、墙板、木门、家具等）的甲醛释放限量。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**唯一限量等级**：取消E2级，只保留E1级。E1级≤0.124mg/m³（1m³气候箱法），这是室内用板材的强制性准入门槛。</li>
+    <li>**检测方法**：采用1m³气候箱法（最接近实际使用环境），取代了干燥器法和穿孔萃取法。</li>
+    <li>**适用范围全覆盖**：所有在室内使用的人造板及其制品都必须满足E1≤0.124mg/m³。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**要检测报告不要口头承诺**：购买板材、柜体、地板时要求商家出示第三方CMA认证检测报告。口说无凭。</li>
+    <li>**ENF级才是真正的环保标杆**：有老人/儿童的家庭建议选购ENF级（≤0.025mg/m³）板材，比E1严格约5倍。</li>
+    <li>**封边=封闭甲醛**：板材甲醛主要通过未封边的断面释放。要求PUR封边，四面封边+背板封边缺一不可。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB/T 39600-2021 -->
+<section id="standard-detail-gbt-39600-2021" class="section standard-detail">
+<div class="section-header"><h2>GB/T 39600-2021《人造板及其制品甲醛释放量分级》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag recommend">推荐性标准 / 行业标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB/T 39600-2021</td></tr>
+    <tr><th>全称</th><td>人造板及其制品甲醛释放量分级</td></tr>
+    <tr><th>发布/实施日期</th><td>2021年发布，2021年10月1日实施</td></tr>
+    <tr><th>适用范围</th><td>人造板及其制品甲醛释放量分级，在E1基础上新增E0和ENF两个更高等级。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**三级分级体系**：E1级≤0.124mg/m³（准入级）、E0级≤0.050mg/m³（较高级）、ENF级≤0.025mg/m³（无醛级/全球最高标准）。</li>
+    <li>**ENF级意义**：ENF（无醛添加）级是中国独有的甲醛释放分级，严于日本F☆☆☆☆（≤0.03mg/m³）和美国CARB NAF标准。</li>
+    <li>**检测方法**：1m³气候箱法。E0和ENF级的达标需从胶粘剂源头控制（使用MDI无醛胶等）。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**ENF是装修环保天花板**：定制衣柜、橱柜建议选ENF级板材，比E0贵约20-30%，但甲醛释放量降低一半。</li>
+    <li>**注意区分检测E0和达到E0**：一些商家自称E0但拿不出报告，或报告检测方法不是气候箱法。擦亮眼睛。</li>
+    <li>**ENF级≠零甲醛**：ENF是No Added Formaldehyde（无醛添加），不是Zero Formaldehyde。木材本身含微量天然甲醛是正常的。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 18582-2020 -->
+<section id="standard-detail-gb-18582-2020" class="section standard-detail">
+<div class="section-header"><h2>GB 18582-2020《室内装饰装修材料 内墙涂料中有害物质限量》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 18582-2020</td></tr>
+    <tr><th>全称</th><td>室内装饰装修材料 内墙涂料中有害物质限量</td></tr>
+    <tr><th>发布/实施日期</th><td>2020年发布，2020年12月1日实施</td></tr>
+    <tr><th>适用范围</th><td>室内装饰装修用各类水性内墙涂料（乳胶漆、艺术漆等），包括面漆、底漆、腻子等。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**VOC限量**：水性内墙涂料VOC含量≤80g/L（面漆）≤100g/L（底漆）。选购时选VOC<10g/L的产品更安全。</li>
+    <li>**甲醛限量**：游离甲醛含量≤50mg/kg。优质产品游离甲醛通常低于10mg/kg。</li>
+    <li>**重金属限量**：可溶性铅≤90mg/kg、可溶性镉≤75mg/kg、可溶性铬≤60mg/kg、可溶性汞≤60mg/kg。</li>
+    <li>**苯系物**：苯、甲苯、乙苯、二甲苯总和≤100mg/kg。优质水性漆基本不含苯系物。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**买漆看检测报告**：要求商家出示2020版新国标型式检验报告，重点看VOC和甲醛两项数据。</li>
+    <li>**底漆不能省**：正确的做法是'一底两面'（一遍底漆+两遍面漆）。底漆封闭基层碱性、增强面漆附着力。</li>
+    <li>**刷完漆通风至少7天**：即使零VOC涂料，施工干燥过程也会释放少量气味。建议通风7-14天再入住。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 6566-2010 -->
+<section id="standard-detail-gb-6566-2010" class="section standard-detail">
+<div class="section-header"><h2>GB 6566-2010《建筑材料放射性核素限量》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 6566-2010</td></tr>
+    <tr><th>全称</th><td>建筑材料放射性核素限量</td></tr>
+    <tr><th>发布/实施日期</th><td>2010年发布，2011年7月1日实施</td></tr>
+    <tr><th>适用范围</th><td>建筑材料放射性核素限量检测和分级。装修中重点关注天然石材（大理石/花岗石）、瓷砖、陶瓷洁具等。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**A/B/C三类分级**：A类（IRa≤1.0且Iγ≤1.3）室内装修必须选A类；B类不可用于住宅内装饰；C类只能用于建筑外饰面。</li>
+    <li>**重点关注石材和瓷砖**：花岗石放射性高于大理石。部分锆英砂釉面瓷砖放射性可能偏高。</li>
+    <li>**Ⅰ类民用建筑要求**：住宅、学校、幼儿园、医院等Ⅰ类民用建筑室内装饰装修材料必须选用A类产品。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**大理石比花岗石安全**：室内台面、背景墙首选大理石（大多数天然大理石属A类）。花岗石需看检测报告。</li>
+    <li>**买石材要放射性检测报告**：大批量采购时要求供应商提供放射性检测报告（外照指数Iγ≤1.3、内照指数IRa≤1.0）。</li>
+    <li>**瓷砖也是关注对象**：部分使用锆英砂的高白度瓷砖放射性可能偏高。选购正规品牌有3C认证的产品。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50222-2017 -->
+<section id="standard-detail-gb-50222-2017" class="section standard-detail">
+<div class="section-header"><h2>GB 50222-2017《建筑内部装修设计防火规范》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50222-2017</td></tr>
+    <tr><th>全称</th><td>建筑内部装修设计防火规范</td></tr>
+    <tr><th>发布/实施日期</th><td>2017年发布，2018年4月1日实施</td></tr>
+    <tr><th>适用范围</th><td>民用建筑内部装修防火设计，规定各场所各部位（顶棚/墙面/地面/隔断/固定家具/窗帘/帷幕等）装修材料的燃烧性能等级最低要求。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**燃烧性能等级**：A级（不燃）如石材、瓷砖、金属、玻璃；B1级（难燃）如经防火处理的木材、难燃墙纸；B2级（可燃）如普通木材；B3级（易燃）严禁作为装修材料。</li>
+    <li>**住宅各部位要求**：住宅顶棚和墙面≥B1级。高层住宅（＞27m）顶棚和墙面≥A级（不燃）、地面≥B1级。</li>
+    <li>**厨房特殊要求**：厨房顶棚、墙面、地面均应采用A级不燃材料。不建议使用木制吊顶和塑料扣板。</li>
+    <li>**疏散走道和安全出口**：顶棚和墙面必须A级不燃、地面必须≥B1级。装修不得遮挡覆盖拆除消防设施和疏散指示标志。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**吊顶材料首选A级**：石膏板吊顶（A级）是住宅标配。避免使用未防火处理的木板、塑料扣板。</li>
+    <li>**厨房必须用不燃材料**：厨房吊顶用铝扣板或防水石膏板（均为A级），墙面用瓷砖（A级）。这是硬性规定。</li>
+    <li>**装修不得遮挡消防设施**：喷淋头不能包在吊顶里，烟感探测器不能被柜体遮挡，消火栓不能被装饰物封死。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB 50325-2020 -->
+<section id="standard-detail-gb-50325-2020" class="section standard-detail">
+<div class="section-header"><h2>GB 50325-2020《民用建筑工程室内环境污染控制标准》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag mandatory">强制性标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB 50325-2020</td></tr>
+    <tr><th>全称</th><td>民用建筑工程室内环境污染控制标准</td></tr>
+    <tr><th>发布/实施日期</th><td>2020年发布，2020年8月1日实施</td></tr>
+    <tr><th>适用范围</th><td>新建、扩建和改建的民用建筑工程室内环境污染控制，是工程竣工验收的强制性标准。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**Ⅰ类/Ⅱ类民用建筑分类**：Ⅰ类（住宅/学校/幼儿园/医院等）要求更严；Ⅱ类（办公楼/商店/旅馆等）要求稍宽。</li>
+    <li>**甲醛限量**：Ⅰ类建筑≤0.07mg/m³，Ⅱ类建筑≤0.08mg/m³。关门1小时后检测侧重于材料释放。</li>
+    <li>**苯限量**：Ⅰ类建筑≤0.06mg/m³，Ⅱ类建筑≤0.09mg/m³。苯主要来源于油漆、胶粘剂等有机溶剂。</li>
+    <li>**TVOC限量**：Ⅰ类建筑≤0.45mg/m³，Ⅱ类建筑≤0.50mg/m³。</li>
+    <li>**氡限量**：Ⅰ类建筑≤150Bq/m³，Ⅱ类建筑≤200Bq/m³。氡是放射性气体主要来源于地基和含放射性元素的建材。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**GB 50325和GB/T 18883的区别**：前者是工程验收标准（关门1小时测），后者是健康标准（关门12小时测模拟实际居住）。竣工按GB 50325验收，入住前按GB/T 18883复核。</li>
+    <li>**甲醛叠加效应**：即使每件材料都符合E1标准，大量材料叠加释放仍可能超标。控制板材总量是最有效的降低甲醛方法。</li>
+    <li>**通风是唯一免费的治理手段**：装修后至少通风3个月（夏季高温高湿释放最快），配合工业风扇强制换气。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：GB/T 18883-2022 -->
+<section id="standard-detail-gbt-18883-2022" class="section standard-detail">
+<div class="section-header"><h2>GB/T 18883-2022《室内空气质量标准》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+<span class="standard-tag recommend">推荐性标准 / 行业标准</span>
+</div>
+<table class="standard-table">
+    <tr><th>标准编号</th><td>GB/T 18883-2022</td></tr>
+    <tr><th>全称</th><td>室内空气质量标准</td></tr>
+    <tr><th>发布/实施日期</th><td>2022年发布，2023年2月1日实施</td></tr>
+    <tr><th>适用范围</th><td>住宅和办公建筑的室内空气质量评价，检测条件更接近实际居住状态（关闭门窗12小时）。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**甲醛**：≤0.08mg/m³（关闭门窗12小时后1小时均值）。检测条件更严格（密封12小时）。</li>
+    <li>**苯**：≤0.03mg/m³（1小时均值）。新版标准严于旧版（0.11→0.03mg/m³），对油漆、胶粘剂的苯含量控制要求大幅提高。</li>
+    <li>**TVOC**：≤0.60mg/m³（8小时均值）。涵盖烷烃、烯烃、芳香烃、酮类、醛类等数百种有机物。</li>
+    <li>**PM2.5**：≤0.05mg/m³（即50μg/m³，24小时均值）。新标准新增PM2.5指标。</li>
+    <li>**19项指标**：涵盖物理性（温度/相对湿度/风速/新风量）、化学性（甲醛/苯/TVOC等）、生物性（菌落总数）和放射性（氡）。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**入住前必测封闭12小时**：装修后检测室内空气，封闭门窗12小时（模拟夜间睡眠环境），按GB/T 18883标准检测。</li>
+    <li>**苯的新标准极为严格**：限值从0.11降到0.03mg/m³降幅73%。选购油漆、胶粘剂时务必注意苯系物含量。</li>
+    <li>**新风是长效空气质量保障**：即使材料全部环保，室内CO₂、PM2.5、异味仍需新风系统来稀释。建议安装新风系统（≥150m³/h）。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：建设部令第110号 -->
+<section id="standard-detail-建设部令第110号" class="section standard-detail">
+<div class="section-header"><h2>建设部令第110号《住宅室内装饰装修管理办法》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+</div>
+<table class="standard-table">
+    <tr><th>法规编号</th><td>中华人民共和国建设部令第110号</td></tr>
+    <tr><th>全称</th><td>住宅室内装饰装修管理办法</td></tr>
+    <tr><th>发布/实施日期</th><td>2002年5月1日起施行</td></tr>
+    <tr><th>适用范围</th><td>城市住宅室内装饰装修活动的监督管理，规范业主、装修公司、物业公司三方权利义务。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**禁止5类行为**：①未经设计单位提出方案变动建筑主体和承重结构；②将无防水要求的房间或阳台改为卫生间、厨房间；③扩大承重墙上原有门窗洞口尺寸拆除连接阳台的砖、混凝土墙体；④损坏房屋原有节能设施降低节能效果；⑤其他影响建筑结构和使用安全的行为。</li>
+    <li>**开工申报登记制度**：装修人应在开工前向物业管理企业申报登记。非业主使用人装修须取得业主书面同意。</li>
+    <li>**施工时间限制**：装修施工应遵守小区管理规约，在规定时间内施工，不得在休息日和法定节假日进行产生噪声的装修作业。</li>
+    <li>**竣工验收**：竣工后装修人应按合同约定和相应质量标准验收。验收合格后装修企业应出具质量保修书。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**开工前先申报**：务必去物业办理装修申报登记缴纳装修押金。这是避免后续纠纷的第一道防线。</li>
+    <li>**承重结构绝对不能动**：任何涉及承重墙的改造（开洞、拆除、开槽超深）都是违法的。违规拆改危及整栋楼安全且会被责令恢复原状并罚款。</li>
+    <li>**阳台改厨房/卫生间是红线**：无防水和排烟条件的阳台不可以改成厨房或卫生间。楼下漏水责任全部由你承担。</li></ul>
+</div>
+</section>
+
+
+<!-- 详细标准卡片：国务院令第279号 -->
+<section id="standard-detail-国务院令第279号" class="section standard-detail">
+<div class="section-header"><h2>国务院令第279号《建设工程质量管理条例》</h2></div>
+<div class="card">
+<div class="standard-detail-meta">
+</div>
+<table class="standard-table">
+    <tr><th>法规编号</th><td>中华人民共和国国务院令第279号</td></tr>
+    <tr><th>全称</th><td>建设工程质量管理条例</td></tr>
+    <tr><th>发布/实施日期</th><td>2000年1月30日起施行，2017年、2019年两次修订</td></tr>
+    <tr><th>适用范围</th><td>建设工程的新建、扩建、改建等活动的质量监督管理。装修中的质量责任和保修义务受本条例约束。</td></tr></table>
+<h4>核心条款（与装修直接相关）</h4>
+<ol>
+    <li>**质量责任**：施工单位对建设工程的施工质量负责。装修公司应建立质量责任制。</li>
+    <li>**最低保修期限**：屋面防水、有防水要求的卫生间/房间和外墙面的防渗漏为5年；电气管线、给排水管道、设备安装和装修工程为2年。</li>
+    <li>**竣工验收**：工程竣工后建设单位应组织设计、施工、监理等有关单位进行竣工验收。未经验收或验收不合格的工程不得交付使用。</li>
+    <li>**质量保证金**：预留比例不得高于工程价款结算总额的3%。缺陷责任期一般为1年最长不超过2年。</li></ol>
+<h4>装修实战要点</h4>
+<ul>
+    <li>**保修条款必须写入合同**：签装修合同时明确各分项保修期限（防水5年、其他2年是法定最低标准），写明保修响应时间（如48小时内到场）。</li>
+    <li>**质保金条款**：装修尾款（通常5%-10%）留作质保金，竣工验收后约定保修期满再付清。</li>
+    <li>**发生质量问题书面通知**：以书面形式（微信+邮件）通知装修公司保留沟通记录。超期不响应可自行修复并保留维修费用凭证要求对方承担。</li></ul>
+</div>
+</section>
+
 
 </main>
 </div>
@@ -2209,6 +3100,37 @@ function toggleModule(titleEl) {
   titleEl.classList.toggle('collapsed');
   var body = titleEl.nextElementSibling;
   if (body) body.classList.toggle('collapsed');
+}
+
+function toggleSubModule(titleEl) {
+  titleEl.classList.toggle('collapsed');
+  var body = titleEl.nextElementSibling;
+  if (body) body.classList.toggle('collapsed');
+}
+
+function toggleDetails(idsStr) {
+  var ids = idsStr.split(',');
+  var allVisible = ids.every(function(id) {
+    var sec = document.getElementById(id);
+    return sec && sec.style.display !== 'none';
+  });
+  ids.forEach(function(id) {
+    var sec = document.getElementById(id);
+    if (sec) {
+      if (allVisible) {
+        sec.style.display = 'none';
+      } else {
+        sec.style.display = 'block';
+      }
+    }
+  });
+  var buttons = document.querySelectorAll('.expand-btn');
+  buttons.forEach(function(btn) {
+    var onclickAttr = btn.getAttribute('onclick');
+    if (onclickAttr && onclickAttr.indexOf(idsStr) !== -1) {
+      btn.textContent = allVisible ? '展开查看各标准详情' : '收起各标准详情';
+    }
+  });
 }
 </script>
 
