@@ -102,7 +102,7 @@ a:hover{color:#8B6508}
 }
 .sidebar nav{padding:0}
 .sidebar .module-title{
-  font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
+  font-size:0.82rem;text-transform:uppercase;letter-spacing:0.12em;
   color:var(--text-primary);background:#F0ECE4;padding:14px 24px;font-weight:700;
 }
 .sidebar .nav-item{
@@ -119,12 +119,13 @@ a:hover{color:#8B6508}
   background:var(--bg-hover);color:var(--accent);font-weight:500;
   border-left:2px solid var(--accent);
 }
-.sidebar .nav-item .icon{display:inline-block;width:20px;margin-right:6px;text-align:center}
+.sidebar .nav-item .icon{display:inline-block;width:20px;margin-right:6px;text-align:center;font-size:0.45rem;vertical-align:middle;line-height:1}
+.sidebar .sub-module-title .icon{display:inline-block;width:20px;margin-right:6px;text-align:center;font-size:0.45rem;vertical-align:middle;line-height:1}
 
 /* ============ 手风琴模块组 ============ */
 .sidebar .module-group{margin:0}
 .sidebar .module-group .module-title{
-  font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
+  font-size:0.82rem;text-transform:uppercase;letter-spacing:0.12em;
   color:var(--text-primary);background:#F0ECE4;padding:14px 24px;font-weight:700;
   cursor:pointer;user-select:none;
   display:flex;justify-content:space-between;align-items:center;
@@ -261,27 +262,34 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 /* ============ 三级菜单 ============ */
 .sidebar .sub-module { margin: 0; }
 .sidebar .sub-module-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0;
+  display: block;
+  position: relative;
+  padding: 7px 24px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
   cursor: pointer;
   user-select: none;
-  transition: background var(--transition);
+  transition: background var(--transition), border-left var(--transition);
+  border-left: 2px solid transparent;
+  margin-bottom: 0;
 }
 .sidebar .sub-module-title:hover { background: var(--bg-hover); }
 .sidebar .sub-module-title .arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 0.6rem;
   color: var(--text-muted);
   transition: transform 0.2s ease;
 }
-.sidebar .sub-module-title.collapsed .arrow { transform: rotate(-90deg); }
-.sidebar .sub-module-body {
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  max-height: 600px;
-}
+.sidebar .sub-module-title.collapsed .arrow { transform: translateY(-50%) rotate(-90deg); }
+.sidebar .sub-module-body { overflow: hidden; transition: max-height 0.3s ease; max-height: 600px; }
 .sidebar .sub-module-body.collapsed { max-height: 0; }
+.sidebar .sub-module-body .nav-item {
+  font-size: 0.78rem;
+  padding: 5px 24px 5px 40px;
+}
 .sidebar .nav-cat {
   flex: 1;
   font-weight: 500;
@@ -419,49 +427,66 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <nav>
 
 <div class="module-title">设计风格</div>
-<a class="nav-item" data-target="style-modern" onclick="navTo('style-modern')"><span class="icon">▦</span>现代简约</a>
-<a class="nav-item" data-target="style-wabisabi" onclick="navTo('style-wabisabi')"><span class="icon">▦</span>侘寂风</a>
-<a class="nav-item" data-target="style-cream" onclick="navTo('style-cream')"><span class="icon">▦</span>奶油风</a>
-<a class="nav-item" data-target="style-midcentury" onclick="navTo('style-midcentury')"><span class="icon">▦</span>中古风</a>
-<a class="nav-item" data-target="style-newchinese" onclick="navTo('style-newchinese')"><span class="icon">▦</span>新中式</a>
-<a class="nav-item" data-target="style-minimal" onclick="navTo('style-minimal')"><span class="icon">▦</span>极简主义</a>
+<a class="nav-item" data-target="style-modern" onclick="navTo('style-modern')"><span class="icon">●</span>现代简约</a>
+<a class="nav-item" data-target="style-wabisabi" onclick="navTo('style-wabisabi')"><span class="icon">●</span>侘寂风</a>
+<a class="nav-item" data-target="style-cream" onclick="navTo('style-cream')"><span class="icon">●</span>奶油风</a>
+<a class="nav-item" data-target="style-midcentury" onclick="navTo('style-midcentury')"><span class="icon">●</span>中古风</a>
+<a class="nav-item" data-target="style-newchinese" onclick="navTo('style-newchinese')"><span class="icon">●</span>新中式</a>
+<a class="nav-item" data-target="style-minimal" onclick="navTo('style-minimal')"><span class="icon">●</span>极简主义</a>
 
 <div class="module-title">装修工艺</div>
-<a class="nav-item" data-target="craft-plumbing" onclick="navTo('craft-plumbing')"><span class="icon">⚙</span>水电改造</a>
-<a class="nav-item" data-target="craft-waterproof" onclick="navTo('craft-waterproof')"><span class="icon">⚙</span>防水施工</a>
-<a class="nav-item" data-target="craft-tile" onclick="navTo('craft-tile')"><span class="icon">⚙</span>瓷砖铺贴</a>
-<a class="nav-item" data-target="craft-ceiling" onclick="navTo('craft-ceiling')"><span class="icon">⚙</span>木工吊顶</a>
-<a class="nav-item" data-target="craft-wall" onclick="navTo('craft-wall')"><span class="icon">⚙</span>墙面工艺</a>
-<a class="nav-item" data-target="craft-microcement" onclick="navTo('craft-microcement')"><span class="icon">⚙</span>微水泥施工</a>
+<a class="nav-item" data-target="craft-plumbing" onclick="navTo('craft-plumbing')"><span class="icon">●</span>水电改造</a>
+<a class="nav-item" data-target="craft-waterproof" onclick="navTo('craft-waterproof')"><span class="icon">●</span>防水施工</a>
+<a class="nav-item" data-target="craft-tile" onclick="navTo('craft-tile')"><span class="icon">●</span>瓷砖铺贴</a>
+<a class="nav-item" data-target="craft-ceiling" onclick="navTo('craft-ceiling')"><span class="icon">●</span>木工吊顶</a>
+<a class="nav-item" data-target="craft-wall" onclick="navTo('craft-wall')"><span class="icon">●</span>墙面工艺</a>
+<a class="nav-item" data-target="craft-microcement" onclick="navTo('craft-microcement')"><span class="icon">●</span>微水泥施工</a>
 
 <div class="module-title">材料百科</div>
-<a class="nav-item" data-target="mat-tile" onclick="navTo('mat-tile')"><span class="icon">■</span>瓷砖类</a>
-<a class="nav-item" data-target="mat-floor" onclick="navTo('mat-floor')"><span class="icon">■</span>地板类</a>
-<a class="nav-item" data-target="mat-paint" onclick="navTo('mat-paint')"><span class="icon">■</span>涂料类</a>
-<a class="nav-item" data-target="mat-stone" onclick="navTo('mat-stone')"><span class="icon">■</span>石材类</a>
-<a class="nav-item" data-target="mat-cabinet" onclick="navTo('mat-cabinet')"><span class="icon">■</span>定制柜体</a>
-<a class="nav-item" data-target="mat-doorwin" onclick="navTo('mat-doorwin')"><span class="icon">■</span>门窗类</a>
+<a class="nav-item" data-target="mat-tile" onclick="navTo('mat-tile')"><span class="icon">●</span>瓷砖类</a>
+<a class="nav-item" data-target="mat-floor" onclick="navTo('mat-floor')"><span class="icon">●</span>地板类</a>
+<a class="nav-item" data-target="mat-paint" onclick="navTo('mat-paint')"><span class="icon">●</span>涂料类</a>
+<a class="nav-item" data-target="mat-stone" onclick="navTo('mat-stone')"><span class="icon">●</span>石材类</a>
+<a class="nav-item" data-target="mat-cabinet" onclick="navTo('mat-cabinet')"><span class="icon">●</span>定制柜体</a>
+<a class="nav-item" data-target="mat-doorwin" onclick="navTo('mat-doorwin')"><span class="icon">●</span>门窗类</a>
 
 <div class="module-title">软装搭配</div>
-<a class="nav-item" data-target="soft-color" onclick="navTo('soft-color')"><span class="icon">◈</span>配色法则</a>
-<a class="nav-item" data-target="soft-light" onclick="navTo('soft-light')"><span class="icon">◈</span>灯光设计</a>
-<a class="nav-item" data-target="soft-curtain" onclick="navTo('soft-curtain')"><span class="icon">◈</span>窗帘选择</a>
-<a class="nav-item" data-target="soft-furniture" onclick="navTo('soft-furniture')"><span class="icon">◈</span>家具尺度</a>
-<a class="nav-item" data-target="soft-art" onclick="navTo('soft-art')"><span class="icon">◈</span>挂画与装饰</a>
-<a class="nav-item" data-target="soft-plant" onclick="navTo('soft-plant')"><span class="icon">◈</span>绿植搭配</a>
+<a class="nav-item" data-target="soft-color" onclick="navTo('soft-color')"><span class="icon">●</span>配色法则</a>
+<a class="nav-item" data-target="soft-light" onclick="navTo('soft-light')"><span class="icon">●</span>灯光设计</a>
+<a class="nav-item" data-target="soft-curtain" onclick="navTo('soft-curtain')"><span class="icon">●</span>窗帘选择</a>
+<a class="nav-item" data-target="soft-furniture" onclick="navTo('soft-furniture')"><span class="icon">●</span>家具尺度</a>
+<a class="nav-item" data-target="soft-art" onclick="navTo('soft-art')"><span class="icon">●</span>挂画与装饰</a>
+<a class="nav-item" data-target="soft-plant" onclick="navTo('soft-plant')"><span class="icon">●</span>绿植搭配</a>
 
 <div class="module-title">空间规划</div>
-<a class="nav-item" data-target="space-layout" onclick="navTo('space-layout')"><span class="icon">⊞</span>户型改造</a>
-<a class="nav-item" data-target="space-flow" onclick="navTo('space-flow')"><span class="icon">⊞</span>动线设计</a>
-<a class="nav-item" data-target="space-storage" onclick="navTo('space-storage')"><span class="icon">⊞</span>收纳系统</a>
-<a class="nav-item" data-target="space-open" onclick="navTo('space-open')"><span class="icon">⊞</span>开放空间</a>
+<a class="nav-item" data-target="space-layout" onclick="navTo('space-layout')"><span class="icon">●</span>户型改造</a>
+<a class="nav-item" data-target="space-flow" onclick="navTo('space-flow')"><span class="icon">●</span>动线设计</a>
+<div class="sub-module-title" onclick="toggleSubModule(this)"><span class="icon">●</span>收纳系统 <span class="arrow">▾</span></div>
+<div class="sub-module-body">
+<a class="nav-item" data-target="storage-basic" onclick="navTo('storage-basic')">收纳设计基本原则</a>
+<a class="nav-item" data-target="storage-ergo" onclick="navTo('storage-ergo')">收纳人体工学</a>
+<a class="nav-item" data-target="storage-material" onclick="navTo('storage-material')">收纳材料学</a>
+<a class="nav-item" data-target="storage-entry" onclick="navTo('storage-entry')">玄关收纳</a>
+<a class="nav-item" data-target="storage-kitchen" onclick="navTo('storage-kitchen')">厨房收纳</a>
+<a class="nav-item" data-target="storage-sideboard" onclick="navTo('storage-sideboard')">餐边柜收纳</a>
+<a class="nav-item" data-target="storage-tv" onclick="navTo('storage-tv')">电视柜收纳</a>
+<a class="nav-item" data-target="storage-wardrobe" onclick="navTo('storage-wardrobe')">衣柜细分</a>
+<a class="nav-item" data-target="storage-dresser" onclick="navTo('storage-dresser')">化妆桌收纳</a>
+<a class="nav-item" data-target="storage-desk" onclick="navTo('storage-desk')">学习桌收纳</a>
+<a class="nav-item" data-target="storage-display" onclick="navTo('storage-display')">手办展示柜</a>
+<a class="nav-item" data-target="storage-bathroom" onclick="navTo('storage-bathroom')">卫生间收纳</a>
+<a class="nav-item" data-target="storage-balcony" onclick="navTo('storage-balcony')">阳台收纳</a>
+<a class="nav-item" data-target="storage-japanese" onclick="navTo('storage-japanese')">日式收纳理念</a>
+<a class="nav-item" data-target="storage-calc" onclick="navTo('storage-calc')">容量计算与规划</a>
+</div>
+<a class="nav-item" data-target="space-open" onclick="navTo('space-open')"><span class="icon">●</span>开放空间</a>
 
 <div class="module-title">施工规范与验收</div>
-<a class="nav-item" data-target="check-plumbing" onclick="navTo('check-plumbing')"><span class="icon">☑</span>水电验收</a>
-<a class="nav-item" data-target="check-masonry" onclick="navTo('check-masonry')"><span class="icon">☑</span>泥瓦验收</a>
-<a class="nav-item" data-target="check-wood" onclick="navTo('check-wood')"><span class="icon">☑</span>木工验收</a>
-<a class="nav-item" data-target="check-paint" onclick="navTo('check-paint')"><span class="icon">☑</span>油漆验收</a>
-<a class="nav-item" data-target="check-final" onclick="navTo('check-final')"><span class="icon">☑</span>竣工验收</a>
+<a class="nav-item" data-target="check-plumbing" onclick="navTo('check-plumbing')"><span class="icon">●</span>水电验收</a>
+<a class="nav-item" data-target="check-masonry" onclick="navTo('check-masonry')"><span class="icon">●</span>泥瓦验收</a>
+<a class="nav-item" data-target="check-wood" onclick="navTo('check-wood')"><span class="icon">●</span>木工验收</a>
+<a class="nav-item" data-target="check-paint" onclick="navTo('check-paint')"><span class="icon">●</span>油漆验收</a>
+<a class="nav-item" data-target="check-final" onclick="navTo('check-final')"><span class="icon">●</span>竣工验收</a>
 </nav>
 
 <div class="module-group">
@@ -1429,10 +1454,9 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 </section>
 
 <!-- 收纳系统 -->
-<section id="space-storage" class="section">
-<div class="section-header"><h2>收纳系统</h2><p class="desc">收纳是住宅设计的骨架——涉及材料学、人体工学、动线逻辑和行为心理学</p></div>
-
-<!-- 收纳设计基本原则 -->
+<!-- 收纳系统 · 收纳设计基本原则 -->
+<section id="storage-basic" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">收纳设计基本原则</p></div>
 <div class="card">
 <h3>一、收纳设计基本原则</h3>
 
@@ -1454,8 +1478,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <h4>4. 二八原则</h4>
 <p><strong>80% 藏、20% 露</strong>。杂乱的日用品、颜色不一的杂物藏进封闭柜门；书籍、摆件、常用钥匙盘进行展示。开放式收纳格深度建议 30-35cm、高度 30-40cm 模数，过深积灰、过浅放不下。</p>
 </div>
+</section>
 
-<!-- 人体工学 -->
+<!-- 收纳系统 · 收纳人体工学 -->
+<section id="storage-ergo" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">收纳人体工学</p></div>
 <div class="card">
 <h3>二、收纳人体工学（以身高 160-170cm 为基准）</h3>
 
@@ -1471,8 +1498,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <strong>关键尺寸：</strong>厨房过道双面橱柜时净宽 ≥ 90cm（推荐 100-120cm）；衣柜开门区预留 ≥ 60cm；衣柜内短衣区挂高 ≥ 90cm、长衣区 ≥ 130cm；鞋柜标准深 35cm（受限可做斜插 25cm）。
 </div>
 </div>
+</section>
 
-<!-- 收纳材料学 -->
+<!-- 收纳系统 · 收纳材料学 -->
+<section id="storage-material" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">收纳材料学</p></div>
 <div class="card">
 <h3>三、收纳材料学</h3>
 
@@ -1502,8 +1532,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
 <tr><td>亚克力</td><td>颜值高、通透感强、硬度高但易碎</td><td>桌面收纳、展示型收纳</td></tr>
 </table>
 </div>
+</section>
 
-<!-- 各空间深度方案 -->
+<!-- 收纳系统 · 玄关收纳 -->
+<section id="storage-entry" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">玄关收纳</p></div>
 <div class="card">
 <h3>四、玄关收纳</h3>
 
@@ -1525,7 +1558,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <li><strong>雨伞</strong>：长柄伞需 100cm 高通柜；折叠伞抽屉净高 12-15cm</li>
 </ul>
 </div>
+</section>
 
+<!-- 收纳系统 · 厨房收纳 -->
+<section id="storage-kitchen" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">厨房收纳</p></div>
 <div class="card">
 <h3>五、厨房收纳</h3>
 
@@ -1563,7 +1600,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <li><strong>吊柜</strong>：上半存杂粮密封罐，下半放常用杯碟；吊柜深 35-40cm</li>
 </ul>
 </div>
+</section>
 
+<!-- 收纳系统 · 餐边柜收纳 -->
+<section id="storage-sideboard" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">餐边柜收纳</p></div>
 <div class="card">
 <h3>六、餐边柜收纳</h3>
 
@@ -1582,7 +1623,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <strong>餐边柜黄金深度：</strong>40-45cm。35cm 放不下咖啡机，50cm 以上占用过道。台面操作区建议留 80-100cm 宽连续台面。
 </div>
 </div>
+</section>
 
+<!-- 收纳系统 · 电视柜 / 起居室收纳 -->
+<section id="storage-tv" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">电视柜 / 起居室收纳</p></div>
 <div class="card">
 <h3>七、电视柜 / 起居室收纳</h3>
 
@@ -1609,7 +1654,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <li><strong>穿线孔</strong>：每格预留直径 5cm 穿线孔，设备格背部留散热通道</li>
 </ul>
 </div>
+</section>
 
+<!-- 收纳系统 · 衣柜细分 -->
+<section id="storage-wardrobe" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">衣柜细分</p></div>
 <div class="card">
 <h3>八、衣柜细分</h3>
 
@@ -1638,7 +1687,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <li><strong>高箱床</strong>：箱体高 ≥ 35cm 才有实用收纳容量</li>
 </ul>
 </div>
+</section>
 
+<!-- 收纳系统 · 化妆桌收纳 -->
+<section id="storage-dresser" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">化妆桌收纳</p></div>
 <div class="card">
 <h3>九、化妆桌收纳</h3>
 
@@ -1658,7 +1711,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <strong>化妆桌设计要点：</strong>桌深 45-50cm（可放手臂+镜子）；抽屉做浅层（10-15cm）放首饰和小件；第一层抽屉建议做透明亚克力或玻璃面板，一眼找到。
 </div>
 </div>
+</section>
 
+<!-- 收纳系统 · 学习桌 / 书桌收纳 -->
+<section id="storage-desk" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">学习桌 / 书桌收纳</p></div>
 <div class="card">
 <h3>十、学习桌 / 书桌收纳</h3>
 
@@ -1677,7 +1734,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <strong>书桌黄金深度：</strong>60-70cm（贴墙放显示器不顶胸），最小不低于 50cm。长度单人 ≥ 100cm，双人 ≥ 180cm。
 </div>
 </div>
+</section>
 
+<!-- 收纳系统 · 手办 / 潮玩展示柜 -->
+<section id="storage-display" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">手办 / 潮玩展示柜</p></div>
 <div class="card">
 <h3>十一、手办 / 潮玩展示柜</h3>
 
@@ -1700,7 +1761,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <li><strong>玻璃门</strong>：推荐钢化超白玻，透光率 91%+；门框选极窄（≤ 2cm）不挡视线</li>
 </ul>
 </div>
+</section>
 
+<!-- 收纳系统 · 卫生间收纳 -->
+<section id="storage-bathroom" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">卫生间收纳</p></div>
 <div class="card">
 <h3>十二、卫生间收纳</h3>
 <ul>
@@ -1710,7 +1775,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <li><strong>干湿分区</strong>：毛巾、纸巾、卫生棉条存放在干区，避免潮湿发霉</li>
 </ul>
 </div>
+</section>
 
+<!-- 收纳系统 · 阳台收纳 -->
+<section id="storage-balcony" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">阳台收纳</p></div>
 <div class="card">
 <h3>十三、阳台收纳</h3>
 <ul>
@@ -1720,7 +1789,12 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <li><strong>洗涤用品</strong>：柜内净高 ≥ 35cm 放洗衣液大瓶</li>
   <li><strong>长柄工具</strong>：拖把/扫把/吸尘器墙挂，柜内净高 ≥ 120cm</li>
 </ul>
-</div><!-- 日式收纳理念 -->
+</div>
+</section>
+
+<!-- 收纳系统 · 日式收纳设计理念 -->
+<section id="storage-japanese" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">日式收纳设计理念</p></div>
 <div class="card">
 <h3>十四、日式收纳设计理念</h3>
 
@@ -1742,8 +1816,11 @@ mark.search-hl{background:rgba(184,134,11,0.25);color:var(--text-primary);paddin
   <li><strong>统一容器</strong>：颜色、材质、形状统一的收纳盒，显著降低视觉噪音，空间显大</li>
 </ul>
 </div>
+</section>
 
-<!-- 容量计算 -->
+<!-- 收纳系统 · 收纳容量计算与规划 -->
+<section id="storage-calc" class="section">
+<div class="section-header"><h2>收纳系统</h2><p class="desc">收纳容量计算与规划</p></div>
 <div class="card">
 <h3>十五、收纳容量计算与规划方法</h3>
 
