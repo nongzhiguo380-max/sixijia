@@ -903,3 +903,35 @@ body::after {
 }
 .reel-card .rc-link:hover { border-color: var(--accent); }
 
+
+/* 小红书搜索引导链接（contact 页） */
+.xhs-link {
+  color: inherit; text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color .3s, border-color .3s;
+}
+.xhs-link:hover { color: var(--accent); border-color: var(--accent-2); }
+.xhs-link::after { content: " ↗"; font-size: 0.7em; color: var(--accent); }
+
+/* 灵感页：小红书关注引导条 */
+.xhs-bar {
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  padding: 22px 26px; margin: 0 0 36px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.xhs-bar .xb-text { flex: 1 1 320px; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+.xhs-bar .xb-text strong { color: var(--text); font-weight: 600; }
+.xhs-bar .xb-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 22px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 14px; font-weight: 500;
+  text-decoration: none; white-space: nowrap;
+  transition: background .3s, transform .4s cubic-bezier(.32,.72,0,1);
+}
+.xhs-bar .xb-btn:hover { background: var(--accent-strong); transform: translateY(-2px); }
+@media (max-width: 560px) {
+  .xhs-bar { padding: 18px 20px; gap: 14px; }
+  .xhs-bar .xb-btn { width: 100%; justify-content: center; }
+}
