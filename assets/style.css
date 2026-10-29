@@ -13,10 +13,10 @@
   --surface-2: #EDE3D2;       /* 交替区块 */
   --text: #3A241A;           /* ink 深棕墨主文字 */
   --text-muted: #7A5A45;      /* ink-soft 柔棕次要 */
-  --accent: #C81E37;         /* jam 酱红：唯一行动色 */
-  --accent-strong: #A8162C;   /* 悬停更深 */
+  --accent: #5C3A21;         /* 深棕：唯一行动色（替代原酱红） */
+  --accent-strong: #43291B;   /* 更深的棕：悬停/小字 */
   --accent-2: #E2611B;        /* ember 橙：暖装饰层级 */
-  --accent-soft: rgba(200, 30, 55, 0.08);
+  --accent-soft: rgba(92, 58, 33, 0.08);
   --border: #E2D6C2;
   --border-strong: #D2C2A8;
   --night: #231410;           /* 深色块底 */
