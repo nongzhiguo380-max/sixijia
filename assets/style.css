@@ -8,23 +8,27 @@
 
 :root {
   /* 色彩 —— 暖中性、单一黄铜强调色、无渐变背景 */
-  --bg: #FAF8F5;
-  --surface: #FFFFFF;
-  --surface-2: #F3EFE9;
-  --text: #211C17;
-  --text-muted: #6B6355;
-  --accent: #A87E3F;          /* 黄铜，饱和度 < 80% */
-  --accent-strong: #8C6630;
-  --accent-soft: rgba(168,126,63,0.08);
-  --border: #EAE4DB;
-  --border-strong: #DDD5C9;
-  /* 阴影统一偏向背景色，避免纯黑 */
-  --shadow-sm: 0 1px 2px rgba(33,28,23,0.04);
-  --shadow-md: 0 2px 8px rgba(33,28,23,0.05), 0 12px 32px rgba(33,28,23,0.05);
+  --bg: #F3EADA;              /* cream 羊皮纸底 */
+  --surface: #FBF4E6;         /* paper 纸白面板 */
+  --surface-2: #EDE3D2;       /* 交替区块 */
+  --text: #3A241A;           /* ink 深棕墨主文字 */
+  --text-muted: #7A5A45;      /* ink-soft 柔棕次要 */
+  --accent: #C81E37;         /* jam 酱红：唯一行动色 */
+  --accent-strong: #A8162C;   /* 悬停更深 */
+  --accent-2: #E2611B;        /* ember 橙：暖装饰层级 */
+  --accent-soft: rgba(200, 30, 55, 0.08);
+  --border: #E2D6C2;
+  --border-strong: #D2C2A8;
+  --night: #231410;           /* 深色块底 */
+  /* 阴影统一偏向棕墨，避免纯黑 */
+  --shadow-sm: 0 1px 2px rgba(58, 36, 26, 0.05);
+  --shadow-md: 0 2px 8px rgba(58, 36, 26, 0.06), 0 12px 32px rgba(58, 36, 26, 0.06);
 
-  /* 字体 */
-  --font-body: "Noto Sans SC", system-ui, -apple-system, "PingFang SC", sans-serif;
-  --font-display: "Noto Serif SC", "Noto Sans SC", serif;
+  /* 字体：heritage editorial —— 拉丁衬线(Marcellus/Spectral) + 中文衬线(Noto Serif SC) + 手写(Caveat/Ma Shan Zheng) */
+  --font-body: "Spectral", "Noto Serif SC", Georgia, serif;
+  --font-display: "Marcellus", "Noto Serif SC", serif;
+  --font-hand: "Caveat", "Ma Shan Zheng", cursive;
+  --font-display-latin: "Fraunces", "Marcellus", serif;
 
   /* 圆角（Tailwind 值） */
   --r-sm: 4px; --r: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 24px; --r-full: 999px;
@@ -39,11 +43,12 @@
 /* 间距标尺（闭合集合，禁止任意值）：2/4/8/12/16/24/32/40/48/64/80/96 */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
 
 body {
   font-family: var(--font-body);
   background: var(--bg);
+  overflow-x: hidden;
   color: var(--text);
   font-size: 16px;
   line-height: 1.85;
@@ -168,6 +173,24 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; color: var(--te
   .reveal { opacity: 1; transform: none; filter: none; transition: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ---------- Heritage 动效：减速浮现 / 漂浮 / 呼吸 ---------- */
+@keyframes frameIn {
+  from { opacity: 0; transform: translateY(18px) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes emberPulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .82; }
+}
+.hero-media, .frame { animation: floaty 5s ease-in-out infinite; }
+.eyebrow { animation: emberPulse 4.5s ease-in-out infinite; }
+.card { transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-strong); }
 
 /* ---------- Hero ---------- */
 .hero { padding: 168px 0 96px; }
@@ -595,14 +618,15 @@ body::after {
 .hero-media { position: relative; }
 .hero-media img { width: 100%; height: 480px; object-fit: cover; border-radius: var(--r-xl); box-shadow: var(--shadow-md); }
 .hero-watermark {
-  position: absolute; right: -8px; bottom: -28px; font-family: var(--font-display-latin);
-  font-size: clamp(40px, 7vw, 92px); font-weight: 600; letter-spacing: 0.02em; line-height: 1;
-  color: transparent; -webkit-text-stroke: 1px var(--accent); opacity: 0.5; pointer-events: none;
+  position: absolute; right: 14px; bottom: 14px; font-family: var(--font-display-latin);
+  font-size: clamp(26px, 4.5vw, 60px); font-weight: 600; letter-spacing: 0.04em; line-height: 1;
+  color: transparent; -webkit-text-stroke: 1px var(--accent-2); opacity: 0.30; pointer-events: none;
+  z-index: 2;
 }
 /* 数字用 Fraunces，带表格数字，编辑感 */
 .stat-num, .hero-text h1 .en, .kb-a-inner .en { font-family: var(--font-display-latin); font-variant-numeric: tabular-nums; }
 .stat .num { color: var(--accent); }
-.hero-text .stats { justify-content: flex-start; margin-top: 40px; gap: 40px; }
+.hero-text .stats { justify-content: flex-start; margin-top: 40px; gap: 28px 40px; flex-wrap: wrap; }
 
 /* 编辑感服务卡：去统一阴影、加序号与发丝线，悬停扫光 */
 .cards-2 { gap: 0; border-top: 1px solid var(--border); }
@@ -651,38 +675,23 @@ body::after {
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .hero-media img { height: 320px; }
-  .hero-watermark { font-size: 56px; bottom: -16px; }
+  .hero-watermark { font-size: 34px; right: 10px; bottom: 10px; opacity: 0.26; }
   .card { grid-template-columns: 48px 1fr; padding: 32px 8px 32px 8px; }
   .card::before { font-size: 32px; }
 }
 
 /* ============================================================
-   浅色 · 高饱和 · 高对比 主题（暖白纸感底 + 朱红行动色 + 暖金装饰）
-   设计目标：保留"高级 + 高对比"，但以浅底呈现。
-   朱红为唯一行动色（品牌"四喜"喜庆红），暖金仅作装饰层级；
-   白字压深朱红 ≥ 5.2:1 达标，暖金文字统一走更深的青铜以保证可读。
+   Heritage 主题覆盖：仅补充组件所需文字色 --ink，
+   其余色彩/字体令牌统一由上方主 :root（羊皮纸 cream + 棕墨 ink + 酱红 jam + 橙 ember）提供。
    ============================================================ */
 :root {
-  --bg: #FBF8F3;              /* 暖白纸感底 */
-  --surface: #FFFFFF;         /* 卡片/面板 */
-  --surface-2: #F2ECE3;       /* 交替区块 */
-  --text: #1B1712;            /* 近黑暖墨主文字 */
-  --text-muted: #6E6453;      /* 暖灰次要文字 */
-  --accent: #D8361E;          /* 朱红：唯一行动色（白字 5.3:1 达标） */
-  --accent-strong: #BC2D16;   /* 悬停更深 */
-  --accent-2: #9A6E26;        /* 暖金装饰/层级（已取可保证对比的深度） */
-  --accent-soft: rgba(216, 54, 30, 0.10);
-  --border: #E8E0D4;
-  --border-strong: #D6CABA;
-  --ink: #FFFFFF;             /* 铺在朱红/暖金底上的文字色 */
-  --shadow-sm: 0 1px 2px rgba(27, 23, 18, 0.05);
-  --shadow-md: 0 2px 8px rgba(27, 23, 18, 0.06), 0 16px 40px rgba(27, 23, 18, 0.08);
+  --ink: #FFFFFF;             /* 铺在 accent 底上的文字色 */
 }
 
-/* 玻璃导航 / 移动端遮罩转浅色 */
-.nav-island { background: rgba(251, 248, 243, 0.72); }
-.nav-island.scrolled { background: rgba(251, 248, 243, 0.9); }
-.mobile-menu { background: rgba(251, 248, 243, 0.9); }
+/* 玻璃导航 / 移动端遮罩转浅色（heritage：cream 半透明） */
+.nav-island { background: rgba(243, 234, 218, 0.72); }
+.nav-island.scrolled { background: rgba(243, 234, 218, 0.90); }
+.mobile-menu { background: rgba(243, 234, 218, 0.88); }
 
 /* 按钮：朱红底 + 白字（深朱红保证对比） */
 .btn-primary { background: var(--accent); color: var(--ink); }
@@ -693,7 +702,7 @@ body::after {
 
 /* 首屏：标题用暖墨（浅底上可见） */
 .hero-text h1 { background: none; -webkit-text-fill-color: var(--text); color: var(--text); }
-.hero::before { background: radial-gradient(60% 100% at 30% 0%, rgba(216, 54, 30, 0.10), transparent 70%); }
+.hero::before { background: radial-gradient(60% 100% at 30% 0%, rgba(226, 97, 27, 0.10), transparent 70%); }
 
 /* 层级纪律：小字标签走深朱红（浅底上更醒目、对比达标）；
    暖金仅保留给大号装饰数字 / 分隔线 / 角标等非正文装饰元素 */
@@ -758,6 +767,10 @@ body::after {
 .showreel video, .showreel img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hero-media .showreel { height: 480px; }
 @media (max-width: 900px) { .hero-media .showreel { height: 320px; } .hero-media .sr-cap h3 { font-size: 20px; } }
+/* 视频/图片字幕对比度增强（heritage 暖暗遮罩 + 文字投影） */
+.showreel::after { content:""; position:absolute; left:0; right:0; bottom:0; height:52%; background:linear-gradient(transparent, rgba(35,20,16,0.52)); pointer-events:none; z-index:1; }
+.sr-play, .sr-cap { position: relative; z-index: 2; }
+.sr-cap { text-shadow: 0 1px 8px rgba(35,20,16,0.55); }
 .showreel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,13,12,0) 40%, rgba(14,13,12,0.55) 100%); pointer-events: none; }
 .showreel .sr-cap { position: absolute; left: 24px; bottom: 22px; right: 24px; z-index: 2; color: #fff; }
 .showreel .sr-cap .eyebrow { color: var(--accent-2); }
