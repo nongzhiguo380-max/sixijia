@@ -948,3 +948,54 @@ body::after {
   .xhs-bar { padding: 18px 20px; gap: 14px; }
   .xhs-bar .xb-btn { width: 100%; justify-content: center; }
 }
+
+/* ===== 实景案例 projects.html ===== */
+.wrap { width:100%; max-width: var(--max); margin:0 auto; padding:0 24px; }
+.proj-hero { padding: 168px 0 80px; text-align:left; }
+.proj-hero .eyebrow { display:inline-block; }
+.proj-hero h1 { font-family: var(--font-display); font-size: clamp(40px,7vw,76px); line-height:1.04; margin:14px 0; color: var(--text); }
+.proj-hero .lede { color: var(--text-muted); font-size: clamp(16px,2vw,19px); max-width:640px; margin:0 0 32px; }
+.proj-hero .hero-cta { display:flex; gap:16px; flex-wrap:wrap; }
+
+.proj-filter { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin: 0 auto 48px; }
+.chip { font-family: var(--font-body); font-size:14px; padding:9px 20px; border:1px solid var(--border-strong); border-radius:999px; background: var(--surface); color: var(--text-muted); cursor:pointer; transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.chip .cn { opacity:.6; font-size:12px; margin-left:4px; }
+.chip.active, .chip:hover { background: var(--accent); color:#fff; border-color: var(--accent); }
+.chip.active .cn, .chip:hover .cn { opacity:.85; }
+
+.proj-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap:24px; }
+.proj-card { display:block; border:1px solid var(--border); border-radius: var(--r-lg); overflow:hidden; background: var(--surface); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.proj-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-strong); }
+.proj-card .ph { aspect-ratio: 4/3; overflow:hidden; background: var(--surface-2); }
+.proj-card .ph img { width:100%; height:100%; object-fit:cover; }
+.proj-card .pb { padding:18px 20px; }
+.proj-card .pb .tag { font-size:12px; color: var(--accent-strong); letter-spacing:.12em; }
+.proj-card .pb h3 { font-family: var(--font-display); font-size:22px; margin:6px 0 4px; color: var(--text); }
+.proj-card .pb .region { font-size:13px; color: var(--text-muted); }
+
+.proj { padding: 72px 0; border-top:1px solid var(--border); }
+.proj:first-of-type { border-top:none; }
+.proj-head { max-width:720px; margin:0 auto 36px; text-align:center; }
+.proj-head .tag { font-size:13px; color: var(--accent-strong); letter-spacing:.12em; }
+.proj-head h2 { font-family: var(--font-display); font-size: clamp(28px,4vw,40px); margin:10px 0; color: var(--text); }
+.proj-head .region { color: var(--text-muted); font-size:14px; }
+.proj-head p { color: var(--text-muted); margin-top:14px; }
+.proj-group { margin: 28px 0; }
+.proj-group .glabel { display:flex; align-items:center; gap:12px; font-family: var(--font-display); font-size:16px; color: var(--accent-strong); letter-spacing:.06em; margin-bottom:14px; }
+.proj-group .glabel .gsub { font-family: var(--font-body); font-size:13px; color: var(--text-muted); letter-spacing:0; }
+.proj-group .glabel::after { content:""; flex:1; height:1px; background: var(--border); }
+.proj-gallery { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap:10px; }
+.proj-gallery img { width:100%; height:240px; object-fit:cover; border-radius: var(--r-md); cursor:pointer; background: var(--surface-2); border:1px solid var(--border); transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease); }
+.proj-gallery img:hover { transform: scale(1.02); opacity:.92; }
+
+.lightbox { position:fixed; inset:0; background: rgba(35,20,16,.92); display:none; place-items:center; z-index:9999; padding:24px; cursor:zoom-out; }
+.lightbox.open { display:grid; }
+.lightbox img { max-width:92vw; max-height:88vh; border-radius: var(--r-md); box-shadow:0 20px 60px rgba(0,0,0,.5); cursor:default; }
+.lightbox .lb-close { position:absolute; top:18px; right:24px; color:#fff; font-size:32px; line-height:1; cursor:pointer; background:none; border:none; opacity:.8; }
+.lightbox .lb-close:hover { opacity:1; }
+
+@media (max-width: 700px) {
+  .proj-hero { padding: 132px 0 56px; }
+  .proj-gallery { grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); }
+  .proj-gallery img { height:170px; }
+}
