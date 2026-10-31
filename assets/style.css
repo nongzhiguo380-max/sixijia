@@ -963,10 +963,15 @@ body::after {
 .chip.active, .chip:hover { background: var(--accent); color:#fff; border-color: var(--accent); }
 .chip.active .cn, .chip:hover .cn { opacity:.85; }
 
-.proj-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap:24px; }
-.proj-card { display:block; border:1px solid var(--border); border-radius: var(--r-lg); overflow:hidden; background: var(--surface); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+/* Eagle 风格错落瀑布流：多列瀑布 + 图片高度交错 */
+.proj-grid { columns: 3 280px; column-gap: 24px; }
+.proj-card { display:block; break-inside:avoid; -webkit-column-break-inside:avoid; margin:0 0 24px; border:1px solid var(--border); border-radius: var(--r-lg); overflow:hidden; background: var(--surface); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
 .proj-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-strong); }
 .proj-card .ph { aspect-ratio: 4/3; overflow:hidden; background: var(--surface-2); }
+/* 高度交错节奏：竖构图 / 方图 / 略横图 循环，形成错落感 */
+.proj-card:nth-child(4n+1) .ph { aspect-ratio: 4/5; }
+.proj-card:nth-child(4n+2) .ph { aspect-ratio: 1/1; }
+.proj-card:nth-child(4n+3) .ph { aspect-ratio: 3/4; }
 .proj-card .ph img { width:100%; height:100%; object-fit:cover; }
 .proj-card .pb { padding:18px 20px; }
 .proj-card .pb .tag { font-size:12px; color: var(--accent-strong); letter-spacing:.12em; }
@@ -996,6 +1001,10 @@ body::after {
 
 @media (max-width: 700px) {
   .proj-hero { padding: 132px 0 56px; }
+  .proj-grid { columns: 2 150px; column-gap: 12px; }
+  .proj-card { margin-bottom: 12px; }
+  .proj-card .pb { padding: 12px 14px; }
+  .proj-card .pb h3 { font-size: 18px; }
   .proj-gallery { grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); }
   .proj-gallery img { height:170px; }
 }
