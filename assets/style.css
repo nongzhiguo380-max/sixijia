@@ -979,6 +979,10 @@ body::after {
 .proj-card .pb .region { font-size:13px; color: var(--text-muted); }
 
 .proj { padding: 72px 0; border-top:1px solid var(--border); }
+/* 二级详情页 */
+.proj-detail { padding: 148px 0 84px; border-top:none; }
+.proj-back { display:inline-flex; align-items:center; gap:8px; font-size:14px; letter-spacing:.06em; color:var(--text-muted); margin-bottom:28px; transition: color var(--dur) var(--ease); }
+.proj-back:hover { color: var(--accent-strong); }
 .proj:first-of-type { border-top:none; }
 .proj-head { max-width:720px; margin:0 auto 36px; text-align:center; }
 .proj-head .tag { font-size:13px; color: var(--accent-strong); letter-spacing:.12em; }
@@ -1001,6 +1005,8 @@ body::after {
 
 @media (max-width: 700px) {
   .proj-hero { padding: 132px 0 56px; }
+  .proj-detail { padding: 124px 0 56px; }
+  .proj-back { margin-bottom: 20px; }
   .proj-grid { columns: 2 150px; column-gap: 12px; }
   .proj-card { margin-bottom: 12px; }
   .proj-card .pb { padding: 12px 14px; }
