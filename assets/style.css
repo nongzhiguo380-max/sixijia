@@ -355,7 +355,8 @@ footer .brand { color: var(--accent-strong); font-family: var(--font-display); }
   .nav-links, .nav-actions .btn { display: none; }
   .nav-burger { display: block; }
   .nav-island { padding: 10px 12px 10px 20px; }
-  .cards-2, .case-split, .contact-grid, .case-meta { grid-template-columns: 1fr; }
+  .cards-2, .cards-3, .case-split, .contact-grid, .case-meta { grid-template-columns: 1fr; }
+  .cards-3 .card:not(:nth-child(3n)) { border-right: none; }
   .case-split.reverse .case-media { order: 0; }
   .section { padding: 72px 0; }
   .hero { padding: 132px 0 64px; }
@@ -630,6 +631,8 @@ body::after {
 
 /* 编辑感服务卡：去统一阴影、加序号与发丝线，悬停扫光 */
 .cards-2 { gap: 0; border-top: 1px solid var(--border); }
+.cards-3 { grid-template-columns: repeat(3, 1fr); }
+.cards-3 .card:not(:nth-child(3n)) { border-right: 1px solid var(--border); }
 .card {
   position: relative; padding: 40px 40px 40px 48px; border: none; border-bottom: 1px solid var(--border);
   border-radius: 0; background: transparent; display: grid; grid-template-columns: 64px 1fr; gap: 8px 24px; align-items: start;
